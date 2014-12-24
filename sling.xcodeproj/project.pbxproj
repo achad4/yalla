@@ -15,13 +15,14 @@
 		82703F6019F0A77900EBEC4E /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F5F19F0A77900EBEC4E /* Question.swift */; };
 		82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F6319F0B61800EBEC4E /* QuestionFeedViewController.swift */; };
 		82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82935AFE19F0DB1800EC8C59 /* PostViewController.swift */; };
-		829C380C1A0D87C20020558C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829C380B1A0D87C20020558C /* FacebookSDK.framework */; };
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
 		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
 		A788EDA119FF649400BF4B02 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788ED9E19FF649400BF4B02 /* Bolts.framework */; };
 		A788EDA219FF649400BF4B02 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788ED9F19FF649400BF4B02 /* Parse.framework */; };
 		A788EDA319FF649400BF4B02 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */; };
+		A79B9D4A1A4904FC0030F56D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79B9D491A4904FC0030F56D /* FacebookSDK.framework */; };
+		A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79B9D4B1A4A32C90030F56D /* Conversation.swift */; };
 		D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8819FF567800D1A8FB /* Accounts.framework */; };
 		D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */; };
 		D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */; };
@@ -58,13 +59,14 @@
 		82703F5F19F0A77900EBEC4E /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		82703F6319F0B61800EBEC4E /* QuestionFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFeedViewController.swift; sourceTree = "<group>"; };
 		82935AFE19F0DB1800EC8C59 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		829C380B1A0D87C20020558C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
 		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		A788ED9E19FF649400BF4B02 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		A788ED9F19FF649400BF4B02 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		A79B9D491A4904FC0030F56D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		A79B9D4B1A4A32C90030F56D /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		D3FCDA8819FF567800D1A8FB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79B9D4A1A4904FC0030F56D /* FacebookSDK.framework in Frameworks */,
 				A788EDA319FF649400BF4B02 /* ParseFacebookUtils.framework in Frameworks */,
 				D3FCDA9D19FF56E800D1A8FB /* SystemConfiguration.framework in Frameworks */,
 				D3FCDA9B19FF56DF00D1A8FB /* StoreKit.framework in Frameworks */,
@@ -95,7 +98,6 @@
 				D3FCDA9319FF56B100D1A8FB /* MobileCoreServices.framework in Frameworks */,
 				D3FCDA9119FF56A300D1A8FB /* libz.dylib in Frameworks */,
 				D3FCDA8F19FF568A00D1A8FB /* CoreGraphics.framework in Frameworks */,
-				829C380C1A0D87C20020558C /* FacebookSDK.framework in Frameworks */,
 				D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */,
 				D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */,
 				D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */,
@@ -115,7 +117,7 @@
 		82703F3119F0A3E600EBEC4E = {
 			isa = PBXGroup;
 			children = (
-				829C380B1A0D87C20020558C /* FacebookSDK.framework */,
+				A79B9D491A4904FC0030F56D /* FacebookSDK.framework */,
 				A788ED9E19FF649400BF4B02 /* Bolts.framework */,
 				A788ED9F19FF649400BF4B02 /* Parse.framework */,
 				A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */,
@@ -160,6 +162,7 @@
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
 				D3FCDA9E19FF580500D1A8FB /* sling-Bridging-Header.h */,
+				A79B9D4B1A4A32C90030F56D /* Conversation.swift */,
 			);
 			path = sling;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */,
 				82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */,
 				82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */,
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
@@ -422,11 +426,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/AviCF/Downloads/parse-library-1.4.2",
+					"/Users/evanoconnor/Downloads/parse-library-1.4.2",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/FacebookSDK",
 					"$(PROJECT_DIR)/FacebookSDK/FBAudienceNetwork",
-					/Users/Avi/Documents/FacebookSDK,
+					/Users/evanoconnor/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -443,11 +447,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/AviCF/Downloads/parse-library-1.4.2",
+					"/Users/evanoconnor/Downloads/parse-library-1.4.2",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/FacebookSDK",
 					"$(PROJECT_DIR)/FacebookSDK/FBAudienceNetwork",
-					/Users/Avi/Documents/FacebookSDK,
+					/Users/evanoconnor/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

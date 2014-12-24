@@ -22,6 +22,8 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         question["text"] = questionText
         question["askedBy"] = PFUser.currentUser()
         question["score"] = 0
+        question.ACL = PFACL(user:PFUser.currentUser())
+        
         question.saveInBackgroundWithTarget(nil, selector: nil)
         //feed.addQuestion(questionText)
         //feed.tableView.reloadData()
