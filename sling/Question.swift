@@ -13,4 +13,5 @@ class Question : NSManagedObject {
     @NSManaged var text : String
     @NSManaged var score : Int
     @NSManaged var timeCreated : NSDate
+    @NSManaged var readBy: NSSet
 }

@@ -23,6 +23,9 @@
 		A788EDA319FF649400BF4B02 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */; };
 		A79B9D4A1A4904FC0030F56D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79B9D491A4904FC0030F56D /* FacebookSDK.framework */; };
 		A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79B9D4B1A4A32C90030F56D /* Conversation.swift */; };
+		A7FD59CA1A4AC6140074D2AF /* ConversationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59C81A4AC6140074D2AF /* ConversationData.xcdatamodeld */; };
+		A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59CB1A4AC8680074D2AF /* Message.swift */; };
+		A7FD59CF1A4AC9ED0074D2AF /* MessageData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59CD1A4AC9ED0074D2AF /* MessageData.xcdatamodeld */; };
 		D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8819FF567800D1A8FB /* Accounts.framework */; };
 		D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */; };
 		D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */; };
@@ -67,6 +70,9 @@
 		A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		A79B9D491A4904FC0030F56D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		A79B9D4B1A4A32C90030F56D /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		A7FD59C91A4AC6140074D2AF /* ConversationData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConversationData.xcdatamodel; sourceTree = "<group>"; };
+		A7FD59CB1A4AC8680074D2AF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A7FD59CE1A4AC9ED0074D2AF /* MessageData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MessageData.xcdatamodel; sourceTree = "<group>"; };
 		D3FCDA8819FF567800D1A8FB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -163,6 +169,9 @@
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
 				D3FCDA9E19FF580500D1A8FB /* sling-Bridging-Header.h */,
 				A79B9D4B1A4A32C90030F56D /* Conversation.swift */,
+				A7FD59CB1A4AC8680074D2AF /* Message.swift */,
+				A7FD59CD1A4AC9ED0074D2AF /* MessageData.xcdatamodeld */,
+				A7FD59C81A4AC6140074D2AF /* ConversationData.xcdatamodeld */,
 			);
 			path = sling;
 			sourceTree = "<group>";
@@ -295,10 +304,13 @@
 			files = (
 				A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */,
 				82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */,
+				A7FD59CF1A4AC9ED0074D2AF /* MessageData.xcdatamodeld in Sources */,
+				A7FD59CA1A4AC6140074D2AF /* ConversationData.xcdatamodeld in Sources */,
 				82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */,
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
 				82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */,
 				82703F6019F0A77900EBEC4E /* Question.swift in Sources */,
+				A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */,
 				82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */,
 				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,
 			);
@@ -534,6 +546,26 @@
 			);
 			currentVersion = 82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */;
 			path = QuestionData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		A7FD59C81A4AC6140074D2AF /* ConversationData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7FD59C91A4AC6140074D2AF /* ConversationData.xcdatamodel */,
+			);
+			currentVersion = A7FD59C91A4AC6140074D2AF /* ConversationData.xcdatamodel */;
+			path = ConversationData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		A7FD59CD1A4AC9ED0074D2AF /* MessageData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7FD59CE1A4AC9ED0074D2AF /* MessageData.xcdatamodel */,
+			);
+			currentVersion = A7FD59CE1A4AC9ED0074D2AF /* MessageData.xcdatamodel */;
+			path = MessageData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
