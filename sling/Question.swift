@@ -13,5 +13,6 @@ class Question : NSManagedObject {
     @NSManaged var text : String
     @NSManaged var score : Int
     @NSManaged var timeCreated : NSDate
-    @NSManaged var readBy: NSSet
+    @NSManaged var askedBy : PFUser
+    @NSManaged var recievedBy : NSArray
 }

@@ -23,6 +23,8 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         question["text"]    = questionText
         question["askedBy"] = PFUser.currentUser()
         question["score"]   = 0
+        question["recievedBy"] = PFUser.currentUser()["username"]
+        
         question.saveInBackgroundWithTarget(nil, selector: nil)
         //feed.addQuestion(questionText)
         //feed.tableView.reloadData()
@@ -31,6 +33,7 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         var relation = message.relationForKey("sender");
         relation.addObject(PFUser.currentUser())
         var query = PFUser.query();
+        /*
         query.whereKey("username", equalTo:"JoeTest2");
         query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
             if(error == nil){
@@ -46,7 +49,7 @@ class PostViewController: UIViewController, UITextFieldDelegate{
             else{
                 println(error.localizedDescription)
             }
-        }
+        }*/
         
         message.saveInBackgroundWithTarget(nil, selector: nil)
     }
