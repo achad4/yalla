@@ -99,7 +99,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
         self.loadData(1)
+        
         //self.tableView.reloadData()
     }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
@@ -154,7 +156,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
         //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         let message:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         cell.questionText.text = " " as NSString
@@ -162,9 +164,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         if(message.objectForKey("text") != nil){
             cell.questionText.text = message.objectForKey("text") as NSString
         }
-        //let score = question.objectForKey("score") as NSNumber
-        //let stringScore = score.stringValue
-        //cell.score.text = stringScore
         let date = message.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
         println(stringDate)
