@@ -107,13 +107,23 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         return 1
     }
     func loadData(order: Int){
-        var findTimeLineData:PFQuery = PFQuery(className: "Question")
+        
+        let filterPredicate = NSPredicate(format:"score = 0")
+        var findTimeLineData:PFQuery = PFQuery(className: "Question", predicate: filterPredicate)
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
         else if(order == 1){
             findTimeLineData.orderByDescending("score")
         }
+        
+        // Filtering questions to only see those posted by current user
+        //findTimeLineData.whereKey("askedBy", equalTo: PFUser.currentUser())
+        
+        // Option to limit number of results from query (if needed)
+        findTimeLineData.limit = 3
+      
+        
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){

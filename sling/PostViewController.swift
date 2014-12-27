@@ -16,17 +16,42 @@ class PostViewController: UIViewController, UITextFieldDelegate{
 
 
     @IBAction func submitPost(sender: AnyObject) {
-        var feed : QuestionFeedTableView = QuestionFeedTableView()
-        var questionText:String = postText.text
-        var question:PFObject = PFObject(className: "Question")
-        question["text"] = questionText
+        var feed:QuestionFeedTableView = QuestionFeedTableView()
+        var questionText:String        = postText.text
+        var question:PFObject          = PFObject(className: "Question")
+        
+        question["text"]    = questionText
         question["askedBy"] = PFUser.currentUser()
-        question["score"] = 0
-        question.ACL = PFACL(user:PFUser.currentUser())
+        question["score"]   = 0
+        question["recievedBy"] = PFUser.currentUser()["username"]
         
         question.saveInBackgroundWithTarget(nil, selector: nil)
         //feed.addQuestion(questionText)
         //feed.tableView.reloadData()
+        var message:PFObject = PFObject(className: "Message");
+        message["text"] = questionText;
+        var relation = message.relationForKey("sender");
+        relation.addObject(PFUser.currentUser())
+        var query = PFUser.query();
+        /*
+        query.whereKey("username", equalTo:"JoeTest2");
+        query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
+            if(error == nil){
+                for r in recievers as [PFObject]{
+                    var relation = message.relationForKey("recievers");
+                    var user = r as PFUser
+                    //relation.addObject(r);
+                    message["recievers"] = user;
+                    println(user.objectId)
+                    message.saveEventually()
+                }
+            }
+            else{
+                println(error.localizedDescription)
+            }
+        }*/
+        
+        message.saveInBackgroundWithTarget(nil, selector: nil)
     }
     
     override func viewDidLoad() {
