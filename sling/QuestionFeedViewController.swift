@@ -108,11 +108,13 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     func loadData(order: Int){
         
-        //let filterPredicate = NSPredicate(format:"score = 0")
+       
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
+        
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
+    
         //else if(order == 1){
         //    findTimeLineData.orderByDescending("score")
         //}
@@ -120,11 +122,12 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         // Filtering questions to only see those posted by current user
         var currentUser = PFUser.currentUser();
         
-        //findTimeLineData.whereKey("recieved", equalTo: PFUser.currentUser())
-        
         // Option to limit number of results from query (if needed)
         //findTimeLineData.limit = 3
-      
+        
+    
+        
+        findTimeLineData.whereKey("sentTo", equalTo: currentUser)
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
