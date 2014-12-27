@@ -159,23 +159,13 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI3-L3-fEB">
-                                            <rect key="frame" x="22" y="9" width="342" height="81"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="TQ2-NR-tWN" secondAttribute="bottom" constant="-3" id="0cE-cP-iBe"/>
                                         <constraint firstItem="TQ2-NR-tWN" firstAttribute="leading" secondItem="POj-W6-TVP" secondAttribute="leading" constant="170" id="4PP-8e-hML"/>
-                                        <constraint firstItem="PI3-L3-fEB" firstAttribute="leading" secondItem="POj-W6-TVP" secondAttribute="leadingMargin" constant="14" id="4mG-tK-zPz"/>
-                                        <constraint firstItem="TQ2-NR-tWN" firstAttribute="top" secondItem="PI3-L3-fEB" secondAttribute="bottom" constant="8" symbolic="YES" id="LxO-Rf-Umc"/>
-                                        <constraint firstItem="PI3-L3-fEB" firstAttribute="top" secondItem="POj-W6-TVP" secondAttribute="topMargin" constant="1" id="mRQ-e0-eBP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="questionText" destination="PI3-L3-fEB" id="TJw-uc-NcM"/>
                                     <outlet property="timePosted" destination="TQ2-NR-tWN" id="tVK-eN-MNc"/>
                                     <segue destination="9EF-49-5Yh" kind="push" id="8cg-yQ-YTP"/>
                                 </connections>

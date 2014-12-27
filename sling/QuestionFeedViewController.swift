@@ -111,7 +111,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     func loadData(order: Int){
         
        
-        var findTimeLineData:PFQuery = PFQuery(className: "Message")
+        //var findTimeLineData:PFQuery = PFQuery(className: "Message")
+        var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
@@ -127,9 +128,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         // Option to limit number of results from query (if needed)
         //findTimeLineData.limit = 3
         
-    
-        
-        findTimeLineData.whereKey("sentTo", equalTo: currentUser)
+        findTimeLineData.whereKey("participant", equalTo: currentUser)
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -159,11 +158,12 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
         //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         let message:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
-        cell.questionText.text = " " as NSString
-        
+        //cell.questionText.text = " " as NSString
+        /*
         if(message.objectForKey("text") != nil){
             cell.questionText.text = message.objectForKey("text") as NSString
         }
+        */
         let date = message.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
         println(stringDate)
@@ -171,27 +171,5 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
-    /*
-    DISCARDED
-    func readData()->Array<Question>{
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let managedContext = appDelegate.managedObjectContext!
-    var err : NSErrorPointer = NSErrorPointer()
-    var fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "Question")
-    var questions = managedContext.executeFetchRequest(fetchRequest, error: err)
-    return questions! as  Array<Question>
-    }
-    
-    func addQuestion(text:String){
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let managedContext = appDelegate.managedObjectContext!
-    let entity =  NSEntityDescription.entityForName("Question", inManagedObjectContext:managedContext)
-    let question = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-    question.setValue(text, forKey: "text")
-    question.setValue(0, forKey: "score")
-    question.setValue(NSDate(), forKey: "timeCreated")
-    questions.append(question)
-    //self.tableView.reloadData()
-    }
-    */
+
 }

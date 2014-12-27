@@ -7,33 +7,34 @@
 //
 
 import Foundation
-import CoreData
-@objc(Conversation)
-class Conversation : NSManagedObject {
+class Conversation{
+    var convo : PFObject
+    var messages: NSMutableArray
+    var participants: NSMutableArray
+    init(initialMessage : PFObject, sender : PFObject){
+        messages = NSMutableArray()
+        participants = NSMutableArray()
+        messages.addObject(initialMessage)
+        participants.addObject(sender)
+        convo = PFObject(className: "Conversation")
+    }
     
-    @NSManaged var messageCount: Int
-    @NSManaged var messages: NSSet
-    @NSManaged var participants: NSSet
+    func addRecipient(user : PFObject){
+        self.participants.addObject(user);
+    }
     
+    func addMessage(message : PFObject){
+        self.messages.addObject(message);
+    }
+    
+    func save(){
+        for user in participants{
+            var participant = convo.relationForKey("participant")
+            participant.addObject(user as PFObject);
+        }
+        for message in messages{
+            convo["message"] = message
+        }
+        convo.saveInBackgroundWithTarget(nil, selector: nil)
+    }
 }
-/*
-func addData(){
-    var appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    var context: NSManagedObjectContext = appDel.managedObjectContext!
-    
-    var conversationEntity = NSEntityDescription.entityForName("Conversation", inManagedObjectContext: context)
-    var newConversation = Conversation(entity: conversationEntity, insertIntoManagedObjectContext: context)
-    newFather.messageCount = 0
-    
-    
-    var childEntity = NSEntityDescription.entityForName("Child", inManagedObjectContext: context)
-    var child1 = Child(entity: childEntity, insertIntoManagedObjectContext: context)
-    child1.name = "child1"
-    var child2 = Child(entity: childEntity, insertIntoManagedObjectContext: context)
-    child2.name = "child2"
-    
-    //How to map these 2 childs to father? Need help in code here!
-    
-    context.save(nil)
-    
-} */

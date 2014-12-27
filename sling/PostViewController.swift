@@ -19,15 +19,17 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         var feed:QuestionFeedTableView = QuestionFeedTableView()
         var questionText:String        = postText.text
         var question:PFObject          = PFObject(className: "Question")
-        
+        /*
         question["text"]    = questionText
         question["askedBy"] = PFUser.currentUser()
         question["score"]   = 0
         question["recievedBy"] = PFUser.currentUser()["username"]
         
         question.saveInBackgroundWithTarget(nil, selector: nil)
+         */
         //feed.addQuestion(questionText)
         //feed.tableView.reloadData()
+        
         var message:PFObject = PFObject(className: "Message")
         message["text"] = questionText;
        
@@ -44,13 +46,13 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         sentToRelation.addObject(user2)
         var senderRelation = message.relationForKey("sender")
         senderRelation.addObject(PFUser.currentUser())
-        
+        var convo : Conversation = Conversation(initialMessage: message, sender: PFUser.currentUser())
+        convo.addRecipient(user1)
+        convo.addRecipient(user2)
+        convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
         user1.saveInBackgroundWithTarget(nil, selector: nil)
         user2.saveInBackgroundWithTarget(nil, selector: nil)
-        
-        
-        
     }
     
     override func viewDidLoad() {

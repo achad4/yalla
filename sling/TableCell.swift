@@ -13,7 +13,7 @@ class TableCell: UITableViewCell{
     
     //@IBOutlet weak var score: UILabel!
     
-    @IBOutlet weak var questionText: UILabel!
+    //@IBOutlet weak var questionText: UILabel!
     
     @IBOutlet weak var timePosted: UILabel!
 
