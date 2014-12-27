@@ -32,15 +32,18 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         message["text"] = questionText;
         var relation = message.relationForKey("sender");
         relation.addObject(PFUser.currentUser())
-        var query = PFUser.query();
+        var query1 = PFUser.query();
         //send to JoeTest2
-        var user1 = query.getObjectWithId("Bi1WevBzYa") as PFUser;
+        var user1 = query1.getObjectWithId("Bi1WevBzYa") as PFUser;
         //send to JoeTest1
-        var user2 = query.getObjectWithId("KK2oWLTPE4") as PFUser;
+        var query2 = PFUser.query();
+        var user2 = query2.getObjectWithId("KK2oWLTPE4") as PFUser;
         user1["recieved"] = message;
         user2["recieved"] = message;
 
         message.saveInBackgroundWithTarget(nil, selector: nil)
+        //user1.save();
+        //user2.save();
         user1.saveInBackgroundWithTarget(nil, selector: nil)
         user2.saveInBackgroundWithTarget(nil, selector: nil)
     }
