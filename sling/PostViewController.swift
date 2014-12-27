@@ -33,25 +33,16 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         var relation = message.relationForKey("sender");
         relation.addObject(PFUser.currentUser())
         var query = PFUser.query();
-        /*
-        query.whereKey("username", equalTo:"JoeTest2");
-        query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
-            if(error == nil){
-                for r in recievers as [PFObject]{
-                    var relation = message.relationForKey("recievers");
-                    var user = r as PFUser
-                    //relation.addObject(r);
-                    message["recievers"] = user;
-                    println(user.objectId)
-                    message.saveEventually()
-                }
-            }
-            else{
-                println(error.localizedDescription)
-            }
-        }*/
-        
+        //send to JoeTest2
+        var user1 = query.getObjectWithId("Bi1WevBzYa") as PFUser;
+        //send to JoeTest1
+        var user2 = query.getObjectWithId("KK2oWLTPE4") as PFUser;
+        user1["recieved"] = message;
+        user2["recieved"] = message;
+
         message.saveInBackgroundWithTarget(nil, selector: nil)
+        user1.saveInBackgroundWithTarget(nil, selector: nil)
+        user2.saveInBackgroundWithTarget(nil, selector: nil)
     }
     
     override func viewDidLoad() {
@@ -63,4 +54,23 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*
+    query.whereKey("username", equalTo:"JoeTest2");
+    
+    query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
+    if(error == nil){
+    for r in recievers as [PFObject]{
+    var relation = message.relationForKey("recievers");
+    var user = r as PFUser
+    //relation.addObject(r);
+    message["recievers"] = user;
+    println(user.objectId)
+    message.saveEventually()
+    }
+    }
+    else{
+    println(error.localizedDescription)
+    }
+    }
+    */
 }

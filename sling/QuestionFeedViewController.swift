@@ -108,20 +108,22 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     func loadData(order: Int){
         
-        let filterPredicate = NSPredicate(format:"score = 0")
-        var findTimeLineData:PFQuery = PFQuery(className: "Question", predicate: filterPredicate)
+        //let filterPredicate = NSPredicate(format:"score = 0")
+        var findTimeLineData:PFQuery = PFQuery(className: "Message")
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
-        else if(order == 1){
-            findTimeLineData.orderByDescending("score")
-        }
+        //else if(order == 1){
+        //    findTimeLineData.orderByDescending("score")
+        //}
         
         // Filtering questions to only see those posted by current user
-        //findTimeLineData.whereKey("askedBy", equalTo: PFUser.currentUser())
+        var currentUser = PFUser.currentUser();
+        
+        //findTimeLineData.whereKey("recieved", equalTo: PFUser.currentUser())
         
         // Option to limit number of results from query (if needed)
-        findTimeLineData.limit = 3
+        //findTimeLineData.limit = 3
       
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
@@ -150,12 +152,17 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
-        let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
-        cell.questionText.text = question.objectForKey("text") as NSString
-        let score = question.objectForKey("score") as NSNumber
-        let stringScore = score.stringValue
-        cell.score.text = stringScore
-        let date = question.createdAt as NSDate
+        //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        let message:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        cell.questionText.text = " " as NSString
+        
+        if(message.objectForKey("text") != nil){
+            cell.questionText.text = message.objectForKey("text") as NSString
+        }
+        //let score = question.objectForKey("score") as NSNumber
+        //let stringScore = score.stringValue
+        //cell.score.text = stringScore
+        let date = message.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
         println(stringDate)
         cell.timePosted.text = stringDate as NSString

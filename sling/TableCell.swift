@@ -11,7 +11,7 @@ import UIKit
 class TableCell: UITableViewCell{
     //@IBOutlet weak var timePosted: UILabel!
     
-    @IBOutlet weak var score: UILabel!
+    //@IBOutlet weak var score: UILabel!
     
     @IBOutlet weak var questionText: UILabel!
     
