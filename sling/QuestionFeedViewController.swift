@@ -100,10 +100,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     override func viewDidLoad(){
         super.viewDidLoad()
         //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
-        self.loadData(1)
-        
-        //self.tableView.reloadData()
-    }
+        if(PFUser.currentUser() != nil){
+            self.loadData(1)
+        }
+            }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1

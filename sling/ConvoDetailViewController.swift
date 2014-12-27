@@ -24,7 +24,9 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        self.loadData(1)
+        if(PFUser.currentUser() != nil){
+            self.loadData(1)
+        }
         //self.tableView.registerClass(MessageCell.self as AnyClass, forCellReuseIdentifier: "Cell");
     }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
