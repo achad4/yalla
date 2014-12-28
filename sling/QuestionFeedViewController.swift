@@ -10,18 +10,36 @@ import Foundation
 import UIKit
 import CoreData
 
+//TODO: Should probably rename this class to QuestionFeedTableViewController
+
+
+protocol QuestionFeedTableViewControllerDelegate{
+    func myVCDidFinish(controller:QuestionFeedTableView,text:String)
+}
+
 class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITableViewDataSource{
     //var managedContext : NSManagedObjectContext = NSManagedObjectContext()
     var timeLineData : NSMutableArray = NSMutableArray()
+    var delegate:QuestionFeedTableViewControllerDelegate? = nil
+    var convoID:String = "aaa"
     
-
     @IBAction func logout(sender: AnyObject) {
         if(PFUser.currentUser() != nil){
             PFUser.logOut()
             viewDidAppear(true)
         }
     }
-
+    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
+        
+        let detailsVC = segue.destinationViewController as ConvoDetailViewController
+        
+        if let row = selectedIndex?.row {
+            detailsVC.chosen = row
+        }
+        
+    }
     
     override func viewDidAppear(animated: Bool) {
         //self.loadData()
@@ -97,19 +115,25 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void{
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
-            }
+        
+    }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1
     }
     func loadData(order: Int){
         
+        //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
        
         //var findTimeLineData:PFQuery = PFQuery(className: "Message")
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
@@ -143,6 +167,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 self.tableView.reloadData()
             }
         }
+        
+        
+        
+        
     }
     func sortByScore(){
         
@@ -171,5 +199,14 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
+    /*
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let controller = segue.destinationViewController as ConvoDetailViewController
+        controller.selectedConversationID = convoID
+    }*/
 
 }

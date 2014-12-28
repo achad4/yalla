@@ -26,6 +26,7 @@
 		A79B9D4A1A4904FC0030F56D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79B9D491A4904FC0030F56D /* FacebookSDK.framework */; };
 		A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79B9D4B1A4A32C90030F56D /* Conversation.swift */; };
 		A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59CB1A4AC8680074D2AF /* Message.swift */; };
+		A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59D01A50011A0074D2AF /* UserData.swift */; };
 		D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8819FF567800D1A8FB /* Accounts.framework */; };
 		D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */; };
 		D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */; };
@@ -73,6 +74,7 @@
 		A79B9D491A4904FC0030F56D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		A79B9D4B1A4A32C90030F56D /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		A7FD59CB1A4AC8680074D2AF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A7FD59D01A50011A0074D2AF /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		D3FCDA8819FF567800D1A8FB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -171,6 +173,7 @@
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
 				D3FCDA9E19FF580500D1A8FB /* sling-Bridging-Header.h */,
 				A79B9D4B1A4A32C90030F56D /* Conversation.swift */,
+				A7FD59D01A50011A0074D2AF /* UserData.swift */,
 				A7FD59CB1A4AC8680074D2AF /* Message.swift */,
 			);
 			path = sling;
@@ -308,6 +311,7 @@
 				82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */,
 				82974EC91A4F169100D2B9F7 /* ConvoDetailViewController.swift in Sources */,
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
+				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
 				82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */,
 				82703F6019F0A77900EBEC4E /* Question.swift in Sources */,
 				A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */,

@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 import CoreData
 
-class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
+
+class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
     //var managedContext : NSManagedObjectContext = NSManagedObjectContext()
     var timeLineData : NSMutableArray = NSMutableArray()
-    
+    var selectedConversationID : String!
+    var chosen : Int!
     
     @IBAction func logout(sender: AnyObject) {
         if(PFUser.currentUser() != nil){
@@ -24,11 +28,27 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
+      
+        NSLog(String(chosen))
         //self.tableView.registerClass(MessageCell.self as AnyClass, forCellReuseIdentifier: "Cell");
     }
+    
+    /*
+    func myVCDidFinish(controller: QuestionFeedTableView, text: String) {
+        selectedConversationID = text
+        controller.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let controller = segue.destinationViewController as SecondViewController
+        controller.string = textField.text
+    }
+*/
+    
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1
@@ -52,7 +72,7 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
         // Option to limit number of results from query (if needed)
         //findTimeLineData.limit = 3
         
-        findTimeLineData.whereKey("sentTo", equalTo: currentUser)
+        findTimeLineData.whereKey("objectID", equalTo: "MgJ3DUEvVa")
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -91,4 +111,8 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
+    
+
+ 
+    
 }

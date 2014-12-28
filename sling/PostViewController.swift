@@ -32,27 +32,27 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         
         var message:PFObject = PFObject(className: "Message")
         message["text"] = questionText;
-       
+        
         var query1 = PFUser.query();
         //send to JoeTest2
-        var user1 = query1.getObjectWithId("Bi1WevBzYa") as PFUser
+        //var user1 = query1.getObjectWithId("Bi1WevBzYa") as PFUser
         //send to JoeTest1
         var query2 = PFUser.query();
-        var user2 = query2.getObjectWithId("KK2oWLTPE4") as PFUser
+        //var user2 = query2.getObjectWithId("KK2oWLTPE4") as PFUser
         //user1["recieved"] = message;
         //user2["recieved"] = message;
         var sentToRelation = message.relationForKey("sentTo")
-        sentToRelation.addObject(user1)
-        sentToRelation.addObject(user2)
+        //sentToRelation.addObject(user1)
+        //sentToRelation.addObject(user2)
         var senderRelation = message.relationForKey("sender")
         senderRelation.addObject(PFUser.currentUser())
         var convo : Conversation = Conversation(initialMessage: message, sender: PFUser.currentUser())
-        convo.addRecipient(user1)
-        convo.addRecipient(user2)
+        //convo.addRecipient(user1)
+        //convo.addRecipient(user2)
         convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
-        user1.saveInBackgroundWithTarget(nil, selector: nil)
-        user2.saveInBackgroundWithTarget(nil, selector: nil)
+        //user1.saveInBackgroundWithTarget(nil, selector: nil)
+        //user2.saveInBackgroundWithTarget(nil, selector: nil)
     }
     
     override func viewDidLoad() {
