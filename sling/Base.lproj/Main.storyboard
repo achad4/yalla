@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OKn-0l-ajB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OKn-0l-ajB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -49,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34R-rq-swP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2488" y="876"/>
+            <point key="canvasLocation" x="2966" y="1518"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hKG-Ay-TBe">
@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKP-5W-x98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020.2666666666667" y="45.439999999999998"/>
+            <point key="canvasLocation" x="2270" y="425"/>
         </scene>
         <!--Question Feed Table View-->
         <scene sceneID="e7D-FF-eho">
@@ -129,7 +129,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="Ki5-Iu-if7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Ki5-Iu-if7">
                             <connections>
                                 <action selector="postQuestion:" destination="HrU-1U-4yP" id="gff-Hj-D52"/>
                                 <segue destination="vzy-Tx-AJe" kind="push" id="6Zq-hp-p4M"/>
@@ -162,7 +162,13 @@
                             <outlet property="delegate" destination="TqB-ob-zAi" id="fY6-x6-T2z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zlj-m1-rpZ"/>
+                    <navigationItem key="navigationItem" id="zlj-m1-rpZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Vfg-wB-kOV">
+                            <connections>
+                                <segue destination="vzy-Tx-AJe" kind="push" id="djc-9v-ZlU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHC-9y-pp6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,7 +191,7 @@
             </objects>
             <point key="canvasLocation" x="1269" y="2096"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="yQb-9Q-DAG">
             <objects>
                 <tableViewController id="QKl-FB-Ct0" sceneMemberID="viewController">
@@ -206,7 +212,13 @@
                             <outlet property="delegate" destination="QKl-FB-Ct0" id="JPM-sf-p5i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Ctq-dT-uVr"/>
+                    <navigationItem key="navigationItem" id="Ctq-dT-uVr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MZE-4L-bsQ">
+                            <connections>
+                                <segue destination="vzy-Tx-AJe" kind="push" id="xxu-N4-PH0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJf-fC-QaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,7 +241,7 @@
             </objects>
             <point key="canvasLocation" x="817" y="3227"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="aZB-aV-Lsb">
             <objects>
                 <tableViewController id="gya-sS-Hvq" sceneMemberID="viewController">
@@ -250,26 +262,17 @@
                             <outlet property="delegate" destination="gya-sS-Hvq" id="iIr-Pm-7yr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Lzz-LE-TYk"/>
+                    <navigationItem key="navigationItem" id="Lzz-LE-TYk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4">
+                            <connections>
+                                <segue destination="vzy-Tx-AJe" kind="push" id="xq6-IZ-Qaw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVt-JD-s2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1392" y="1414"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="9w4-Gn-OCg">
-            <objects>
-                <viewController id="nJu-GI-1ep" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8cu-I9-z2H">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="GmL-wo-Fkz"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ATM-A7-IWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1900" y="1255"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rws-XH-XIK">
@@ -281,7 +284,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="nJu-GI-1ep" kind="relationship" relationship="rootViewController" id="6ja-ui-RtH"/>
+                        <segue destination="gya-sS-Hvq" kind="relationship" relationship="rootViewController" id="PdN-Hl-d5y"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7n-9z-H4i" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -335,6 +338,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="xxu-N4-PH0"/>
         <segue reference="JIT-Za-EWY"/>
     </inferredMetricsTieBreakers>
 </document>
