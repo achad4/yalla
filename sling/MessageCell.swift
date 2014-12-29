@@ -17,6 +17,4 @@ class MessageCell: UITableViewCell{
     
     @IBOutlet weak var timeSent: UILabel!
     
-    
-    
 }
