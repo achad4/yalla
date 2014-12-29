@@ -17,6 +17,7 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
     //var managedContext : NSManagedObjectContext = NSManagedObjectContext()
     var timeLineData : NSMutableArray = NSMutableArray()
     var selectedConversationID : String!
+    var convo : PFObject = PFObject(className: "Conversation")
     var chosen : Int!
     
     @IBAction func logout(sender: AnyObject) {
@@ -32,22 +33,7 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
-      
-        NSLog(String(chosen))
-        //self.tableView.registerClass(MessageCell.self as AnyClass, forCellReuseIdentifier: "Cell");
     }
-    
-    /*
-    func myVCDidFinish(controller: QuestionFeedTableView, text: String) {
-        selectedConversationID = text
-        controller.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let controller = segue.destinationViewController as SecondViewController
-        controller.string = textField.text
-    }
-*/
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
@@ -61,19 +47,10 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
-        
-        //else if(order == 1){
-        //    findTimeLineData.orderByDescending("score")
-        //}
-        
         // Filtering questions to only see those posted by current user
         var currentUser = PFUser.currentUser();
-        
-        // Option to limit number of results from query (if needed)
-        //findTimeLineData.limit = 3
-        
-        findTimeLineData.whereKey("objectID", equalTo: "MgJ3DUEvVa")
-        
+        println("convo: "+self.convo.objectId)
+        findTimeLineData.whereKey("inConvo", equalTo: self.convo)
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
@@ -106,7 +83,7 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
         }
         let date = message.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
-        println(stringDate)
+        println("message: "+stringDate)
         cell.timeSent.text = stringDate as NSString
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell

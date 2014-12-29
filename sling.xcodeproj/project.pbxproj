@@ -17,6 +17,7 @@
 		82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82935AFE19F0DB1800EC8C59 /* PostViewController.swift */; };
 		82974EC91A4F169100D2B9F7 /* ConvoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974EC81A4F169100D2B9F7 /* ConvoDetailViewController.swift */; };
 		82974ECB1A4F1BA200D2B9F7 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ECA1A4F1BA200D2B9F7 /* MessageCell.swift */; };
+		82974ECD1A51BAE200D2B9F7 /* ConvoParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */; };
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
 		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
@@ -65,6 +66,7 @@
 		82935AFE19F0DB1800EC8C59 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		82974EC81A4F169100D2B9F7 /* ConvoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoDetailViewController.swift; sourceTree = "<group>"; };
 		82974ECA1A4F1BA200D2B9F7 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoParentViewController.swift; sourceTree = "<group>"; };
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
 		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
+				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
@@ -315,6 +318,7 @@
 				82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */,
 				82703F6019F0A77900EBEC4E /* Question.swift in Sources */,
 				A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */,
+				82974ECD1A51BAE200D2B9F7 /* ConvoParentViewController.swift in Sources */,
 				82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */,
 				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,
 			);

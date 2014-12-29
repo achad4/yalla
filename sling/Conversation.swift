@@ -9,12 +9,12 @@
 import Foundation
 class Conversation{
     var convo : PFObject
-    var messages: NSMutableArray
+    //var messages: NSMutableArray
     var participants: NSMutableArray
-    init(initialMessage : PFObject, sender : PFObject){
-        messages = NSMutableArray()
+    init(sender : PFObject){
+        //messages = NSMutableArray()
         participants = NSMutableArray()
-        messages.addObject(initialMessage)
+        //messages.addObject(initialMessage)
         participants.addObject(sender)
         convo = PFObject(className: "Conversation")
     }
@@ -22,19 +22,19 @@ class Conversation{
     func addRecipient(user : PFObject){
         self.participants.addObject(user);
     }
-    
+    /*
     func addMessage(message : PFObject){
         self.messages.addObject(message);
     }
-    
+    */
     func save(){
         for user in participants{
             var participant = convo.relationForKey("participant")
             participant.addObject(user as PFObject);
         }
-        for message in messages{
-            convo["message"] = message
-        }
+        //for message in messages{
+            //convo["message"] = message
+        //}
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }

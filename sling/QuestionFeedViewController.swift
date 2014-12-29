@@ -31,12 +31,12 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
-        let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
-        
-        let detailsVC = segue.destinationViewController as ConvoDetailViewController
-        
-        if let row = selectedIndex?.row {
-            detailsVC.chosen = row
+        if(segue.identifier == "conversationSegue"){
+            let indexPath = tableView.indexPathForSelectedRow()
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
+            let parent = segue.destinationViewController as ConvoParentViewController
+            parent.selectedConversationID = cell.convo.objectId as String!
+            parent.convo = cell.convo
         }
         
     }
@@ -185,17 +185,17 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
         //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
-        let message:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         //cell.questionText.text = " " as NSString
         /*
         if(message.objectForKey("text") != nil){
             cell.questionText.text = message.objectForKey("text") as NSString
         }
         */
-        let date = message.createdAt as NSDate
+        let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
-        println(stringDate)
         cell.timePosted.text = stringDate as NSString
+        cell.convo = convo
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
