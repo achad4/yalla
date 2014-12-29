@@ -34,7 +34,6 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OT2-5B-a6u">
@@ -340,7 +339,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="djc-9v-ZlU"/>
         <segue reference="JIT-Za-EWY"/>
-        <segue reference="6Zq-hp-p4M"/>
     </inferredMetricsTieBreakers>
 </document>
