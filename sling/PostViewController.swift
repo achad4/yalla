@@ -10,10 +10,7 @@ import UIKit
 
 class PostViewController: UIViewController, UITextFieldDelegate{
     
-    
-    
     @IBOutlet weak var postText: UITextField!
-
 
     @IBAction func submitPost(sender: AnyObject) {
         var feed:QuestionFeedTableView = QuestionFeedTableView()
