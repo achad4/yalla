@@ -8,7 +8,7 @@
         <scene sceneID="M1f-IK-meA">
             <objects>
                 <viewController id="vzy-Tx-AJe" customClass="PostViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="QKB-qG-ZJ6">
+                    <view key="view" contentMode="scaleToFill" id="QKB-qG-ZJ6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -412,7 +412,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gAM-Wm-VDj"/>
         <segue reference="xxu-N4-PH0"/>
+        <segue reference="JIT-Za-EWY"/>
     </inferredMetricsTieBreakers>
 </document>
