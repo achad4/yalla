@@ -95,12 +95,17 @@
                                     <action selector="reply:" destination="9EF-49-5Yh" eventType="touchUpInside" id="7Mg-BP-2IH"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nb9-2P-XOa">
+                                <rect key="frame" x="16" y="396" width="568" height="2"/>
+                                <color key="progressTintColor" red="0.0" green="0.091010553559851104" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="OMz-tR-Wq3"/>
                     <connections>
                         <outlet property="replyTextField" destination="59P-fD-sQ3" id="SMz-Hl-eHc"/>
+                        <outlet property="sendProgress" destination="Nb9-2P-XOa" id="M6Q-l6-r5d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKP-5W-x98" userLabel="First Responder" sceneMemberID="firstResponder"/>

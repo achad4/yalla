@@ -14,7 +14,6 @@ import CoreData
 class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    //var managedContext : NSManagedObjectContext = NSManagedObjectContext()
     var timeLineData : NSMutableArray = NSMutableArray()
     var selectedConversationID : String!
     var convo : PFObject = PFObject(className: "Conversation")
@@ -29,27 +28,22 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
     }
-    
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1
     }
     func loadData(order: Int){
-        
-        
+        timeLineData.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
-        
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
         // Filtering questions to only see those posted by current user
         var currentUser = PFUser.currentUser();
-        println("convo: "+self.convo.objectId)
         findTimeLineData.whereKey("inConvo", equalTo: self.convo)
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -58,7 +52,6 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
                     let pdf = object as PFObject
                     self.timeLineData.addObject(pdf)
                 }
-                
                 self.tableView.reloadData()
             }
         }
@@ -83,7 +76,6 @@ class ConvoDetailViewController : UITableViewController, UITableViewDelegate, UI
         }
         let date = message.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
-        println("message: "+stringDate)
         cell.timeSent.text = stringDate as NSString
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
