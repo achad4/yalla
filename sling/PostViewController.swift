@@ -16,38 +16,28 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         var feed:QuestionFeedTableView = QuestionFeedTableView()
         var questionText:String        = postText.text
         var question:PFObject          = PFObject(className: "Question")
-        
+        /*
         question["text"]    = questionText
         question["askedBy"] = PFUser.currentUser()
         question["score"]   = 0
         question["recievedBy"] = PFUser.currentUser()["username"]
         
         question.saveInBackgroundWithTarget(nil, selector: nil)
+         */
         //feed.addQuestion(questionText)
         //feed.tableView.reloadData()
-        var message:PFObject = PFObject(className: "Message");
-        message["text"] = questionText;
-        var relation = message.relationForKey("sender");
-        relation.addObject(PFUser.currentUser())
-        var query = PFUser.query();
-        /*
-        query.whereKey("username", equalTo:"JoeTest2");
-        query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
-            if(error == nil){
-                for r in recievers as [PFObject]{
-                    var relation = message.relationForKey("recievers");
-                    var user = r as PFUser
-                    //relation.addObject(r);
-                    message["recievers"] = user;
-                    println(user.objectId)
-                    message.saveEventually()
-                }
-            }
-            else{
-                println(error.localizedDescription)
-            }
-        }*/
         
+        var message:PFObject = PFObject(className: "Message")
+        message["text"] = questionText;
+        
+        var query1 = PFUser.query();
+        var query2 = PFUser.query();
+        var sentToRelation = message.relationForKey("sentTo")
+        var senderRelation = message.relationForKey("sender")
+        senderRelation.addObject(PFUser.currentUser())
+        var convo : Conversation = Conversation(sender: PFUser.currentUser())
+        message["inConvo"] = convo.convo as PFObject
+        convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
     }
     
@@ -60,4 +50,23 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*
+    query.whereKey("username", equalTo:"JoeTest2");
+    
+    query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
+    if(error == nil){
+    for r in recievers as [PFObject]{
+    var relation = message.relationForKey("recievers");
+    var user = r as PFUser
+    //relation.addObject(r);
+    message["recievers"] = user;
+    println(user.objectId)
+    message.saveEventually()
+    }
+    }
+    else{
+    println(error.localizedDescription)
+    }
+    }
+    */
 }

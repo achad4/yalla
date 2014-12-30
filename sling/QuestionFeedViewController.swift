@@ -10,18 +10,36 @@ import Foundation
 import UIKit
 import CoreData
 
+//TODO: Should probably rename this class to QuestionFeedTableViewController
+
+
+protocol QuestionFeedTableViewControllerDelegate{
+    func myVCDidFinish(controller:QuestionFeedTableView,text:String)
+}
+
 class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITableViewDataSource{
     //var managedContext : NSManagedObjectContext = NSManagedObjectContext()
     var timeLineData : NSMutableArray = NSMutableArray()
+    var delegate:QuestionFeedTableViewControllerDelegate? = nil
+    var convoID:String = "aaa"
     
-
     @IBAction func logout(sender: AnyObject) {
         if(PFUser.currentUser() != nil){
             PFUser.logOut()
             viewDidAppear(true)
         }
     }
-
+    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        if(segue.identifier == "conversationSegue"){
+            let indexPath = tableView.indexPathForSelectedRow()
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
+            let parent = segue.destinationViewController as ConvoParentViewController
+            parent.selectedConversationID = cell.convo.objectId as String!
+            parent.convo = cell.convo
+        }
+        
+    }
     
     override func viewDidAppear(animated: Bool) {
         //self.loadData()
@@ -97,10 +115,17 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void{
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
-        self.loadData(1)
-        //self.tableView.reloadData()
+        //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
+        if(PFUser.currentUser() != nil){
+            self.loadData(1)
+        }
+        
     }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
@@ -108,21 +133,26 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     func loadData(order: Int){
         
-        let filterPredicate = NSPredicate(format:"score = 0")
-        var findTimeLineData:PFQuery = PFQuery(className: "Question", predicate: filterPredicate)
+        //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
+       
+        //var findTimeLineData:PFQuery = PFQuery(className: "Message")
+        var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
+        
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
-        else if(order == 1){
-            findTimeLineData.orderByDescending("score")
-        }
+    
+        //else if(order == 1){
+        //    findTimeLineData.orderByDescending("score")
+        //}
         
         // Filtering questions to only see those posted by current user
-        //findTimeLineData.whereKey("askedBy", equalTo: PFUser.currentUser())
+        var currentUser = PFUser.currentUser();
         
         // Option to limit number of results from query (if needed)
-        findTimeLineData.limit = 3
-      
+        //findTimeLineData.limit = 3
+        
+        findTimeLineData.whereKey("participant", equalTo: currentUser)
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -137,6 +167,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 self.tableView.reloadData()
             }
         }
+        
+        
+        
+        
     }
     func sortByScore(){
         
@@ -149,40 +183,30 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
-        let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
-        cell.questionText.text = question.objectForKey("text") as NSString
-        let score = question.objectForKey("score") as NSNumber
-        let stringScore = score.stringValue
-        cell.score.text = stringScore
-        let date = question.createdAt as NSDate
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
+        //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        //cell.questionText.text = " " as NSString
+        /*
+        if(message.objectForKey("text") != nil){
+            cell.questionText.text = message.objectForKey("text") as NSString
+        }
+        */
+        let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
-        println(stringDate)
         cell.timePosted.text = stringDate as NSString
+        cell.convo = convo
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
     /*
-    DISCARDED
-    func readData()->Array<Question>{
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let managedContext = appDelegate.managedObjectContext!
-    var err : NSErrorPointer = NSErrorPointer()
-    var fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "Question")
-    var questions = managedContext.executeFetchRequest(fetchRequest, error: err)
-    return questions! as  Array<Question>
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
-    func addQuestion(text:String){
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let managedContext = appDelegate.managedObjectContext!
-    let entity =  NSEntityDescription.entityForName("Question", inManagedObjectContext:managedContext)
-    let question = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-    question.setValue(text, forKey: "text")
-    question.setValue(0, forKey: "score")
-    question.setValue(NSDate(), forKey: "timeCreated")
-    questions.append(question)
-    //self.tableView.reloadData()
-    }
-    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let controller = segue.destinationViewController as ConvoDetailViewController
+        controller.selectedConversationID = convoID
+    }*/
+
 }
