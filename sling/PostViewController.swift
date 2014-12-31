@@ -10,37 +10,33 @@ import UIKit
 
 class PostViewController: UIViewController, UITextFieldDelegate{
     
-    
+    var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var users : NSMutableArray = NSMutableArray()
     
     @IBOutlet weak var postText: UITextField!
-
-
+    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        if(segue.identifier == "toUsersSegue"){
+            let userView = segue.destinationViewController as FriendCollectionViewController
+            userView.convo = self.convo
+            
+        }
+        
+    }
+    
+    
     @IBAction func submitPost(sender: AnyObject) {
         var feed:QuestionFeedTableView = QuestionFeedTableView()
         var questionText:String        = postText.text
-        var question:PFObject          = PFObject(className: "Question")
-        /*
-        question["text"]    = questionText
-        question["askedBy"] = PFUser.currentUser()
-        question["score"]   = 0
-        question["recievedBy"] = PFUser.currentUser()["username"]
-        
-        question.saveInBackgroundWithTarget(nil, selector: nil)
-         */
-        //feed.addQuestion(questionText)
-        //feed.tableView.reloadData()
-        
         var message:PFObject = PFObject(className: "Message")
         message["text"] = questionText;
-        
         var query1 = PFUser.query();
         var query2 = PFUser.query();
         var sentToRelation = message.relationForKey("sentTo")
         var senderRelation = message.relationForKey("sender")
         senderRelation.addObject(PFUser.currentUser())
-        var convo : Conversation = Conversation(sender: PFUser.currentUser())
         message["inConvo"] = convo.convo as PFObject
-        convo.save()
+        self.convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
     }
     
