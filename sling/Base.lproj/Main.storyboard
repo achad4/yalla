@@ -124,7 +124,6 @@
                     <navigationItem key="navigationItem" id="OMz-tR-Wq3"/>
                     <connections>
                         <outlet property="replyTextField" destination="59P-fD-sQ3" id="SMz-Hl-eHc"/>
-                        <outlet property="sendProgress" destination="Nb9-2P-XOa" id="M6Q-l6-r5d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKP-5W-x98" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -241,7 +240,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGd-qB-Zoc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4517" y="734"/>
+            <point key="canvasLocation" x="2229" y="1294"/>
         </scene>
         <!--Question Feed Table View-->
         <scene sceneID="e7D-FF-eho">
