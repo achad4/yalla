@@ -10,6 +10,8 @@ import Foundation
 class ConvoParentViewController : UIViewController{
     @IBOutlet weak var replyTextField: UITextField!
     
+   
+    
     @IBOutlet weak var sendProgress: UIProgressView!
     var selectedConversationID : String!
     var convo : PFObject = PFObject(className: "Conversation")
@@ -18,7 +20,7 @@ class ConvoParentViewController : UIViewController{
         didSet {
             let fractionalProgress = Float(counter) / 100.0
             let animated = counter != 0
-            // sendProgress.setProgress(fractionalProgress, animated: animated)
+            sendProgress.setProgress(fractionalProgress, animated: animated)
         }
     }
     func count(start : Int, end : Int) {
@@ -32,13 +34,13 @@ class ConvoParentViewController : UIViewController{
                 })
             })
         }
-        // self.sendProgress.setProgress(0, animated: true)
+        self.sendProgress.setProgress(0, animated: true)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // sendProgress.setProgress(0, animated: true)
+        sendProgress.setProgress(0, animated: true)
     }
     
     

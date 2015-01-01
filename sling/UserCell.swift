@@ -8,7 +8,7 @@
 
 import Foundation
 class UserCell : UICollectionViewCell{
-    var user : PFObject = PFObject(className: "_User")
+    var user : PFObject = PFUser()
     @IBOutlet weak var userName: UILabel!
     
     @IBAction func addUser(sender: UIButton) {
