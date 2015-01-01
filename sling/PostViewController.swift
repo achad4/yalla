@@ -40,6 +40,7 @@ class PostViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        postText.font = UIFont(name: "Avenir", size: 16)
         // self.view.backgroundColor = UIColor(red: 0.2, green: 0.9, blue: 0.55, alpha: 1.0)
         // Do any additional setup after loading the view, typically from a nib.
     }

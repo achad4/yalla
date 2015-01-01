@@ -40,11 +40,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         }
     }
 
-    
-    
-    
-    
-    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.users.count
     }
