@@ -8,14 +8,25 @@
 import Foundation
 import UIKit
 
-class PostViewController: UIViewController, UITextFieldDelegate{
+class PostViewController: UIViewController, UITextFieldDelegate {
+    
+    var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var users : NSMutableArray = NSMutableArray()
     
     @IBOutlet weak var postText: UITextField!
-
+    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        if(segue.identifier == "toUsersSegue"){
+            let userView = segue.destinationViewController as FriendCollectionViewController
+            userView.convo = self.convo
+        }
+    }
+    
     @IBAction func submitPost(sender: AnyObject) {
+        
         var feed:QuestionFeedTableView = QuestionFeedTableView()
         var questionText:String        = postText.text
-        var message:PFObject = PFObject(className: "Message")
+        var message:PFObject           = PFObject(className: "Message")
         message["text"] = questionText;
         var query1 = PFUser.query();
         var query2 = PFUser.query();
@@ -29,6 +40,7 @@ class PostViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // self.view.backgroundColor = UIColor(red: 0.2, green: 0.9, blue: 0.55, alpha: 1.0)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -36,23 +48,4 @@ class PostViewController: UIViewController, UITextFieldDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    /*
-    query.whereKey("username", equalTo:"JoeTest2");
-    
-    query.findObjectsInBackgroundWithBlock{(recievers : [AnyObject]!, error : NSError!)->Void in
-    if(error == nil){
-    for r in recievers as [PFObject]{
-    var relation = message.relationForKey("recievers");
-    var user = r as PFUser
-    //relation.addObject(r);
-    message["recievers"] = user;
-    println(user.objectId)
-    message.saveEventually()
-    }
-    }
-    else{
-    println(error.localizedDescription)
-    }
-    }
-    */
 }

@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="top" id="HGH-8n-NTQ"/>
                         <viewControllerLayoutGuide type="bottom" id="4sz-HG-T8z"/>
                     </layoutGuides>
-                    <view key="view" alpha="0.5499999999999996" contentMode="scaleToFill" id="QKB-qG-ZJ6">
+                    <view key="view" contentMode="scaleToFill" id="QKB-qG-ZJ6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -21,27 +21,33 @@
                                 <rect key="frame" x="0.0" y="65" width="600" height="198"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="light" returnKeyType="send"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="vzy-Tx-AJe" id="pH1-it-MO0"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWm-pc-MEc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWm-pc-MEc">
                                 <rect key="frame" x="272" y="271" width="57" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="91j-Gu-gjz"/>
                                     <constraint firstAttribute="width" constant="57" id="CVa-Ut-iVt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Sling">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Sling">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </state>
                                 <connections>
                                     <action selector="submitPost:" destination="vzy-Tx-AJe" eventType="touchUpInside" id="WAS-Hh-oP6"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.11764705882352941" green="0.59999999999999998" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pgF-xo-cWM" firstAttribute="leading" secondItem="QKB-qG-ZJ6" secondAttribute="leading" id="3ww-Ml-KTB"/>
@@ -59,7 +65,7 @@
                                 <segue destination="HrU-1U-4yP" kind="show" id="JIT-Za-EWY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="SendTo" id="1Fe-WF-IzS">
+                        <barButtonItem key="rightBarButtonItem" title="Sling" id="1Fe-WF-IzS">
                             <connections>
                                 <segue destination="lQg-Xi-ZuV" kind="show" identifier="toUsersSegue" id="nbh-4T-TIG"/>
                             </connections>
@@ -503,7 +509,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="xq6-IZ-Qaw"/>
         <segue reference="JIT-Za-EWY"/>
-        <segue reference="djc-9v-ZlU"/>
     </inferredMetricsTieBreakers>
 </document>
