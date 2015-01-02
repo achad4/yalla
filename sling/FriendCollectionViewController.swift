@@ -39,13 +39,10 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     override func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath){
             var cell = collectionView.cellForItemAtIndexPath(indexPath) as UserCell
-            //println("cell user ID: " + cell.userName.text!)
-            //println("Selected user ID: "+cell.user.objectId!)
-            
             self.convo.addRecipient(cell.user)
             self.convo.save()
-            println(convo.convo.objectId)
-            cell.backgroundColor = UIColor.yellowColor()
+            cell.backgroundColor = UIColor.blueColor()
+            cell.userName.backgroundColor = UIColor.whiteColor()
             
     }
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
