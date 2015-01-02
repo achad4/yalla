@@ -7,12 +7,15 @@
 //
 
 import Foundation
-class FriendCollectionViewController : UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class FriendCollectionViewController : UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     var convo : Conversation = Conversation(sender: PFUser.currentUser())
     var users : NSMutableArray = NSMutableArray()
+    var filteredUsers : NSMutableArray = NSMutableArray()
+    var isSearching : Bool!
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        isSearching = false
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
@@ -36,6 +39,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             }
         }
     }
+    
     override func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath){
             var cell = collectionView.cellForItemAtIndexPath(indexPath) as UserCell
@@ -45,19 +49,59 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             cell.userName.backgroundColor = UIColor.whiteColor()
             
     }
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        if(isSearching == true){
+            return self.filteredUsers.count
+        }
         return self.users.count
     }
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
+        println("here")
+        if searchBar.text.isEmpty{
+            isSearching = false
+            self.collectionView?.reloadData()
+        } else {
+            println(" search text %@ ",searchBar.text as NSString)
+            isSearching = true
+            filteredUsers.removeAllObjects()
+            for var index = 0; index < users.count; index++
+            {
+                var currentUser = users.objectAtIndex(index) as PFObject
+                var currentString = currentUser.objectForKey("username") as String
+                if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
+                    filteredUsers.addObject(currentUser)
+                    
+                }
+            }
+            self.collectionView?.reloadData()
+        }
+    }
+
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UserCell
-        let user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
+        var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
+        if(isSearching == true){
+            user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
+        }
         cell.backgroundColor = UIColor.whiteColor()
         cell.user = user
         cell.userName.text = user.objectForKey("username") as NSString
         return cell
     }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let reusableView:UICollectionReusableView = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as UICollectionReusableView
+        println("Footer subivews: \(reusableView.subviews.count)") // 0
+        return reusableView
+    }
+    
+    
+    
     
 }

@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" allowsEditingTextAttributes="YES" placeholder=" Begin a new sling..." clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pgF-xo-cWM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" allowsEditingTextAttributes="YES" placeholder=" Begin a new sling..." clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pgF-xo-cWM">
                                 <rect key="frame" x="0.0" y="65" width="600" height="198"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText"/>
@@ -92,7 +92,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkT-cd-ZV6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkT-cd-ZV6">
                                 <rect key="frame" x="562" y="476" width="36" height="30"/>
                                 <state key="normal" title="Send">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,13 +101,13 @@
                                     <action selector="reply:" destination="9EF-49-5Yh" eventType="touchUpInside" id="7Mg-BP-2IH"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBg-OW-QUF">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBg-OW-QUF">
                                 <rect key="frame" x="0.0" y="66" width="598" height="332"/>
                                 <connections>
                                     <segue destination="6tT-4n-Q1I" kind="embed" identifier="to_convo_detail_segue" id="B0j-oH-ih7"/>
                                 </connections>
                             </containerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reply..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="59P-fD-sQ3">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reply..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="59P-fD-sQ3">
                                 <rect key="frame" x="0.0" y="438" width="600" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -145,7 +145,7 @@
             <objects>
                 <tableViewController id="6tT-4n-Q1I" customClass="ConvoDetailViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RJT-LS-kP4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="598" height="332"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -207,7 +207,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6AC-f9-awV">
                             <size key="itemSize" width="150" height="93"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="58"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -242,13 +242,45 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="9ir-7F-Aun">
+                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sPW-DE-OGG">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="Wy5-Aa-35f"/>
+                                    </connections>
+                                </searchBar>
+                            </subviews>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="lQg-Xi-ZuV" id="qxq-NC-qSF"/>
                             <outlet property="delegate" destination="lQg-Xi-ZuV" id="pdl-Jx-2S5"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="hiw-ws-RxF" id="9Oj-lK-I2O"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGd-qB-Zoc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="JZP-Hs-C3o">
+                    <connections>
+                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="xXs-vR-vox"/>
+                        <outlet property="searchContentsController" destination="lQg-Xi-ZuV" id="jhO-Zb-ItI"/>
+                        <outlet property="searchResultsDataSource" destination="lQg-Xi-ZuV" id="iGM-1F-vhL"/>
+                        <outlet property="searchResultsDelegate" destination="lQg-Xi-ZuV" id="D7S-SW-v3K"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="hiw-ws-RxF">
+                    <connections>
+                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="sVy-c7-Nnd"/>
+                        <outlet property="searchContentsController" destination="lQg-Xi-ZuV" id="kik-Hc-XwI"/>
+                        <outlet property="searchResultsDataSource" destination="lQg-Xi-ZuV" id="pnA-6T-Vyn"/>
+                        <outlet property="searchResultsDelegate" destination="lQg-Xi-ZuV" id="38x-Kz-dQU"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1189" y="-531"/>
         </scene>
@@ -513,7 +545,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6Zq-hp-p4M"/>
         <segue reference="JIT-Za-EWY"/>
+        <segue reference="xxu-N4-PH0"/>
     </inferredMetricsTieBreakers>
 </document>
