@@ -8,13 +8,21 @@
 
 import Foundation
 class UserCell : UICollectionViewCell{
-    var user : PFObject = PFUser()
+    var user : PFObject
+    
     @IBOutlet weak var userName: UILabel!
     
     @IBAction func addUser(sender: UIButton) {
-        var vc = self.superview?.superview as FriendCollectionViewController
-        vc.convo.addRecipient(self.user)
         
+    }
+    override init() {
+        user = PFUser()
+        super.init()
+    }
+
+    required init(coder decoder: NSCoder) {
+        user = PFUser()
+        super.init(coder: decoder)
     }
     
 }

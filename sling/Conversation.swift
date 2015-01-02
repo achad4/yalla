@@ -15,26 +15,21 @@ class Conversation{
         //messages = NSMutableArray()
         participants = NSMutableArray()
         //messages.addObject(initialMessage)
-        participants.addObject(sender)
+        self.participants.addObject(sender)
         convo = PFObject(className: "Conversation")
     }
     
     func addRecipient(user : PFObject){
         self.participants.addObject(user);
     }
-    /*
-    func addMessage(message : PFObject){
-        self.messages.addObject(message);
-    }
-    */
+    
     func save(){
+        //println(self.convo.objectId)
         for user in participants{
-            var participant = convo.relationForKey("participant")
+            println("Selected user ID: "+user.objectId!)
+            var participant = convo.relationForKey("participant") as PFRelation
             participant.addObject(user as PFObject);
         }
-        //for message in messages{
-            //convo["message"] = message
-        //}
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }

@@ -20,8 +20,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     
     func loadData(order: Int){
-        println("loaded")
-
         users.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "_User")
         if(order == 0){
@@ -32,19 +30,29 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             if !(error != nil){
                 for object in objects{
                     let pdf = object as PFObject
-                    println("yeappp")
                     self.users.addObject(pdf)
                 }
                 self.collectionView?.reloadData()
             }
         }
     }
-
+    override func collectionView(collectionView: UICollectionView,
+        didSelectItemAtIndexPath indexPath: NSIndexPath){
+            var cell = collectionView.cellForItemAtIndexPath(indexPath) as UserCell
+            //println("cell user ID: " + cell.userName.text!)
+            //println("Selected user ID: "+cell.user.objectId!)
+            
+            self.convo.addRecipient(cell.user)
+            self.convo.save()
+            println(convo.convo.objectId)
+            cell.backgroundColor = UIColor.yellowColor()
+            
+    }
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.users.count
     }
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return self.users.count
+        return 1
     }
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UserCell
