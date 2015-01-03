@@ -62,7 +62,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
-        println("here")
         if searchBar.text.isEmpty{
             isSearching = false
             self.collectionView?.reloadData()
