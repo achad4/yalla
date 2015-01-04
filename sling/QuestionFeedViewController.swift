@@ -163,7 +163,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 for object in objects{
                     let pdf = object as PFObject
                     self.timeLineData.addObject(pdf)
-                    pdf.deleteInBackgroundWithTarget(nil, selector: nil)
                 }
                 //let array:NSArray = self.timeLineData.reverseObjectEnumerator().allObjects
                 //self.timeLineData = array as NSMutableArray
