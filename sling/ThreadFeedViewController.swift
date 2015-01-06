@@ -7,9 +7,12 @@
 //
 
 import Foundation
-class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
+class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     var threads : NSMutableArray = NSMutableArray()
+    var filteredThreads : NSMutableArray = NSMutableArray()
+    var isSearching : Bool!
     override func viewDidLoad(){
+        isSearching = false
         super.viewDidLoad()
         //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
         if(PFUser.currentUser() != nil){
@@ -47,19 +50,41 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         
         
     }
-    func sortByScore(){
-        
+   
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
+        if searchBar.text.isEmpty{
+            isSearching = false
+            self.tableView.reloadData()
+        } else {
+            println(" search text %@ ",searchBar.text as NSString)
+            isSearching = true
+            filteredThreads.removeAllObjects()
+            for var index = 0; index < threads.count; index++
+            {
+                var currentThread = threads.objectAtIndex(index) as PFObject
+                var currentString = currentThread.objectForKey("topic") as String
+                if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
+                    filteredThreads.addObject(currentThread)
+                    
+                }
+            }
+            self.tableView.reloadData()
+        }
     }
-    @IBAction func postQuestion(sender: AnyObject) {
-        
-    }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(isSearching == true){
+            return self.filteredThreads.count
+        }
         return self.threads.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ThreadCell
-        let thread:PFObject = self.threads.objectAtIndex(indexPath.row) as PFObject
+        var thread:PFObject = self.threads.objectAtIndex(indexPath.row) as PFObject
+        if(isSearching == true){
+            thread = self.filteredThreads.objectAtIndex(indexPath.row) as PFObject
+        }
         let date = thread.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
         cell.topic.text = thread.objectForKey("topic") as? String

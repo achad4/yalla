@@ -93,7 +93,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                 var currentString = currentUser.objectForKey("username") as String
                 if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
                     filteredUsers.addObject(currentUser)
-                    
                 }
             }
             self.collectionView?.reloadData()
