@@ -29,7 +29,7 @@ class ThreadCell : UITableViewCell{
                     threadsFollowing.addObject(pdf)
                 }
             }
-            println(count)
+            
             var followRelation : PFRelation = self.thread.relationForKey("follower")
             if(count == 0){
                 println("User wants to follow")
@@ -40,6 +40,7 @@ class ThreadCell : UITableViewCell{
             }
             else{
                 println("User wants to unfollow")
+                println(self.thread.objectId)
                 self.follow.setTitle("Follow", forState: UIControlState.Normal)
                 followRelation.removeObject(PFUser.currentUser())
                 self.thread.saveInBackgroundWithTarget(nil, selector: nil)

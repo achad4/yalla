@@ -18,6 +18,7 @@ class Thread{
         //messages.addObject(initialMessage)
         self.followers.addObject(sender)
         self.thread = PFObject(className: "Thread")
+        self.thread.ACL.setPublicWriteAccess(true)
         println(topic)
         self.topic = topic
     }

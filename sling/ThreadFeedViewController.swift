@@ -65,10 +65,10 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.date.text = stringDate as NSString
         cell.thread = thread
+        println(thread.objectId)
         var query:PFQuery = PFQuery(className: "Thread")
         var threadsFollowing : NSMutableArray = NSMutableArray()
         query.whereKey("follower", equalTo: PFUser.currentUser())
-        println(PFUser.currentUser().objectId)
         var count : Int = 0;
         query.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -79,7 +79,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                     threadsFollowing.addObject(pdf)
                 }
             }
-            println(count)
             var followRelation : PFRelation = thread.relationForKey("follower")
             if(count == 0){
                 println("User is not a follower")
