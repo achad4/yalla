@@ -148,13 +148,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         //else if(order == 1){
         //    findTimeLineData.orderByDescending("score")
         //}
-        
-        // Filtering questions to only see those posted by current user
         var currentUser = PFUser.currentUser();
-        println(currentUser.objectForKey("username"))
-        // Option to limit number of results from query (if needed)
-        //findTimeLineData.limit = 3
-        
         findTimeLineData.whereKey("participant", equalTo: currentUser)
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
@@ -170,7 +164,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 self.tableView.reloadData()
             }
         }
-        
         
         
         

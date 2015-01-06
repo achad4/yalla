@@ -19,12 +19,14 @@ class PostViewController: UIViewController, UITextFieldDelegate {
         if(segue.identifier == "toUsersSegue"){
             let userView = segue.destinationViewController as FriendCollectionViewController
             userView.convo = self.convo
+            userView.messageText = self.postText.text
         }
     }
     
     @IBAction func submitPost(sender: AnyObject) {
         
-        var feed:QuestionFeedTableView = QuestionFeedTableView()
+        //var feed:QuestionFeedTableView = QuestionFeedTableView()
+        /*
         var questionText:String        = postText.text
         var message:PFObject           = PFObject(className: "Message")
         message["text"] = questionText;
@@ -36,6 +38,12 @@ class PostViewController: UIViewController, UITextFieldDelegate {
         message["inConvo"] = convo.convo as PFObject
         self.convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
+        */
+        
+        var topic:String        = postText.text
+        var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
+        thread.save()
+        
     }
     
     override func viewDidLoad() {
