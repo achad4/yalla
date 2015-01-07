@@ -23,6 +23,9 @@
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
 		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
+		82F7E0EB1A5B35D100901922 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EA1A5B35D100901922 /* Thread.swift */; };
+		82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */; };
+		82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */; };
 		A788EDA119FF649400BF4B02 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788ED9E19FF649400BF4B02 /* Bolts.framework */; };
 		A788EDA219FF649400BF4B02 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788ED9F19FF649400BF4B02 /* Parse.framework */; };
 		A788EDA319FF649400BF4B02 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */; };
@@ -74,6 +77,9 @@
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
 		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		82F7E0EA1A5B35D100901922 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadFeedViewController.swift; sourceTree = "<group>"; };
+		82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		A788ED9E19FF649400BF4B02 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		A788ED9F19FF649400BF4B02 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
+				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
+				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
@@ -182,6 +190,7 @@
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
 				D3FCDA9E19FF580500D1A8FB /* sling-Bridging-Header.h */,
 				A79B9D4B1A4A32C90030F56D /* Conversation.swift */,
+				82F7E0EA1A5B35D100901922 /* Thread.swift */,
 				A7FD59D01A50011A0074D2AF /* UserData.swift */,
 				A7FD59CB1A4AC8680074D2AF /* Message.swift */,
 			);
@@ -315,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82974ECB1A4F1BA200D2B9F7 /* MessageCell.swift in Sources */,
+				82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */,
 				A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */,
 				82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */,
 				82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */,
@@ -322,6 +332,7 @@
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
 				82974ECF1A54571A00D2B9F7 /* FriendCollectionViewController.swift in Sources */,
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
+				82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */,
 				82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */,
 				82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */,
 				82703F6019F0A77900EBEC4E /* Question.swift in Sources */,
@@ -329,6 +340,7 @@
 				82974ECD1A51BAE200D2B9F7 /* ConvoParentViewController.swift in Sources */,
 				82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */,
 				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,
+				82F7E0EB1A5B35D100901922 /* Thread.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

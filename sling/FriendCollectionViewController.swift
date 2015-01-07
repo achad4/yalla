@@ -9,9 +9,27 @@
 import Foundation
 class FriendCollectionViewController : UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var messageText : String = "";
     var users : NSMutableArray = NSMutableArray()
     var filteredUsers : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
+    
+    
+    @IBAction func send(sender: AnyObject) {
+        //var messageText:String        = postText.text
+        var message:PFObject           = PFObject(className: "Message")
+        message["text"] = messageText;
+        var query1 = PFUser.query();
+        var query2 = PFUser.query();
+        var sentToRelation = message.relationForKey("sentTo")
+        var senderRelation = message.relationForKey("sender")
+        senderRelation.addObject(PFUser.currentUser())
+        message["inConvo"] = convo.convo as PFObject
+        self.convo.save()
+        message.saveInBackgroundWithTarget(nil, selector: nil)
+    
+    }
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -75,7 +93,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                 var currentString = currentUser.objectForKey("username") as String
                 if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
                     filteredUsers.addObject(currentUser)
-                    
                 }
             }
             self.collectionView?.reloadData()

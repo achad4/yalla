@@ -65,7 +65,7 @@
                                 <segue destination="HrU-1U-4yP" kind="show" id="JIT-Za-EWY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Sling" id="1Fe-WF-IzS">
+                        <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS">
                             <connections>
                                 <segue destination="lQg-Xi-ZuV" kind="show" identifier="toUsersSegue" id="nbh-4T-TIG"/>
                             </connections>
@@ -264,6 +264,14 @@
                             <outlet property="delegate" destination="lQg-Xi-ZuV" id="pdl-Jx-2S5"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ffC-Jk-hpT">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="QGE-Tx-A8u">
+                            <connections>
+                                <action selector="send:" destination="lQg-Xi-ZuV" id="ggh-ae-lgp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="hiw-ws-RxF" id="9Oj-lK-I2O"/>
                     </connections>
@@ -457,20 +465,56 @@
             </objects>
             <point key="canvasLocation" x="-1199" y="416"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Thread Feed View Controller-->
         <scene sceneID="aZB-aV-Lsb">
             <objects>
-                <tableViewController id="gya-sS-Hvq" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dJ8-7M-GGs">
+                <tableViewController id="gya-sS-Hvq" customClass="ThreadFeedViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" id="dJ8-7M-GGs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search by Topic" id="bBV-cc-8Pd">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="gya-sS-Hvq" id="m6J-Px-9xp"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Zhq-Lt-7ju">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="104" id="Zhq-Lt-7ju" customClass="ThreadCell" customModule="sling" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zhq-Lt-7ju" id="lcE-fJ-390">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRd-Xf-Sno">
+                                            <rect key="frame" x="8" y="37" width="140" height="30"/>
+                                            <state key="normal" title="Follow">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="follow:" destination="Zhq-Lt-7ju" eventType="touchUpInside" id="qqp-h9-Bcq"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Topic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-J1-wcY">
+                                            <rect key="frame" x="189" y="41" width="266" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sm0-GV-KFo">
+                                            <rect key="frame" x="178" y="75" width="382" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="date" destination="Sm0-GV-KFo" id="mxe-St-ruc"/>
+                                    <outlet property="follow" destination="MRd-Xf-Sno" id="j8b-kg-3dD"/>
+                                    <outlet property="topic" destination="9f3-J1-wcY" id="ptg-6q-PMx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -550,6 +594,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="JIT-Za-EWY"/>
-        <segue reference="xxu-N4-PH0"/>
+        <segue reference="xq6-IZ-Qaw"/>
     </inferredMetricsTieBreakers>
 </document>

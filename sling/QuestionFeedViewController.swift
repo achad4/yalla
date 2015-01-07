@@ -77,8 +77,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                     (user:PFUser!, error:NSError!)->Void in
                     if ((user) != nil){
                         println("Login successfull")
+                        self.viewDidLoad()
                     }else{
                         println("Login failed")
+                        self.viewDidAppear(true)
                     }
                     
                 }
@@ -102,6 +104,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                     (success:Bool!, error:NSError!)->Void in
                     if !(error != nil){
                         println("Sign Up successfull")
+                        self.tableView.reloadData()
                     }else{
                         let errorString = error.userInfo!["error"] as NSString
                         println(errorString)
@@ -132,7 +135,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         return 1
     }
     func loadData(order: Int){
-        
+        self.timeLineData.removeAllObjects()
         //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
        
         //var findTimeLineData:PFQuery = PFQuery(className: "Message")
@@ -145,13 +148,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         //else if(order == 1){
         //    findTimeLineData.orderByDescending("score")
         //}
-        
-        // Filtering questions to only see those posted by current user
         var currentUser = PFUser.currentUser();
-        
-        // Option to limit number of results from query (if needed)
-        //findTimeLineData.limit = 3
-        
         findTimeLineData.whereKey("participant", equalTo: currentUser)
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
@@ -167,7 +164,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 self.tableView.reloadData()
             }
         }
-        
         
         
         
