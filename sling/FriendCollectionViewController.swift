@@ -13,6 +13,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     var users : NSMutableArray = NSMutableArray()
     var filteredUsers : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
+    var sections : NSMutableArray = NSMutableArray()
     
     
     @IBAction func send(sender: AnyObject) {
@@ -41,21 +42,30 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     
     func loadData(order: Int){
-        users.removeAllObjects()
-        var findTimeLineData:PFQuery = PFQuery(className: "_User")
-        if(order == 0){
-            findTimeLineData.orderByDescending("createdAt")
-        }
-        findTimeLineData.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-                for object in objects{
-                    let pdf = object as PFObject
-                    self.users.addObject(pdf)
+        for var i = 0; i<3; i++ {
+            users.removeAllObjects()
+            var findTimeLineData:PFQuery = PFQuery(className: "_User")
+            if(order == 0){
+                findTimeLineData.orderByDescending("createdAt")
+            }
+            findTimeLineData.findObjectsInBackgroundWithBlock{
+                (objects:[AnyObject]!, error:NSError!)->Void in
+                if !(error != nil){
+                    for object in objects{
+                        let pdf = object as PFObject
+                        self.users.addObject(pdf)
+                    }
+                    self.sections.addObject(self.users)
+                    println(self.sections.count)
+                    
                 }
+                println(self.sections.count)
                 self.collectionView?.reloadData()
             }
         }
+        
+        
+        
     }
     
     override func collectionView(collectionView: UICollectionView,
@@ -76,15 +86,17 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        if(isSearching == true){
+            return 1
+        }
+        return 3
     }
-    
+    /*
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         if searchBar.text.isEmpty{
             isSearching = false
             self.collectionView?.reloadData()
         } else {
-            println(" search text %@ ",searchBar.text as NSString)
             isSearching = true
             filteredUsers.removeAllObjects()
             for var index = 0; index < users.count; index++
@@ -98,9 +110,12 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             self.collectionView?.reloadData()
         }
     }
-
+*/
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UserCell
+        var users : NSMutableArray = self.sections.objectAtIndex(indexPath.section) as NSMutableArray
+        //println("section loaded")
+        //var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
         var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
         if(isSearching == true){
             user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
@@ -116,7 +131,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         println("Footer subivews: \(reusableView.subviews.count)") // 0
         return reusableView
     }
-    
+
     
     
     

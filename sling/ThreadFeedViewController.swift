@@ -14,7 +14,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     override func viewDidLoad(){
         isSearching = false
         super.viewDidLoad()
-        //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
@@ -39,8 +38,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                     let pdf = object as PFObject
                     self.threads.addObject(pdf)
                 }
-                //let array:NSArray = self.timeLineData.reverseObjectEnumerator().allObjects
-                //self.timeLineData = array as NSMutableArray
                 
                 self.tableView.reloadData()
             }
@@ -56,7 +53,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             isSearching = false
             self.tableView.reloadData()
         } else {
-            println(" search text %@ ",searchBar.text as NSString)
             isSearching = true
             filteredThreads.removeAllObjects()
             for var index = 0; index < threads.count; index++
