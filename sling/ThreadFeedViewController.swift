@@ -19,7 +19,16 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         }
         
     }
-    
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        if(segue.identifier == "to_thread_detail"){
+            let indexPath = tableView.indexPathForSelectedRow()
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
+            let parent = segue.destinationViewController as ThreadDetailViewController
+            //parent.selectedConversationID = cell.convo.objectId as String!
+            parent.thread = cell.thread
+        }
+        
+    }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1

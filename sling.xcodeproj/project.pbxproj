@@ -58,6 +58,8 @@
 		815BF1071A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF0D61A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m */; };
 		815BF1081A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */; };
+		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
+		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
 		82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */; };
 		82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4319F0A3E600EBEC4E /* Main.storyboard */; };
 		82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4619F0A3E600EBEC4E /* Images.xcassets */; };
@@ -189,6 +191,8 @@
 		815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		815BF10B1A5E1C08003D2FCC /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
+		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		82703F3A19F0A3E600EBEC4E /* sling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82703F3E19F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -495,12 +499,6 @@
 				82B0A2341A5DA53A00887222 /* Users */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
-				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
-				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
-				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
-				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
-				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
-				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
 				82B0A2331A5DA4D300887222 /* Messaging */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
@@ -539,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
+				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
 				82B0A22F1A5C7D0000887222 /* Discussion.swift */,
 				82CE259219F9EB8A000A4424 /* TableCell.swift */,
 				82974ECA1A4F1BA200D2B9F7 /* MessageCell.swift */,
@@ -554,9 +553,9 @@
 		82B0A2341A5DA53A00887222 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				A7FD59D01A50011A0074D2AF /* UserData.swift */,
-				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
+				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
+				A7FD59D01A50011A0074D2AF /* UserData.swift */,
 				82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */,
 			);
 			name = Users;
@@ -566,8 +565,10 @@
 			isa = PBXGroup;
 			children = (
 				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
-				82F7E0EA1A5B35D100901922 /* Thread.swift */,
 				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
+				82F7E0EA1A5B35D100901922 /* Thread.swift */,
+				825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */,
+				825DBC3C1A5F14CD00C8B07C /* Reply.swift */,
 			);
 			name = Threads;
 			sourceTree = "<group>";
@@ -735,6 +736,7 @@
 				82974ECF1A54571A00D2B9F7 /* FriendCollectionViewController.swift in Sources */,
 				815BF1051A5E1BF9003D2FCC /* JSQMessagesToolbarContentView.m in Sources */,
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
+				825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */,
 				815BF1031A5E1BF9003D2FCC /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */,
 				82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */,
@@ -749,6 +751,7 @@
 				815BF0EF1A5E1BF9003D2FCC /* JSQMessagesKeyboardController.m in Sources */,
 				815BF0F61A5E1BF9003D2FCC /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				815BF0F91A5E1BF9003D2FCC /* JSQMessage.m in Sources */,
+				825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */,
 				82974ECD1A51BAE200D2B9F7 /* ConvoParentViewController.swift in Sources */,
 				82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */,
 				815BF0F71A5E1BF9003D2FCC /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
