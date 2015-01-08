@@ -67,7 +67,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS">
                             <connections>
-                                <segue destination="lQg-Xi-ZuV" kind="show" identifier="toUsersSegue" id="nbh-4T-TIG"/>
+                                <segue destination="phR-WZ-GfF" kind="show" id="RBC-HJ-ifz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -145,7 +145,7 @@
             <objects>
                 <tableViewController id="6tT-4n-Q1I" customClass="ConvoDetailViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RJT-LS-kP4">
-                        <rect key="frame" x="0.0" y="0.0" width="598" height="332"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -207,7 +207,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6AC-f9-awV">
                             <size key="itemSize" width="150" height="93"/>
-                            <size key="headerReferenceSize" width="50" height="58"/>
+                            <size key="headerReferenceSize" width="50" height="51"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -243,20 +243,24 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="9ir-7F-Aun">
-                            <rect key="frame" x="0.0" y="64" width="600" height="58"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search by username" translatesAutoresizingMaskIntoConstraints="NO" id="sPW-DE-OGG">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <scopeButtonTitles>
-                                        <string>Title</string>
-                                        <string>Title</string>
-                                    </scopeButtonTitles>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new section" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-ht-fSC">
+                                    <rect key="frame" x="26" y="15" width="118" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlQ-7e-Nhi">
+                                    <rect key="frame" x="152" y="11" width="80" height="30"/>
+                                    <state key="normal" title="Add All">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <connections>
-                                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="Wy5-Aa-35f"/>
+                                        <action selector="addSection:" destination="lQg-Xi-ZuV" eventType="touchUpInside" id="6AI-GF-5eT"/>
                                     </connections>
-                                </searchBar>
+                                </button>
                             </subviews>
                         </collectionReusableView>
                         <connections>
@@ -507,7 +511,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRd-Xf-Sno">
                                             <rect key="frame" x="8" y="37" width="140" height="30"/>
-                                            <state key="normal" title="Follow">
+                                            <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -611,6 +615,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="6Zq-hp-p4M"/>
         <segue reference="JIT-Za-EWY"/>
         <segue reference="6Zq-hp-p4M"/>
     </inferredMetricsTieBreakers>

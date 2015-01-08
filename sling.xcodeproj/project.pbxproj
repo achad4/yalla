@@ -73,6 +73,8 @@
 		82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ED01A5457A200D2B9F7 /* UserCell.swift */; };
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
 		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
+		82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A22F1A5C7D0000887222 /* Discussion.swift */; };
+		82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
 		82F7E0EB1A5B35D100901922 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EA1A5B35D100901922 /* Thread.swift */; };
 		82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */; };
@@ -206,6 +208,8 @@
 		82974ED01A5457A200D2B9F7 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
 		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
+		82B0A22F1A5C7D0000887222 /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
+		82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendParentViewController.swift; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		82F7E0EA1A5B35D100901922 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadFeedViewController.swift; sourceTree = "<group>"; };
@@ -484,14 +488,11 @@
 		82703F3C19F0A3E600EBEC4E /* sling */ = {
 			isa = PBXGroup;
 			children = (
-				82CE259219F9EB8A000A4424 /* TableCell.swift */,
-				82974ECA1A4F1BA200D2B9F7 /* MessageCell.swift */,
+				82B0A2361A5DA6B000887222 /* Threads */,
 				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
-				82935AFE19F0DB1800EC8C59 /* PostViewController.swift */,
-				82703F6319F0B61800EBEC4E /* QuestionFeedViewController.swift */,
-				82974EC81A4F169100D2B9F7 /* ConvoDetailViewController.swift */,
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
+				82B0A2341A5DA53A00887222 /* Users */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
 				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
@@ -500,14 +501,11 @@
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
+				82B0A2331A5DA4D300887222 /* Messaging */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
 				D3FCDA9E19FF580500D1A8FB /* sling-Bridging-Header.h */,
-				A79B9D4B1A4A32C90030F56D /* Conversation.swift */,
-				82F7E0EA1A5B35D100901922 /* Thread.swift */,
-				A7FD59D01A50011A0074D2AF /* UserData.swift */,
-				A7FD59CB1A4AC8680074D2AF /* Message.swift */,
 			);
 			path = sling;
 			sourceTree = "<group>";
@@ -535,6 +533,43 @@
 				82703F5419F0A3E600EBEC4E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82B0A2331A5DA4D300887222 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
+				82B0A22F1A5C7D0000887222 /* Discussion.swift */,
+				82CE259219F9EB8A000A4424 /* TableCell.swift */,
+				82974ECA1A4F1BA200D2B9F7 /* MessageCell.swift */,
+				82935AFE19F0DB1800EC8C59 /* PostViewController.swift */,
+				82703F6319F0B61800EBEC4E /* QuestionFeedViewController.swift */,
+				82974EC81A4F169100D2B9F7 /* ConvoDetailViewController.swift */,
+				A79B9D4B1A4A32C90030F56D /* Conversation.swift */,
+				A7FD59CB1A4AC8680074D2AF /* Message.swift */,
+			);
+			name = Messaging;
+			sourceTree = "<group>";
+		};
+		82B0A2341A5DA53A00887222 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				A7FD59D01A50011A0074D2AF /* UserData.swift */,
+				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
+				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
+				82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		82B0A2361A5DA6B000887222 /* Threads */ = {
+			isa = PBXGroup;
+			children = (
+				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
+				82F7E0EA1A5B35D100901922 /* Thread.swift */,
+				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
+			);
+			name = Threads;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -685,6 +720,7 @@
 				815BF0F21A5E1BF9003D2FCC /* JSQMessagesAvatarFactory.m in Sources */,
 				82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */,
 				815BF0F01A5E1BF9003D2FCC /* JSQMessagesViewController.m in Sources */,
+				82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */,
 				82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */,
 				815BF0FE1A5E1BF9003D2FCC /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				82974EC91A4F169100D2B9F7 /* ConvoDetailViewController.swift in Sources */,
@@ -695,6 +731,7 @@
 				815BF0EA1A5E1BF9003D2FCC /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
 				815BF0EC1A5E1BF9003D2FCC /* UIColor+JSQMessages.m in Sources */,
+				82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */,
 				82974ECF1A54571A00D2B9F7 /* FriendCollectionViewController.swift in Sources */,
 				815BF1051A5E1BF9003D2FCC /* JSQMessagesToolbarContentView.m in Sources */,
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
