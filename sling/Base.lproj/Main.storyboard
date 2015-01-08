@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" allowsEditingTextAttributes="YES" placeholder=" Begin a new sling..." clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pgF-xo-cWM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" allowsEditingTextAttributes="YES" placeholder=" Begin a new sling..." clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pgF-xo-cWM">
                                 <rect key="frame" x="0.0" y="65" width="600" height="198"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText"/>
@@ -67,7 +67,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS">
                             <connections>
-                                <segue destination="lQg-Xi-ZuV" kind="show" id="nTw-2v-qKq"/>
+                                <segue destination="phR-WZ-GfF" kind="show" id="Ieo-dw-aos"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -668,8 +668,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="djc-9v-ZlU"/>
         <segue reference="JIT-Za-EWY"/>
-        <segue reference="6Zq-hp-p4M"/>
-        <segue reference="J6X-vh-wT6"/>
     </inferredMetricsTieBreakers>
 </document>
