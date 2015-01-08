@@ -48,7 +48,6 @@ class Message : NSObject, JSQMessageData {
     }
     
     func sender() -> String! {
-        println(senderUser?.objectId)
         return senderUser?.objectForKey("username") as String
     }
     
