@@ -26,7 +26,6 @@ class Conversation{
     func save(){
         //println(self.convo.objectId)
         for user in participants{
-            println("Selected user ID: "+user.objectId!)
             var participant = convo.relationForKey("participant") as PFRelation
             participant.addObject(user as PFObject);
         }

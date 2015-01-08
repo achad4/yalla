@@ -24,22 +24,6 @@ class PostViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitPost(sender: AnyObject) {
-        
-        //var feed:QuestionFeedTableView = QuestionFeedTableView()
-        /*
-        var questionText:String        = postText.text
-        var message:PFObject           = PFObject(className: "Message")
-        message["text"] = questionText;
-        var query1 = PFUser.query();
-        var query2 = PFUser.query();
-        var sentToRelation = message.relationForKey("sentTo")
-        var senderRelation = message.relationForKey("sender")
-        senderRelation.addObject(PFUser.currentUser())
-        message["inConvo"] = convo.convo as PFObject
-        self.convo.save()
-        message.saveInBackgroundWithTarget(nil, selector: nil)
-        */
-        
         var topic:String        = postText.text
         var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
         thread.save()

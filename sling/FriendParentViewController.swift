@@ -14,12 +14,8 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
         var child = self.childViewControllers[0] as FriendCollectionViewController
         var message:PFObject           = PFObject(className: "Message")
         message["text"] = child.messageText;
-        var query1 = PFUser.query();
-        var query2 = PFUser.query();
-        var sentToRelation = message.relationForKey("sentTo")
-        var senderRelation = message.relationForKey("sender")
-        senderRelation.addObject(PFUser.currentUser())
         message["inConvo"] = child.convo.convo as PFObject
+        message["sender"] = PFUser.currentUser()
         child.convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
     

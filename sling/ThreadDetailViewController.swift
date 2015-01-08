@@ -78,6 +78,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
     override func viewDidLoad() {
         //println("viewDidLoad called")
         super.viewDidLoad()
+        self.title = self.thread.objectForKey("topic") as? String
         if(PFUser.currentUser() != nil) {
             self.loadData(0)
         }
@@ -205,22 +206,6 @@ class ThreadDetailViewController : JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        //println("collectionView 6")
-        //let message = messages[indexPath.item]
-        /*
-        let message = messageArray.objectAtIndex(indexPath.item) as Reply
-        let currentUser = PFUser.currentUser().objectForKey("username") as String
-        if message.sender() == sender {
-            return CGFloat(0.0);
-        }
-        
-        if indexPath.item > 0 {
-            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as Reply;
-            if previousMessage.sender() == message.sender() {
-                return CGFloat(0.0);
-            }
-        }
-        */
         return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
 }
