@@ -312,12 +312,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-GC-fxK">
-                                <rect key="frame" x="0.0" y="171" width="600" height="449"/>
-                                <connections>
-                                    <segue destination="lQg-Xi-ZuV" kind="embed" id="J6X-vh-wT6"/>
-                                </connections>
-                            </containerView>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7g7-q3-07q">
                                 <rect key="frame" x="5" y="127" width="590" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -325,6 +319,12 @@
                                     <outlet property="delegate" destination="phR-WZ-GfF" id="TqB-x1-gsc"/>
                                 </connections>
                             </searchBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-GC-fxK">
+                                <rect key="frame" x="0.0" y="179" width="600" height="377"/>
+                                <connections>
+                                    <segue destination="lQg-Xi-ZuV" kind="embed" id="J6X-vh-wT6"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -351,7 +351,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1213" y="-531"/>
+            <point key="canvasLocation" x="1348" y="-540"/>
         </scene>
         <!--Question Feed Table View-->
         <scene sceneID="e7D-FF-eho">
