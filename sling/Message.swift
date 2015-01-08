@@ -27,17 +27,18 @@ class Message : NSObject, JSQMessageData {
     }
     */
     var text_: String
-    var sender_: String
+    //var sender_: String
+    var senderUser : PFUser?
     var date_: NSDate
     var imageUrl_: String?
     
-    convenience init(text: String?, sender: String?) {
+    convenience init(text: String?, sender: PFUser?) {
         self.init(text: text, sender: sender, imageUrl: nil)
     }
     
-    init(text: String?, sender: String?, imageUrl: String?) {
+    init(text: String?, sender: PFUser?, imageUrl: String?) {
         self.text_ = text!
-        self.sender_ = sender!
+        self.senderUser = sender!
         self.date_ = NSDate()
         self.imageUrl_ = imageUrl
     }
@@ -47,15 +48,15 @@ class Message : NSObject, JSQMessageData {
     }
     
     func sender() -> String! {
-        return sender_;
+        return senderUser?.objectForKey("username") as String
     }
     
     func date() -> NSDate! {
-        return date_;
+        return date_
     }
     
     func imageUrl() -> String? {
-        return imageUrl_;
+        return imageUrl_
     }
     
 }

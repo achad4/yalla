@@ -29,18 +29,23 @@ class MessagesViewController : JSQMessagesViewController {
         }
         // Filtering questions to only see those posted by current user
         var currentUser = PFUser.currentUser()
-        /*
+        
         findTimeLineData.whereKey("inConvo", equalTo: self.convo)
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
+                var i = 0
                 for object in objects{
                     let pdf = object as PFObject
-                    self.timeLineData.addObject(pdf)
+                    let text = pdf.objectForKey("text") as String
+                    let sender = pdf.objectForKey("sender") as PFUser
+                    self.messages[i] = Message(text: text, sender: sender)
+                    i++
+                    //self.timeLineData.addObject(pdf)
                 }
             }
         }
-*/
+
 
     }
     func sortByScore(){
@@ -65,7 +70,7 @@ class MessagesViewController : JSQMessagesViewController {
         message.save()
     }
     
-    func tempSendMessage(text: String!, sender: String!) {
+    func tempSendMessage(text: String!, sender: PFUser!) {
         println("tempSendMessage called")
         let message = Message(text: text, sender: sender)
         messages.append(message)
