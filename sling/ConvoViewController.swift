@@ -73,6 +73,7 @@ class MessagesViewController : JSQMessagesViewController {
         message["sender"] = PFUser.currentUser()
         convo.save()
         message.save()
+        self.collectionView?.reloadData()
     }
     
     func tempSendMessage(text: String!, sender: PFUser!) {
@@ -177,7 +178,8 @@ class MessagesViewController : JSQMessagesViewController {
         }
         
         if indexPath.item > 0 {
-            let previousMessage = messages[indexPath.item - 1];
+            //let previousMessage = messages[indexPath.item - 1];
+            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as Message;
             if previousMessage.sender() == message.sender() {
                 return nil;
             }
@@ -196,7 +198,7 @@ class MessagesViewController : JSQMessagesViewController {
         }
         
         if indexPath.item > 0 {
-            let previousMessage = messages[indexPath.item - 1];
+            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as Message;
             if previousMessage.sender() == message.sender() {
                 return CGFloat(0.0);
             }
