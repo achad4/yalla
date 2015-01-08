@@ -22,9 +22,10 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         var query1 = PFUser.query();
         var query2 = PFUser.query();
         var sentToRelation = message.relationForKey("sentTo")
-        var senderRelation = message.relationForKey("sender")
-        senderRelation.addObject(PFUser.currentUser())
+        //var senderRelation = message.relationForKey("sender")
+        //senderRelation.addObject(PFUser.currentUser())
         message["inConvo"] = convo.convo as PFObject
+        message["sender"] = PFUser.currentUser()
         self.convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
     

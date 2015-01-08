@@ -29,7 +29,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             viewDidAppear(true)
         }
     }
-    
+    /*
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         if(segue.identifier == "conversationSegue"){
             let indexPath = tableView.indexPathForSelectedRow()
@@ -40,7 +40,17 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
         
     }
-    
+*/
+    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        if(segue.identifier == "to_message_view"){
+            let indexPath = tableView.indexPathForSelectedRow()
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
+            let parent = segue.destinationViewController as MessagesViewController
+            //parent.selectedConversationID = cell.convo.objectId as String!
+            parent.convo = cell.convo
+        }
+        
+    }
     override func viewDidAppear(animated: Bool) {
         //self.loadData()
         if ((PFUser.currentUser()) == nil) {

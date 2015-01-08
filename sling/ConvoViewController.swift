@@ -13,6 +13,7 @@ import CoreData
 class MessagesViewController : JSQMessagesViewController {
     
     var messages = [Message]()
+    var messageArray : NSMutableArray = NSMutableArray()
     // var avatars = Dictionary<String, UIImage>()
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
@@ -36,14 +37,17 @@ class MessagesViewController : JSQMessagesViewController {
             if !(error != nil){
                 var i = 0
                 for object in objects{
+                    println("here")
                     let pdf = object as PFObject
                     let text = pdf.objectForKey("text") as String
-                    let sender = pdf.objectForKey("sender") as PFUser
-                    self.messages[i] = Message(text: text, sender: sender)
+                    let sender = pdf["sender"].fetchIfNeeded() as PFUser
+                    //self.messages[i] = Message(text: text, sender: sender)
+                    self.messageArray.addObject(Message(text: text, sender: sender))
                     i++
                     //self.timeLineData.addObject(pdf)
                 }
             }
+            self.collectionView?.reloadData()
         }
 
 
@@ -63,9 +67,10 @@ class MessagesViewController : JSQMessagesViewController {
         var query1 = PFUser.query();
         var query2 = PFUser.query();
         var sentToRelation = message.relationForKey("sentTo")
-        var senderRelation = message.relationForKey("sender")
-        senderRelation.addObject(PFUser.currentUser())
+        //var senderRelation = message.relationForKey("sender")
+        //senderRelation.addObject(PFUser.currentUser())
         message["inConvo"] = self.convo as PFObject
+        message["sender"] = PFUser.currentUser()
         convo.save()
         message.save()
     }
@@ -121,12 +126,15 @@ class MessagesViewController : JSQMessagesViewController {
         println("collectionView 1")
         //let message = Message(text: text, sender: sender)
         // self.append(message)
-        return messages[indexPath.item]
+        //return messages[indexPath.item]
+        return messageArray.objectAtIndex(indexPath.item) as Message
+
     }
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
         println("collectionView 2")
-        let message = messages[indexPath.item]
+        //let message = messages[indexPath.item]
+        let message = messageArray.objectAtIndex(indexPath.item) as Message
         
         if message.sender() == sender {
             return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
@@ -137,14 +145,15 @@ class MessagesViewController : JSQMessagesViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         println("collectionView 3")
-        return messages.count
+        return messageArray.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         println("collectionView 4")
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
         
-        let message = messages[indexPath.item]
+        //let message = messages[indexPath.item]
+        let message = messageArray.objectAtIndex(indexPath.item) as Message
         if message.sender() == sender {
             cell.textView.textColor = UIColor.blackColor()
         } else {
@@ -156,13 +165,17 @@ class MessagesViewController : JSQMessagesViewController {
 
         return cell
     }
-    
+    override func collectionView(collectionView: UICollectionView, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath) -> UIImageView? {
+        return nil
+    }
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         println("collectionView 5")
-        let message = messages[indexPath.item];
-                if message.sender() == sender {
+       // let message = messages[indexPath.item];
+        let message = messageArray.objectAtIndex(indexPath.item) as Message
+        if message.sender() == sender {
             return nil;
         }
+        
         if indexPath.item > 0 {
             let previousMessage = messages[indexPath.item - 1];
             if previousMessage.sender() == message.sender() {
@@ -175,7 +188,8 @@ class MessagesViewController : JSQMessagesViewController {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         println("collectionView 6")
-        let message = messages[indexPath.item]
+        //let message = messages[indexPath.item]
+        let message = messageArray.objectAtIndex(indexPath.item) as Message
         
         if message.sender() == sender {
             return CGFloat(0.0);

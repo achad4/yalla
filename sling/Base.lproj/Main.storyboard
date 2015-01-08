@@ -346,7 +346,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="timePosted" destination="TQ2-NR-tWN" id="tVK-eN-MNc"/>
-                                    <segue destination="Z0U-wC-KvN" kind="show" id="oWn-nU-QPT"/>
+                                    <segue destination="Z0U-wC-KvN" kind="show" identifier="to_message_view" id="oWn-nU-QPT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
