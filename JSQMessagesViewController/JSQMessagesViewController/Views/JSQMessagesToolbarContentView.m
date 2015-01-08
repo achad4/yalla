@@ -1,6 +1,6 @@
 //
 //  Created by Jesse Squires
-//  http://www.jessesquires.com
+//  http://www.hexedbits.com
 //
 //
 //  Documentation
@@ -18,9 +18,11 @@
 
 #import "JSQMessagesToolbarContentView.h"
 
+#import "JSQMessagesComposerTextView.h"
+
 #import "UIView+JSQMessages.h"
 
-const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
+const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 4.0f;
 
 
 @interface JSQMessagesToolbarContentView ()
@@ -57,9 +59,14 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     [super awakeFromNib];
     
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.leftBarButtonContainerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.rightBarButtonContainerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     self.leftHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
     self.rightHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
+    
+    self.leftBarButtonItem = nil;
+    self.rightBarButtonItem = nil;
     
     self.backgroundColor = [UIColor clearColor];
 }
@@ -89,15 +96,18 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     }
     
     if (!leftBarButtonItem) {
-        _leftBarButtonItem = nil;
         self.leftHorizontalSpacingConstraint.constant = 0.0f;
         self.leftBarButtonItemWidth = 0.0f;
+        _leftBarButtonItem = nil;
         self.leftBarButtonContainerView.hidden = YES;
         return;
     }
     
     if (CGRectEqualToRect(leftBarButtonItem.frame, CGRectZero)) {
-        leftBarButtonItem.frame = self.leftBarButtonContainerView.bounds;
+        leftBarButtonItem.frame = CGRectMake(0.0f,
+                                             0.0f,
+                                             CGRectGetWidth(self.leftBarButtonContainerView.frame),
+                                             CGRectGetHeight(self.leftBarButtonContainerView.frame));
     }
     
     self.leftBarButtonContainerView.hidden = NO;
@@ -124,15 +134,18 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     }
     
     if (!rightBarButtonItem) {
-        _rightBarButtonItem = nil;
         self.rightHorizontalSpacingConstraint.constant = 0.0f;
         self.rightBarButtonItemWidth = 0.0f;
+        _rightBarButtonItem = nil;
         self.rightBarButtonContainerView.hidden = YES;
         return;
     }
     
     if (CGRectEqualToRect(rightBarButtonItem.frame, CGRectZero)) {
-        rightBarButtonItem.frame = self.rightBarButtonContainerView.bounds;
+        rightBarButtonItem.frame = CGRectMake(0.0f,
+                                              0.0f,
+                                              CGRectGetWidth(self.rightBarButtonContainerView.frame),
+                                              CGRectGetHeight(self.rightBarButtonContainerView.frame));
     }
     
     self.rightBarButtonContainerView.hidden = NO;

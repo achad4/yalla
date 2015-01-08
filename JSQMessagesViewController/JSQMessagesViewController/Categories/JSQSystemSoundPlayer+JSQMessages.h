@@ -1,6 +1,6 @@
 //
 //  Created by Jesse Squires
-//  http://www.jessesquires.com
+//  http://www.hexedbits.com
 //
 //
 //  Documentation
@@ -16,7 +16,7 @@
 //  Released under an MIT license: http://opensource.org/licenses/MIT
 //
 
-#import <JSQSystemSoundPlayer/JSQSystemSoundPlayer.h>
+#import "JSQSystemSoundPlayer.h"
 
 @interface JSQSystemSoundPlayer (JSQMessages)
 

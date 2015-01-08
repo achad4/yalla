@@ -1,6 +1,6 @@
 //
 //  Created by Jesse Squires
-//  http://www.jessesquires.com
+//  http://www.hexedbits.com
 //
 //
 //  Documentation
@@ -22,9 +22,6 @@
 //
 
 #import "JSQMessagesKeyboardController.h"
-
-#import "UIDevice+JSQMessages.h"
-
 
 NSString * const JSQMessagesKeyboardControllerNotificationKeyboardDidChangeFrame = @"JSQMessagesKeyboardControllerNotificationKeyboardDidChangeFrame";
 NSString * const JSQMessagesKeyboardControllerUserInfoKeyKeyboardDidChangeFrame = @"JSQMessagesKeyboardControllerUserInfoKeyKeyboardDidChangeFrame";
@@ -51,8 +48,7 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
 - (void)jsq_handleKeyboardNotification:(NSNotification *)notification completion:(JSQAnimationCompletionBlock)completion;
 
 - (void)jsq_setKeyboardViewHidden:(BOOL)hidden;
-
-- (void)jsq_notifyKeyboardFrameNotificationForFrame:(CGRect)frame;
+- (void)jsq_postKeyboardFrameNotificationForFrame:(CGRect)frame;
 
 - (void)jsq_removeKeyboardFrameObserver;
 
@@ -118,35 +114,18 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     }
 }
 
-#pragma mark - Getters
-
-- (BOOL)keyboardIsVisible
-{
-    return self.keyboardView != nil;
-}
-
-- (CGRect)currentKeyboardFrame
-{
-    if (!self.keyboardIsVisible) {
-        return CGRectNull;
-    }
-    
-    return self.keyboardView.frame;
-}
-
 #pragma mark - Keyboard controller
 
 - (void)beginListeningForKeyboard
 {
-    if (self.textView.inputAccessoryView == nil) {
-        self.textView.inputAccessoryView = [[UIView alloc] init];
-    }
-    
+    self.textView.inputAccessoryView = [[UIView alloc] init];
     [self jsq_registerForNotifications];
 }
 
 - (void)endListeningForKeyboard
 {
+    self.textView.inputAccessoryView = nil;
+    
     [self jsq_unregisterForNotifications];
     
     [self jsq_setKeyboardViewHidden:NO];
@@ -213,8 +192,6 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     
     [self jsq_handleKeyboardNotification:notification completion:^(BOOL finished) {
         [self.panGestureRecognizer removeTarget:self action:NULL];
-        
-        [self.delegate keyboardControllerKeyboardDidHide:self];
     }];
 }
 
@@ -239,7 +216,8 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
                           delay:0.0
                         options:animationCurveOption
                      animations:^{
-                         [self jsq_notifyKeyboardFrameNotificationForFrame:keyboardEndFrameConverted];
+                         [self.delegate keyboardDidChangeFrame:keyboardEndFrameConverted];
+                         [self jsq_postKeyboardFrameNotificationForFrame:keyboardEndFrameConverted];
                      }
                      completion:^(BOOL finished) {
                          if (completion) {
@@ -256,10 +234,8 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     self.keyboardView.userInteractionEnabled = !hidden;
 }
 
-- (void)jsq_notifyKeyboardFrameNotificationForFrame:(CGRect)frame
+- (void)jsq_postKeyboardFrameNotificationForFrame:(CGRect)frame
 {
-    [self.delegate keyboardController:self keyboardDidChangeFrame:frame];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:JSQMessagesKeyboardControllerNotificationKeyboardDidChangeFrame
                                                         object:self
                                                       userInfo:@{ JSQMessagesKeyboardControllerUserInfoKeyKeyboardDidChangeFrame : [NSValue valueWithCGRect:frame] }];
@@ -283,7 +259,8 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
             //  do not convert frame to contextView coordinates here
             //  KVO is triggered during panning (see below)
             //  panning occurs in contextView coordinates already
-            [self jsq_notifyKeyboardFrameNotificationForFrame:newKeyboardFrame];
+            [self.delegate keyboardDidChangeFrame:newKeyboardFrame];
+            [self jsq_postKeyboardFrameNotificationForFrame:newKeyboardFrame];
         }
     }
 }
@@ -313,12 +290,8 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     //  system keyboard is added to a new UIWindow, need to operate in window coordinates
     //  also, keyboard always slides from bottom of screen, not the bottom of a view
     CGFloat contextViewWindowHeight = CGRectGetHeight(self.contextView.window.frame);
-    
-    if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
-        //  handle iOS 7 bug when rotating to landscape
-        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            contextViewWindowHeight = CGRectGetWidth(self.contextView.window.frame);
-        }
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        contextViewWindowHeight = CGRectGetWidth(self.contextView.window.frame);
     }
     
     CGFloat keyboardViewHeight = CGRectGetHeight(self.keyboardView.frame);
