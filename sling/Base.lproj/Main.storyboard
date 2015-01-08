@@ -67,7 +67,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS">
                             <connections>
-                                <segue destination="phR-WZ-GfF" kind="show" id="RBC-HJ-ifz"/>
+                                <segue destination="lQg-Xi-ZuV" kind="show" id="nTw-2v-qKq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -145,7 +145,7 @@
             <objects>
                 <tableViewController id="6tT-4n-Q1I" customClass="ConvoDetailViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RJT-LS-kP4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="598" height="332"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -615,7 +615,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6Zq-hp-p4M"/>
         <segue reference="JIT-Za-EWY"/>
         <segue reference="6Zq-hp-p4M"/>
     </inferredMetricsTieBreakers>
