@@ -15,6 +15,9 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     var isSearching : Bool!
     var sections : NSMutableArray = NSMutableArray()
     
+    @IBAction func addSection(sender: AnyObject) {
+        
+    }
     
     @IBAction func send(sender: AnyObject) {
         //var messageText:String        = postText.text
@@ -128,7 +131,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let reusableView:UICollectionReusableView = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as UICollectionReusableView
-        println("Footer subivews: \(reusableView.subviews.count)") // 0
+        println(indexPath.section)
         return reusableView
     }
 
