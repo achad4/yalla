@@ -202,7 +202,7 @@
             <objects>
                 <collectionViewController id="lQg-Xi-ZuV" customClass="FriendCollectionViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nxa-aN-wqL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="377"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6AC-f9-awV">
@@ -298,25 +298,78 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1753" y="-549"/>
+            <point key="canvasLocation" x="2205" y="-329"/>
+        </scene>
+        <!--Friend Parent View Controller-->
+        <scene sceneID="m7E-CQ-Qzy">
+            <objects>
+                <viewController id="phR-WZ-GfF" customClass="FriendParentViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FCO-Qt-OWe"/>
+                        <viewControllerLayoutGuide type="bottom" id="q6k-Ve-b7h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xsl-6d-Uyl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7g7-q3-07q">
+                                <rect key="frame" x="5" y="127" width="590" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="phR-WZ-GfF" id="TqB-x1-gsc"/>
+                                </connections>
+                            </searchBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-GC-fxK">
+                                <rect key="frame" x="0.0" y="179" width="600" height="377"/>
+                                <connections>
+                                    <segue destination="lQg-Xi-ZuV" kind="embed" id="J6X-vh-wT6"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="bQg-KZ-Y2G">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="s5Y-QB-09w">
+                            <connections>
+                                <action selector="send:" destination="phR-WZ-GfF" id="osi-W7-jeu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="S7W-Wq-YXD" id="y8o-hO-tpr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Feg-us-tfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="S7W-Wq-YXD">
+                    <connections>
+                        <outlet property="delegate" destination="phR-WZ-GfF" id="4QX-Ra-MtZ"/>
+                        <outlet property="searchContentsController" destination="phR-WZ-GfF" id="krt-1i-joL"/>
+                        <outlet property="searchResultsDataSource" destination="phR-WZ-GfF" id="EI6-Kf-ewq"/>
+                        <outlet property="searchResultsDelegate" destination="phR-WZ-GfF" id="Izm-el-Ayf"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1348" y="-540"/>
         </scene>
         <!--Messages View Controller-->
-        <scene sceneID="NC4-JJ-GDz">
+        <scene sceneID="rye-1d-R8e">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Z0U-wC-KvN" customClass="MessagesViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="0mU-NT-DU7" customClass="MessagesViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bis-W4-OgS"/>
-                        <viewControllerLayoutGuide type="bottom" id="HlY-Kv-5BL"/>
+                        <viewControllerLayoutGuide type="top" id="eG9-Cv-9LL"/>
+                        <viewControllerLayoutGuide type="bottom" id="sGP-Oy-gFf"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SbW-8S-n1t">
+                    <view key="view" contentMode="scaleToFill" id="RUf-EO-bx6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pbn-sl-d2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ol-QJ-M2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="256" y="-2389"/>
+            <point key="canvasLocation" x="256" y="-2375"/>
         </scene>
         <!--Question Feed Table View-->
         <scene sceneID="e7D-FF-eho">
@@ -350,7 +403,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="timePosted" destination="TQ2-NR-tWN" id="tVK-eN-MNc"/>
-                                    <segue destination="Z0U-wC-KvN" kind="show" identifier="to_message_view" id="oWn-nU-QPT"/>
+                                    <segue destination="0mU-NT-DU7" kind="show" identifier="to_message_view" id="lU4-OX-zcq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -617,5 +670,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="JIT-Za-EWY"/>
         <segue reference="6Zq-hp-p4M"/>
+        <segue reference="J6X-vh-wT6"/>
     </inferredMetricsTieBreakers>
 </document>
