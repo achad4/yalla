@@ -36,11 +36,12 @@ class MessagesViewController : JSQMessagesViewController {
             if !(error != nil){
                 for object in objects{
                     let pdf = object as PFObject
-                    //self.timeLineData.addObject(pdf)
+                    self.timeLineData.addObject(pdf)
                 }
             }
         }
 */
+
     }
     func sortByScore(){
         println("sortByScore called")
@@ -51,7 +52,17 @@ class MessagesViewController : JSQMessagesViewController {
 
     func sendMessage(var text: String!, var sender: String!) {
         println("sendMessage called")
-        let message = Message(text: text, sender: sender)
+        //let message = Message(text: text, sender: sender)
+        var message:PFObject = PFObject(className: "Message")
+        message["text"] = text
+        var query1 = PFUser.query();
+        var query2 = PFUser.query();
+        var sentToRelation = message.relationForKey("sentTo")
+        var senderRelation = message.relationForKey("sender")
+        senderRelation.addObject(PFUser.currentUser())
+        message["inConvo"] = self.convo as PFObject
+        convo.save()
+        message.save()
     }
     
     func tempSendMessage(text: String!, sender: String!) {
@@ -61,6 +72,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func viewDidLoad() {
+        println("viewDidLoad called")
         super.viewDidLoad()
         if(PFUser.currentUser() != nil) {
             self.loadData(1)
@@ -73,55 +85,58 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        println("viewDidDisappear called")
         super.viewDidAppear(animated)
         collectionView.collectionViewLayout.springinessEnabled = true
     }
     
     override func viewWillDisappear(animated: Bool) {
+        println("viewWillDisappear called")
         super.viewWillDisappear(animated)
 
     }
     
-    
 
     func receivedMessagePressed(sender: UIBarButtonItem) {
+        println("rMessagePressed called")
         showTypingIndicator = !showTypingIndicator
         scrollToBottomAnimated(true)
     }
 
-
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, sender: String!, date: NSDate!) {
+        println("didPressSendButton called")
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         sendMessage(text, sender: sender)
-        println(text)
-        
+
         finishSendingMessage()
     }
-    
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        println("test 1")
+        println("collectionView 1")
         //let message = Message(text: text, sender: sender)
         // self.append(message)
         return messages[indexPath.item]
     }
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
+        println("collectionView 2")
         let message = messages[indexPath.item]
-        /*
+        
         if message.sender() == sender {
             return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
         }
-        */
+        
         return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        println("collectionView 3")
         return messages.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        println("collectionView 4")
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
         
         let message = messages[indexPath.item]
@@ -138,7 +153,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        println("test1")
+        println("collectionView 5")
         let message = messages[indexPath.item];
                 if message.sender() == sender {
             return nil;
@@ -154,6 +169,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        println("collectionView 6")
         let message = messages[indexPath.item]
         
         if message.sender() == sender {

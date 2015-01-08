@@ -73,6 +73,7 @@
  *
  *  @see `JSQMessagesCollectionViewCellIncoming`.
  */
+
 @property (assign, nonatomic) CGSize incomingAvatarViewSize;
 
 /**
