@@ -60,6 +60,7 @@
 		815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */; };
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
 		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
+		825DBC3F1A5F825F00C8B07C /* ThreadBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */; };
 		82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */; };
 		82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4319F0A3E600EBEC4E /* Main.storyboard */; };
 		82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4619F0A3E600EBEC4E /* Images.xcassets */; };
@@ -193,6 +194,7 @@
 		815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
 		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadBubble.swift; sourceTree = "<group>"; };
 		82703F3A19F0A3E600EBEC4E /* sling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82703F3E19F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				82F7E0EA1A5B35D100901922 /* Thread.swift */,
 				825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */,
 				825DBC3C1A5F14CD00C8B07C /* Reply.swift */,
+				825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */,
 			);
 			name = Threads;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				82974EC91A4F169100D2B9F7 /* ConvoDetailViewController.swift in Sources */,
 				815BF1071A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				8118D1151A5CE90D001C0ADF /* ConvoViewController.swift in Sources */,
+				825DBC3F1A5F825F00C8B07C /* ThreadBubble.swift in Sources */,
 				815BF1021A5E1BF9003D2FCC /* JSQMessagesLabel.m in Sources */,
 				815BF0ED1A5E1BF9003D2FCC /* UIImage+JSQMessages.m in Sources */,
 				815BF0EA1A5E1BF9003D2FCC /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,

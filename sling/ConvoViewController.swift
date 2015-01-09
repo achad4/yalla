@@ -23,7 +23,7 @@ class MessagesViewController : JSQMessagesViewController {
     
     func loadData(order: Int){
         println("loading messages")
-        timeLineData.removeAllObjects()
+        //smessageArray.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
         if(order == 0){
             findTimeLineData.orderByAscending("createdAt")
