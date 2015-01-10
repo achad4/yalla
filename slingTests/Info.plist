@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>FacebookAppID</key>
-	<string>358632960976496</string>
+	<string>1579407305608925</string>
 	<key>FacebookDisplayName</key>
 	<string>sling</string>
 	<key>CFBundleExecutable</key>
@@ -17,7 +17,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb358632960976496</string>
+				<string>fb1579407305608925</string>
 			</array>
 		</dict>
 	</array>

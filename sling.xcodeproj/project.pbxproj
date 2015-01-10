@@ -90,6 +90,7 @@
 		A79D69031A60C1C400E7BA94 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D69021A60C1C400E7BA94 /* LoginViewController.swift */; };
 		A79D69051A60C1D100E7BA94 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D69041A60C1D100E7BA94 /* SignupViewController.swift */; };
 		A79D69071A60C1EE00E7BA94 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */; };
+		A79D69111A60DC1B00E7BA94 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */; };
 		A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59CB1A4AC8680074D2AF /* Message.swift */; };
 		A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD59D01A50011A0074D2AF /* UserData.swift */; };
 		D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8819FF567800D1A8FB /* Accounts.framework */; };
@@ -231,6 +232,7 @@
 		A79D69021A60C1C400E7BA94 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A79D69041A60C1D100E7BA94 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		A7FD59CB1A4AC8680074D2AF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A7FD59D01A50011A0074D2AF /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		D3FCDA8819FF567800D1A8FB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -562,6 +564,7 @@
 		82B0A2341A5DA53A00887222 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
 				A7FD59D01A50011A0074D2AF /* UserData.swift */,
@@ -734,6 +737,7 @@
 				82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */,
 				815BF0F01A5E1BF9003D2FCC /* JSQMessagesViewController.m in Sources */,
 				82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */,
+				A79D69111A60DC1B00E7BA94 /* MyProfileViewController.swift in Sources */,
 				82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */,
 				815BF0FE1A5E1BF9003D2FCC /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				82974EC91A4F169100D2B9F7 /* ConvoDetailViewController.swift in Sources */,
