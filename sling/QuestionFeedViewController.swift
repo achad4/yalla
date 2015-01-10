@@ -26,8 +26,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     @IBAction func logout(sender: AnyObject) {
         if(PFUser.currentUser() != nil){
             PFUser.logOut()
-            viewDidAppear(true)
         }
+        self.performSegueWithIdentifier("goto_logout", sender: self)
+        
     }
     /*
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
@@ -52,7 +53,13 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         
     }
     override func viewDidAppear(animated: Bool) {
+        
+        if(PFUser.currentUser() != nil){
+            self.loadData(1)
+        }
         //self.loadData()
+        
+        /*
         if ((PFUser.currentUser()) == nil) {
             
             //Create an UIAlertController if there isn't an user
@@ -124,20 +131,18 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 }
             }))
             self.presentViewController(loginAlert, animated: true, completion: nil)
-        
-        }
+
+        } */
     }
     
     func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void{
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
-        if(PFUser.currentUser() != nil){
-            self.loadData(1)
-        }
+        
         
     }
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
