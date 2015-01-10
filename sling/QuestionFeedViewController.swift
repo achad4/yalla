@@ -22,26 +22,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     var timeLineData : NSMutableArray = NSMutableArray()
     var delegate:QuestionFeedTableViewControllerDelegate? = nil
     var convoID:String = "aaa"
-    
-    @IBAction func logout(sender: AnyObject) {
-        if(PFUser.currentUser() != nil){
-            PFUser.logOut()
-        }
-        self.performSegueWithIdentifier("goto_logout", sender: self)
-        
-    }
-    /*
-    override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
-        if(segue.identifier == "conversationSegue"){
-            let indexPath = tableView.indexPathForSelectedRow()
-            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
-            let parent = segue.destinationViewController as ConvoParentViewController
-            parent.selectedConversationID = cell.convo.objectId as String!
-            parent.convo = cell.convo
-        }
-        
-    }
-*/
+
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         if(segue.identifier == "to_message_view"){
             let indexPath = tableView.indexPathForSelectedRow()
@@ -57,82 +38,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
-        //self.loadData()
-        
-        /*
-        if ((PFUser.currentUser()) == nil) {
-            
-            //Create an UIAlertController if there isn't an user
-            var loginAlert:UIAlertController = UIAlertController(title: "Sign Up/ Log In", message: "Please sign up or log in", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            //Add a textView in the Log In Alert for the username
-            loginAlert.addTextFieldWithConfigurationHandler({
-                textfield in
-                textfield.placeholder = "Your Username"
-            })
-            loginAlert.addTextFieldWithConfigurationHandler({
-                textfield in
-                textfield.placeholder = "Your Email"
-            })
-            
-            //Add a textView in the Log In Alert for the password
-            loginAlert.addTextFieldWithConfigurationHandler({
-                textfield in
-                textfield.placeholder = "Your Password"
-                textfield.secureTextEntry = true
-            })
-            
-            //Place the user-input into an array and set the username and password accordingly for Log In
-            loginAlert.addAction(UIAlertAction(title: "Login", style: UIAlertActionStyle.Default, handler: {
-                alertAction in
-                let textFields:NSArray = loginAlert.textFields! as NSArray
-                let usernameTextfield:UITextField = textFields.objectAtIndex(0) as UITextField
-                let emailTextfield:UITextField = textFields.objectAtIndex(1) as UITextField
-                let passwordTextfield:UITextField = textFields.objectAtIndex(2) as UITextField
-                
-                PFUser.logInWithUsernameInBackground(usernameTextfield.text, password: passwordTextfield.text){
-                    (user:PFUser!, error:NSError!)->Void in
-                    if ((user) != nil){
-                        println("Login successfull")
-                        self.viewDidLoad()
-                    }else{
-                        println("Login failed")
-                        self.viewDidAppear(true)
-                    }
-                    
-                }
-                
-            }))
-            
-            //Place the user-input into an array and set the username and password accordingly for Sign Up
-            loginAlert.addAction(UIAlertAction(title: "Sign Up", style: UIAlertActionStyle.Default, handler: {
-                alertAction in
-                let textFields:NSArray = loginAlert.textFields! as NSArray
-                let usernameTextfield:UITextField = textFields.objectAtIndex(0) as UITextField
-                let emailTextfield:UITextField = textFields.objectAtIndex(1) as UITextField
-                let passwordTextfield:UITextField = textFields.objectAtIndex(2) as UITextField
-                
-                var slinger:PFUser = PFUser()
-                slinger.username = usernameTextfield.text
-                slinger.email = emailTextfield.text
-                slinger.password = passwordTextfield.text
-                
-                slinger.signUpInBackgroundWithBlock{
-                    (success:Bool!, error:NSError!)->Void in
-                    if !(error != nil){
-                        println("Sign Up successfull")
-                        self.tableView.reloadData()
-                    }else{
-                        let errorString = error.userInfo!["error"] as NSString
-                        println(errorString)
-                    }
-                    
-                    
-                }
-            }))
-            self.presentViewController(loginAlert, animated: true, completion: nil)
-
-        } */
     }
     
     func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void{
@@ -210,14 +115,5 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
-    /*
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let controller = segue.destinationViewController as ConvoDetailViewController
-        controller.selectedConversationID = convoID
-    }*/
 
 }

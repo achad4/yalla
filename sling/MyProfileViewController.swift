@@ -15,11 +15,12 @@ class MyProfileViewController : UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        populateFacebookProfile(PFUser.currentUser())
         
-        var myUser = PFUser.currentUser()
-        self.usernameLabel.text = myUser.username
+    }
+    
+    func populateFacebookProfile(user: PFUser) {
         
-     
         FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
             if (result? != nil) {
                 NSLog("error = \(error)")
@@ -44,11 +45,19 @@ class MyProfileViewController : UIViewController {
                 
                 
                 println(result)
+            } else {
+                self.usernameLabel.text = user.username
             }
         } as FBRequestHandler)
+    }
+    
         
-        
-        
+    
+    @IBAction func logoutTapped(sender: AnyObject) {
+        if(PFUser.currentUser() != nil) {
+            PFUser.logOut()
+        }
+        self.performSegueWithIdentifier("logout", sender: self)
     }
     
     @IBAction func linkFBTapped(sender: UIButton) {

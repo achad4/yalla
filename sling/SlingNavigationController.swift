@@ -14,11 +14,6 @@ class SlingNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var testObject = PFObject(className:"TestObject")
-        testObject["foo"] = "bar"
-        testObject.saveInBackgroundWithTarget(nil, selector: nil)
-
-        
         self.setNavigationBarHidden(false, animated:true)
         var postButton : UIBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("postQuestion"))
         self.navigationItem.rightBarButtonItem = postButton
