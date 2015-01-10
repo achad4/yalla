@@ -61,9 +61,6 @@
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
 		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
 		825DBC3F1A5F825F00C8B07C /* ThreadBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */; };
-		825DBC421A6187BA00C8B07C /* bob.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 825DBC411A6187BA00C8B07C /* bob.jpg */; };
-		825DBC441A618E9400C8B07C /* anon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 825DBC431A618E9400C8B07C /* anon.jpg */; };
-		825DBC461A618FFD00C8B07C /* unknown.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 825DBC451A618FFD00C8B07C /* unknown.jpg */; };
 		82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */; };
 		82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4319F0A3E600EBEC4E /* Main.storyboard */; };
 		82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4619F0A3E600EBEC4E /* Images.xcassets */; };
@@ -202,9 +199,6 @@
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
 		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadBubble.swift; sourceTree = "<group>"; };
-		825DBC411A6187BA00C8B07C /* bob.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bob.jpg; path = ../../../../Desktop/bob.jpg; sourceTree = "<group>"; };
-		825DBC431A618E9400C8B07C /* anon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = anon.jpg; path = ../../../../Desktop/anon.jpg; sourceTree = "<group>"; };
-		825DBC451A618FFD00C8B07C /* unknown.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = unknown.jpg; path = ../../../../Desktop/unknown.jpg; sourceTree = "<group>"; };
 		82703F3A19F0A3E600EBEC4E /* sling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82703F3E19F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -486,16 +480,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		825DBC401A61874E00C8B07C /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				825DBC451A618FFD00C8B07C /* unknown.jpg */,
-				825DBC431A618E9400C8B07C /* anon.jpg */,
-				825DBC411A6187BA00C8B07C /* bob.jpg */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		82703F3119F0A3E600EBEC4E = {
 			isa = PBXGroup;
 			children = (
@@ -518,7 +502,6 @@
 		82703F3C19F0A3E600EBEC4E /* sling */ = {
 			isa = PBXGroup;
 			children = (
-				825DBC401A61874E00C8B07C /* Images */,
 				A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */,
 				82B0A2341A5DA53A00887222 /* Users */,
 				82B0A2361A5DA6B000887222 /* Threads */,
@@ -709,10 +692,8 @@
 				815BF0E61A5E1BF9003D2FCC /* typing.png in Resources */,
 				815BF0E41A5E1BF9003D2FCC /* camera.png in Resources */,
 				815BF0FD1A5E1BF9003D2FCC /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				825DBC461A618FFD00C8B07C /* unknown.jpg in Resources */,
 				815BF1061A5E1BF9003D2FCC /* JSQMessagesToolbarContentView.xib in Resources */,
 				815BF0E01A5E1BF9003D2FCC /* bubble_stroked_tailless.png in Resources */,
-				825DBC421A6187BA00C8B07C /* bob.jpg in Resources */,
 				815BF0E51A5E1BF9003D2FCC /* camera@2x.png in Resources */,
 				815BF0F11A5E1BF9003D2FCC /* JSQMessagesViewController.xib in Resources */,
 				815BF0DB1A5E1BF9003D2FCC /* bubble_min@2x.png in Resources */,
@@ -726,7 +707,6 @@
 				815BF0DD1A5E1BF9003D2FCC /* bubble_min_tailless@2x.png in Resources */,
 				815BF0E21A5E1BF9003D2FCC /* bubble_tailless.png in Resources */,
 				815BF1041A5E1BF9003D2FCC /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
-				825DBC441A618E9400C8B07C /* anon.jpg in Resources */,
 				82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

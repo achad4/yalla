@@ -543,7 +543,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wol-hz-IRS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-667" y="-286"/>
+            <point key="canvasLocation" x="-491" y="-238"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="yQb-9Q-DAG">

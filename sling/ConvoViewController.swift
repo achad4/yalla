@@ -73,9 +73,9 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     func sendMessage(var text: String!, var sender: String!) {
-        if(self.isAnon != false){
+        if(self.isAnon == true){
             self.isAnon = false
-            self.convo["isAnon"] = self.isAnon
+            self.convo["isAnon"] = false
         }
         var message:PFObject = PFObject(className: "Message")
         message["text"] = text
