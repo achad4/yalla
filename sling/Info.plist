@@ -21,8 +21,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+			<key>Item 0</key>
+			<string>fb1579407305608925</string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
@@ -30,7 +36,7 @@
 	<key>FacebookAppID</key>
 	<string>1579407305608925</string>
 	<key>FacebookDisplayName</key>
-	<string>Sling</string>
+	<string>sling</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

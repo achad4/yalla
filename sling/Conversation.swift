@@ -11,12 +11,14 @@ class Conversation{
     var convo : PFObject
     //var messages: NSMutableArray
     var participants: NSMutableArray
+    var isAnon : Bool
     init(sender : PFObject){
         //messages = NSMutableArray()
         participants = NSMutableArray()
         //messages.addObject(initialMessage)
         self.participants.addObject(sender)
         convo = PFObject(className: "Conversation")
+        isAnon = true
     }
     
     func addRecipient(user : PFObject){
@@ -29,6 +31,7 @@ class Conversation{
             var participant = convo.relationForKey("participant") as PFRelation
             participant.addObject(user as PFObject);
         }
+        convo["isAnon"] = self.isAnon
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }

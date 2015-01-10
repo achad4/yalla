@@ -30,6 +30,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             let parent = segue.destinationViewController as MessagesViewController
             //parent.selectedConversationID = cell.convo.objectId as String!
             parent.convo = cell.convo
+            parent.isAnon = cell.convo.objectForKey("isAnon") as? Bool
         }
         
     }

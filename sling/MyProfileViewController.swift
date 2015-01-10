@@ -43,7 +43,6 @@ class MyProfileViewController : UIViewController {
                     }
                 }
                 
-                
                 println(result)
             } else {
                 self.usernameLabel.text = user.username

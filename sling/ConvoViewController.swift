@@ -12,14 +12,14 @@ import CoreData
 
 class MessagesViewController : JSQMessagesViewController {
     
-    var messages = [Message]()
     var messageArray : NSMutableArray = NSMutableArray()
-    // var avatars = Dictionary<String, UIImage>()
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
     var batchMessages = true
     var convo : PFObject = PFObject(className: "Conversation")
-    var timeLineData : NSMutableArray = NSMutableArray()
+    var avatarImages = Dictionary<String, UIImage>()
+    var isAnon : Bool?
+    
     
     func loadData(order: Int){
         println("loading messages")
@@ -28,22 +28,36 @@ class MessagesViewController : JSQMessagesViewController {
         if(order == 0){
             findTimeLineData.orderByAscending("createdAt")
         }
-        // Filtering questions to only see those posted by current user
+
         var currentUser = PFUser.currentUser()
         
         findTimeLineData.whereKey("inConvo", equalTo: self.convo)
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
-                var i = 0
                 for object in objects{
                     let pdf = object as PFObject
                     let text = pdf.objectForKey("text") as String
                     let sender = pdf["sender"].fetchIfNeeded() as PFUser
-                    //self.messages[i] = Message(text: text, sender: sender)
+                    if(sender["picture"] != nil){
+                        var imageFile : PFFile = sender["picture"] as PFFile
+                        imageFile.getDataInBackgroundWithBlock {
+                            (imageData: NSData!, error: NSError!) -> Void in
+                            if !(error != nil) {
+                                let image = UIImage(data:imageData)
+                                let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
+                                let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                                self.avatarImages[sender.username] = userAvatar
+                            }
+                        }
+                    }
+                    else{
+                        var image = UIImage(named: "anon.jpg")
+                        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
+                        let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                        self.avatarImages[sender.username] = userAvatar
+                    }
                     self.messageArray.addObject(Message(text: text, sender: sender))
-                    i++
-                    //self.timeLineData.addObject(pdf)
                 }
             }
             self.collectionView?.reloadData()
@@ -59,18 +73,18 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     func sendMessage(var text: String!, var sender: String!) {
-        //println("sendMessage called")
-        //let message = Message(text: text, sender: sender)
+        if(self.isAnon != false){
+            self.isAnon = false
+            self.convo["isAnon"] = self.isAnon
+        }
         var message:PFObject = PFObject(className: "Message")
         message["text"] = text
         var query1 = PFUser.query();
         var query2 = PFUser.query();
         var sentToRelation = message.relationForKey("sentTo")
-        //var senderRelation = message.relationForKey("sender")
-        //senderRelation.addObject(PFUser.currentUser())
         message["inConvo"] = self.convo as PFObject
         message["sender"] = PFUser.currentUser()
-        convo.save()
+        self.convo.saveInBackgroundWithTarget(nil, selector: nil)
         message.saveInBackgroundWithTarget(nil, selector: nil)
         self.appendMessage(text, sender: PFUser.currentUser())
         self.loadData(0)
@@ -124,17 +138,10 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        //println("collectionView 1")
-        //let message = Message(text: text, sender: sender)
-        // self.append(message)
-        //return messages[indexPath.item]
         return messageArray.objectAtIndex(indexPath.item) as Message
-
     }
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
-        //println("collectionView 2")
-        //let message = messages[indexPath.item]
         let message = messageArray.objectAtIndex(indexPath.item) as Message
         let currentUser = PFUser.currentUser().objectForKey("username") as String
         if message.sender() == currentUser {
@@ -145,15 +152,11 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //println("collectionView 3")
         return messageArray.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //println("collectionView 4")
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
-        
-        //let message = messages[indexPath.item]
         let message = messageArray.objectAtIndex(indexPath.item) as Message
         let currentUser = PFUser.currentUser().objectForKey("username") as String
         if message.sender() == currentUser {
@@ -169,30 +172,36 @@ class MessagesViewController : JSQMessagesViewController {
         return cell
     }
     override func collectionView(collectionView: UICollectionView, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath) -> UIImageView? {
-        return nil
+        let message = self.messageArray.objectAtIndex(indexPath.item) as Message
+        let user = message.user() as PFUser!
+        if(isAnon == false){
+            let username = user.username
+            return UIImageView(image: self.avatarImages[username])
+        }
+        var image = UIImage(named: "unknown.jpg")
+        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
+        let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+        return UIImageView(image: userAvatar)
     }
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        //println("collectionView 5")
-       // let message = messages[indexPath.item];
         let message = messageArray.objectAtIndex(indexPath.item) as Message
         if message.sender() == sender {
             return nil;
         }
         
         if indexPath.item > 0 {
-            //let previousMessage = messages[indexPath.item - 1];
             let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as Message;
             if previousMessage.sender() == message.sender() {
                 return nil;
             }
         }
-        
-        return NSAttributedString(string:message.sender())
+        if(isAnon != true){
+            return NSAttributedString(string:message.sender())
+        }
+        return NSAttributedString(string: "Anonymous")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        //println("collectionView 6")
-        //let message = messages[indexPath.item]
         let message = messageArray.objectAtIndex(indexPath.item) as Message
         let currentUser = PFUser.currentUser().objectForKey("username") as String
         if message.sender() == sender {

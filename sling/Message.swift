@@ -43,6 +43,10 @@ class Message : NSObject, JSQMessageData {
         self.imageUrl_ = imageUrl
     }
     
+    func user() -> PFUser! {
+        return senderUser
+    }
+    
     func text() -> String! {
         return text_;
     }
