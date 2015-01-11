@@ -36,13 +36,18 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
         // 1
-        var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Upvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        var upVote = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Upvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // 2
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
             let thread : PFObject = cell.thread
-            var score : Int = thread["score"] as Int
-            score = score + 1
-            thread["score"] = score
+            if(thread["score"] != nil){
+                var score : Int = thread["score"] as Int
+                score = score + 1
+                thread["score"] = score
+            }
+            else{
+                thread["score"] = 1
+            }
             thread.saveInBackgroundWithTarget(nil, selector: nil)
             /*
             let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
@@ -58,7 +63,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             */
         })
         
-        var rateAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Downvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        var downVote = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Downvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
             let thread : PFObject = cell.thread
             if(thread["score"] != nil){
@@ -67,7 +72,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                 thread["score"] = score
             }
             else{
-                thread["score"] = 1
+                thread["score"] = -1
             }
             thread.saveInBackgroundWithTarget(nil, selector: nil)
             //thread["score"]++
@@ -85,7 +90,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             */
         })
         // 5
-        return [shareAction,rateAction]
+        return [upVote, downVote]
     }
     
     
