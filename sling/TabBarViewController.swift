@@ -25,4 +25,25 @@ class TabBarViewController : UITabBarController {
         }
     }
     
+    @IBAction func onViewTimelinePressed(sender: UIButton)
+    {
+        var storyboard = UIStoryboard(name: "timeline", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func onFriendsViewPressed(sender: UIButton)
+    {
+        var storyboard = UIStoryboard(name: "friends", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func onLoginPressed(sender: UIButton)
+    {
+        var storyboard = UIStoryboard(name: "login", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
 }

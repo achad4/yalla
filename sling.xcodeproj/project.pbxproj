@@ -58,6 +58,11 @@
 		815BF1071A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF0D61A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m */; };
 		815BF1081A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */; };
+		817BCEEB1A6220F8008F5A39 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEA1A6220F8008F5A39 /* Friends.storyboard */; };
+		817BCEED1A622104008F5A39 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEC1A622104008F5A39 /* Feed.storyboard */; };
+		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
+		817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEF01A622144008F5A39 /* Profile.storyboard */; };
+		817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C9C8A1A61B6BE005DF330 /* Messages.storyboard */; };
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
 		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
 		825DBC3F1A5F825F00C8B07C /* ThreadBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */; };
@@ -196,6 +201,11 @@
 		815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		815BF10B1A5E1C08003D2FCC /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		817BCEEA1A6220F8008F5A39 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
+		817BCEEC1A622104008F5A39 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
+		817BCEF01A622144008F5A39 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		817C9C8A1A61B6BE005DF330 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
 		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadBubble.swift; sourceTree = "<group>"; };
@@ -510,6 +520,7 @@
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
+				817BCEEE1A622136008F5A39 /* NewPost.storyboard */,
 				82B0A2331A5DA4D300887222 /* Messaging */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
@@ -547,6 +558,7 @@
 		82B0A2331A5DA4D300887222 /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
+				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
 				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
 				82B0A22F1A5C7D0000887222 /* Discussion.swift */,
@@ -564,6 +576,8 @@
 		82B0A2341A5DA53A00887222 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				817BCEF01A622144008F5A39 /* Profile.storyboard */,
+				817BCEEA1A6220F8008F5A39 /* Friends.storyboard */,
 				A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
@@ -578,6 +592,7 @@
 		82B0A2361A5DA6B000887222 /* Threads */ = {
 			isa = PBXGroup;
 			children = (
+				817BCEEC1A622104008F5A39 /* Feed.storyboard */,
 				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
 				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
 				82F7E0EA1A5B35D100901922 /* Thread.swift */,
@@ -696,13 +711,18 @@
 				815BF0E01A5E1BF9003D2FCC /* bubble_stroked_tailless.png in Resources */,
 				815BF0E51A5E1BF9003D2FCC /* camera@2x.png in Resources */,
 				815BF0F11A5E1BF9003D2FCC /* JSQMessagesViewController.xib in Resources */,
+				817BCEEB1A6220F8008F5A39 /* Friends.storyboard in Resources */,
 				815BF0DB1A5E1BF9003D2FCC /* bubble_min@2x.png in Resources */,
 				815BF0DF1A5E1BF9003D2FCC /* bubble_stroked@2x.png in Resources */,
 				82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */,
+				817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */,
+				817BCEED1A622104008F5A39 /* Feed.storyboard in Resources */,
 				815BF0E31A5E1BF9003D2FCC /* bubble_tailless@2x.png in Resources */,
 				815BF0E71A5E1BF9003D2FCC /* typing@2x.png in Resources */,
 				815BF0D91A5E1BF9003D2FCC /* bubble@2x.png in Resources */,
+				817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */,
 				815BF1081A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */,
 				815BF0E91A5E1BF9003D2FCC /* message_sent.aiff in Resources */,
 				815BF0DD1A5E1BF9003D2FCC /* bubble_min_tailless@2x.png in Resources */,
 				815BF0E21A5E1BF9003D2FCC /* bubble_tailless.png in Resources */,

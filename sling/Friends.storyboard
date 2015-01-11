@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--Friend Collection View Controller-->
+        <scene sceneID="b9Q-Uh-Ccp">
+            <objects>
+                <collectionViewController id="lQg-Xi-ZuV" customClass="FriendCollectionViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nxa-aN-wqL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="377"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6AC-f9-awV">
+                            <size key="itemSize" width="150" height="93"/>
+                            <size key="headerReferenceSize" width="50" height="51"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Z77-h8-XDy" customClass="UserCell" customModule="sling" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="93"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIR-CS-vah">
+                                            <rect key="frame" x="8" y="43" width="134" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBs-t5-2AG">
+                                            <rect key="frame" x="37" y="15" width="30" height="30"/>
+                                            <state key="normal" title="Add">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addUser:" destination="Z77-h8-XDy" eventType="touchUpInside" id="yoh-CA-79X"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="PBs-t5-2AG" secondAttribute="centerX" id="jBB-Gc-wC6"/>
+                                    <constraint firstAttribute="centerX" secondItem="TIR-CS-vah" secondAttribute="centerX" id="jvT-cu-zFv"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="userName" destination="TIR-CS-vah" id="qx7-JO-WcR"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="9ir-7F-Aun">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new section" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-ht-fSC">
+                                    <rect key="frame" x="23" y="13" width="99" height="26"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlQ-7e-Nhi">
+                                    <rect key="frame" x="130" y="13" width="80" height="30"/>
+                                    <state key="normal" title="Add All">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addSection:" destination="lQg-Xi-ZuV" eventType="touchUpInside" id="6AI-GF-5eT"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="lQg-Xi-ZuV" id="qxq-NC-qSF"/>
+                            <outlet property="delegate" destination="lQg-Xi-ZuV" id="pdl-Jx-2S5"/>
+                        </connections>
+                    </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ffC-Jk-hpT">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="QGE-Tx-A8u">
+                            <connections>
+                                <action selector="send:" destination="lQg-Xi-ZuV" id="ggh-ae-lgp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="hiw-ws-RxF" id="9Oj-lK-I2O"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QGd-qB-Zoc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="JZP-Hs-C3o">
+                    <connections>
+                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="xXs-vR-vox"/>
+                        <outlet property="searchContentsController" destination="lQg-Xi-ZuV" id="jhO-Zb-ItI"/>
+                        <outlet property="searchResultsDataSource" destination="lQg-Xi-ZuV" id="iGM-1F-vhL"/>
+                        <outlet property="searchResultsDelegate" destination="lQg-Xi-ZuV" id="D7S-SW-v3K"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="hiw-ws-RxF">
+                    <connections>
+                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="sVy-c7-Nnd"/>
+                        <outlet property="searchContentsController" destination="lQg-Xi-ZuV" id="kik-Hc-XwI"/>
+                        <outlet property="searchResultsDataSource" destination="lQg-Xi-ZuV" id="pnA-6T-Vyn"/>
+                        <outlet property="searchResultsDelegate" destination="lQg-Xi-ZuV" id="38x-Kz-dQU"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2233" y="-91.5"/>
+        </scene>
+        <!--Friend Parent View Controller-->
+        <scene sceneID="m7E-CQ-Qzy">
+            <objects>
+                <viewController id="phR-WZ-GfF" customClass="FriendParentViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FCO-Qt-OWe"/>
+                        <viewControllerLayoutGuide type="bottom" id="q6k-Ve-b7h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xsl-6d-Uyl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-GC-fxK">
+                                <rect key="frame" x="0.0" y="179" width="600" height="377"/>
+                                <connections>
+                                    <segue destination="lQg-Xi-ZuV" kind="embed" id="J6X-vh-wT6"/>
+                                </connections>
+                            </containerView>
+                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7g7-q3-07q">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="phR-WZ-GfF" id="TqB-x1-gsc"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="7g7-q3-07q" secondAttribute="centerX" id="ogM-VL-T9e"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="bQg-KZ-Y2G">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="s5Y-QB-09w">
+                            <connections>
+                                <action selector="send:" destination="phR-WZ-GfF" id="osi-W7-jeu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="S7W-Wq-YXD" id="y8o-hO-tpr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Feg-us-tfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="S7W-Wq-YXD">
+                    <connections>
+                        <outlet property="delegate" destination="phR-WZ-GfF" id="4QX-Ra-MtZ"/>
+                        <outlet property="searchContentsController" destination="phR-WZ-GfF" id="krt-1i-joL"/>
+                        <outlet property="searchResultsDataSource" destination="phR-WZ-GfF" id="EI6-Kf-ewq"/>
+                        <outlet property="searchResultsDelegate" destination="phR-WZ-GfF" id="Izm-el-Ayf"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1448" y="-91"/>
+        </scene>
+    </scenes>
+</document>
