@@ -227,11 +227,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIR-CS-vah">
-                                            <rect key="frame" x="8" y="8" width="134" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="179" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -245,7 +245,7 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="TIR-CS-vah" secondAttribute="centerX" id="jvT-cu-zFv"/>
                                 </constraints>
-                                <size key="customSize" width="150" height="150"/>
+                                <size key="customSize" width="200" height="150"/>
                                 <connections>
                                     <outlet property="userName" destination="TIR-CS-vah" id="qx7-JO-WcR"/>
                                     <outlet property="userPic" destination="4Gc-V3-fEs" id="W6V-Si-Wbe"/>
@@ -291,7 +291,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2233" y="-91.5"/>
+            <point key="canvasLocation" x="2233" y="-92"/>
         </scene>
         <!--Friend Parent View Controller-->
         <scene sceneID="m7E-CQ-Qzy">
