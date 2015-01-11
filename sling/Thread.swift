@@ -12,6 +12,7 @@ class Thread{
     //var messages: NSMutableArray
     var followers: NSMutableArray
     var topic : String
+    var score : Int
     init(sender : PFObject, topic : String){
         //messages = NSMutableArray()
         followers = NSMutableArray()
@@ -21,6 +22,7 @@ class Thread{
         self.thread.ACL.setPublicWriteAccess(true)
         println(topic)
         self.topic = topic
+        self.score = 0
     }
     
     func addFollower(user : PFObject){
@@ -34,6 +36,7 @@ class Thread{
             follower.addObject(user as PFObject);
         }
         thread["topic"] = self.topic
+        thread["score"] = self.score
         self.thread.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }

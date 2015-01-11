@@ -29,6 +29,66 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         }
         
     }
+    
+    //TODO: Override this shit to make upvote/downvote/possibly share
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
+        // 1
+        var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Upvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            // 2
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
+            let thread : PFObject = cell.thread
+            var score : Int = thread["score"] as Int
+            score = score + 1
+            thread["score"] = score
+            thread.saveInBackgroundWithTarget(nil, selector: nil)
+            /*
+            let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
+            
+            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            shareMenu.addAction(twitterAction)
+            shareMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(shareMenu, animated: true, completion: nil)
+            */
+        })
+        
+        var rateAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Downvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
+            let thread : PFObject = cell.thread
+            if(thread["score"] != nil){
+                var score : Int = thread["score"] as Int
+                score = score - 1
+                thread["score"] = score
+            }
+            else{
+                thread["score"] = 1
+            }
+            thread.saveInBackgroundWithTarget(nil, selector: nil)
+            //thread["score"]++
+            /*
+            let rateMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .ActionSheet)
+            
+            let appRateAction = UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            rateMenu.addAction(appRateAction)
+            rateMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(rateMenu, animated: true, completion: nil)
+            */
+        })
+        // 5
+        return [shareAction,rateAction]
+    }
+    
+    
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1
