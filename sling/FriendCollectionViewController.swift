@@ -8,8 +8,8 @@
 
 import Foundation
 class FriendCollectionViewController : UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
-    var convo : Conversation = Conversation(sender: PFUser.currentUser())
-    var messageText : String = "";
+    //var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var messageText : String = ""
     var users : NSMutableArray = NSMutableArray()
     var filteredUsers : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
@@ -18,7 +18,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     @IBAction func addSection(sender: AnyObject) {
         
     }
-    
+    /*
     @IBAction func send(sender: AnyObject) {
         //var messageText:String        = postText.text
         var message:PFObject           = PFObject(className: "Message")
@@ -34,7 +34,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         message.saveInBackgroundWithTarget(nil, selector: nil)
     
     }
-    
+    */
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -75,8 +75,9 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     override func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath){
             var cell = collectionView.cellForItemAtIndexPath(indexPath) as UserCell
-            self.convo.addRecipient(cell.user)
-            self.convo.save()
+            var parentViewController = self.parentViewController as FriendParentViewController
+            parentViewController.convo.addRecipient(cell.user)
+            parentViewController.convo.save()
             cell.backgroundColor = UIColor.blueColor()
             cell.userName.backgroundColor = UIColor.whiteColor()
             

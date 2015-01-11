@@ -60,7 +60,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS">
                             <connections>
-                                <segue destination="phR-WZ-GfF" kind="show" id="Ieo-dw-aos"/>
+                                <segue destination="phR-WZ-GfF" kind="show" identifier="to_user_parent" id="Ieo-dw-aos"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

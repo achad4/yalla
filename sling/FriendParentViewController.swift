@@ -9,14 +9,17 @@
 import Foundation
 class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
+    var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var messageText : String = ""
+    
     @IBAction func send(sender: AnyObject) {
         //var messageText:String        = postText.text
         var child = self.childViewControllers[0] as FriendCollectionViewController
         var message:PFObject           = PFObject(className: "Message")
-        message["text"] = child.messageText;
-        message["inConvo"] = child.convo.convo as PFObject
+        message["text"] = self.messageText;
+        message["inConvo"] = self.convo.convo as PFObject
         message["sender"] = PFUser.currentUser()
-        child.convo.save()
+        self.convo.save()
         message.saveInBackgroundWithTarget(nil, selector: nil)
     
     }

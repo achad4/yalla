@@ -18,6 +18,7 @@ class Conversation{
         //messages.addObject(initialMessage)
         self.participants.addObject(sender)
         convo = PFObject(className: "Conversation")
+        self.convo.ACL.setPublicWriteAccess(true)
         isAnon = true
     }
     
@@ -31,7 +32,8 @@ class Conversation{
             var participant = convo.relationForKey("participant") as PFRelation
             participant.addObject(user as PFObject);
         }
-        convo["isAnon"] = self.isAnon
+        convo["isAnon"] = self.isAnon as NSNumber
+        
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }
