@@ -38,6 +38,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        self.collectionView?.layer.borderWidth = 3
         isSearching = false
         if(PFUser.currentUser() != nil){
             self.loadData(1)
@@ -46,7 +47,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     
     func loadData(order: Int){
-        for var i = 0; i<3; i++ {
+        //for var i = 0; i<3; i++ {
             users.removeAllObjects()
             var findTimeLineData:PFQuery = PFQuery(className: "_User")
             if(order == 0){
@@ -66,7 +67,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                 println(self.sections.count)
                 self.collectionView?.reloadData()
             }
-        }
+        //}
         
         
         
@@ -78,8 +79,9 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             var parentViewController = self.parentViewController as FriendParentViewController
             parentViewController.convo.addRecipient(cell.user)
             parentViewController.convo.save()
-            cell.backgroundColor = UIColor.blueColor()
-            cell.userName.backgroundColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor.grayColor()
+            cell.userName.backgroundColor = UIColor.grayColor()
+            cell.userName.textColor = UIColor.whiteColor()
             
     }
     
@@ -94,7 +96,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         if(isSearching == true){
             return 1
         }
-        return 3
+        return 1
     }
     /*
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
@@ -125,9 +127,34 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         if(isSearching == true){
             user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
         }
+        //cell.applyLayoutAttributes(<#layoutAttributes: UICollectionViewLayoutAttributes!#>)
+        cell.layer.cornerRadius = 50
+        println(cell.layer.cornerRadius)
         cell.backgroundColor = UIColor.whiteColor()
         cell.user = user
         cell.userName.text = user.objectForKey("username") as NSString
+        if(user["picture"] != nil){
+            var imageFile : PFFile = user["picture"] as PFFile
+            imageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData!, error: NSError!) -> Void in
+                if !(error != nil) {
+                    let image = UIImage(data:imageData)
+                    let width = 50 as UInt
+                    let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                    //self.avatarImages[sender.username] = userAvatar
+                    cell.userPic.image = userAvatar
+                }
+            }
+        }
+        else{
+            var image = UIImage(named: "anon.jpg")
+            //let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
+            let width = 50 as UInt
+            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+            //self.avatarImages[sender.username] = userAvatar
+            cell.userPic.image = userAvatar
+        }
+
         return cell
     }
     

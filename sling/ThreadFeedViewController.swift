@@ -24,20 +24,17 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             let indexPath = tableView.indexPathForSelectedRow()
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
             let parent = segue.destinationViewController as ThreadDetailViewController
-            //parent.selectedConversationID = cell.convo.objectId as String!
             parent.thread = cell.thread
         }
         
     }
     
-    //TODO: Override this shit to make upvote/downvote/possibly share
+
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
-        // 1
         var upVote = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Upvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            // 2
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
             let thread : PFObject = cell.thread
             if(thread["score"] != nil){
@@ -75,27 +72,12 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                 thread["score"] = -1
             }
             thread.saveInBackgroundWithTarget(nil, selector: nil)
-            //thread["score"]++
-            /*
-            let rateMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .ActionSheet)
-            
-            let appRateAction = UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            rateMenu.addAction(appRateAction)
-            rateMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(rateMenu, animated: true, completion: nil)
-            */
         })
-        // 5
         return [upVote, downVote]
     }
     
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
-        // Return the number of sections.
         return 1
     }
     func loadData(order: Int){
@@ -135,7 +117,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                 var currentString = currentThread.objectForKey("topic") as String
                 if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
                     filteredThreads.addObject(currentThread)
-                    
                 }
             }
             self.tableView.reloadData()

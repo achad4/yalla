@@ -213,7 +213,7 @@
             <objects>
                 <collectionViewController id="lQg-Xi-ZuV" customClass="FriendCollectionViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nxa-aN-wqL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="377"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="374"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6AC-f9-awV">
@@ -227,56 +227,34 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="93"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIR-CS-vah">
-                                            <rect key="frame" x="8" y="43" width="134" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="134" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBs-t5-2AG">
-                                            <rect key="frame" x="37" y="15" width="30" height="30"/>
-                                            <state key="normal" title="Add">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="addUser:" destination="Z77-h8-XDy" eventType="touchUpInside" id="yoh-CA-79X"/>
-                                            </connections>
-                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Gc-V3-fEs">
+                                            <rect key="frame" x="48" y="30" width="55" height="55"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="PBs-t5-2AG" secondAttribute="centerX" id="jBB-Gc-wC6"/>
                                     <constraint firstAttribute="centerX" secondItem="TIR-CS-vah" secondAttribute="centerX" id="jvT-cu-zFv"/>
                                 </constraints>
+                                <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="userName" destination="TIR-CS-vah" id="qx7-JO-WcR"/>
+                                    <outlet property="userPic" destination="4Gc-V3-fEs" id="W6V-Si-Wbe"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="9ir-7F-Aun">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new section" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-ht-fSC">
-                                    <rect key="frame" x="23" y="13" width="99" height="26"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlQ-7e-Nhi">
-                                    <rect key="frame" x="130" y="13" width="80" height="30"/>
-                                    <state key="normal" title="Add All">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="addSection:" destination="lQg-Xi-ZuV" eventType="touchUpInside" id="6AI-GF-5eT"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="lQg-Xi-ZuV" id="qxq-NC-qSF"/>
@@ -328,7 +306,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-GC-fxK">
-                                <rect key="frame" x="0.0" y="179" width="600" height="377"/>
+                                <rect key="frame" x="0.0" y="182" width="600" height="374"/>
                                 <connections>
                                     <segue destination="lQg-Xi-ZuV" kind="embed" id="J6X-vh-wT6"/>
                                 </connections>
@@ -340,6 +318,13 @@
                                     <outlet property="delegate" destination="phR-WZ-GfF" id="TqB-x1-gsc"/>
                                 </connections>
                             </searchBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXe-G9-1zH">
+                                <rect key="frame" x="124" y="108" width="352" height="66"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -356,6 +341,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="message" destination="tXe-G9-1zH" id="mee-1Y-76l"/>
                         <outlet property="searchDisplayController" destination="S7W-Wq-YXD" id="y8o-hO-tpr"/>
                     </connections>
                 </viewController>
