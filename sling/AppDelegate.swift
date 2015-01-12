@@ -17,6 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaultACL.setPublicReadAccess(true)
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
         // Override point for customization after application launch.
+        
+        /*
+        let tabBarController = TabBarViewController()
+        
+        let messages = QuestionFeedTableView()
+        let friends = FriendParentViewController()
+        let profile = MyProfileViewController()
+        // let more =
+        let controllers = [messages, friends, profile]
+        tabBarController.viewControllers = controllers
+        window?.rootViewController = tabBarController
+        // let firstImage = UIImage(named: "pie bar icon")
+        // let secondImage = UIImage(named: "pizza bar icon")
+        messages.tabBarItem = UITabBarItem(title: "Messages", image: nil, tag: 1)
+        friends.tabBarItem = UITabBarItem(title: "Friends", image: nil, tag:2)
+        profile.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
+        */
+        
         return true
     }
     

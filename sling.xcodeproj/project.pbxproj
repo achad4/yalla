@@ -512,16 +512,16 @@
 		82703F3C19F0A3E600EBEC4E /* sling */ = {
 			isa = PBXGroup;
 			children = (
-				A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */,
+				82B0A2331A5DA4D300887222 /* Messaging */,
 				82B0A2341A5DA53A00887222 /* Users */,
 				82B0A2361A5DA6B000887222 /* Threads */,
 				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
+				A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
 				817BCEEE1A622136008F5A39 /* NewPost.storyboard */,
-				82B0A2331A5DA4D300887222 /* Messaging */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
