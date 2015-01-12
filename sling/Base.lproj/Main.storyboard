@@ -640,12 +640,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Lzz-LE-TYk">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="4QY-3b-ysq">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="New"/>
+                                <segment title="Popular"/>
+                            </segments>
+                            <connections>
+                                <action selector="controlSelected:" destination="gya-sS-Hvq" eventType="valueChanged" id="TPA-NF-xOG"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4">
                             <connections>
                                 <segue destination="vzy-Tx-AJe" kind="show" id="xq6-IZ-Qaw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="4QY-3b-ysq" id="OIR-fe-TBM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVt-JD-s2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

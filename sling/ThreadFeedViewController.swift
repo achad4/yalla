@@ -11,14 +11,39 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     var threads : NSMutableArray = NSMutableArray()
     var filteredThreads : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
+
+    
+@IBOutlet weak var segmentedControl: UISegmentedControl!
+
+    @IBAction func controlSelected(sender: UISegmentedControl) {
+    
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            self.loadData(0)
+            self.tableView.reloadData()
+        }
+        else {
+            self.loadData(1)
+            self.tableView.reloadData()
+        }
+    }
+
     override func viewDidLoad(){
         isSearching = false
         super.viewDidLoad()
         if(PFUser.currentUser() != nil){
-            self.loadData(1)
+            if(segmentedControl.selectedSegmentIndex == 0) {
+                self.loadData(0)
+            
+            } else {
+                self.loadData(1)
+            }
         }
         
-    }
+ }
+    
+
+    
+    
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         if(segue.identifier == "to_thread_detail"){
             let indexPath = tableView.indexPathForSelectedRow()
@@ -85,6 +110,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         var findTimeLineData:PFQuery = PFQuery(className: "Thread")
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
+        } else {
+            findTimeLineData.orderByDescending("score")
         }
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
