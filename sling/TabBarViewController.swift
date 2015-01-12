@@ -18,12 +18,12 @@ class TabBarViewController : UITabBarController {
     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        var messagesStoryboard:UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
-        var initialViewController:UIViewController = messagesStoryboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        //var messagesStoryboard:UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
+        //var initialViewController:UIViewController = messagesStoryboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
         
-        var viewsInTBC = self.tabBarController?.viewControllers
-        viewsInTBC?.append(initialViewController)
-        self.tabBarController?.viewControllers = viewsInTBC
+        //var viewsInTBC = self.tabBarController?.viewControllers
+        //viewsInTBC?.append(initialViewController)
+        //self.tabBarController?.viewControllers = viewsInTBC
     }
     
     override func viewDidAppear(animated: Bool) {

@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let friends = FriendParentViewController()
         let profile = MyProfileViewController()
         // let more =
-        let controllers = [messages, friends, profile]
-        tabBarController.viewControllers = controllers
+        let controllers = [messages,friends,profile]
+        TabBarViewController.viewControllers = controllers
         window?.rootViewController = tabBarController
         // let firstImage = UIImage(named: "pie bar icon")
         // let secondImage = UIImage(named: "pizza bar icon")
