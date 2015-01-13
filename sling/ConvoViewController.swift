@@ -87,6 +87,21 @@ class MessagesViewController : JSQMessagesViewController {
         self.convo.saveInBackgroundWithTarget(nil, selector: nil)
         message.saveInBackgroundWithTarget(nil, selector: nil)
         self.appendMessage(text, sender: PFUser.currentUser())
+        let testmessage: NSString = text as NSString
+        
+        var data = [ "title": "Some Title",
+            "alert": testmessage]
+        /*
+        var userQuery: PFQuery = PFUser.query()
+        userQuery.whereKey("objectId", equalTo: recipientObjectId)
+        */
+        var query: PFQuery = PFInstallation.query()
+        query.whereKey("currentUser", equalTo: PFUser.currentUser())
+        
+        var push: PFPush = PFPush()
+        push.setQuery(query)
+        push.setData(data)
+        push.sendPushInBackground()
         self.loadData(0)
     }
     

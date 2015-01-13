@@ -10,14 +10,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("xUia2kh8CD1S80kh8aXwKt5Fx0HWbWqVegbvQ4E4",
                 clientKey: "Gz7RYBZx37KUNukxsolLs53QpacK3Y6em7aZjHHl")
+        
         //PFUser.enableAutomaticUser()
         PFFacebookUtils.initializeFacebook()
         var defaultACL = PFACL()
         // If you would like all objects to be private by default, remove this line.
         defaultACL.setPublicReadAccess(true)
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        
+        
+        var notificationType: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        
+        var settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
         // Override point for customization after application launch.
         return true
+    }
+    
+    //push notification functions
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        var currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackground()
+        
+        println("got device id! \(deviceToken)")
+        
+    }
+    
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println(error.localizedDescription)
+        println("could not register: \(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
     
     func application(application: UIApplication,
