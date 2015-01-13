@@ -11,6 +11,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
     
     //var messages = [Message]()
     var messageArray : NSMutableArray = NSMutableArray()
+    var replyObjectArray : NSMutableArray = NSMutableArray()
     // var avatars = Dictionary<String, UIImage>()
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
@@ -37,8 +38,12 @@ class ThreadDetailViewController : JSQMessagesViewController {
                     let pdf = object as PFObject
                     let text = pdf.objectForKey("text") as String
                     let sender = pdf["sender"].fetchIfNeeded() as PFUser
+                    let score = pdf["score"] as Int
                     //self.messages[i] = Message(text: text, sender: sender)
-                    self.messageArray.addObject(Reply(text: text, sender: sender))
+                    let reply = Reply(text: text, sender: sender)
+                    reply.score = score
+                    self.messageArray.addObject(reply)
+                    self.replyObjectArray.addObject(pdf)
                     i++
                     //self.timeLineData.addObject(pdf)
                 }
@@ -131,11 +136,10 @@ class ThreadDetailViewController : JSQMessagesViewController {
         //let message = messages[indexPath.item]
         let message = messageArray.objectAtIndex(indexPath.item) as Reply
         let currentUser = PFUser.currentUser().objectForKey("username") as String
-        if message.sender() == currentUser {
-            return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
-        }
-        
+        return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
+        /*
         return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
+        */
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -146,7 +150,6 @@ class ThreadDetailViewController : JSQMessagesViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         //println("collectionView 4")
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
-        
         //let message = messages[indexPath.item]
         let reply = messageArray.objectAtIndex(indexPath.item) as Reply
         let currentUser = PFUser.currentUser().objectForKey("username") as String
@@ -163,7 +166,12 @@ class ThreadDetailViewController : JSQMessagesViewController {
         return cell
     }
     override func collectionView(collectionView: UICollectionView, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath) -> UIImageView? {
-        return nil
+        var image = UIImage(named: "like.jpg")
+        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
+        let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+        var avatarView = ThreadAvatarImageView(image: userAvatar)
+        avatarView.reply = self.replyObjectArray.objectAtIndex(indexPath.item) as PFObject
+        return avatarView
     }
     /*
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {

@@ -33,15 +33,15 @@ class Reply : NSObject, JSQMessageData {
     var score : Int
     
     convenience init(text: String?, sender: PFUser?) {
-        self.init(text: text, sender: sender, imageUrl: nil)
+        self.init(text: text, sender: sender, imageUrl: nil, score: 0)
     }
     
-    init(text: String?, sender: PFUser?, imageUrl: String?) {
+    init(text: String?, sender: PFUser?, imageUrl: String?, score: Int) {
         self.text_ = text!
         self.senderUser = sender!
         self.date_ = NSDate()
         self.imageUrl_ = imageUrl
-        self.score = 0
+        self.score = score
     }
     
     func text() -> String! {
