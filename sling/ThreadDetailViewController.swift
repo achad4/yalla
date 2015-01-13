@@ -68,8 +68,10 @@ class ThreadDetailViewController : JSQMessagesViewController {
         reply["inThread"] = self.thread as PFObject
         reply["sender"] = PFUser.currentUser()
         reply["score"] = 0
+        reply.ACL.setPublicWriteAccess(true)
         self.thread.save()
         reply.saveInBackgroundWithTarget(nil, selector: nil)
+        self.replyObjectArray.addObject(reply)
         self.appendMessage(text, sender: PFUser.currentUser())
         self.loadData(0)
     }
@@ -153,13 +155,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         //let message = messages[indexPath.item]
         let reply = messageArray.objectAtIndex(indexPath.item) as Reply
         let currentUser = PFUser.currentUser().objectForKey("username") as String
-        if reply.sender() == currentUser {
-            println(sender)
-            cell.textView.textColor = UIColor.blackColor()
-        } else {
-            cell.textView.textColor = UIColor.whiteColor()
-        }
-        
+        cell.textView.textColor = UIColor.blackColor()
         let attributes : [NSObject:AnyObject] = [NSForegroundColorAttributeName:cell.textView.textColor, NSUnderlineStyleAttributeName: 1]
         cell.textView.linkTextAttributes = attributes
         
