@@ -18,12 +18,6 @@ class TabBarViewController : UITabBarController {
     */ 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //var messagesStoryboard:UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
-        //var initialViewController:UIViewController = messagesStoryboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
-        
-        //var viewsInTBC = self.tabBarController?.viewControllers
-        //viewsInTBC?.append(initialViewController)
-        //self.tabBarController?.viewControllers = viewsInTBC
         
         var messagesStoryboard: UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
         var initialViewController: UIViewController = messagesStoryboard.instantiateViewControllerWithIdentifier("MessagesView") as UIViewController
@@ -31,6 +25,8 @@ class TabBarViewController : UITabBarController {
         var viewsInTBC = self.tabBarController?.viewControllers
         viewsInTBC?.append(initialViewController)
         self.tabBarController?.viewControllers = viewsInTBC
+        
+        self.presentViewController(initialViewController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -43,27 +39,5 @@ class TabBarViewController : UITabBarController {
             var user = PFUser.currentUser()
         }
     }
-    /*
-    @IBAction func messagesViewPressed(sender: UITabBarItem)
-    {
-        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
-        self.presentViewController(controller, animated: true, completion: nil)
-    }
-    
-    @IBAction func friendsViewPressed(sender: UITabBarItem)
-    {
-        var storyboard = UIStoryboard(name: "Friends", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
-        self.presentViewController(controller, animated: true, completion: nil)
-    }
-    
-    @IBAction func profileViewPressed(sender: UITabBarItem)
-    {
-        var storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
-        self.presentViewController(controller, animated: true, completion: nil)
-    }
-*/
     
 }

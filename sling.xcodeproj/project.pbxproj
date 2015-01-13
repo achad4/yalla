@@ -60,8 +60,6 @@
 		815BF1081A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */; };
 		8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */; };
-		8172FD971A64CAB600B1BD29 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD961A64CAB600B1BD29 /* TabBarController.swift */; };
-		8172FD991A64D45400B1BD29 /* TabBarNavigationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD981A64D45400B1BD29 /* TabBarNavigationSegue.swift */; };
 		817BCEEB1A6220F8008F5A39 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEA1A6220F8008F5A39 /* Friends.storyboard */; };
 		817BCEED1A622104008F5A39 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEC1A622104008F5A39 /* Feed.storyboard */; };
 		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
@@ -209,8 +207,6 @@
 		815BF10B1A5E1C08003D2FCC /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSegue.swift; sourceTree = "<group>"; };
-		8172FD961A64CAB600B1BD29 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		8172FD981A64D45400B1BD29 /* TabBarNavigationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarNavigationSegue.swift; sourceTree = "<group>"; };
 		817BCEEA1A6220F8008F5A39 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		817BCEEC1A622104008F5A39 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
@@ -555,8 +551,6 @@
 				82B0A2361A5DA6B000887222 /* Threads */,
 				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
 				A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */,
-				8172FD961A64CAB600B1BD29 /* TabBarController.swift */,
-				8172FD981A64D45400B1BD29 /* TabBarNavigationSegue.swift */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
@@ -781,7 +775,6 @@
 			files = (
 				815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */,
 				82974ECB1A4F1BA200D2B9F7 /* MessageCell.swift in Sources */,
-				8172FD971A64CAB600B1BD29 /* TabBarController.swift in Sources */,
 				82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */,
 				815BF0F81A5E1BF9003D2FCC /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */,
@@ -814,7 +807,6 @@
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
 				825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */,
 				815BF1031A5E1BF9003D2FCC /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
-				8172FD991A64D45400B1BD29 /* TabBarNavigationSegue.swift in Sources */,
 				82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */,
 				A79D69031A60C1C400E7BA94 /* LoginViewController.swift in Sources */,
 				82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */,
