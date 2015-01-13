@@ -15,7 +15,7 @@ class TabBarViewController : UITabBarController {
     let friends  = UITabBarItem(title: "Friends", image: nil, tag: 2)
     let profile  = UITabBarItem(title: "Profile", image: nil, tag: 3)
     let more     = UITabBarItem(title: "More", image: nil, tag: 4)
-    */
+    */ 
     override func viewDidLoad() {
         super.viewDidLoad()
         //var messagesStoryboard:UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
@@ -24,6 +24,13 @@ class TabBarViewController : UITabBarController {
         //var viewsInTBC = self.tabBarController?.viewControllers
         //viewsInTBC?.append(initialViewController)
         //self.tabBarController?.viewControllers = viewsInTBC
+        
+        var messagesStoryboard: UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
+        var initialViewController: UIViewController = messagesStoryboard.instantiateViewControllerWithIdentifier("MessagesView") as UIViewController
+        
+        var viewsInTBC = self.tabBarController?.viewControllers
+        viewsInTBC?.append(initialViewController)
+        self.tabBarController?.viewControllers = viewsInTBC
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -36,7 +43,7 @@ class TabBarViewController : UITabBarController {
             var user = PFUser.currentUser()
         }
     }
-    
+    /*
     @IBAction func messagesViewPressed(sender: UITabBarItem)
     {
         var storyboard = UIStoryboard(name: "Messages", bundle: nil)
@@ -57,5 +64,6 @@ class TabBarViewController : UITabBarController {
         var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
         self.presentViewController(controller, animated: true, completion: nil)
     }
+*/
     
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8118D1151A5CE90D001C0ADF /* ConvoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */; };
+		8152EFF51A644687007D93C3 /* FeedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8152EFF41A644687007D93C3 /* FeedSegue.swift */; };
 		815BF0D81A5E1BF9003D2FCC /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0851A5E1BF9003D2FCC /* bubble.png */; };
 		815BF0D91A5E1BF9003D2FCC /* bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0861A5E1BF9003D2FCC /* bubble@2x.png */; };
 		815BF0DA1A5E1BF9003D2FCC /* bubble_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0871A5E1BF9003D2FCC /* bubble_min.png */; };
@@ -58,6 +59,9 @@
 		815BF1071A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF0D61A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m */; };
 		815BF1081A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */; };
+		8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */; };
+		8172FD971A64CAB600B1BD29 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD961A64CAB600B1BD29 /* TabBarController.swift */; };
+		8172FD991A64D45400B1BD29 /* TabBarNavigationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD981A64D45400B1BD29 /* TabBarNavigationSegue.swift */; };
 		817BCEEB1A6220F8008F5A39 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEA1A6220F8008F5A39 /* Friends.storyboard */; };
 		817BCEED1A622104008F5A39 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEC1A622104008F5A39 /* Feed.storyboard */; };
 		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
@@ -125,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoViewController.swift; sourceTree = "<group>"; };
+		8152EFF41A644687007D93C3 /* FeedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSegue.swift; sourceTree = "<group>"; };
 		815BF0851A5E1BF9003D2FCC /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		815BF0861A5E1BF9003D2FCC /* bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble@2x.png"; sourceTree = "<group>"; };
 		815BF0871A5E1BF9003D2FCC /* bubble_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_min.png; sourceTree = "<group>"; };
@@ -203,6 +208,9 @@
 		815BF0D71A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		815BF10B1A5E1C08003D2FCC /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		815BF10C1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSegue.swift; sourceTree = "<group>"; };
+		8172FD961A64CAB600B1BD29 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		8172FD981A64D45400B1BD29 /* TabBarNavigationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarNavigationSegue.swift; sourceTree = "<group>"; };
 		817BCEEA1A6220F8008F5A39 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		817BCEEC1A622104008F5A39 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
@@ -470,6 +478,30 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		8172FD941A64C90B00B1BD29 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
+				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
+				817BCEEE1A622136008F5A39 /* NewPost.storyboard */,
+				817BCEF01A622144008F5A39 /* Profile.storyboard */,
+				817BCEEA1A6220F8008F5A39 /* Friends.storyboard */,
+				817BCEEC1A622104008F5A39 /* Feed.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		8172FD951A64C92F00B1BD29 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */,
+				8152EFF41A644687007D93C3 /* FeedSegue.swift */,
+				81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */,
+				8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */,
+			);
+			name = Segues;
+			sourceTree = "<group>";
+		};
 		81CCDB421A5CE83E00132A6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,16 +548,18 @@
 		82703F3C19F0A3E600EBEC4E /* sling */ = {
 			isa = PBXGroup;
 			children = (
+				8172FD941A64C90B00B1BD29 /* Storyboards */,
+				8172FD951A64C92F00B1BD29 /* Segues */,
 				82B0A2331A5DA4D300887222 /* Messaging */,
 				82B0A2341A5DA53A00887222 /* Users */,
 				82B0A2361A5DA6B000887222 /* Threads */,
 				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
 				A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */,
+				8172FD961A64CAB600B1BD29 /* TabBarController.swift */,
+				8172FD981A64D45400B1BD29 /* TabBarNavigationSegue.swift */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
-				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
-				817BCEEE1A622136008F5A39 /* NewPost.storyboard */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
 				82703F3D19F0A3E600EBEC4E /* Supporting Files */,
@@ -562,8 +596,6 @@
 		82B0A2331A5DA4D300887222 /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
-				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
-				81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */,
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
 				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
 				82B0A22F1A5C7D0000887222 /* Discussion.swift */,
@@ -581,8 +613,6 @@
 		82B0A2341A5DA53A00887222 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				817BCEF01A622144008F5A39 /* Profile.storyboard */,
-				817BCEEA1A6220F8008F5A39 /* Friends.storyboard */,
 				A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
@@ -590,7 +620,6 @@
 				82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */,
 				A79D69021A60C1C400E7BA94 /* LoginViewController.swift */,
 				A79D69041A60C1D100E7BA94 /* SignupViewController.swift */,
-				81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -598,7 +627,6 @@
 		82B0A2361A5DA6B000887222 /* Threads */ = {
 			isa = PBXGroup;
 			children = (
-				817BCEEC1A622104008F5A39 /* Feed.storyboard */,
 				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
 				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
 				82F7E0EA1A5B35D100901922 /* Thread.swift */,
@@ -753,8 +781,10 @@
 			files = (
 				815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */,
 				82974ECB1A4F1BA200D2B9F7 /* MessageCell.swift in Sources */,
+				8172FD971A64CAB600B1BD29 /* TabBarController.swift in Sources */,
 				82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */,
 				815BF0F81A5E1BF9003D2FCC /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
+				8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */,
 				815BF0EB1A5E1BF9003D2FCC /* NSString+JSQMessages.m in Sources */,
 				815BF0FC1A5E1BF9003D2FCC /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				815BF0F51A5E1BF9003D2FCC /* JSQMessagesToolbarButtonFactory.m in Sources */,
@@ -784,6 +814,7 @@
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
 				825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */,
 				815BF1031A5E1BF9003D2FCC /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
+				8172FD991A64D45400B1BD29 /* TabBarNavigationSegue.swift in Sources */,
 				82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */,
 				A79D69031A60C1C400E7BA94 /* LoginViewController.swift in Sources */,
 				82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */,
@@ -801,6 +832,7 @@
 				825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */,
 				82974ECD1A51BAE200D2B9F7 /* ConvoParentViewController.swift in Sources */,
 				81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */,
+				8152EFF51A644687007D93C3 /* FeedSegue.swift in Sources */,
 				82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */,
 				815BF0F71A5E1BF9003D2FCC /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,

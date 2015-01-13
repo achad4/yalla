@@ -92,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wol-hz-IRS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="461" y="-2830"/>
+            <point key="canvasLocation" x="653" y="-2638"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1U3-CL-uc5">
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmX-n0-GBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2755" y="-2605"/>
+            <point key="canvasLocation" x="-1179" y="-2455"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="bSv-zI-o50">
@@ -269,6 +269,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="P8B-IK-oQn">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oz7-uq-nXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="OKn-0l-ajB" customClass="TabBarViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="jOp-cS-sBK">
@@ -284,7 +285,6 @@
                         <segue destination="faO-sP-0H8" kind="presentation" identifier="goto_login" id="TJB-3l-R5R"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oz7-uq-nXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1907" y="-2461"/>
         </scene>
@@ -300,17 +300,17 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Lxt-hT-5GZ" kind="custom" identifier="Messages" customClass="MessagesSegue" id="Rlk-dy-Lfq"/>
+                        <segue destination="Lxt-hT-5GZ" kind="custom" customClass="MessagesSegue" id="kjC-qO-Fmr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eao-oB-Hme" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1199" y="-1685"/>
+            <point key="canvasLocation" x="-1179" y="-1759"/>
         </scene>
-        <!--View Controller-->
+        <!--Messages View Controller-->
         <scene sceneID="2fy-sw-0dK">
             <objects>
-                <viewController id="Lxt-hT-5GZ" sceneMemberID="viewController">
+                <viewController id="Lxt-hT-5GZ" customClass="MessagesViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DLv-oa-74l"/>
                         <viewControllerLayoutGuide type="bottom" id="AY2-Xd-iDD"/>
@@ -324,12 +324,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jns-N0-jjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-511" y="-1679"/>
+            <point key="canvasLocation" x="-385" y="-1747"/>
         </scene>
-        <!--View Controller-->
+        <!--Friends-->
         <scene sceneID="rik-Dz-AWb">
             <objects>
-                <viewController id="sbE-St-VsX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendsView" title="Friends" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sbE-St-VsX" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ZO-qt-5NU"/>
                         <viewControllerLayoutGuide type="bottom" id="YiZ-Iu-hj1"/>

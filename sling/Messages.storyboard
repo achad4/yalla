@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kg8-ta-dGd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -26,7 +26,7 @@
         <!--Question Feed Table View-->
         <scene sceneID="e7D-FF-eho">
             <objects>
-                <tableViewController storyboardIdentifier="Messages.storyboard" id="HrU-1U-4yP" customClass="QuestionFeedTableView" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MessagesView" id="HrU-1U-4yP" customClass="QuestionFeedTableView" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" id="sww-o1-Cgm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,25 +87,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JL1-Lm-FlS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-430" y="-1685"/>
-        </scene>
-        <!--Messages-->
-        <scene sceneID="4uk-kT-R4H">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kg8-ta-dGd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" id="uNW-xm-DS8"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6k-J8-OPy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="HrU-1U-4yP" kind="relationship" relationship="rootViewController" id="gAM-Wm-VDj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eao-oB-Hme" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1199" y="-1685"/>
         </scene>
     </scenes>
 </document>
