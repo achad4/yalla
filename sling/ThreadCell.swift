@@ -27,14 +27,9 @@ class ThreadCell : UITableViewCell{
                     if(object.objectId == self.thread.objectId) {
                         isFollower = true
                     }
-                    /*
-                    let pdf = object as PFObject
-                    threadsFollowing.addObject(pdf)
-                    */
                 }
                 var followRelation : PFRelation = self.thread.relationForKey("follower")
                 if(isFollower == false) {
-                    
                     self.follow.setTitle("Unfollow", forState: UIControlState.Normal)
                     followRelation.addObject(PFUser.currentUser())
                     self.thread.saveInBackgroundWithTarget(nil, selector: nil)
