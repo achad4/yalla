@@ -17,12 +17,42 @@ class ThreadAvatarImageView : UIImageView {
     }
     
     func tapped(nizer: UITapGestureRecognizer){
-        println("avatar tapped")
-        println(reply.objectId)
-        var score : Int = reply["score"] as Int
-        score = score + 1
-        reply["score"] = score
-        reply.saveInBackgroundWithTarget(nil, selector: nil)
+        
+        // Query for replies that current user has voted on
+        var current = PFUser.currentUser()
+        var votedQuery = PFQuery(className: "Reply")
+        votedQuery.whereKey("voted", equalTo: current)
+        
+        votedQuery.findObjectsInBackgroundWithBlock{
+            (objects:[AnyObject]!, error:NSError!)->Void in
+            if !(error != nil){
+                var currentHasVoted = false
+                for object in objects {
+            
+                    if(object.objectId == self.reply.objectId) {
+                        currentHasVoted = true
+                    }
+                }
+                if(!currentHasVoted) {
+                    // Allow user to upvote
+                    var votedOn = self.reply.relationForKey("voted") as PFRelation
+                    votedOn.addObject(current);
+                    var score : Int = self.reply["score"] as Int
+                    score = score + 1
+                    self.reply["score"] = score
+                    self.reply.saveInBackgroundWithTarget(nil, selector: nil)
+                } else {
+                    
+                    // User has already voted on this reply
+                    var alertView:UIAlertView = UIAlertView()
+                    alertView.title = "Voting failed!"
+                    alertView.message = "You have already voted on this reply"
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
+                    alertView.show()
+                }
+            }
+        }
     }
 
     required init(coder aDecoder: NSCoder) {
