@@ -21,8 +21,12 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             self.loadData(0)
             self.tableView.reloadData()
         }
-        else {
+        else if (segmentedControl.selectedSegmentIndex == 1) {
             self.loadData(1)
+            self.tableView.reloadData()
+        }
+        else {
+            self.loadData(2)
             self.tableView.reloadData()
         }
     }
@@ -34,8 +38,11 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             if(segmentedControl.selectedSegmentIndex == 0) {
                 self.loadData(0)
             
-            } else {
+            } else if(segmentedControl.selectedSegmentIndex == 1) {
                 self.loadData(1)
+            }
+            else {
+                self.loadData(2)
             }
         }
         
@@ -110,8 +117,11 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         var findTimeLineData:PFQuery = PFQuery(className: "Thread")
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
-        } else {
+        } else if(order == 1){
             findTimeLineData.orderByDescending("score")
+        }
+        else {
+            findTimeLineData.whereKey("follower", equalTo: PFUser.currentUser())
         }
         
         findTimeLineData.findObjectsInBackgroundWithBlock{
@@ -176,25 +186,25 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         query.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
+                var isFollowing = false
                 for object in objects{
-                    count++
+                    if(object.objectId == thread.objectId) {
+                        isFollowing = true
+                    }
+                    /*
                     let pdf = object as PFObject
                     threadsFollowing.addObject(pdf)
+                    */
+                    
+                }
+                if(isFollowing == true) {
+                    cell.follow.setTitle("Unfollow", forState: UIControlState.Normal)
+                }
+                else {
+                    cell.follow.setTitle("Follow", forState: UIControlState.Normal)
                 }
             }
-            var followRelation : PFRelation = thread.relationForKey("follower")
-            if(count == 0){
-                println("User is not a follower")
-                cell.follow.setTitle("Follow", forState: UIControlState.Normal)
-                //followRelation.addObject(PFUser.currentUser())
-                
-            }
-            else{
-                println("User is a follower")
-                cell.follow.setTitle("Unfollow", forState: UIControlState.Normal)
-                //followRelation.removeObject(PFUser.currentUser())
-                
-            }
+  
         }
 
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator

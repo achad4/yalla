@@ -647,6 +647,7 @@
                             <segments>
                                 <segment title="New"/>
                                 <segment title="Popular"/>
+                                <segment title="Following"/>
                             </segments>
                             <connections>
                                 <action selector="controlSelected:" destination="gya-sS-Hvq" eventType="valueChanged" id="TPA-NF-xOG"/>
