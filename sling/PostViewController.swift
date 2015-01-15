@@ -16,8 +16,8 @@ class PostViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var postText: UITextField!
     
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
-        if(segue.identifier == "toUsersSegue"){
-            let userView = segue.destinationViewController as FriendCollectionViewController
+        if(segue.identifier == "to_user_parent"){
+            let userView = segue.destinationViewController as FriendParentViewController
             userView.convo = self.convo
             userView.messageText = self.postText.text
         }

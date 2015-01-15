@@ -10,11 +10,10 @@ import Foundation
 class UserCell : UICollectionViewCell{
     var user : PFObject
     
+    @IBOutlet weak var userPic: UIImageView!
+    
     @IBOutlet weak var userName: UILabel!
     
-    @IBAction func addUser(sender: UIButton) {
-        
-    }
     override init() {
         user = PFUser()
         super.init()

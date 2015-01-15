@@ -70,7 +70,7 @@
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
 		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
-		825DBC3F1A5F825F00C8B07C /* ThreadBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */; };
+		825DBC3F1A5F825F00C8B07C /* ThreadAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */; };
 		82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */; };
 		82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4319F0A3E600EBEC4E /* Main.storyboard */; };
 		82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4619F0A3E600EBEC4E /* Images.xcassets */; };
@@ -218,7 +218,7 @@
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
 		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
-		825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadBubble.swift; sourceTree = "<group>"; };
+		825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadAvatarImageView.swift; sourceTree = "<group>"; };
 		82703F3A19F0A3E600EBEC4E /* sling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82703F3E19F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -629,7 +629,7 @@
 				82F7E0EA1A5B35D100901922 /* Thread.swift */,
 				825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */,
 				825DBC3C1A5F14CD00C8B07C /* Reply.swift */,
-				825DBC3E1A5F825F00C8B07C /* ThreadBubble.swift */,
+				825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */,
 			);
 			name = Threads;
 			sourceTree = "<group>";
@@ -683,6 +683,7 @@
 				TargetAttributes = {
 					82703F3919F0A3E600EBEC4E = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = 8E34QZA6R9;
 					};
 					82703F4E19F0A3E600EBEC4E = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -798,7 +799,7 @@
 				815BF1071A5E1BF9003D2FCC /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				A79D69071A60C1EE00E7BA94 /* TabBarViewController.swift in Sources */,
 				8118D1151A5CE90D001C0ADF /* ConvoViewController.swift in Sources */,
-				825DBC3F1A5F825F00C8B07C /* ThreadBubble.swift in Sources */,
+				825DBC3F1A5F825F00C8B07C /* ThreadAvatarImageView.swift in Sources */,
 				815BF1021A5E1BF9003D2FCC /* JSQMessagesLabel.m in Sources */,
 				815BF0ED1A5E1BF9003D2FCC /* UIImage+JSQMessages.m in Sources */,
 				815BF0EA1A5E1BF9003D2FCC /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
@@ -958,6 +959,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/evanoconnor/Downloads/parse-library-1.4.2",
@@ -969,6 +972,7 @@
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "sling/sling-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -979,6 +983,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/evanoconnor/Downloads/parse-library-1.4.2",
@@ -990,6 +996,7 @@
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "sling/sling-Bridging-Header.h";
 			};
 			name = Release;
