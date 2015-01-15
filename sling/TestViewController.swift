@@ -29,7 +29,7 @@ class TestViewController: UIViewController {
         
         self.presentViewController(controller, animated: true, completion: nil)
     }
-    /*
+    
     @IBAction func onFeedViewPressed(sender: UIView)
     {
         var storyboard = UIStoryboard(name: "Feed", bundle: nil)
@@ -37,5 +37,5 @@ class TestViewController: UIViewController {
         
         self.presentViewController(controller, animated: true, completion: nil)
     }
-    */
+    
 }

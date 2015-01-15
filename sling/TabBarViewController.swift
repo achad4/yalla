@@ -10,12 +10,6 @@ import Foundation
 
 class TabBarViewController : UITabBarController {
     
-    /*
-    let messages = UITabBarItem(title: "Messages", image: nil, tag: 1)
-    let friends  = UITabBarItem(title: "Friends", image: nil, tag: 2)
-    let profile  = UITabBarItem(title: "Profile", image: nil, tag: 3)
-    let more     = UITabBarItem(title: "More", image: nil, tag: 4)
-    */ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
