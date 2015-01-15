@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IJu-D4-V9A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -40,7 +40,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onViewMessagesPressed:" destination="IJu-D4-V9A" eventType="touchUpInside" id="yPN-n1-gmf"/>
-                                    <outletCollection property="gestureRecognizers" destination="yRg-eh-8oV" appends="YES" id="Ea8-I2-thU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5g-hz-99M">
@@ -61,7 +60,11 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kH9-F4-0u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="yRg-eh-8oV"/>
+                <swipeGestureRecognizer direction="right" id="yRg-eh-8oV">
+                    <connections>
+                        <action selector="swipeLeft:" destination="IJu-D4-V9A" id="32o-1D-EiY"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1772" y="-3732"/>
         </scene>

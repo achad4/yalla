@@ -14,16 +14,16 @@ import UIKIT
 class MessagesSegue: UIStoryboardSegue {
     
     override func perform() {
-        
+        /*
         var sourceViewController      = self.sourceViewController as UIViewController
         var destinationViewController = self.destinationViewController as UIViewController
         
         sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
-        
+        */
         
         var storyboard = UIStoryboard(name: "Messages", bundle: nil)
         var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
         
-        self.presentViewController(controller, animated: true, completion: nil)
+        controller.presentViewController(controller, animated: true, completion: nil)
     }
 }

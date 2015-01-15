@@ -14,6 +14,9 @@ class TestViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
+        recognizer.direction = .Left
+        self.view .addGestureRecognizer(recognizer)
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +35,14 @@ class TestViewController: UIViewController {
     
     @IBAction func onFeedViewPressed(sender: UIView)
     {
+        var storyboard = UIStoryboard(name: "Feed", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
+        
         var storyboard = UIStoryboard(name: "Feed", bundle: nil)
         var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
         

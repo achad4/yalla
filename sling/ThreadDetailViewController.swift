@@ -87,7 +87,10 @@ class ThreadDetailViewController : JSQMessagesViewController {
         
         sender = (sender != nil) ? sender : "Anonymous"
         
+        
+        
     }
+
     
     override func viewDidAppear(animated: Bool) {
         //println("viewDidDisappear called")

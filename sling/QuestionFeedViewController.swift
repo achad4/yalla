@@ -49,8 +49,19 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
         
-        
+        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
+        recognizer.direction = .Left
+        self.view .addGestureRecognizer(recognizer)
     }
+    
+    @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
+        
+        var storyboard = UIStoryboard(name: "Feed", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
         return 1

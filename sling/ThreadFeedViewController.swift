@@ -7,10 +7,12 @@
 //
 
 import Foundation
+
 class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     var threads : NSMutableArray = NSMutableArray()
     var filteredThreads : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
+    
     override func viewDidLoad(){
         isSearching = false
         super.viewDidLoad()
@@ -18,7 +20,21 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             self.loadData(1)
         }
         
+        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
+        recognizer.direction = .Right
+        self.view .addGestureRecognizer(recognizer)
+        
     }
+    
+    @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
+        
+        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         if(segue.identifier == "to_thread_detail"){
             let indexPath = tableView.indexPathForSelectedRow()
@@ -51,10 +67,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                 self.tableView.reloadData()
             }
         }
-        
-        
-        
-        
     }
    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
