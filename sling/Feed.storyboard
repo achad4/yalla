@@ -81,6 +81,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Lzz-LE-TYk">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MHi-U9-rAp">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="New"/>
+                                <segment title="Popular"/>
+                                <segment title="Following"/>
+                            </segments>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4"/>
                     </navigationItem>
                 </tableViewController>
