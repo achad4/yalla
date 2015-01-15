@@ -19,9 +19,17 @@ class Conversation{
         self.participants.addObject(sender)
         convo = PFObject(className: "Conversation")
         self.convo.ACL.setPublicWriteAccess(true)
+        convo["owner"] = sender
         isAnon = true
     }
-    
+  
+    init(convo : PFObject){
+        participants = NSMutableArray()
+        isAnon = true
+        self.convo = convo
+        convo.saveInBackgroundWithTarget(nil, selector: nil)
+    }
+
     func addRecipient(user : PFObject){
         self.participants.addObject(user);
     }
@@ -33,7 +41,6 @@ class Conversation{
             participant.addObject(user as PFObject);
         }
         convo["isAnon"] = self.isAnon as NSNumber
-        
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }

@@ -13,11 +13,26 @@ import UIKIT
 
 class FriendsSegue: UIStoryboardSegue {
     
+    
+    func sceneNamed(identifier : NSString) -> UIViewController{
+        var info : NSArray = identifier.componentsSeparatedByString("@")
+        var storyBoardName : NSString = info[1] as NSString
+        var sceneName : NSString = info[0] as NSString
+        var storyBoard : UIStoryboard = UIStoryboard(name: storyBoardName, bundle: nil)
+        var scene : UIViewController = storyBoard.instantiateViewControllerWithIdentifier(sceneName) as UIViewController
+        return scene
+    }
+    
+    override init!(identifier: String!, source: UIViewController, destination: UIViewController) {
+        super.init(identifier: identifier, source: source, destination: destination)
+    }
+    
     override func perform() {
         
         var sourceViewController      = self.sourceViewController as UIViewController
-        var destinationViewController = self.destinationViewController as UIViewController
-        
-        sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+        //var destinationViewController = self.destinationViewController as UIViewController
+        var destinationViewController = self.sceneNamed(self.identifier!)
+        sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
+        //sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
     }
 }

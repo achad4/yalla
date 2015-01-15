@@ -69,7 +69,13 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             let parent = segue.destinationViewController as ThreadDetailViewController
             parent.thread = cell.thread
         }
-        
+            /*
+        else if(segue.identifier == "new_thread_segue"){
+            var topic:String        = ""
+            var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
+            thread.save()
+        }
+        */
     }
     
 

@@ -16,9 +16,25 @@ class MessagesViewController : JSQMessagesViewController {
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
     var batchMessages = true
-    var convo : PFObject = PFObject(className: "Conversation")
+    //var convo : PFObject = PFObject(className: "Conversation")
+    var convo : Conversation = Conversation(sender: PFUser.currentUser())
     var avatarImages = Dictionary<String, UIImage>()
     var isAnon : Bool?
+    var newMessgae : Bool?
+    
+    
+    @IBAction func addUsers(sender: AnyObject) {
+        var storyboard = UIStoryboard(name: "Friends", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("FriendsView") as FriendParentViewController
+        controller.messageText = ""
+        println("segue")
+        controller.convo = self.convo
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    
+    
+    
     
     
     func loadData(order: Int){
@@ -31,7 +47,7 @@ class MessagesViewController : JSQMessagesViewController {
 
         var currentUser = PFUser.currentUser()
         
-        findTimeLineData.whereKey("inConvo", equalTo: self.convo)
+        findTimeLineData.whereKey("inConvo", equalTo: self.convo.convo)
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
@@ -73,18 +89,21 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     func sendMessage(var text: String!, var sender: String!) {
-        if(self.isAnon == true){
+        if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
             self.isAnon = false
-            self.convo["isAnon"] = false as NSNumber
+            //self.convo["isAnon"] = false as NSNumber
+            self.convo.isAnon = false
         }
+        println(sender)
         var message:PFObject = PFObject(className: "Message")
         message["text"] = text
         var query1 = PFUser.query();
         var query2 = PFUser.query();
         var sentToRelation = message.relationForKey("sentTo")
-        message["inConvo"] = self.convo as PFObject
+        message["inConvo"] = self.convo.convo as PFObject
         message["sender"] = PFUser.currentUser()
-        self.convo.saveInBackgroundWithTarget(nil, selector: nil)
+        self.convo.save()
+        //self.convo.convo.saveInBackgroundWithTarget(nil, selector: nil)
         message.saveInBackgroundWithTarget(nil, selector: nil)
         self.appendMessage(text, sender: PFUser.currentUser())
         let testmessage: NSString = text as NSString
@@ -114,7 +133,7 @@ class MessagesViewController : JSQMessagesViewController {
     override func viewDidLoad() {
         //println("viewDidLoad called")
         super.viewDidLoad()
-        if(PFUser.currentUser() != nil) {
+        if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
         }
         inputToolbar.contentView.leftBarButtonItem = nil

@@ -27,29 +27,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIR-CS-vah">
-                                            <rect key="frame" x="8" y="43" width="134" height="21"/>
+                                            <rect key="frame" x="8" y="17" width="134" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBs-t5-2AG">
-                                            <rect key="frame" x="37" y="15" width="30" height="30"/>
-                                            <state key="normal" title="Add">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="addUser:" destination="Z77-h8-XDy" eventType="touchUpInside" id="yoh-CA-79X"/>
-                                            </connections>
-                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yb7-7f-jW7">
+                                            <rect key="frame" x="38" y="38" width="84" height="47"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="PBs-t5-2AG" secondAttribute="centerX" id="jBB-Gc-wC6"/>
                                     <constraint firstAttribute="centerX" secondItem="TIR-CS-vah" secondAttribute="centerX" id="jvT-cu-zFv"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="userName" destination="TIR-CS-vah" id="qx7-JO-WcR"/>
+                                    <outlet property="userPic" destination="yb7-7f-jW7" id="NHt-rO-fvs"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

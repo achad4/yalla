@@ -9,13 +9,23 @@
 import Foundation
 class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
+
     var convo : Conversation = Conversation(sender: PFUser.currentUser())
     var messageText : String = ""
+    
+    @IBAction func doneAdding(sender: AnyObject) {
+        println("here")
+        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("MessageDetail") as MessagesViewController
+        controller.convo = self.convo
+        self.presentViewController(controller, animated: true, completion: nil)
+    
+    }
     
     @IBOutlet weak var message: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.message.text = "\nMessage to send: \n \""+self.messageText+"\""
+        //self.message.text = "\nMessage to send: \n \""+self.messageText+"\""
     }
     @IBAction func send(sender: AnyObject) {
         //var messageText:String        = postText.text

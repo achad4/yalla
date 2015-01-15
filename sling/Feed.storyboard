@@ -94,7 +94,11 @@
                                 <action selector="controlSelected:" destination="gya-sS-Hvq" eventType="valueChanged" id="obn-vh-1aS"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4">
+                            <connections>
+                                <segue destination="UpY-PS-y3m" kind="show" identifier="new_thread_segue" id="e9L-uy-Mdn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="MHi-U9-rAp" id="GxU-Nm-eFC"/>
@@ -122,4 +126,7 @@
             <point key="canvasLocation" x="-1811" y="-919"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="e9L-uy-Mdn"/>
+    </inferredMetricsTieBreakers>
 </document>

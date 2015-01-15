@@ -13,12 +13,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vzy-Tx-AJe" kind="show" id="fOy-I2-a0p"/>
+                        <segue destination="phR-WZ-GfF" kind="show" id="qJq-kJ-Xne"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b3d-aF-jmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-366" y="-79"/>
+            <point key="canvasLocation" x="686" y="-91"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="M1f-IK-meA">
@@ -69,11 +69,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OT2-5B-a6u">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="EG3-FR-wWb"/>
-                        <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS">
-                            <connections>
-                                <segue destination="phR-WZ-GfF" kind="show" id="Ieo-dw-aos"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -82,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34R-rq-swP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="609" y="-91"/>
+            <point key="canvasLocation" x="539" y="573"/>
         </scene>
         <!--Friend Collection View Controller-->
         <scene sceneID="b9Q-Uh-Ccp">

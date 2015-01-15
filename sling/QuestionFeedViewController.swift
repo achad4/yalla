@@ -30,7 +30,16 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             let parent = segue.destinationViewController as MessagesViewController
             //parent.selectedConversationID = cell.convo.objectId as String!
             parent.convo = cell.convo
-            parent.isAnon = cell.convo.objectForKey("isAnon") as? Bool
+            parent.isAnon = cell.convo.isAnon
+            parent.newMessgae = false
+        }
+        if(segue.identifier == "new_message_segue"){
+            var convo : Conversation = Conversation(sender: PFUser.currentUser())
+            convo.save()
+            let parent = segue.destinationViewController as MessagesViewController
+            parent.convo = convo
+            parent.isAnon = convo.isAnon
+            parent.newMessgae = true
         }
         
     }
@@ -114,6 +123,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
         //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        let convoObject : Conversation = Conversation(convo: convo)
         //cell.questionText.text = " " as NSString
         /*
         if(message.objectForKey("text") != nil){
@@ -123,7 +133,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
         cell.timePosted.text = stringDate as NSString
-        cell.convo = convo
+        cell.convo = convoObject
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }

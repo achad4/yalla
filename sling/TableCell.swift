@@ -14,7 +14,8 @@ class TableCell: UITableViewCell{
     //@IBOutlet weak var score: UILabel!
     
     //@IBOutlet weak var questionText: UILabel!
-    var convo : PFObject = PFObject(className: "Conversation")
+    //var convo : PFObject = PFObject(className: "Conversation")
+    var convo : Conversation = Conversation(sender : PFUser.currentUser())
     
     @IBOutlet weak var timePosted: UILabel!
 
