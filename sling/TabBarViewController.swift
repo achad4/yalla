@@ -40,4 +40,22 @@ class TabBarViewController : UITabBarController {
         }
     }
     
+    @IBAction func onViewMessagesPressed(sender: UIButton)
+    {
+        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func onFeedViewPressed(sender: UIButton)
+    {
+        var storyboard = UIStoryboard(name: "Feed", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+
+
+    
 }

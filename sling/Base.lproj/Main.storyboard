@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKn-0l-ajB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IJu-D4-V9A">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -20,6 +20,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLG-Qx-dNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1179" y="-406"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="3uy-Sg-h3o">
+            <objects>
+                <viewController id="IJu-D4-V9A" customClass="TestViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oOZ-WV-5Nf"/>
+                        <viewControllerLayoutGuide type="bottom" id="wYu-cW-CQr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="etv-oL-bjm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCL-0Z-Gkh">
+                                <rect key="frame" x="162" y="92" width="70" height="30"/>
+                                <state key="normal" title="Messages">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onViewMessagesPressed:" destination="IJu-D4-V9A" eventType="touchUpInside" id="yPN-n1-gmf"/>
+                                    <outletCollection property="gestureRecognizers" destination="yRg-eh-8oV" appends="YES" id="Ea8-I2-thU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5g-hz-99M">
+                                <rect key="frame" x="162" y="39" width="35" height="30"/>
+                                <state key="normal" title="Feed">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onFeedViewPressed:" destination="IJu-D4-V9A" eventType="touchUpInside" id="jSr-gR-r2x"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="yRg-eh-8oV" appends="YES" id="RZU-Q4-kFn"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kH9-F4-0u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="yRg-eh-8oV"/>
+            </objects>
+            <point key="canvasLocation" x="-1795" y="-3641"/>
         </scene>
         <!--My Profile View Controller-->
         <scene sceneID="ag6-XC-ixm">
@@ -282,7 +326,6 @@
                         <segue destination="O16-Sm-TWe" kind="relationship" relationship="viewControllers" id="uoL-zG-66T"/>
                         <segue destination="Lcm-Cc-zbD" kind="relationship" relationship="viewControllers" id="IwU-IN-AN4"/>
                         <segue destination="faO-sP-0H8" kind="presentation" identifier="goto_login" id="TJB-3l-R5R"/>
-                        <segue destination="Lxt-hT-5GZ" kind="custom" identifier="Messages" customClass="MessagesSegue" id="RFW-K6-CVO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oz7-uq-nXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -301,17 +344,17 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Lxt-hT-5GZ" kind="custom" identifier="Message" customClass="MessagesSegue" id="kjC-qO-Fmr"/>
+                        <segue destination="Lxt-hT-5GZ" kind="custom" identifier="Messages" customClass="MessagesSegue" id="kjC-qO-Fmr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eao-oB-Hme" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1171" y="-1783"/>
         </scene>
-        <!--Messages View Controller-->
+        <!--Test View Controller-->
         <scene sceneID="2fy-sw-0dK">
             <objects>
-                <viewController id="Lxt-hT-5GZ" customClass="MessagesViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Lxt-hT-5GZ" customClass="TestViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DLv-oa-74l"/>
                         <viewControllerLayoutGuide type="bottom" id="AY2-Xd-iDD"/>
@@ -384,6 +427,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="TJB-3l-R5R"/>
-        <segue reference="kjC-qO-Fmr"/>
     </inferredMetricsTieBreakers>
 </document>

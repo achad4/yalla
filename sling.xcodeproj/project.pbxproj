@@ -65,6 +65,7 @@
 		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
 		817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEF01A622144008F5A39 /* Profile.storyboard */; };
 		817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C9C8A1A61B6BE005DF330 /* Messages.storyboard */; };
+		81D5ED051A663BF400D8D9FB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D5ED041A663BF400D8D9FB /* TestViewController.swift */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
@@ -212,6 +213,7 @@
 		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
 		817BCEF01A622144008F5A39 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		817C9C8A1A61B6BE005DF330 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
+		81D5ED041A663BF400D8D9FB /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				82B0A2341A5DA53A00887222 /* Users */,
 				82B0A2361A5DA6B000887222 /* Threads */,
 				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
+				81D5ED041A663BF400D8D9FB /* TestViewController.swift */,
 				A79D69061A60C1EE00E7BA94 /* TabBarViewController.swift */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
 				82703F5F19F0A77900EBEC4E /* Question.swift */,
@@ -776,6 +779,7 @@
 				815BF10D1A5E1C08003D2FCC /* JSQSystemSoundPlayer.m in Sources */,
 				82974ECB1A4F1BA200D2B9F7 /* MessageCell.swift in Sources */,
 				82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */,
+				81D5ED051A663BF400D8D9FB /* TestViewController.swift in Sources */,
 				815BF0F81A5E1BF9003D2FCC /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */,
 				815BF0EB1A5E1BF9003D2FCC /* NSString+JSQMessages.m in Sources */,

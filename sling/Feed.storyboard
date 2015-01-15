@@ -91,7 +91,7 @@
         <!--Friends-->
         <scene sceneID="Rws-XH-XIK">
             <objects>
-                <navigationController id="17j-ic-Ptn" customClass="SlingNavigationController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="InitialController" id="17j-ic-Ptn" customClass="SlingNavigationController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" id="RZG-NV-jLp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hqj-e6-YwF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

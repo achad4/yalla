@@ -22,5 +22,14 @@ class SlingNavigationController: UINavigationController {
     func postQuestion(){
         
     }
+    
+    @IBAction func onViewMessagesPressed(sender: UITabBarItem)
+    {
+        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+
    
 }
