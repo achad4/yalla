@@ -18,6 +18,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
     var batchMessages = true
     var thread : PFObject = PFObject(className: "Thread")
     var timeLineData : NSMutableArray = NSMutableArray()
+    var newThread : Bool?
     
     func loadData(order: Int){
         println("loading messages")
@@ -63,6 +64,25 @@ class ThreadDetailViewController : JSQMessagesViewController {
     func sendMessage(var text: String!, var sender: String!) {
         //println("sendMessage called")
         //let message = Message(text: text, sender: sender)
+        //var attributedString = NSMutableAttributedString(string:text)
+        
+        if(self.newThread == true){
+            var topic : String = ""
+            var words : NSArray = text.componentsSeparatedByString(" ")
+            for word in words{
+                 println(word)
+                if(word.hasPrefix("@")){
+                    topic = word as String
+                    self.title = word as? String
+                    var range = (text as NSString).rangeOfString(word as NSString)
+                    //var attributedString = NSMutableAttributedString(string:text)
+                    //attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: range)
+                }
+            }
+            self.thread["topic"] = topic
+            self.thread.saveInBackgroundWithTarget(nil, selector: nil)
+            self.newThread = false
+        }
         var reply:PFObject = PFObject(className: "Reply")
         reply["text"] = text
         reply["inThread"] = self.thread as PFObject
@@ -86,7 +106,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         //println("viewDidLoad called")
         super.viewDidLoad()
         self.title = self.thread.objectForKey("topic") as? String
-        if(PFUser.currentUser() != nil) {
+        if(PFUser.currentUser() != nil && (self.newThread != true)) {
             self.loadData(0)
         }
         inputToolbar.contentView.leftBarButtonItem = nil
