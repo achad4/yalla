@@ -13,6 +13,25 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     var filteredThreads : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
     
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    @IBAction func controlSelected(sender: UISegmentedControl) {
+        
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            self.loadData(0)
+            self.tableView.reloadData()
+        }
+        else if (segmentedControl.selectedSegmentIndex == 1) {
+            self.loadData(1)
+            self.tableView.reloadData()
+        }
+        else {
+            self.loadData(2)
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad(){
         isSearching = false
         super.viewDidLoad()

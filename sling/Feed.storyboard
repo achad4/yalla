@@ -90,9 +90,15 @@
                                 <segment title="Popular"/>
                                 <segment title="Following"/>
                             </segments>
+                            <connections>
+                                <action selector="controlSelected:" destination="gya-sS-Hvq" eventType="valueChanged" id="obn-vh-1aS"/>
+                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="MHi-U9-rAp" id="GxU-Nm-eFC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVt-JD-s2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
