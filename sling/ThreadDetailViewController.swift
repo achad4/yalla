@@ -65,7 +65,12 @@ class ThreadDetailViewController : JSQMessagesViewController {
         //println("sendMessage called")
         //let message = Message(text: text, sender: sender)
         //var attributedString = NSMutableAttributedString(string:text)
-        
+        var reply:PFObject = PFObject(className: "Reply")
+        reply["text"] = text
+        reply["inThread"] = self.thread as PFObject
+        reply["sender"] = PFUser.currentUser()
+        reply["score"] = 0
+        reply.ACL.setPublicWriteAccess(true)
         if(self.newThread == true){
             var topic : String = ""
             var words : NSArray = text.componentsSeparatedByString(" ")
@@ -79,21 +84,32 @@ class ThreadDetailViewController : JSQMessagesViewController {
                     //attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: range)
                 }
             }
-            self.thread["topic"] = topic
-            self.thread.saveInBackgroundWithTarget(nil, selector: nil)
-            self.newThread = false
+            if(topic == ""){
+                var alertView:UIAlertView = UIAlertView()
+                alertView.title = "Post Failed"
+                alertView.message = "Specify a topic with @<topic>"
+                alertView.delegate = self
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
+            }
+            else{
+                self.thread["topic"] = topic
+                self.thread.saveInBackgroundWithTarget(nil, selector: nil)
+                self.newThread = false
+                self.thread.save()
+                reply.saveInBackgroundWithTarget(nil, selector: nil)
+                self.replyObjectArray.addObject(reply)
+                self.appendMessage(text, sender: PFUser.currentUser())
+                self.loadData(0)
+            }
         }
-        var reply:PFObject = PFObject(className: "Reply")
-        reply["text"] = text
-        reply["inThread"] = self.thread as PFObject
-        reply["sender"] = PFUser.currentUser()
-        reply["score"] = 0
-        reply.ACL.setPublicWriteAccess(true)
-        self.thread.save()
-        reply.saveInBackgroundWithTarget(nil, selector: nil)
-        self.replyObjectArray.addObject(reply)
-        self.appendMessage(text, sender: PFUser.currentUser())
-        self.loadData(0)
+        else{
+            self.thread.save()
+            reply.saveInBackgroundWithTarget(nil, selector: nil)
+            self.replyObjectArray.addObject(reply)
+            self.appendMessage(text, sender: PFUser.currentUser())
+            self.loadData(0)
+        }
     }
     
     func appendMessage(text: String!, sender: PFUser!) {
