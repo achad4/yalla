@@ -51,7 +51,7 @@ class SignupViewController : UIViewController {
     
                     // Signup succeeded
                     NSLog("sign up success")
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                 } else {
                     var alertView:UIAlertView = UIAlertView()
                     alertView.title = "Sign up Failed!"

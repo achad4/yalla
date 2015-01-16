@@ -68,6 +68,7 @@
 		81D5ED051A663BF400D8D9FB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D5ED041A663BF400D8D9FB /* TestViewController.swift */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
+		8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217D6551A69750B00C94E90 /* SWRevealViewController.m */; };
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
 		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
 		825DBC3F1A5F825F00C8B07C /* ThreadAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */; };
@@ -216,6 +217,8 @@
 		81D5ED041A663BF400D8D9FB /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
+		8217D6541A69750B00C94E90 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		8217D6551A69750B00C94E90 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
 		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadAvatarImageView.swift; sourceTree = "<group>"; };
@@ -524,6 +527,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8217D6531A69750A00C94E90 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8217D6541A69750B00C94E90 /* SWRevealViewController.h */,
+				8217D6551A69750B00C94E90 /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		82703F3119F0A3E600EBEC4E = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +558,7 @@
 		82703F3C19F0A3E600EBEC4E /* sling */ = {
 			isa = PBXGroup;
 			children = (
+				8217D6531A69750A00C94E90 /* SWRevealViewController */,
 				8172FD941A64C90B00B1BD29 /* Storyboards */,
 				8172FD951A64C92F00B1BD29 /* Segues */,
 				82B0A2331A5DA4D300887222 /* Messaging */,
@@ -824,6 +837,7 @@
 				A7FD59CC1A4AC8680074D2AF /* Message.swift in Sources */,
 				815BF0F41A5E1BF9003D2FCC /* JSQMessagesTimestampFormatter.m in Sources */,
 				815BF0EF1A5E1BF9003D2FCC /* JSQMessagesKeyboardController.m in Sources */,
+				8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */,
 				815BF0F61A5E1BF9003D2FCC /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				815BF0F91A5E1BF9003D2FCC /* JSQMessage.m in Sources */,
 				825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */,

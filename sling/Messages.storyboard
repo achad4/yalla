@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="skd-dj-yy3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5nQ-Mx-URT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -51,6 +51,28 @@
             </objects>
             <point key="canvasLocation" x="1180" y="-1685"/>
         </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="vxL-7k-ic3">
+            <objects>
+                <viewController storyboardIdentifier="InitialView" id="5nQ-Mx-URT" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xTM-MO-WA5"/>
+                        <viewControllerLayoutGuide type="bottom" id="DGa-dy-zNx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lOa-hp-Mol">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="Axv-gH-oOI" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="2gJ-Ca-cbA"/>
+                        <segue destination="skd-dj-yy3" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="kxS-kk-ck9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2fV-TV-Req" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-936" y="-2529"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="PrJ-lS-qeh">
             <objects>
@@ -66,6 +88,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSI-OR-iyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-924" y="-1685"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="q3m-3r-La0">
+            <objects>
+                <tableViewController id="Axv-gH-oOI" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="flS-RZ-WNV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rXo-M6-uWE">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rXo-M6-uWE" id="BOV-3f-HQh">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Axv-gH-oOI" id="AOj-zR-RGS"/>
+                            <outlet property="delegate" destination="Axv-gH-oOI" id="K32-nk-hhm"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oav-oZ-wSW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-200" y="-2391"/>
         </scene>
         <!--Question Feed Table View-->
         <scene sceneID="e7D-FF-eho">
@@ -109,14 +157,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="LtE-uY-e0r">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="1Zl-SU-Gt3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sfO-Dd-HC1">
-                                <rect key="frame" x="16" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="90Y-2Y-NH4">
+                            <connections>
+                                <action selector="showMenu:" destination="HrU-1U-4yP" id="YBf-ow-UYD"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Ki5-Iu-if7">
                             <connections>

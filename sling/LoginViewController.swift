@@ -34,7 +34,8 @@ class LoginViewController : UIViewController {
                 if user != nil {
                     // Successful login.
                     NSLog("Login successfull")
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    //self.dismissViewControllerAnimated(true, completion: nil)
+                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                 } else {
                     // The login failed.
                     NSLog("Login failed")

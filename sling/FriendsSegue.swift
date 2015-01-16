@@ -32,7 +32,12 @@ class FriendsSegue: UIStoryboardSegue {
         var sourceViewController      = self.sourceViewController as UIViewController
         //var destinationViewController = self.destinationViewController as UIViewController
         var destinationViewController = self.sceneNamed(self.identifier!)
-        sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
-        //sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+        if(self.identifier == "FriendsView@Friends"){
+            sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
+        }
+        else{
+            sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+        }
+        
     }
 }

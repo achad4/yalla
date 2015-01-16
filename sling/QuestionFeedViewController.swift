@@ -11,18 +11,20 @@ import UIKit
 import CoreData
 
 //TODO: Should probably rename this class to QuestionFeedTableViewController
-
-
 protocol QuestionFeedTableViewControllerDelegate{
     func myVCDidFinish(controller:QuestionFeedTableView,text:String)
 }
 
 class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITableViewDataSource{
-    //var managedContext : NSManagedObjectContext = NSManagedObjectContext()
     var timeLineData : NSMutableArray = NSMutableArray()
     var delegate:QuestionFeedTableViewControllerDelegate? = nil
     var convoID:String = "aaa"
+    
 
+    @IBAction func showMenu(sender: AnyObject) {
+        revealViewController().revealToggle(sender)
+    }
+    
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         if(segue.identifier == "to_message_view"){
             let indexPath = tableView.indexPathForSelectedRow()
@@ -44,7 +46,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         
     }
     override func viewDidAppear(animated: Bool) {
-        
         if(PFUser.currentUser() != nil){
             self.loadData(1)
         }
@@ -56,11 +57,14 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.tableView.registerClass(TableCell.self, forCellReuseIdentifier: "Cell");
-        
+        println("viewloaded")
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
+        if(PFUser.currentUser() != nil){
+            self.loadData(0)
+        }
+        
     }
     
     @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
@@ -76,6 +80,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         return 1
     }
     func loadData(order: Int){
+        println("loading")
         self.timeLineData.removeAllObjects()
         //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
        
@@ -85,10 +90,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         if(order == 0){
             findTimeLineData.orderByDescending("createdAt")
         }
-    
-        //else if(order == 1){
-        //    findTimeLineData.orderByDescending("score")
-        //}
         var currentUser = PFUser.currentUser();
         findTimeLineData.whereKey("participant", equalTo: currentUser)
         
@@ -96,6 +97,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
                 for object in objects{
+                    println("loading")
                     let pdf = object as PFObject
                     self.timeLineData.addObject(pdf)
                 }
@@ -105,13 +107,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 self.tableView.reloadData()
             }
         }
-        
-        
-        
+     
     }
-    func sortByScore(){
-        
-    }
+
     @IBAction func postQuestion(sender: AnyObject) {
         
     }

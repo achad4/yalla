@@ -56,7 +56,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
         
         var storyboard = UIStoryboard(name: "Messages", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialView") as UIViewController
         
         self.presentViewController(controller, animated: true, completion: nil)
     }
