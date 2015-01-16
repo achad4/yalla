@@ -193,7 +193,7 @@
         <!--Login View Controller-->
         <scene sceneID="Uz8-Kt-Djn">
             <objects>
-                <viewController id="faO-sP-0H8" customClass="LoginViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="faO-sP-0H8" customClass="LoginViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m9s-1P-yI7"/>
                         <viewControllerLayoutGuide type="bottom" id="3BI-zM-jEx"/>
@@ -449,7 +449,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="RQD-SW-Fhn"/>
         <segue reference="TJB-3l-R5R"/>
-        <segue reference="dBR-JM-bY3"/>
     </inferredMetricsTieBreakers>
 </document>

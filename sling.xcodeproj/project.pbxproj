@@ -68,6 +68,7 @@
 		81D5ED051A663BF400D8D9FB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D5ED041A663BF400D8D9FB /* TestViewController.swift */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
+		821416031A69AE95002A36E1 /* SidPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821416021A69AE95002A36E1 /* SidPanelViewController.swift */; };
 		8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217D6551A69750B00C94E90 /* SWRevealViewController.m */; };
 		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
 		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
@@ -217,6 +218,7 @@
 		81D5ED041A663BF400D8D9FB /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
+		821416021A69AE95002A36E1 /* SidPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidPanelViewController.swift; sourceTree = "<group>"; };
 		8217D6541A69750B00C94E90 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		8217D6551A69750B00C94E90 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 		82B0A2331A5DA4D300887222 /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
+				821416021A69AE95002A36E1 /* SidPanelViewController.swift */,
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
 				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
 				82B0A22F1A5C7D0000887222 /* Discussion.swift */,
@@ -848,6 +851,7 @@
 				815BF0F71A5E1BF9003D2FCC /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,
 				815BF1011A5E1BF9003D2FCC /* JSQMessagesInputToolbar.m in Sources */,
+				821416031A69AE95002A36E1 /* SidPanelViewController.swift in Sources */,
 				82F7E0EB1A5B35D100901922 /* Thread.swift in Sources */,
 				815BF0FB1A5E1BF9003D2FCC /* JSQMessagesCollectionViewCell.m in Sources */,
 			);
