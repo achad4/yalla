@@ -137,13 +137,8 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="bQg-KZ-Y2G">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="s5Y-QB-09w">
-                            <connections>
-                                <action selector="send:" destination="phR-WZ-GfF" id="osi-W7-jeu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="bQg-KZ-Y2G"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="S7W-Wq-YXD" id="y8o-hO-tpr"/>

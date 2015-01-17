@@ -33,7 +33,10 @@ class FriendsSegue: UIStoryboardSegue {
         //var destinationViewController = self.destinationViewController as UIViewController
         var destinationViewController = self.sceneNamed(self.identifier!)
         if(self.identifier == "FriendsView@Friends"){
-            println("segue to profile")
+            var sourceViewController      = self.sourceViewController as MessagesViewController
+            var destinationViewController = self.sceneNamed(self.identifier!) as FriendParentViewController
+            sourceViewController.addedParticipants = true
+            destinationViewController.convo = sourceViewController.convo
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
         }
         else{

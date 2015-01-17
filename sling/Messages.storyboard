@@ -214,6 +214,12 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lji-HE-ArX">
+                                            <rect key="frame" x="106" y="52" width="494" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="TQ2-NR-tWN" secondAttribute="bottom" constant="-3" id="CZB-SH-PuA"/>
@@ -222,6 +228,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="timePosted" destination="TQ2-NR-tWN" id="tVK-eN-MNc"/>
+                                    <outlet property="userNames" destination="Lji-HE-ArX" id="dXC-TL-ZJY"/>
                                     <segue destination="0mU-NT-DU7" kind="show" identifier="to_message_view" id="lU4-OX-zcq"/>
                                 </connections>
                             </tableViewCell>

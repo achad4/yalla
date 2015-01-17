@@ -62,17 +62,17 @@ class ThreadDetailViewController : JSQMessagesViewController {
     }
     
     func sendMessage(var text: String!, var sender: String!) {
-        //println("sendMessage called")
-        //let message = Message(text: text, sender: sender)
-        //var attributedString = NSMutableAttributedString(string:text)
-        var reply:PFObject = PFObject(className: "Reply")
-        reply["text"] = text
-        reply["inThread"] = self.thread as PFObject
-        reply["sender"] = PFUser.currentUser()
-        reply["score"] = 0
-        reply.ACL.setPublicWriteAccess(true)
+        //This is a new thread-- create a new thread with a new topic
         if(self.newThread == true){
+            var reply:PFObject = PFObject(className: "Reply")
+            reply["text"] = text
+            reply["sender"] = PFUser.currentUser()
+            reply["score"] = 0
+            reply.ACL.setPublicWriteAccess(true)
             var topic : String = ""
+            var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
+            self.thread = thread.thread
+            reply["inThread"] = self.thread as PFObject
             var words : NSArray = text.componentsSeparatedByString(" ")
             for word in words{
                  println(word)
@@ -94,16 +94,23 @@ class ThreadDetailViewController : JSQMessagesViewController {
             }
             else{
                 self.thread["topic"] = topic
-                self.thread.saveInBackgroundWithTarget(nil, selector: nil)
+                //self.thread.saveInBackgroundWithTarget(nil, selector: nil)
                 self.newThread = false
-                self.thread.save()
                 reply.saveInBackgroundWithTarget(nil, selector: nil)
+                self.thread.save()
                 self.replyObjectArray.addObject(reply)
                 self.appendMessage(text, sender: PFUser.currentUser())
                 self.loadData(0)
             }
         }
+        //This is an existing thread-- create a new reply
         else{
+            var reply:PFObject = PFObject(className: "Reply")
+            reply["text"] = text
+            reply["inThread"] = self.thread as PFObject
+            reply["sender"] = PFUser.currentUser()
+            reply["score"] = 0
+            reply.ACL.setPublicWriteAccess(true)
             self.thread.save()
             reply.saveInBackgroundWithTarget(nil, selector: nil)
             self.replyObjectArray.addObject(reply)

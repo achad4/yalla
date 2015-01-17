@@ -37,12 +37,14 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             parent.newMessgae = false
         }
         if(segue.identifier == "new_message_segue"){
-            var convo : Conversation = Conversation(sender: PFUser.currentUser())
-            convo.save()
+            //var convo : Conversation = Conversation(sender: PFUser.currentUser())
+            //convo.save()
             let parent = segue.destinationViewController as MessagesViewController
-            parent.convo = convo
-            parent.isAnon = convo.isAnon
+            //parent.convo = convo
+            //parent.isAnon = convo.isAnon
+            parent.isAnon = true
             parent.newMessgae = true
+            parent.addedParticipants = false
         }
         
     }
@@ -58,7 +60,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("viewloaded")
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
@@ -146,6 +147,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         */
         let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
+        let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
+        let userString : String = user.username
+        cell.userNames.text = userString
         cell.timePosted.text = stringDate as NSString
         cell.convo = convoObject
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator

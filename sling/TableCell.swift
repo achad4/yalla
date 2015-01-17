@@ -17,6 +17,8 @@ class TableCell: UITableViewCell{
     //var convo : PFObject = PFObject(className: "Conversation")
     var convo : Conversation = Conversation(sender : PFUser.currentUser())
     
+    @IBOutlet weak var userNames: UILabel!
+    
     @IBOutlet weak var timePosted: UILabel!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?){

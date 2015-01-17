@@ -17,25 +17,20 @@ class MessagesViewController : JSQMessagesViewController {
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
     var batchMessages = true
     //var convo : PFObject = PFObject(className: "Conversation")
-    var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    //var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var convo : Conversation!
     var avatarImages = Dictionary<String, UIImage>()
     var isAnon : Bool?
     var newMessgae : Bool?
+    var addedParticipants : Bool?
     
-    
-    @IBAction func addUsers(sender: AnyObject) {
-        var storyboard = UIStoryboard(name: "Friends", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("FriendsView") as FriendParentViewController
-        controller.messageText = ""
-        println("segue")
-        controller.convo = self.convo
-        self.presentViewController(controller, animated: true, completion: nil)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "FriendsView@Friends"){
+            var convo : Conversation = Conversation(sender: PFUser.currentUser())
+            self.convo = convo
+            self.convo.save()
+        }
     }
-    
-    
-    
-    
-    
     
     func loadData(order: Int){
         println("loading messages")
@@ -89,31 +84,54 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     func sendMessage(var text: String!, var sender: String!) {
-        if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
-            self.isAnon = false
-            //self.convo["isAnon"] = false as NSNumber
-            self.convo.isAnon = false
+        //user is starting new conversation-- create conversation
+        if(self.newMessgae != false){
+            if(self.addedParticipants == true){
+                println("participants added")
+                //var convo : Conversation = Conversation(sender: PFUser.currentUser())
+                //self.convo = convo
+                var message:PFObject = PFObject(className: "Message")
+                message["text"] = text
+                var sentToRelation = message.relationForKey("sentTo")
+                message["inConvo"] = self.convo.convo as PFObject
+                message["sender"] = PFUser.currentUser()
+                message.saveInBackgroundWithTarget(nil, selector: nil)
+                self.appendMessage(text, sender: PFUser.currentUser())
+                self.convo.save()
+                self.loadData(0)
+            }
+            else{
+                var alertView:UIAlertView = UIAlertView()
+                alertView.title = "Post Failed"
+                alertView.message = "Send this message to at least one user!"
+                alertView.delegate = self
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
+            }
         }
-        println(sender)
-        var message:PFObject = PFObject(className: "Message")
-        message["text"] = text
-        var query1 = PFUser.query();
-        var query2 = PFUser.query();
-        var sentToRelation = message.relationForKey("sentTo")
-        message["inConvo"] = self.convo.convo as PFObject
-        message["sender"] = PFUser.currentUser()
-        self.convo.save()
-        //self.convo.convo.saveInBackgroundWithTarget(nil, selector: nil)
-        message.saveInBackgroundWithTarget(nil, selector: nil)
-        self.appendMessage(text, sender: PFUser.currentUser())
+        //conversation exists-- let user send new message
+        else{
+            println("loading convo")
+            if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
+                self.isAnon = false
+                self.convo.isAnon = false
+            }
+            var message:PFObject = PFObject(className: "Message")
+            message["text"] = text
+            var sentToRelation = message.relationForKey("sentTo")
+            message["inConvo"] = self.convo.convo as PFObject
+            message["sender"] = PFUser.currentUser()
+            self.convo.save()
+            message.saveInBackgroundWithTarget(nil, selector: nil)
+            self.appendMessage(text, sender: PFUser.currentUser())
+            self.loadData(0)
+        }
+        
         let testmessage: NSString = text as NSString
         
         var data = [ "title": "Some Title",
             "alert": testmessage]
-        /*
-        var userQuery: PFQuery = PFUser.query()
-        userQuery.whereKey("objectId", equalTo: recipientObjectId)
-        */
+        
         var query: PFQuery = PFInstallation.query()
         query.whereKey("currentUser", equalTo: PFUser.currentUser())
         
@@ -121,7 +139,7 @@ class MessagesViewController : JSQMessagesViewController {
         push.setQuery(query)
         push.setData(data)
         push.sendPushInBackground()
-        self.loadData(0)
+       
     }
     
     func appendMessage(text: String!, sender: PFUser!) {
