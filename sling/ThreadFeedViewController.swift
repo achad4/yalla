@@ -87,168 +87,17 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
-        var upVote = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Upvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        
+        let currentCell = tableView.cellForRowAtIndexPath(indexPath) as ThreadCell!;
+
+        var follow = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: currentCell.followMessage.text, handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
             let thread : PFObject = cell.thread
             
-            // Perform a query for threads current user has downvoted
-            var hasDownvoted = false
-            var downvoteQuery:PFQuery = PFQuery(className: "Thread")
             
-            downvoteQuery.whereKey("downvoted", equalTo: PFUser.currentUser())
-            downvoteQuery.findObjectsInBackgroundWithBlock{
-                (objects:[AnyObject]!, error:NSError!)->Void in
-                if !(error != nil){
-                    for object in objects{
-                        if(object.objectId == thread.objectId) {
-                            hasDownvoted = true
-                        }
-                    }
-                }
-            }
-            
-            // If user has downvoted, allow them to change to an upvote (net +2 points)
-            var downvoteRelation : PFRelation = thread.relationForKey("downvoted")
-            var upvoteRelation : PFRelation = thread.relationForKey("upvoted")
-            if(hasDownvoted == true) {
-                println("changing vote from downvote to upvote" )
-                downvoteRelation.removeObject(PFUser.currentUser())
-                upvoteRelation.addObject(PFUser.currentUser())
-                var score : Int = thread["score"] as Int
-                thread["score"] = score + 2
-                thread.saveInBackgroundWithTarget(nil, selector: nil)
-                println(score+2)
-            }
-            
-            // User has not downvoted, so check if they have upvoted
-            else {
-                
-                var upvoteQuery:PFQuery = PFQuery(className: "Thread")
-                upvoteQuery.whereKey("upvoted", equalTo: PFUser.currentUser())
-                upvoteQuery.findObjectsInBackgroundWithBlock{
-                    (objects:[AnyObject]!, error:NSError!)->Void in
-                    if !(error != nil){
-                        var hasUpvoted = false
-                        for object in objects{
-                            if(object.objectId == thread.objectId) {
-                                hasUpvoted = true
-                            }
-                        }
-                        // Allow user to upvote for the first time
-                        if(hasUpvoted == false) {
-                            println("upvoting for the first time" )
-                            var upvoteRelation : PFRelation = thread.relationForKey("upvoted")
-                            upvoteRelation.addObject(PFUser.currentUser())
-                            var score2 : Int = thread["score"] as Int
-                            thread["score"] = score2 + 1
-                            thread.saveInBackgroundWithTarget(nil, selector: nil)
-                            println(score2+1)
-                        // Alert user that they have already upvoted
-                        } else {
-                            var alertView:UIAlertView = UIAlertView()
-                            alertView.title = "Voting failed!"
-                            alertView.message = "You have already upvoted this thread"
-                            alertView.delegate = self
-                            alertView.addButtonWithTitle("OK")
-                            alertView.show()
-                        
-                        }
-                    }
-                
-                }
-            }
-           
-            /*
-            let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
-            
-            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            shareMenu.addAction(twitterAction)
-            shareMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(shareMenu, animated: true, completion: nil)
-            */
-        })
-        
-        var downVote = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Downvote" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
-            let thread : PFObject = cell.thread
-            
-            // Perform a query for threads current user has upvoted
-            var hasUpvoted = false
-            var upvoteQuery:PFQuery = PFQuery(className: "Thread")
-            upvoteQuery.whereKey("upvoted", equalTo: PFUser.currentUser())
-            upvoteQuery.findObjectsInBackgroundWithBlock{
-                (objects:[AnyObject]!, error:NSError!)->Void in
-                if !(error != nil){
-                    for object in objects{
-                        if(object.objectId == thread.objectId) {
-                            hasUpvoted = true
-                            println("UPVOTE")
-                        }
-                    }
-                }
-            }
-            
-            // If user has upvoted, allow them to change to a downvote (net -2 points)
-            var upvoteRelation : PFRelation = thread.relationForKey("upvoted")
-            var downvoteRelation : PFRelation = thread.relationForKey("downvoted")
-            if(hasUpvoted == true) {
-                println("changing vote from up to down")
-                upvoteRelation.removeObject(PFUser.currentUser())
-                downvoteRelation.addObject(PFUser.currentUser())
-                var score : Int = thread["score"] as Int
-                score = score - 2
-                thread["score"] = score
-                println(score-2)
-                thread.saveInBackgroundWithTarget(nil, selector: nil)
-            }
-                
-            // User has not upvoted, so check if they have downvoted
-            else {
-                println("else")
-                var downvoteQuery:PFQuery = PFQuery(className: "Thread")
-                downvoteQuery.whereKey("downvoted", equalTo: PFUser.currentUser())
-                downvoteQuery.findObjectsInBackgroundWithBlock{
-                    (objects:[AnyObject]!, error:NSError!)->Void in
-                    if !(error != nil){
-                        var hasDownvoted = false
-                        for object in objects{
-                            if(object.objectId == thread.objectId) {
-                                hasDownvoted = true
-                            }
-                        }
-                        // Allow user to downvote for the first time
-                        if(hasDownvoted == false) {
-                            println("First time downvote")
-                            var downvoteRelation : PFRelation = thread.relationForKey("downvoted")
-                            downvoteRelation.addObject(PFUser.currentUser())
-                            var score : Int = thread["score"] as Int
-                            score = score + 1
-                            thread["score"] = score
-                            println(score+1)
-                            thread.saveInBackgroundWithTarget(nil, selector: nil)
-                            
-                            // Alert user that they have already downvoted
-                        } else {
-                            var alertView:UIAlertView = UIAlertView()
-                            alertView.title = "Voting failed!"
-                            alertView.message = "You have already downvoted this thread"
-                            alertView.delegate = self
-                            alertView.addButtonWithTitle("OK")
-                            alertView.show()
-                            
-                        }
-                    }
-                    
-                }
-            }
-        
         
         })
-        return [upVote, downVote]
+        return [follow]
     }
     
     
@@ -308,6 +157,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ThreadCell
+        cell.follow()
         var thread:PFObject = self.threads.objectAtIndex(indexPath.row) as PFObject
         if(isSearching == true){
             thread = self.filteredThreads.objectAtIndex(indexPath.row) as PFObject
@@ -317,7 +167,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.date.text = stringDate as NSString
         cell.thread = thread
-        println(thread.objectId)
+        println(thread.objectId) /*
         var query:PFQuery = PFQuery(className: "Thread")
         var threadsFollowing : NSMutableArray = NSMutableArray()
         query.whereKey("follower", equalTo: PFUser.currentUser())
@@ -336,14 +186,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                     */
                     
                 }
-                if(isFollowing == true) {
-                    cell.follow.setTitle("Unfollow", forState: UIControlState.Normal)
-                }
-                else {
-                    cell.follow.setTitle("Follow", forState: UIControlState.Normal)
-                }
             }
-        }
+        } */
 
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell

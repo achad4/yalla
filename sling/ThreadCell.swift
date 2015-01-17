@@ -9,11 +9,15 @@
 import Foundation
 class ThreadCell : UITableViewCell{
     var thread : PFObject = PFObject(className: "Thread")
+    var isFollowing : Bool = false
     
-    @IBOutlet weak var follow: UIButton!
+
+    @IBOutlet weak var followMessage: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var topic: UILabel!
-    @IBAction func follow(sender: AnyObject) {
+    
+    
+    func follow() {
         var query:PFQuery = PFQuery(className: "Thread")
         var threadsFollowing : NSMutableArray = NSMutableArray()
         query.whereKey("follower", equalTo: PFUser.currentUser())
@@ -22,26 +26,26 @@ class ThreadCell : UITableViewCell{
         query.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
-                var isFollower = false
+                self.isFollowing = false
                 for object in objects{
                     if(object.objectId == self.thread.objectId) {
-                        isFollower = true
+                        self.isFollowing = true
                     }
                 }
                 var followRelation : PFRelation = self.thread.relationForKey("follower")
-                if(isFollower == false) {
-                    self.follow.setTitle("Unfollow", forState: UIControlState.Normal)
+                if(self.isFollowing == false) {
+                    self.followMessage.text = "Follow"
                     followRelation.addObject(PFUser.currentUser())
                     self.thread.saveInBackgroundWithTarget(nil, selector: nil)
                 } else {
-                    self.follow.setTitle("Follow", forState: UIControlState.Normal)
+                    self.followMessage.text = "Unfollow"
                     followRelation.removeObject(PFUser.currentUser())
                     self.thread.saveInBackgroundWithTarget(nil, selector: nil)
-
+                    
                 }
             }
-
+            
         }
-      
+
     }
 }

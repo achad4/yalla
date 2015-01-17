@@ -44,15 +44,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zhq-Lt-7ju" id="lcE-fJ-390">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRd-Xf-Sno">
-                                            <rect key="frame" x="8" y="37" width="140" height="30"/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="follow:" destination="Zhq-Lt-7ju" eventType="touchUpInside" id="qqp-h9-Bcq"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Topic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-J1-wcY">
                                             <rect key="frame" x="189" y="41" width="266" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -65,11 +56,17 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OA-zV-CBK">
+                                            <rect key="frame" x="163" y="12" width="203" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.74834280303030298" green="0.080008507196433223" blue="0.041465365950820177" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="date" destination="Sm0-GV-KFo" id="mxe-St-ruc"/>
-                                    <outlet property="follow" destination="MRd-Xf-Sno" id="j8b-kg-3dD"/>
+                                    <outlet property="followMessage" destination="3OA-zV-CBK" id="5wc-Uw-gzi"/>
                                     <outlet property="topic" destination="9f3-J1-wcY" id="ptg-6q-PMx"/>
                                     <segue destination="UpY-PS-y3m" kind="show" identifier="to_thread_detail" id="EvQ-Gt-Okr"/>
                                 </connections>
