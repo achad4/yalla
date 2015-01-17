@@ -84,7 +84,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
                     //attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: range)
                 }
             }
-            if(topic == ""){
+            if(topic == "" || topic == "@"){
                 var alertView:UIAlertView = UIAlertView()
                 alertView.title = "Post Failed"
                 alertView.message = "Specify a topic with @<topic>"
