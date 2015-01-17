@@ -149,7 +149,13 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
         //if(convo[])
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
-        let userString : String = user.username
+        var userString : String = ""
+        if(convo.objectForKey("isAnon") as? Bool == false){
+            userString = user.username
+        }
+        else{
+            userString = "Anonymous"
+        }
         cell.userNames.text = userString
         cell.timePosted.text = stringDate as NSString
         cell.convo = convoObject
