@@ -33,7 +33,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             let parent = segue.destinationViewController as MessagesViewController
             //parent.selectedConversationID = cell.convo.objectId as String!
             parent.convo = cell.convo
-            parent.isAnon = cell.convo.isAnon
+            parent.isAnon = cell.convo.convo.objectForKey("isAnon") as? Bool
             parent.newMessgae = false
         }
         if(segue.identifier == "new_message_segue"){
@@ -147,6 +147,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         */
         let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
+        //if(convo[])
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
         let userString : String = user.username
         cell.userNames.text = userString
