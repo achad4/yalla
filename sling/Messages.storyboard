@@ -97,6 +97,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Q4n-fX-RO7">
+                            <rect key="frame" x="0.0" y="349" width="600" height="263"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAN-3N-2Vk">
+                                    <rect key="frame" x="0.0" y="120" width="135" height="135"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5k-HH-NGM">
+                                    <rect key="frame" x="142" y="80" width="240" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" rowHeight="109" id="rXo-M6-uWE">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -146,12 +162,15 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="userNameLabel" destination="T5k-HH-NGM" id="Ehj-Q9-3F4"/>
+                        <outlet property="userPic" destination="PAN-3N-2Vk" id="323-7w-4FF"/>
                         <segue destination="qX7-cO-ncY" kind="custom" identifier="LoginView@Main" customClass="FriendsSegue" id="ldm-no-N9G"/>
+                        <segue destination="qX7-cO-ncY" kind="custom" identifier="ProfileView@Profile" customClass="FriendsSegue" id="QdS-CH-8ca"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oav-oZ-wSW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-212" y="-2477"/>
+            <point key="canvasLocation" x="-236" y="-2514"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aIB-hu-ywN">
@@ -235,6 +254,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="QdS-CH-8ca"/>
         <segue reference="ByA-pt-yLD"/>
     </inferredMetricsTieBreakers>
 </document>

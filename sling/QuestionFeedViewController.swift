@@ -19,6 +19,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     var timeLineData : NSMutableArray = NSMutableArray()
     var delegate:QuestionFeedTableViewControllerDelegate? = nil
     var convoID:String = "aaa"
+    var sideMenuOpen : Bool = false
     
 
     @IBAction func showMenu(sender: AnyObject) {
@@ -61,18 +62,35 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
+        let recognizer2: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeRight:")
+        recognizer2.direction = .Right
+        self.view .addGestureRecognizer(recognizer2)
         if(PFUser.currentUser() != nil){
             self.loadData(0)
         }
         
     }
+    @IBAction func swipeRight(recognizer2 : UISwipeGestureRecognizer) {
+        println("swiped right")
+        revealViewController().revealToggle(self)
+        self.sideMenuOpen = true
+    }
+    
     
     @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
+        println("swiped left")
+        if(self.sideMenuOpen){
+             revealViewController().revealToggle(self)
+            self.sideMenuOpen = false
+        }
+        else{
+            var storyboard = UIStoryboard(name: "Feed", bundle: nil)
+            //var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+            var controller = storyboard.instantiateViewControllerWithIdentifier("FeedView") as UIViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+            //self.presentViewController(controller, animated: true, completion: nil)
+        }
         
-        var storyboard = UIStoryboard(name: "Feed", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
-        
-        self.presentViewController(controller, animated: true, completion: nil)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
@@ -80,7 +98,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         return 1
     }
     func loadData(order: Int){
-        println("loading")
         self.timeLineData.removeAllObjects()
         //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
        
@@ -97,7 +114,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
                 for object in objects{
-                    println("loading")
                     let pdf = object as PFObject
                     self.timeLineData.addObject(pdf)
                 }

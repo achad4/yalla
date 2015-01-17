@@ -35,7 +35,20 @@ class LoginViewController : UIViewController {
                     // Successful login.
                     NSLog("Login successfull")
                     //self.dismissViewControllerAnimated(true, completion: nil)
-                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+                    //if(PFFacebookUtils.isLinkedWithUser(user)){
+                        self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+                    //}
+                    //else{
+                    /*
+                        NSLog("Login failed")
+                        var alertView:UIAlertView = UIAlertView()
+                        alertView.title = "Sign in Failed!"
+                        alertView.message = "Almost there! Link your account with Facebook to start using yalla"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                    */
+                    //}
                 } else {
                     // The login failed.
                     NSLog("Login failed")
@@ -52,6 +65,24 @@ class LoginViewController : UIViewController {
     
     }
     
+    @IBAction func linkFacebook(sender: AnyObject) {
+        var user = PFUser.currentUser()
+        if !PFFacebookUtils.isLinkedWithUser(user) {
+            PFFacebookUtils.linkUser(user, permissions:nil, {
+                (succeeded: Bool, error: NSError!) -> Void in
+                if (succeeded) {
+                    NSLog("user logged in with Facebook!")
+                }
+            })
+        } else {
+            var alertView:UIAlertView = UIAlertView()
+            alertView.title = "Failed to Link Facebook!"
+            alertView.message = "Your account is already linked"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

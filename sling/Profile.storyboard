@@ -7,7 +7,7 @@
         <!--Profile-->
         <scene sceneID="os7-S5-FyA">
             <objects>
-                <navigationController id="O16-Sm-TWe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="InitialView" id="O16-Sm-TWe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="g5i-1k-PXx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c3U-dD-Xje">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -24,7 +24,7 @@
         <!--My Profile View Controller-->
         <scene sceneID="ag6-XC-ixm">
             <objects>
-                <viewController id="oz1-8d-UcR" customClass="MyProfileViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileView" id="oz1-8d-UcR" customClass="MyProfileViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pKr-VG-WrE"/>
                         <viewControllerLayoutGuide type="bottom" id="YRN-B9-gWv"/>

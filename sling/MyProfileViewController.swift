@@ -20,37 +20,40 @@ class MyProfileViewController : UIViewController {
     }
     
     func populateFacebookProfile(user: PFUser) {
-        
-        FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-            if (result? != nil) {
-                NSLog("error = \(error)")
-                var resultdict = result as? NSDictionary
-                
-                // Populate profile page with user's Facebook name
-                if let name = resultdict?["name"] as? String {
-                    self.usernameLabel.text = name
-                }
-                
-                // Populate profile page image view with user's FB profile pic
-                if let picture = resultdict?["picture"] as? NSDictionary {
-                    if let data = picture["data"] as? NSDictionary {
-                        if let photoURL = data["url"] as? String {
-                            let url = NSURL(string: photoURL)
-                            if let imageData = NSData(contentsOfURL: url!) {
-                                self.userPhoto.image = UIImage(data: imageData)
+        if PFFacebookUtils.isLinkedWithUser(user) {
+            FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
+                if (result? != nil) {
+                    NSLog("error = \(error)")
+                    var resultdict = result as? NSDictionary
+                    
+                    // Populate profile page with user's Facebook name
+                    if let name = resultdict?["name"] as? String {
+                        self.usernameLabel.text = name
+                        user["realName"] = name
+                        user.saveInBackground()
+                    }
+                    
+                    // Populate profile page image view with user's FB profile pic
+                    if let picture = resultdict?["picture"] as? NSDictionary {
+                        if let data = picture["data"] as? NSDictionary {
+                            if let photoURL = data["url"] as? String {
+                                let url = NSURL(string: photoURL)
+                                if let imageData = NSData(contentsOfURL: url!) {
+                                    self.userPhoto.image = UIImage(data: imageData)
+                                    var userPicFile : PFFile = PFFile(data: imageData)
+                                    user["picture"] = userPicFile
+                                    user.saveInBackground()
+                                }
                             }
                         }
                     }
+                } else {
+                    self.usernameLabel.text = user.username
                 }
-                
-                println(result)
-            } else {
-                self.usernameLabel.text = user.username
-            }
-        } as FBRequestHandler)
+                } as FBRequestHandler)
+        }
     }
     
-        
     
     @IBAction func logoutTapped(sender: AnyObject) {
         if(PFUser.currentUser() != nil) {

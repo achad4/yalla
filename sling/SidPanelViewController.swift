@@ -10,10 +10,37 @@ import Foundation
 class SidePanelViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
     var menuItems : NSArray = ["Logout", "Profile", "Settings"]
     
-    override func viewDidLoad() {
-        println("side panel")
-       
+    @IBOutlet weak var userPic: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    
+    override func viewDidLoad() {       
         super.viewDidLoad()
+        var user : PFUser = PFUser.currentUser()
+        if(user["picture"] != nil){
+            var imageFile : PFFile = user["picture"] as PFFile
+            imageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData!, error: NSError!) -> Void in
+                if !(error != nil) {
+                    let image = UIImage(data:imageData)
+                    let width = 50 as UInt
+                    let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                    self.userPic.image = userAvatar
+                }
+            }
+        }
+        else{
+            var image = UIImage(named: "anon.jpg")
+            let width = 100 as UInt
+            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+            self.userPic.image = userAvatar
+        }
+        if(user["realName"] != nil){
+            var name : String = user.objectForKey("realName") as String
+            self.userNameLabel.text = name
+        }
+        else{
+            self.userNameLabel.text = "Anonymous"
+        }
         self.tableView.reloadData()
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,6 +57,9 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
                 PFUser.logOut()
                 self.performSegueWithIdentifier("LoginView@Main", sender: self)
             }
+        }
+        else if(indexPath.row == 1){
+            self.performSegueWithIdentifier("ProfileView@Profile", sender: self)
         }
     }
     

@@ -57,8 +57,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         
         var storyboard = UIStoryboard(name: "Messages", bundle: nil)
         var controller = storyboard.instantiateViewControllerWithIdentifier("InitialView") as UIViewController
-        
-        self.presentViewController(controller, animated: true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
+        //self.presentViewController(controller, animated: true, completion: nil)
     }
     
     
