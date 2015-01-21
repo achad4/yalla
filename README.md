@@ -1,6 +1,4 @@
-sling
+yalla
 =====
-
-Push test --Avi
-Push test --Nick
+Social media and messenger app tailored to individual college communities.  Coming soon...
 
