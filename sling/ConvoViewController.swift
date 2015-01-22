@@ -33,7 +33,6 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     func loadData(order: Int){
-        println("loading messages")
         //smessageArray.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
         if(order == 0){
@@ -124,10 +123,24 @@ class MessagesViewController : JSQMessagesViewController {
         
         var data = [ "title": "Some Title",
             "alert": testmessage]
+        var relation = self.convo.convo.relationForKey("participant")
+        var innerQuery = relation.query()
+        var objects : NSArray = NSArray()
+        
+        innerQuery.findObjectsInBackgroundWithBlock {
+             (objects:[AnyObject]!, error:NSError!)->Void in
+             if !(error != nil){
+                println("entered block")
+                for object in objects{
+                    let pdf = object as PFObject
+                    println("notification:  "+pdf.objectId)
+                }
+             }
+        }
         
         var query: PFQuery = PFInstallation.query()
-        query.whereKey("currentUser", equalTo: PFUser.currentUser())
-        
+        //query.whereKey("user", containedIn: objects)
+        query.whereKey("user", matchesQuery: innerQuery)
         var push: PFPush = PFPush()
         push.setQuery(query)
         push.setData(data)
@@ -145,7 +158,7 @@ class MessagesViewController : JSQMessagesViewController {
         //println("viewDidLoad called")
         super.viewDidLoad()
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
-            //self.loadData(0)
+            self.loadData(0)
         }
         inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true

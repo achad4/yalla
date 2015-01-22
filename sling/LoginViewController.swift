@@ -36,7 +36,10 @@ class LoginViewController : UIViewController {
                     NSLog("Login successfull")
                     //self.dismissViewControllerAnimated(true, completion: nil)
                     //if(PFFacebookUtils.isLinkedWithUser(user)){
-                        self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+                    var installation = PFInstallation.currentInstallation()
+                    installation["user"] = user
+                    installation.saveInBackground()
+                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                     //}
                     //else{
                     /*
