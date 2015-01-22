@@ -125,21 +125,19 @@ class MessagesViewController : JSQMessagesViewController {
             "alert": testmessage]
         var relation = self.convo.convo.relationForKey("participant")
         var innerQuery = relation.query()
-        var objects : NSArray = NSArray()
-        
+        //var objects : NSArray = NSArray()
+        /*
         innerQuery.findObjectsInBackgroundWithBlock {
              (objects:[AnyObject]!, error:NSError!)->Void in
              if !(error != nil){
                 println("entered block")
                 for object in objects{
                     let pdf = object as PFObject
-                    println("notification:  "+pdf.objectId)
                 }
              }
         }
-        
+        */
         var query: PFQuery = PFInstallation.query()
-        //query.whereKey("user", containedIn: objects)
         query.whereKey("user", matchesQuery: innerQuery)
         var push: PFPush = PFPush()
         push.setQuery(query)
