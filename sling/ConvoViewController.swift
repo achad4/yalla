@@ -71,16 +71,10 @@ class MessagesViewController : JSQMessagesViewController {
                     self.messageArray.addObject(Message(text: text, sender: sender))
                 }
             }
-            self.collectionView?.reloadData()
+            self.finishReceivingMessage()
         }
 
 
-    }
-    func sortByScore(){
-        println("sortByScore called")
-    }
-    @IBAction func postQuestion(sender: AnyObject) {
-    
     }
 
     func sendMessage(var text: String!, var sender: String!) {
@@ -98,7 +92,7 @@ class MessagesViewController : JSQMessagesViewController {
                 message.saveInBackgroundWithTarget(nil, selector: nil)
                 self.appendMessage(text, sender: PFUser.currentUser())
                 self.convo.save()
-                self.loadData(0)
+                //self.loadData(0)
             }
             else{
                 var alertView:UIAlertView = UIAlertView()
@@ -124,7 +118,6 @@ class MessagesViewController : JSQMessagesViewController {
             self.convo.save()
             message.saveInBackgroundWithTarget(nil, selector: nil)
             self.appendMessage(text, sender: PFUser.currentUser())
-            self.loadData(0)
         }
         
         let testmessage: NSString = text as NSString
@@ -152,7 +145,7 @@ class MessagesViewController : JSQMessagesViewController {
         //println("viewDidLoad called")
         super.viewDidLoad()
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
-            self.loadData(0)
+            //self.loadData(0)
         }
         inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true

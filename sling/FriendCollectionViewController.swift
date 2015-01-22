@@ -79,10 +79,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             var parentViewController = self.parentViewController as FriendParentViewController
             parentViewController.convo.addRecipient(cell.user)
             parentViewController.convo.save()
-            cell.backgroundColor = UIColor.grayColor()
-            cell.userName.backgroundColor = UIColor.grayColor()
-            cell.userName.textColor = UIColor.whiteColor()
-            
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -98,36 +94,14 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         }
         return 1
     }
-    /*
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
-        if searchBar.text.isEmpty{
-            isSearching = false
-            self.collectionView?.reloadData()
-        } else {
-            isSearching = true
-            filteredUsers.removeAllObjects()
-            for var index = 0; index < users.count; index++
-            {
-                var currentUser = users.objectAtIndex(index) as PFObject
-                var currentString = currentUser.objectForKey("username") as String
-                if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
-                    filteredUsers.addObject(currentUser)
-                }
-            }
-            self.collectionView?.reloadData()
-        }
-    }
-*/
+
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UserCell
         var users : NSMutableArray = self.sections.objectAtIndex(indexPath.section) as NSMutableArray
-        //println("section loaded")
-        //var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
         var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
         if(isSearching == true){
             user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
         }
-        //cell.applyLayoutAttributes(<#layoutAttributes: UICollectionViewLayoutAttributes!#>)
         cell.layer.cornerRadius = 50
         println(cell.layer.cornerRadius)
         cell.backgroundColor = UIColor.whiteColor()
@@ -142,7 +116,8 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                     let width = 50 as UInt
                     let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
                     //self.avatarImages[sender.username] = userAvatar
-                    cell.userPic.image = userAvatar
+                    //cell.userPic.image = userAvatar
+                    cell.userButton.setBackgroundImage(userAvatar, forState: UIControlState.Normal)
                 }
             }
         }
@@ -150,11 +125,20 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             var image = UIImage(named: "anon.jpg")
             //let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
             let width = 50 as UInt
-            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+            
             //self.avatarImages[sender.username] = userAvatar
-            cell.userPic.image = userAvatar
+            //cell.userPic.image = UserSelectionImageView(userAvatar)
+            var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
+            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+            //cell.userPic = selectionImage
+            //cell.userPic.image = userAvatar
+            cell.userButton.setBackgroundImage(userAvatar, forState: UIControlState.Normal)
+           
         }
-
+        cell.userButton.alpha = 0.5
+        var parentViewController = self.parentViewController as FriendParentViewController
+        cell.convo = parentViewController.convo
+        
         return cell
     }
     

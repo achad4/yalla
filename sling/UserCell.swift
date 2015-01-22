@@ -9,8 +9,8 @@
 import Foundation
 class UserCell : UICollectionViewCell{
     var user : PFObject
-    
-    @IBOutlet weak var userPic: UIImageView!
+    var convo : Conversation!    
+    @IBOutlet weak var userButton: UIButton!
     
     @IBOutlet weak var userName: UILabel!
     
@@ -19,6 +19,14 @@ class UserCell : UICollectionViewCell{
         super.init()
     }
 
+    @IBAction func userSelected(sender: AnyObject) {
+        self.userButton.alpha = 1
+        self.userButton.selected = true
+        self.userButton.highlighted = true
+        self.convo.addRecipient(self.user)
+        self.convo.save()
+    }
+    
     required init(coder decoder: NSCoder) {
         user = PFUser()
         super.init(coder: decoder)
