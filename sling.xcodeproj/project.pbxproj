@@ -89,6 +89,7 @@
 		82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ED01A5457A200D2B9F7 /* UserCell.swift */; };
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
 		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
+		82A8AEB21A7443D700D76A2C /* ThreadCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A8AEB11A7443D700D76A2C /* ThreadCollectionCell.swift */; };
 		82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A22F1A5C7D0000887222 /* Discussion.swift */; };
 		82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
@@ -245,6 +246,7 @@
 		82974ED01A5457A200D2B9F7 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
 		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
+		82A8AEB11A7443D700D76A2C /* ThreadCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCollectionCell.swift; sourceTree = "<group>"; };
 		82B0A22F1A5C7D0000887222 /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendParentViewController.swift; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 				825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */,
 				825DBC3C1A5F14CD00C8B07C /* Reply.swift */,
 				825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */,
+				82A8AEB11A7443D700D76A2C /* ThreadCollectionCell.swift */,
 			);
 			name = Threads;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				815BF1021A5E1BF9003D2FCC /* JSQMessagesLabel.m in Sources */,
 				815BF0ED1A5E1BF9003D2FCC /* UIImage+JSQMessages.m in Sources */,
 				815BF0EA1A5E1BF9003D2FCC /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
+				82A8AEB21A7443D700D76A2C /* ThreadCollectionCell.swift in Sources */,
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
 				A79D69051A60C1D100E7BA94 /* SignupViewController.swift in Sources */,
 				815BF0EC1A5E1BF9003D2FCC /* UIColor+JSQMessages.m in Sources */,

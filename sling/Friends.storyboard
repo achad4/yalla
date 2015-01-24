@@ -19,7 +19,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Z77-h8-XDy" customClass="UserCell" customModule="sling" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCell" id="Z77-h8-XDy" customClass="UserCell" customModule="sling" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -50,6 +50,29 @@
                                 <connections>
                                     <outlet property="userButton" destination="UXh-jq-ZP1" id="plM-rL-YF4"/>
                                     <outlet property="userName" destination="TIR-CS-vah" id="qx7-JO-WcR"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThreadCell" id="pmr-kr-GRc" customClass="ThreadCollectionCell" customModule="sling" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="93"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJV-Zg-Luq">
+                                            <rect key="frame" x="8" y="32" width="134" height="30"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="threadAction:" destination="pmr-kr-GRc" eventType="touchUpInside" id="iCg-OK-Sco"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="threadButton" destination="yJV-Zg-Luq" id="qyo-Mx-c2g"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -88,7 +111,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2233" y="-91.5"/>
+            <point key="canvasLocation" x="2233" y="-92"/>
         </scene>
         <!--Friend Parent View Controller-->
         <scene sceneID="m7E-CQ-Qzy">
@@ -122,11 +145,25 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="bQg-KZ-Y2G"/>
+                    <navigationItem key="navigationItem" id="bQg-KZ-Y2G">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="4sD-zK-PRT">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Thread"/>
+                                <segment title="People"/>
+                            </segments>
+                            <connections>
+                                <action selector="controlSelected:" destination="phR-WZ-GfF" eventType="valueChanged" id="zQt-Hm-3tm"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="S7W-Wq-YXD" id="y8o-hO-tpr"/>
+                        <outlet property="segmentedControl" destination="4sD-zK-PRT" id="aX0-IT-Tsf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Feg-us-tfd" userLabel="First Responder" sceneMemberID="firstResponder"/>

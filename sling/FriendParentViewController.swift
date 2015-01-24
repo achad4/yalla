@@ -14,8 +14,24 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     var convo : Conversation!
     var messageText : String = ""
     
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    @IBAction func controlSelected(sender: UISegmentedControl) {
+        var child = self.childViewControllers[0] as FriendCollectionViewController
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            child.segment = 1
+            child.loadData(1)
+        }
+        else if (segmentedControl.selectedSegmentIndex == 1) {
+            child.segment = 2
+            child.loadData(1)
+        }
+    }
+
+    
+    
     @IBAction func doneAdding(sender: AnyObject) {
-        println("here")
         var storyboard = UIStoryboard(name: "Messages", bundle: nil)
         var controller = storyboard.instantiateViewControllerWithIdentifier("MessageDetail") as MessagesViewController
         controller.convo = self.convo
