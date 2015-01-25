@@ -78,60 +78,50 @@ class MessagesViewController : JSQMessagesViewController {
     func sendMessage(var text: String!, var sender: String!) {
         //user is starting new conversation
         if(self.newMessgae != false){
-            if(self.addedParticipants == true){
-                if(self.convo.participants.count == 1){
-                    var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "Post Failed"
-                    alertView.message = "Send this message to at least one user!"
-                    alertView.delegate = self
-                    alertView.addButtonWithTitle("OK")
-                    alertView.show()
-                    self.addedParticipants = false
-                }
-                else{
-                    var message:PFObject = PFObject(className: "Message")
-                    message["text"] = text
-                    var sentToRelation = message.relationForKey("sentTo")
-                    message["inConvo"] = self.convo.convo as PFObject
-                    message["sender"] = PFUser.currentUser()
-                    message.saveInBackgroundWithTarget(nil, selector: nil)
-                    self.appendMessage(text, sender: PFUser.currentUser())
-                    self.convo.save()
-                }
-            }
-            else{
-                self.messageText = text
-                self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
-                
-            }
+            self.messageText = text
+            self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
         }
         //conversation exists-- let user send new message
         else{
-            println("loading convo")
-            if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
-                self.isAnon = false
-                self.convo.isAnon = false
-            }
-            var message:PFObject = PFObject(className: "Message")
-            message["text"] = text
-            var sentToRelation = message.relationForKey("sentTo")
-            message["inConvo"] = self.convo.convo as PFObject
-            message["sender"] = PFUser.currentUser()
-            self.convo.save()
-            message.saveInBackgroundWithTarget(nil, selector: nil)
-            self.appendMessage(text, sender: PFUser.currentUser())
-            let testmessage: NSString = text as NSString
             
-            var data = [ "title": "Some Title",
-                "alert": testmessage]
-            var relation = self.convo.convo.relationForKey("participant")
-            var innerQuery = relation.query()
-            var query: PFQuery = PFInstallation.query()
-            query.whereKey("user", matchesQuery: innerQuery)
-            var push: PFPush = PFPush()
-            push.setQuery(query)
-            push.setData(data)
-            push.sendPushInBackground()
+            if(self.convo.participants.count == 1){
+                    println("alert")
+                    var alert : UIAlertController = UIAlertController(title: "Send failed", message: "You must send this message to at least one user", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Add users", style: UIAlertActionStyle.Default, handler: {
+                        alertAction in
+                        self.messageText = text
+                        self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+                        }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
+            else{
+                if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
+                    self.isAnon = false
+                    self.convo.isAnon = false
+                }
+                var message:PFObject = PFObject(className: "Message")
+                message["text"] = text
+                var sentToRelation = message.relationForKey("sentTo")
+                message["inConvo"] = self.convo.convo as PFObject
+                message["sender"] = PFUser.currentUser()
+                self.convo.save()
+                message.saveInBackgroundWithTarget(nil, selector: nil)
+                self.appendMessage(text, sender: PFUser.currentUser())
+                let testmessage: NSString = text as NSString
+                
+                var data = [ "title": "Some Title",
+                    "alert": testmessage]
+                var relation = self.convo.convo.relationForKey("participant")
+                var innerQuery = relation.query()
+                var query: PFQuery = PFInstallation.query()
+                query.whereKey("user", matchesQuery: innerQuery)
+                var push: PFPush = PFPush()
+                push.setQuery(query)
+                push.setData(data)
+                push.sendPushInBackground()
+            }
+            
         }
         
         
