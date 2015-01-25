@@ -32,7 +32,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     func loadData(order: Int){
-        //smessageArray.removeAllObjects()
+        println("loading messages")
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
         if(order == 0){
             findTimeLineData.orderByAscending("createdAt")
@@ -76,31 +76,30 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     func sendMessage(var text: String!, var sender: String!) {
-        //user is starting new conversation-- create conversation
+        //user is starting new conversation
         if(self.newMessgae != false){
             if(self.addedParticipants == true){
-                println("participants added")
-                //var convo : Conversation = Conversation(sender: PFUser.currentUser())
-                //self.convo = convo
-                var message:PFObject = PFObject(className: "Message")
-                message["text"] = text
-                var sentToRelation = message.relationForKey("sentTo")
-                message["inConvo"] = self.convo.convo as PFObject
-                message["sender"] = PFUser.currentUser()
-                message.saveInBackgroundWithTarget(nil, selector: nil)
-                self.appendMessage(text, sender: PFUser.currentUser())
-                self.convo.save()
-                //self.loadData(0)
+                if(self.convo.participants.count == 1){
+                    var alertView:UIAlertView = UIAlertView()
+                    alertView.title = "Post Failed"
+                    alertView.message = "Send this message to at least one user!"
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
+                    alertView.show()
+                    self.addedParticipants = false
+                }
+                else{
+                    var message:PFObject = PFObject(className: "Message")
+                    message["text"] = text
+                    var sentToRelation = message.relationForKey("sentTo")
+                    message["inConvo"] = self.convo.convo as PFObject
+                    message["sender"] = PFUser.currentUser()
+                    message.saveInBackgroundWithTarget(nil, selector: nil)
+                    self.appendMessage(text, sender: PFUser.currentUser())
+                    self.convo.save()
+                }
             }
             else{
-                /*
-                var alertView:UIAlertView = UIAlertView()
-                alertView.title = "Post Failed"
-                alertView.message = "Send this message to at least one user!"
-                alertView.delegate = self
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
-                */
                 self.messageText = text
                 self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
                 
@@ -127,18 +126,6 @@ class MessagesViewController : JSQMessagesViewController {
                 "alert": testmessage]
             var relation = self.convo.convo.relationForKey("participant")
             var innerQuery = relation.query()
-            //var objects : NSArray = NSArray()
-            /*
-            innerQuery.findObjectsInBackgroundWithBlock {
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-            println("entered block")
-            for object in objects{
-            let pdf = object as PFObject
-            }
-            }
-            }
-            */
             var query: PFQuery = PFInstallation.query()
             query.whereKey("user", matchesQuery: innerQuery)
             var push: PFPush = PFPush()
@@ -158,7 +145,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func viewDidLoad() {
-        //println("viewDidLoad called")
+        println("viewDidLoad called")
         super.viewDidLoad()
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
@@ -173,6 +160,9 @@ class MessagesViewController : JSQMessagesViewController {
     override func viewDidAppear(animated: Bool) {
         //println("viewDidDisappear called")
         super.viewDidAppear(animated)
+        if(PFUser.currentUser() != nil && self.newMessgae != true) {
+            self.loadData(0)
+        }
         collectionView.collectionViewLayout.springinessEnabled = true
     }
     
