@@ -181,7 +181,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                 }
             }
         }
-        
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.date.text = stringDate as NSString
         cell.thread = thread
