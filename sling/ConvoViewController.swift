@@ -16,13 +16,12 @@ class MessagesViewController : JSQMessagesViewController {
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
     var batchMessages = true
-    //var convo : PFObject = PFObject(className: "Conversation")
-    //var convo : Conversation = Conversation(sender: PFUser.currentUser())
     var convo : Conversation!
     var avatarImages = Dictionary<String, UIImage>()
     var isAnon : Bool?
     var newMessgae : Bool?
     var addedParticipants : Bool?
+    var messageText : String!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "FriendsView@Friends"){
@@ -94,12 +93,17 @@ class MessagesViewController : JSQMessagesViewController {
                 //self.loadData(0)
             }
             else{
+                /*
                 var alertView:UIAlertView = UIAlertView()
                 alertView.title = "Post Failed"
                 alertView.message = "Send this message to at least one user!"
                 alertView.delegate = self
                 alertView.addButtonWithTitle("OK")
                 alertView.show()
+                */
+                self.messageText = text
+                self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+                
             }
         }
         //conversation exists-- let user send new message
@@ -117,32 +121,33 @@ class MessagesViewController : JSQMessagesViewController {
             self.convo.save()
             message.saveInBackgroundWithTarget(nil, selector: nil)
             self.appendMessage(text, sender: PFUser.currentUser())
+            let testmessage: NSString = text as NSString
+            
+            var data = [ "title": "Some Title",
+                "alert": testmessage]
+            var relation = self.convo.convo.relationForKey("participant")
+            var innerQuery = relation.query()
+            //var objects : NSArray = NSArray()
+            /*
+            innerQuery.findObjectsInBackgroundWithBlock {
+            (objects:[AnyObject]!, error:NSError!)->Void in
+            if !(error != nil){
+            println("entered block")
+            for object in objects{
+            let pdf = object as PFObject
+            }
+            }
+            }
+            */
+            var query: PFQuery = PFInstallation.query()
+            query.whereKey("user", matchesQuery: innerQuery)
+            var push: PFPush = PFPush()
+            push.setQuery(query)
+            push.setData(data)
+            push.sendPushInBackground()
         }
         
-        let testmessage: NSString = text as NSString
         
-        var data = [ "title": "Some Title",
-            "alert": testmessage]
-        var relation = self.convo.convo.relationForKey("participant")
-        var innerQuery = relation.query()
-        //var objects : NSArray = NSArray()
-        /*
-        innerQuery.findObjectsInBackgroundWithBlock {
-             (objects:[AnyObject]!, error:NSError!)->Void in
-             if !(error != nil){
-                println("entered block")
-                for object in objects{
-                    let pdf = object as PFObject
-                }
-             }
-        }
-        */
-        var query: PFQuery = PFInstallation.query()
-        query.whereKey("user", matchesQuery: innerQuery)
-        var push: PFPush = PFPush()
-        push.setQuery(query)
-        push.setData(data)
-        push.sendPushInBackground()
        
     }
     

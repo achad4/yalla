@@ -37,6 +37,7 @@ class FriendsSegue: UIStoryboardSegue {
             var destinationViewController = self.sceneNamed(self.identifier!) as FriendParentViewController
             sourceViewController.addedParticipants = true
             destinationViewController.convo = sourceViewController.convo
+            destinationViewController.messageText = sourceViewController.messageText
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
         }
         else{
