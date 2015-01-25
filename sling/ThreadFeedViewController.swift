@@ -51,6 +51,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         recognizer.direction = .Right
         self.view .addGestureRecognizer(recognizer)
         
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        
     }
     
     @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
@@ -165,32 +167,26 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             thread = self.filteredThreads.objectAtIndex(indexPath.row) as PFObject
         }
         let date = thread.createdAt as NSDate
-        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
+        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
+        
+        var preview:PFQuery = PFQuery(className: "Reply")
+        preview.whereKey("inThread", equalTo: thread)
+        preview.orderByDescending("createdAt")
+        preview.getFirstObjectInBackgroundWithBlock {
+            (object:PFObject!, error:NSError!) -> Void in
+            if (object != nil) {
+                if (object["text"] != nil) {
+                    let previewText = object.objectForKey("text") as String
+                    cell.preview.text = previewText
+                }
+            }
+        }
+        
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.date.text = stringDate as NSString
         cell.thread = thread
-        println(thread.objectId) /*
-        var query:PFQuery = PFQuery(className: "Thread")
-        var threadsFollowing : NSMutableArray = NSMutableArray()
-        query.whereKey("follower", equalTo: PFUser.currentUser())
-        var count : Int = 0;
-        query.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-                var isFollowing = false
-                for object in objects{
-                    if(object.objectId == thread.objectId) {
-                        isFollowing = true
-                    }
-                    /*
-                    let pdf = object as PFObject
-                    threadsFollowing.addObject(pdf)
-                    */
-                    
-                }
-            }
-        } */
-
+        
+        println(thread.objectId)
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }

@@ -15,6 +15,7 @@ class ThreadCell : UITableViewCell{
     @IBOutlet weak var followMessage: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var topic: UILabel!
+    @IBOutlet weak var preview: UILabel!
     
     
     func follow() {

@@ -20,6 +20,7 @@ class TableCell: UITableViewCell{
     @IBOutlet weak var userNames: UILabel!
     
     @IBOutlet weak var timePosted: UILabel!
+    @IBOutlet weak var lastMessage: UILabel!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
