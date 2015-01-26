@@ -30,6 +30,10 @@ class Conversation{
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 
+    func removeRecipient(user : PFObject){
+        self.participants.removeObject(user)
+    }
+    
     func addRecipient(user : PFObject){
         self.participants.addObject(user);
     }
