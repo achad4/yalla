@@ -8,7 +8,8 @@
 
 import Foundation
 
-class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
+class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    
     var threads : NSMutableArray = NSMutableArray()
     var filteredThreads : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
@@ -96,9 +97,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         var follow = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: currentCell.followMessage.text, handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as ThreadCell
             let thread : PFObject = cell.thread
-            
-            
-        
         })
         return [follow]
     }
@@ -110,6 +108,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         }
         return self.threads.count
     }
+    
     func loadData(order: Int){
         self.threads.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "Thread")
@@ -163,12 +162,16 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     }
     */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ThreadCell
         cell.follow()
+        
         var thread:PFObject = self.threads.objectAtIndex(indexPath.section) as PFObject
+        
         if(isSearching == true){
             thread = self.filteredThreads.objectAtIndex(indexPath.section) as PFObject
         }
+        
         let date = thread.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         
@@ -180,36 +183,34 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
             if (object != nil) {
                 if (object["text"] != nil) {
                     let previewText = object.objectForKey("text") as String
+                    // Thread preview appearance
                     cell.preview.text = previewText
                     cell.preview.font = UIFont(name: "Futura", size: 12)
                 }
             }
         }
-        
+        // APPEARANCES
+        // Thread topic appearance
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.topic.font = UIFont(name: "Futura", size: 18)
         
+        // Thread date appearance
         cell.date.text = stringDate as NSString
         cell.date.font = UIFont(name: "Futura", size: 18)
         cell.thread = thread
         
         cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         
-        cell.tableCell.layer.cornerRadius = 2
-        cell.tableCell.layer.shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        cell.tableCell.layer.shadowOffset = CGSizeMake(5, 5)
-        cell.tableCell.layer.shadowOpacity = 0.6
-        cell.tableCell.layer.shadowRadius = 3.0
-        
+        // Thread cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        //cell.tableCell.layer.masksToBounds = true
-
+        cell.tableCell.layer.cornerRadius  = 2
+        cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        cell.tableCell.layer.shadowOffset  = CGSizeMake(5, 5)
+        cell.tableCell.layer.shadowOpacity = 0.6
+        cell.tableCell.layer.shadowRadius  = 3.0
         
         println(thread.objectId)
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
-    
-    //override func tableView
-
 }
