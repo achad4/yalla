@@ -7,7 +7,9 @@
 //
 
 import Foundation
+
 class ThreadCell : UITableViewCell{
+    
     var thread : PFObject = PFObject(className: "Thread")
     var isFollowing : Bool = false
     
@@ -17,15 +19,14 @@ class ThreadCell : UITableViewCell{
     @IBOutlet weak var topic: UILabel!
     @IBOutlet weak var preview: UILabel!
     
-    
-    
     func follow() {
+        
         var query:PFQuery = PFQuery(className: "Thread")
         var threadsFollowing : NSMutableArray = NSMutableArray()
         query.whereKey("follower", equalTo: PFUser.currentUser())
         
         var count : Int = 0;
-        query.findObjectsInBackgroundWithBlock{
+        query.findObjectsInBackgroundWithBlock {
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
                 self.isFollowing = false

@@ -27,6 +27,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
+        
         if(segue.identifier == "to_message_view"){
             let indexPath = tableView.indexPathForSelectedRow()
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
@@ -36,6 +37,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             parent.isAnon = cell.convo.convo.objectForKey("isAnon") as? Bool
             parent.newMessgae = false
         }
+        
         if(segue.identifier == "new_message_segue"){
             //var convo : Conversation = Conversation(sender: PFUser.currentUser())
             //convo.save()
@@ -46,8 +48,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             parent.newMessgae = true
             parent.addedParticipants = false
         }
-        
     }
+    
     override func viewDidAppear(animated: Bool) {
         if(PFUser.currentUser() != nil){
             self.loadData(1)
@@ -69,8 +71,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         if(PFUser.currentUser() != nil){
             self.loadData(0)
         }
-        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
+    
     @IBAction func swipeRight(recognizer2 : UISwipeGestureRecognizer) {
         println("swiped right")
         revealViewController().revealToggle(self)
@@ -130,11 +133,14 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     @IBAction func postQuestion(sender: AnyObject) {
         
     }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.timeLineData.count
+        // return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
         //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
@@ -165,13 +171,31 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 if (object["text"] != nil) {
                     let previewText = object.objectForKey("text") as String
                     cell.lastMessage.text = previewText
+                    cell.lastMessage.font = UIFont(name: "Futura", size: 12)
                 }
             }
         }
+
         cell.userNames.text = userString
+        cell.userNames.font = UIFont(name: "Futura", size: 18)
+        
         cell.timePosted.text = stringDate as NSString
+        cell.timePosted.font = UIFont(name: "Futura", size: 18)
+        
+        cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        
+        // Thread cell appearance
+        cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.tableCell.layer.cornerRadius  = 2
+        cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        cell.tableCell.layer.shadowOffset  = CGSizeMake(5, 5)
+        cell.tableCell.layer.shadowOpacity = 0.6
+        cell.tableCell.layer.shadowRadius  = 3.0
+        
         cell.convo = convoObject
+        
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
         return cell
     }
 

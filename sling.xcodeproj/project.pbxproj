@@ -489,11 +489,9 @@
 			isa = PBXGroup;
 			children = (
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
-				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
 				817BCEEE1A622136008F5A39 /* NewPost.storyboard */,
 				817BCEF01A622144008F5A39 /* Profile.storyboard */,
 				817BCEEA1A6220F8008F5A39 /* Friends.storyboard */,
-				817BCEEC1A622104008F5A39 /* Feed.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -612,6 +610,7 @@
 		82B0A2331A5DA4D300887222 /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
+				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
 				821416021A69AE95002A36E1 /* SidPanelViewController.swift */,
 				82974ECC1A51BAE200D2B9F7 /* ConvoParentViewController.swift */,
 				8118D1141A5CE90D001C0ADF /* ConvoViewController.swift */,
@@ -645,6 +644,7 @@
 		82B0A2361A5DA6B000887222 /* Threads */ = {
 			isa = PBXGroup;
 			children = (
+				817BCEEC1A622104008F5A39 /* Feed.storyboard */,
 				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
 				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
 				82F7E0EA1A5B35D100901922 /* Thread.swift */,
