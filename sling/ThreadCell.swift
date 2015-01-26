@@ -11,10 +11,12 @@ class ThreadCell : UITableViewCell{
     var thread : PFObject = PFObject(className: "Thread")
     var isFollowing : Bool = false
     
-
+    @IBOutlet weak var tableCell: UIView!
     @IBOutlet weak var followMessage: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var topic: UILabel!
+    @IBOutlet weak var preview: UILabel!
+    
     
     
     func follow() {

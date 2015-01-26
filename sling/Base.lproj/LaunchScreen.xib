@@ -10,29 +10,21 @@
             <rect key="frame" x="0.0" y="-3" width="480" height="547"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="sling" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="196" y="347" width="87" height="41"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="yalla" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                    <rect key="frame" x="197" y="164" width="87" height="41"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="36"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="SlingLogo5" translatesAutoresizingMaskIntoConstraints="NO" id="AOG-nA-lRH">
-                    <rect key="frame" x="-116" y="-184" width="683" height="693"/>
-                </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.1176470588" green="0.59999999999999998" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="5Sr-7B-4PH"/>
-                <constraint firstAttribute="centerX" secondItem="AOG-nA-lRH" secondAttribute="centerX" id="Dg2-SK-XYG"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-229" y="-380.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="SlingLogo5" width="683" height="657"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

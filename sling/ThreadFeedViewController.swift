@@ -13,7 +13,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     var filteredThreads : NSMutableArray = NSMutableArray()
     var isSearching : Bool!
     
-    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBAction func controlSelected(sender: UISegmentedControl) {
@@ -50,6 +49,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Right
         self.view .addGestureRecognizer(recognizer)
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
     }
     
@@ -101,10 +102,13 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         })
         return [follow]
     }
-    
+
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
-        return 1
+        if(isSearching == true){
+            return self.filteredThreads.count
+        }
+        return self.threads.count
     }
     func loadData(order: Int){
         self.threads.removeAllObjects()
@@ -151,48 +155,61 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(isSearching == true){
-            return self.filteredThreads.count
-        }
-        return self.threads.count
+        return 1
     }
-    
+    /*
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ThreadCell
         cell.follow()
-        var thread:PFObject = self.threads.objectAtIndex(indexPath.row) as PFObject
+        var thread:PFObject = self.threads.objectAtIndex(indexPath.section) as PFObject
         if(isSearching == true){
-            thread = self.filteredThreads.objectAtIndex(indexPath.row) as PFObject
+            thread = self.filteredThreads.objectAtIndex(indexPath.section) as PFObject
         }
         let date = thread.createdAt as NSDate
-        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
-        cell.topic.text = thread.objectForKey("topic") as? String
-        cell.date.text = stringDate as NSString
-        cell.thread = thread
-        println(thread.objectId) /*
-        var query:PFQuery = PFQuery(className: "Thread")
-        var threadsFollowing : NSMutableArray = NSMutableArray()
-        query.whereKey("follower", equalTo: PFUser.currentUser())
-        var count : Int = 0;
-        query.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-                var isFollowing = false
-                for object in objects{
-                    if(object.objectId == thread.objectId) {
-                        isFollowing = true
-                    }
-                    /*
-                    let pdf = object as PFObject
-                    threadsFollowing.addObject(pdf)
-                    */
-                    
+        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
+        
+        var preview:PFQuery = PFQuery(className: "Reply")
+        preview.whereKey("inThread", equalTo: thread)
+        preview.orderByDescending("createdAt")
+        preview.getFirstObjectInBackgroundWithBlock {
+            (object:PFObject!, error:NSError!) -> Void in
+            if (object != nil) {
+                if (object["text"] != nil) {
+                    let previewText = object.objectForKey("text") as String
+                    cell.preview.text = previewText
+                    cell.preview.font = UIFont(name: "Futura", size: 12)
                 }
             }
-        } */
+        }
+        
+        cell.topic.text = thread.objectForKey("topic") as? String
+        cell.topic.font = UIFont(name: "Futura", size: 18)
+        
+        cell.date.text = stringDate as NSString
+        cell.date.font = UIFont(name: "Futura", size: 18)
+        cell.thread = thread
+        
+        cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        
+        cell.tableCell.layer.cornerRadius = 2
+        cell.tableCell.layer.shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        cell.tableCell.layer.shadowOffset = CGSizeMake(5, 5)
+        cell.tableCell.layer.shadowOpacity = 0.6
+        cell.tableCell.layer.shadowRadius = 3.0
+        
+        cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        //cell.tableCell.layer.masksToBounds = true
 
+        
+        println(thread.objectId)
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
+    
+    //override func tableView
 
 }

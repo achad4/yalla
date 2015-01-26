@@ -54,7 +54,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void{
+    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -146,7 +146,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
         */
         let date = convo.createdAt as NSDate
-        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .ShortStyle) as NSString
+        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         //if(convo[])
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
         var userString : String = ""
@@ -155,6 +155,18 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
         else{
             userString = "Anonymous"
+        }
+        var preview:PFQuery = PFQuery(className: "Message")
+        preview.whereKey("inConvo", equalTo: convo)
+        preview.orderByDescending("createdAt")
+        preview.getFirstObjectInBackgroundWithBlock {
+            (object:PFObject!, error:NSError!) -> Void in
+            if(object != nil){
+                if (object["text"] != nil) {
+                    let previewText = object.objectForKey("text") as String
+                    cell.lastMessage.text = previewText
+                }
+            }
         }
         cell.userNames.text = userString
         cell.timePosted.text = stringDate as NSString
