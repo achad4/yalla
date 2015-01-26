@@ -18,8 +18,8 @@ class ThreadCollectionCell : UICollectionViewCell{
         reply["sender"] = PFUser.currentUser()
         reply["score"] = 0
         reply.ACL.setPublicWriteAccess(true)
-        self.thread.save()
         reply.saveInBackgroundWithTarget(nil, selector: nil)
+        self.thread.saveInBackground()
     }
     
     @IBOutlet weak var threadButton: UIButton!

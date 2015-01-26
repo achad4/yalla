@@ -32,7 +32,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     func loadData(order: Int){
-        //smessageArray.removeAllObjects()
+        println("loading messages")
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
         if(order == 0){
             findTimeLineData.orderByAscending("createdAt")
@@ -76,75 +76,52 @@ class MessagesViewController : JSQMessagesViewController {
     }
 
     func sendMessage(var text: String!, var sender: String!) {
-        //user is starting new conversation-- create conversation
+        //user is starting new conversation
         if(self.newMessgae != false){
-            if(self.addedParticipants == true){
-                println("participants added")
-                //var convo : Conversation = Conversation(sender: PFUser.currentUser())
-                //self.convo = convo
+            self.messageText = text
+            self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+        }
+        //conversation exists-- let user send new message
+        else{
+            
+            if(self.convo.participants.count == 1){
+                    println("alert")
+                    var alert : UIAlertController = UIAlertController(title: "Send failed", message: "You must send this message to at least one user", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Add users", style: UIAlertActionStyle.Default, handler: {
+                        alertAction in
+                        self.messageText = text
+                        self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+                        }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
+            else{
+                if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
+                    self.isAnon = false
+                    self.convo.isAnon = false
+                }
                 var message:PFObject = PFObject(className: "Message")
                 message["text"] = text
                 var sentToRelation = message.relationForKey("sentTo")
                 message["inConvo"] = self.convo.convo as PFObject
                 message["sender"] = PFUser.currentUser()
+                self.convo.save()
                 message.saveInBackgroundWithTarget(nil, selector: nil)
                 self.appendMessage(text, sender: PFUser.currentUser())
-                self.convo.save()
-                //self.loadData(0)
-            }
-            else{
-                /*
-                var alertView:UIAlertView = UIAlertView()
-                alertView.title = "Post Failed"
-                alertView.message = "Send this message to at least one user!"
-                alertView.delegate = self
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
-                */
-                self.messageText = text
-                self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+                let testmessage: NSString = text as NSString
                 
+                var data = [ "title": "Some Title",
+                    "alert": testmessage]
+                var relation = self.convo.convo.relationForKey("participant")
+                var innerQuery = relation.query()
+                var query: PFQuery = PFInstallation.query()
+                query.whereKey("user", matchesQuery: innerQuery)
+                var push: PFPush = PFPush()
+                push.setQuery(query)
+                push.setData(data)
+                push.sendPushInBackground()
             }
-        }
-        //conversation exists-- let user send new message
-        else{
-            println("loading convo")
-            if(self.isAnon == true && (PFUser.currentUser() != self.convo.convo["owner"].fetchIfNeeded())){
-                self.isAnon = false
-                self.convo.isAnon = false
-            }
-            var message:PFObject = PFObject(className: "Message")
-            message["text"] = text
-            var sentToRelation = message.relationForKey("sentTo")
-            message["inConvo"] = self.convo.convo as PFObject
-            message["sender"] = PFUser.currentUser()
-            self.convo.save()
-            message.saveInBackgroundWithTarget(nil, selector: nil)
-            self.appendMessage(text, sender: PFUser.currentUser())
-            let testmessage: NSString = text as NSString
             
-            var data = [ "title": "Some Title",
-                "alert": testmessage]
-            var relation = self.convo.convo.relationForKey("participant")
-            var innerQuery = relation.query()
-            //var objects : NSArray = NSArray()
-            /*
-            innerQuery.findObjectsInBackgroundWithBlock {
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-            println("entered block")
-            for object in objects{
-            let pdf = object as PFObject
-            }
-            }
-            }
-            */
-            var query: PFQuery = PFInstallation.query()
-            query.whereKey("user", matchesQuery: innerQuery)
-            var push: PFPush = PFPush()
-            push.setQuery(query)
-            push.setData(data)
-            push.sendPushInBackground()
         }
         
         
@@ -158,7 +135,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func viewDidLoad() {
-        //println("viewDidLoad called")
+        println("viewDidLoad called")
         super.viewDidLoad()
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
@@ -173,6 +150,9 @@ class MessagesViewController : JSQMessagesViewController {
     override func viewDidAppear(animated: Bool) {
         //println("viewDidDisappear called")
         super.viewDidAppear(animated)
+        if(PFUser.currentUser() != nil && self.newMessgae != true) {
+            self.loadData(0)
+        }
         collectionView.collectionViewLayout.springinessEnabled = true
     }
     

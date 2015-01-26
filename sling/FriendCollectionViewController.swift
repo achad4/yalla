@@ -132,6 +132,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             cell.userButton.alpha = 0.5
             var parentViewController = self.parentViewController as FriendParentViewController
             cell.convo = parentViewController.convo
+            cell.messageText = self.messageText
             return cell
         }
         else if(self.segment == 1){
