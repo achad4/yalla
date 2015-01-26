@@ -186,11 +186,11 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         
         // Thread cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.tableCell.layer.cornerRadius  = 2
+        cell.tableCell.layer.cornerRadius  = 1
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        cell.tableCell.layer.shadowOffset  = CGSizeMake(5, 5)
-        cell.tableCell.layer.shadowOpacity = 0.6
-        cell.tableCell.layer.shadowRadius  = 3.0
+        cell.tableCell.layer.shadowOffset  = CGSizeMake(1, 1)
+        cell.tableCell.layer.shadowOpacity = 0.8
+        cell.tableCell.layer.shadowRadius  = 0.5
         
         cell.convo = convoObject
         
