@@ -17,8 +17,8 @@ class TableCell: UITableViewCell{
     //var convo : PFObject = PFObject(className: "Conversation")
     var convo : Conversation = Conversation(sender : PFUser.currentUser())
     
+    
     @IBOutlet weak var tableCell: UIView!
-    @IBOutlet weak var userNames: UILabel!
     
     @IBOutlet weak var timePosted: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
@@ -29,11 +29,44 @@ class TableCell: UITableViewCell{
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
-    /*
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    func displayUserPics(users : NSMutableArray){
+        var i : Int = 0
+        for user in users{
+            var userObject = user as PFObject
+            if(userObject["picture"] != nil){
+                println(userObject.objectId)
+                var imageFile : PFFile = user["picture"] as PFFile
+                    imageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData!, error: NSError!) -> Void in
+                        if !(error != nil) {
+                            let image = UIImage(data:imageData)
+                            let width = 25 as UInt
+                            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                            var imageView = UIImageView(image: userAvatar)
+                            imageView.alpha = 0.5
+                            var value : Int = i*25 + 100
+                            var x = CGFloat(value)
+                            imageView.frame = CGRectMake(x, 50, 25, 25)
+                            self.addSubview(imageView)
+                        }
+                }
+            }
+            else{
+                var image = UIImage(named: "anon.jpg")
+                let width = 25 as UInt
+                var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
+                let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                var imageView = UIImageView(image: userAvatar)
+                imageView.alpha = 0.5
+                var value : Int = i*25 + 100
+                var x = CGFloat(value)
+                imageView.frame = CGRectMake(x, 50, 25, 25)
+                self.addSubview(imageView)
+            }
+            i++
+        }
     }
-    */
     
     
     

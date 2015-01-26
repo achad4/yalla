@@ -212,12 +212,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lji-HE-ArX">
-                                                    <rect key="frame" x="167" y="21" width="184" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preview" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkb-fa-mQf">
                                                     <rect key="frame" x="28" y="45" width="218" height="53"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -233,7 +227,6 @@
                                     <outlet property="lastMessage" destination="Wkb-fa-mQf" id="NgZ-lF-Xa9"/>
                                     <outlet property="tableCell" destination="1kO-ej-s7V" id="pAi-eZ-0nl"/>
                                     <outlet property="timePosted" destination="TQ2-NR-tWN" id="tVK-eN-MNc"/>
-                                    <outlet property="userNames" destination="Lji-HE-ArX" id="dXC-TL-ZJY"/>
                                     <segue destination="0mU-NT-DU7" kind="show" identifier="to_message_view" id="lU4-OX-zcq"/>
                                 </connections>
                             </tableViewCell>

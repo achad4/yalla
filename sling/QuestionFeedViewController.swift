@@ -176,15 +176,30 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             }
         }
 
-        cell.userNames.text = userString
-        cell.userNames.font = UIFont(name: "Futura", size: 18)
+        //cell.userNames.text = userString
+        //cell.userNames.font = UIFont(name: "Futura", size: 18)
+        
+        
+        var relation : PFRelation = convo.relationForKey("participant")
+        var query : PFQuery = relation.query()
+        query.findObjectsInBackgroundWithBlock {
+            (objects:[AnyObject]!, error:NSError!) -> Void in
+            if !(error != nil){
+                var users : NSMutableArray = NSMutableArray()
+                for object in objects{
+                    println("adding to array")
+                    users.addObject(object)
+                }
+                cell.displayUserPics(users)
+            }
+        }
         
         cell.timePosted.text = stringDate as NSString
         cell.timePosted.font = UIFont(name: "Futura", size: 18)
         
         cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         
-        // Thread cell appearance
+        // Convo cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         cell.tableCell.layer.cornerRadius  = 2
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
