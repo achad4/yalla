@@ -37,11 +37,11 @@ class ThreadCell : UITableViewCell{
                 }
                 var followRelation : PFRelation = self.thread.relationForKey("follower")
                 if(self.isFollowing == false) {
-                    self.followMessage.text = "Follow"
+                    self.followMessage.text = " +"
                     followRelation.addObject(PFUser.currentUser())
                     self.thread.saveInBackgroundWithTarget(nil, selector: nil)
                 } else {
-                    self.followMessage.text = "Unfollow"
+                    self.followMessage.text = " –"
                     followRelation.removeObject(PFUser.currentUser())
                     self.thread.saveInBackgroundWithTarget(nil, selector: nil)
                     
