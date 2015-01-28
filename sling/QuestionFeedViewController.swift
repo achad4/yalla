@@ -171,14 +171,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 if (object["text"] != nil) {
                     let previewText = object.objectForKey("text") as String
                     cell.lastMessage.text = previewText
-                    cell.lastMessage.font = UIFont(name: "CourierNewPSMT", size: 12)
+                    // cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
                 }
             }
         }
-
-        //cell.userNames.text = userString
-        //cell.userNames.font = UIFont(name: "Futura", size: 18)
-        
         
         var relation : PFRelation = convo.relationForKey("participant")
         var query : PFQuery = relation.query()
@@ -194,6 +190,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             }
         }
         
+        cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
+
         cell.timePosted.text = stringDate as NSString
         cell.timePosted.font = UIFont(name: "Futura-Medium", size: 14)
         
