@@ -44,10 +44,10 @@ class TableCell: UITableViewCell{
                             let width = 25 as UInt
                             let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
                             var imageView = UIImageView(image: userAvatar)
-                            imageView.alpha = 0.5
-                            var value : Int = i*25 + 100
+                            imageView.alpha = 0.8
+                            var value : Int = i*25 + 30
                             var x = CGFloat(value)
-                            imageView.frame = CGRectMake(x, 50, 25, 25)
+                            imageView.frame = CGRectMake(x, 30, 25, 25)
                             self.addSubview(imageView)
                         }
                 }
@@ -58,10 +58,10 @@ class TableCell: UITableViewCell{
                 var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
                 let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
                 var imageView = UIImageView(image: userAvatar)
-                imageView.alpha = 0.5
-                var value : Int = i*25 + 100
+                imageView.alpha = 0.8
+                var value : Int = i*25 + 30
                 var x = CGFloat(value)
-                imageView.frame = CGRectMake(x, 50, 25, 25)
+                imageView.frame = CGRectMake(x, 30, 25, 25)
                 self.addSubview(imageView)
             }
             i++

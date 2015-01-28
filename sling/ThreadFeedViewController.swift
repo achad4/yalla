@@ -203,14 +203,14 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         cell.date.font = UIFont(name: "Futura-Medium", size: 14)
         cell.thread = thread
         
-        cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         
         // Thread cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.tableCell.layer.cornerRadius  = 1
+        cell.tableCell.layer.cornerRadius  = 3
         // Shadows
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        cell.tableCell.layer.shadowOffset  = CGSizeMake(1, 1)
+        cell.tableCell.layer.shadowOffset  = CGSizeMake(0.5, 1)
         cell.tableCell.layer.shadowOpacity = 0.5
         cell.tableCell.layer.shadowRadius  = 0.8
         

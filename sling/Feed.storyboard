@@ -62,7 +62,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OA-zV-CBK">
                                                     <rect key="frame" x="5" y="32" width="117" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.74834280303030298" green="0.080008507196433223" blue="0.041465365950820177" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Topic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-J1-wcY">
@@ -97,15 +97,17 @@
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="New"/>
-                                <segment title="Popular"/>
-                                <segment title="Following"/>
+                                <segment title="new"/>
+                                <segment title="popular"/>
+                                <segment title="following"/>
                             </segments>
+                            <color key="tintColor" red="0.47278150258569979" green="0.68439235269987531" blue="0.83173532196969702" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="controlSelected:" destination="gya-sS-Hvq" eventType="valueChanged" id="obn-vh-1aS"/>
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pdu-22-QQ4">
+                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="UpY-PS-y3m" kind="show" identifier="new_thread_segue" id="e9L-uy-Mdn"/>
                             </connections>

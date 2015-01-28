@@ -14,7 +14,7 @@ class MessagesViewController : JSQMessagesViewController {
     
     var messageArray : NSMutableArray = NSMutableArray()
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-    var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
+    var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleBlueColor())
     var batchMessages = true
     var convo : Conversation!
     var avatarImages = Dictionary<String, UIImage>()

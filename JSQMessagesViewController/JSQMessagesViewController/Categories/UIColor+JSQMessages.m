@@ -32,9 +32,9 @@
 
 + (UIColor *)jsq_messageBubbleBlueColor
 {
-    return [UIColor colorWithHue:210.0f / 360.0f
-                      saturation:0.94f
-                      brightness:1.0f
+    return [UIColor colorWithHue:204.0f / 360.0f
+                      saturation:0.42f
+                      brightness:0.83f
                            alpha:1.0f];
 }
 
