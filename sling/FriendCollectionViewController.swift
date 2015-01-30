@@ -133,6 +133,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             var parentViewController = self.parentViewController as FriendParentViewController
             cell.convo = parentViewController.convo
             cell.messageText = self.messageText
+            
             return cell
         }
         else if(self.segment == 1){
@@ -149,6 +150,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             return cell
 
         }
+        
         return cell
     }
     

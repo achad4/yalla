@@ -108,9 +108,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         //var findTimeLineData:PFQuery = PFQuery(className: "Message")
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
-        if(order == 0){
-            findTimeLineData.orderByDescending("createdAt")
-        }
+        findTimeLineData.orderByDescending("updatedAt")
         var currentUser = PFUser.currentUser();
         findTimeLineData.whereKey("participant", equalTo: currentUser)
         
