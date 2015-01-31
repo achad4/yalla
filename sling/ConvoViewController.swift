@@ -84,7 +84,6 @@ class MessagesViewController : JSQMessagesViewController {
         else{
             
             if(self.convo.participants.count == 1){
-                    println("alert")
                     var alert : UIAlertController = UIAlertController(title: "Send failed", message: "You must send this message to at least one user", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Add users", style: UIAlertActionStyle.Default, handler: {
                         alertAction in
@@ -128,17 +127,17 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     func appendMessage(text: String!, sender: PFUser!) {
-        println("tempSendMessage called")
         let message = Message(text: text, sender: sender)
         messageArray.addObject(message)
     }
     
     override func viewDidLoad() {
-        println("viewDidLoad called")
         super.viewDidLoad()
+        /*
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
         }
+        */
         inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
         
@@ -147,7 +146,7 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        //println("viewDidDisappear called")
+        println("viewDidDisappear called")
         super.viewDidAppear(animated)
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
@@ -163,13 +162,11 @@ class MessagesViewController : JSQMessagesViewController {
     
 
     func receivedMessagePressed(sender: UIBarButtonItem) {
-        println("rMessagePressed called")
         showTypingIndicator = !showTypingIndicator
         scrollToBottomAnimated(true)
     }
 
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, sender: String!, date: NSDate!) {
-        println("didPressSendButton called")
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         sendMessage(text, sender: sender)
@@ -200,7 +197,6 @@ class MessagesViewController : JSQMessagesViewController {
         let message = messageArray.objectAtIndex(indexPath.item) as Message
         let currentUser = PFUser.currentUser().objectForKey("username") as String
         if message.sender() == currentUser {
-            println(sender)
             cell.textView.textColor = UIColor.whiteColor()
         } else {
             cell.textView.textColor = UIColor.blackColor()

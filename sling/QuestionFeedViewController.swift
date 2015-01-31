@@ -21,7 +21,23 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     var convoID:String = "aaa"
     var sideMenuOpen : Bool = false
     
-
+    override func viewDidAppear(animated: Bool) {
+        if(PFUser.currentUser() != nil){
+            self.loadData(1)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
+        recognizer.direction = .Left
+        self.view .addGestureRecognizer(recognizer)
+        let recognizer2: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeRight:")
+        recognizer2.direction = .Right
+        self.view .addGestureRecognizer(recognizer2)
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    }
+    
     @IBAction func showMenu(sender: AnyObject) {
         revealViewController().revealToggle(sender)
     }
@@ -50,29 +66,13 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        if(PFUser.currentUser() != nil){
-            self.loadData(1)
-        }
-    }
+    
     
     func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
-        recognizer.direction = .Left
-        self.view .addGestureRecognizer(recognizer)
-        let recognizer2: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeRight:")
-        recognizer2.direction = .Right
-        self.view .addGestureRecognizer(recognizer2)
-        if(PFUser.currentUser() != nil){
-            self.loadData(0)
-        }
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-    }
+    
     
     @IBAction func swipeRight(recognizer2 : UISwipeGestureRecognizer) {
         println("swiped right")
