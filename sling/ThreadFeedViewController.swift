@@ -185,7 +185,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                     let previewText = object.objectForKey("text") as String
                     // Thread preview appearance
                     cell.preview.text = previewText
-                    cell.preview.font = UIFont(name: "CourierNewPSMT", size: 12)
+                    cell.preview.font = UIFont(name: "AvenirNext-Regular", size: 12)
                 }
             }
         }
@@ -193,7 +193,7 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         
         
         
-        // APPEARANCES
+        // MARK: APPEARANCES
         // Thread topic appearance
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.topic.font = UIFont(name: "Futura-MediumItalic", size: 18)
