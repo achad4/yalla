@@ -13,8 +13,8 @@ import CoreData
 class MessagesViewController : JSQMessagesViewController {
     
     var messageArray : NSMutableArray = NSMutableArray()
-    var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-    var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
+    var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleBlueColor())
+    var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var batchMessages = true
     var convo : Conversation!
     var avatarImages = Dictionary<String, UIImage>()
@@ -202,9 +202,9 @@ class MessagesViewController : JSQMessagesViewController {
         let currentUser = PFUser.currentUser().objectForKey("username") as String
         if message.sender() == currentUser {
             println(sender)
-            cell.textView.textColor = UIColor.blackColor()
-        } else {
             cell.textView.textColor = UIColor.whiteColor()
+        } else {
+            cell.textView.textColor = UIColor.blackColor()
         }
         
         let attributes : [NSObject:AnyObject] = [NSForegroundColorAttributeName:cell.textView.textColor, NSUnderlineStyleAttributeName: 1]

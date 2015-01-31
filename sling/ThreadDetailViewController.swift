@@ -129,6 +129,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         //println("viewDidLoad called")
         super.viewDidLoad()
         self.title = self.thread.objectForKey("topic") as? String
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Futura-MediumItalic", size: 18)!]
         if(PFUser.currentUser() != nil && (self.newThread != true)) {
             self.loadData(0)
         }

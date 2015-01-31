@@ -154,6 +154,7 @@
                                 <segment title="Thread"/>
                                 <segment title="People"/>
                             </segments>
+                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="controlSelected:" destination="phR-WZ-GfF" eventType="valueChanged" id="zQt-Hm-3tm"/>
                             </connections>

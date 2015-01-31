@@ -19,7 +19,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="0gz-bL-2mJ">
-                        <barButtonItem key="rightBarButtonItem" title="Users" id="9j6-AO-JiN">
+                        <barButtonItem key="rightBarButtonItem" title="users" id="9j6-AO-JiN">
+                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addUsers:" destination="0mU-NT-DU7" id="mW5-2e-9QG"/>
                                 <segue destination="YCW-BV-ZGP" kind="custom" identifier="FriendsView@Friends" customClass="FriendsSegue" id="LEQ-ao-oPK"/>
@@ -204,16 +205,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kO-ej-s7V" userLabel="tableCell">
-                                            <rect key="frame" x="8" y="15" width="304" height="106"/>
+                                            <rect key="frame" x="8" y="7" width="304" height="106"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ2-NR-tWN">
-                                                    <rect key="frame" x="28" y="21" width="147" height="21"/>
+                                                    <rect key="frame" x="224" y="16" width="147" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preview" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkb-fa-mQf">
-                                                    <rect key="frame" x="28" y="45" width="218" height="53"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preview" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkb-fa-mQf">
+                                                    <rect key="frame" x="20" y="35" width="265" height="72"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -237,12 +238,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="LtE-uY-e0r">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="90Y-2Y-NH4">
+                        <barButtonItem key="leftBarButtonItem" title="menu" id="90Y-2Y-NH4">
+                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="showMenu:" destination="HrU-1U-4yP" id="YBf-ow-UYD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Ki5-Iu-if7">
+                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="postQuestion:" destination="HrU-1U-4yP" id="gff-Hj-D52"/>
                                 <segue destination="0mU-NT-DU7" kind="show" identifier="new_message_segue" id="ByA-pt-yLD"/>

@@ -78,7 +78,7 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     
     _messageBubbleSizes = [NSMutableDictionary new];
     
-    _messageBubbleFont = [UIFont systemFontOfSize:15.0f];
+    _messageBubbleFont = [UIFont fontWithName:@"AvenirNext-Regular" size:15.0f];
     _messageBubbleLeftRightMargin = 40.0f;
     _messageBubbleTextViewFrameInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 6.0f);
     _messageBubbleTextViewTextContainerInsets = UIEdgeInsetsMake(10.0f, 8.0f, 10.0f, 8.0f);
