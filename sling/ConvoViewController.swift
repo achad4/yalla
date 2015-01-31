@@ -32,7 +32,6 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     func loadData(order: Int){
-        println("loading messages")
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
         if(order == 0){
             findTimeLineData.orderByAscending("createdAt")

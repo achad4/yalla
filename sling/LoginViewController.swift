@@ -27,32 +27,17 @@ class LoginViewController : UIViewController {
             alertView.show()
     
         } else {
-    
-            // Attempt to log in user
+            //Attempt to log in user
             PFUser.logInWithUsernameInBackground(username, password:password) {
                     (user: PFUser!, error: NSError!) -> Void in
-                if user != nil {
+                if(user != nil){
                     // Successful login.
                     NSLog("Login successfull")
-                    //self.dismissViewControllerAnimated(true, completion: nil)
-                    //if(PFFacebookUtils.isLinkedWithUser(user)){
                     var installation = PFInstallation.currentInstallation()
                     installation["user"] = user
                     installation.saveInBackground()
                     self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-                    //}
-                    //else{
-                    /*
-                        NSLog("Login failed")
-                        var alertView:UIAlertView = UIAlertView()
-                        alertView.title = "Sign in Failed!"
-                        alertView.message = "Almost there! Link your account with Facebook to start using yalla"
-                        alertView.delegate = self
-                        alertView.addButtonWithTitle("OK")
-                        alertView.show()
-                    */
-                    //}
-                } else {
+                }else{
                     // The login failed.
                     NSLog("Login failed")
                     var alertView:UIAlertView = UIAlertView()
@@ -67,26 +52,7 @@ class LoginViewController : UIViewController {
         }
     
     }
-    
-    @IBAction func linkFacebook(sender: AnyObject) {
-        var user = PFUser.currentUser()
-        if !PFFacebookUtils.isLinkedWithUser(user) {
-            PFFacebookUtils.linkUser(user, permissions:nil, {
-                (succeeded: Bool, error: NSError!) -> Void in
-                if (succeeded) {
-                    NSLog("user logged in with Facebook!")
-                }
-            })
-        } else {
-            var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Failed to Link Facebook!"
-            alertView.message = "Your account is already linked"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
-        }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

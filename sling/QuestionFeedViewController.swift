@@ -140,18 +140,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
-        //let question:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
         let convoObject : Conversation = Conversation(convo: convo)
-        //cell.questionText.text = " " as NSString
-        /*
-        if(message.objectForKey("text") != nil){
-            cell.questionText.text = message.objectForKey("text") as NSString
-        }
-        */
         let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
-        //if(convo[])
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
         var userString : String = ""
         if(convo.objectForKey("isAnon") as? Bool == false){
@@ -181,7 +173,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             if !(error != nil){
                 var users : NSMutableArray = NSMutableArray()
                 for object in objects{
-                    println("adding to array")
                     users.addObject(object)
                 }
                 cell.displayUserPics(users)
@@ -194,12 +185,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         cell.timePosted.font = UIFont(name: "Futura-Medium", size: 14)
         
         cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
-        // cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
 
         
         // Convo cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        // cell.tableCell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         cell.tableCell.layer.cornerRadius  = 3
         
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor

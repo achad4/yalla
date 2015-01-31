@@ -15,7 +15,6 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     var isSearching : Bool!
     var sections : NSMutableArray = NSMutableArray()
     var segment : Int = 0 //threads = 1 people = 2
-
     
     override func viewDidLoad(){
         super.viewDidLoad()

@@ -238,19 +238,6 @@
                                     <segue destination="QkK-Sv-AC5" kind="presentation" id="Adz-RW-248"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfM-PN-dWf">
-                                <rect key="frame" x="233" y="395" width="134" height="30"/>
-                                <color key="backgroundColor" red="0.2606430656" green="0.73575371469999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Link with Facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="linkFBTapped:" destination="oz1-8d-UcR" eventType="touchUpInside" id="QlW-eX-si1"/>
-                                    <action selector="linkFacebook:" destination="faO-sP-0H8" eventType="touchUpInside" id="RYJ-FN-5y2"/>
-                                    <action selector="linkFacebook:" destination="QkK-Sv-AC5" eventType="touchUpInside" id="fQl-b0-M6O"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -322,18 +309,6 @@
                                 </state>
                                 <connections>
                                     <action selector="alreadyUserTapped:" destination="QkK-Sv-AC5" eventType="touchUpInside" id="whK-zs-qog"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-P9-s66">
-                                <rect key="frame" x="233" y="372" width="134" height="30"/>
-                                <color key="backgroundColor" red="0.2606430656" green="0.73575371469999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Link with Facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="linkFBTapped:" destination="oz1-8d-UcR" eventType="touchUpInside" id="QXC-xO-bdz"/>
-                                    <action selector="linkFacebook:" destination="QkK-Sv-AC5" eventType="touchUpInside" id="ZYH-pQ-3if"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -475,6 +450,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Ds9-y7-O5l"/>
-        <segue reference="RQD-SW-Fhn"/>
+        <segue reference="dBR-JM-bY3"/>
     </inferredMetricsTieBreakers>
 </document>

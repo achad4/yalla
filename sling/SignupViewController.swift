@@ -39,21 +39,41 @@ class SignupViewController : UIViewController {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else {
-    
+        }else{
             var user = PFUser()
             user.username = username
             user.password = password
-            //user["email"] = username
-    
+            user["email"] = username
             user.signUpInBackgroundWithBlock {
                     (succeeded: Bool!, error: NSError!) -> Void in
-                if error == nil {
-    
-                    // Signup succeeded
-                    NSLog("sign up success")
-                    //self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-                } else {
+                if(error == nil){
+                    if(PFFacebookUtils.isLinkedWithUser(user)){
+                        var installation = PFInstallation.currentInstallation()
+                        installation["user"] = user
+                        installation.saveInBackground()
+                        self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+                    }
+                    else{
+                        var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "Link yalla to your Facebook to begin", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Link", style: UIAlertActionStyle.Default, handler: {
+                            alertAction in
+                            PFFacebookUtils.linkUser(user, permissions:nil, {
+                                (succeeded: Bool, error: NSError!) -> Void in
+                                if (succeeded) {
+                                    NSLog("user logged in with Facebook!")
+                                    var installation = PFInstallation.currentInstallation()
+                                    installation["user"] = user
+                                    installation.saveInBackground()
+                                    self.populateFacebookInfo(user)
+                                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+                                }
+                            })
+                        
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                }else{
+                    println(error.description)
                     var alertView:UIAlertView = UIAlertView()
                     alertView.title = "Sign up Failed!"
                     alertView.message = "New username required"
@@ -61,34 +81,12 @@ class SignupViewController : UIViewController {
                     alertView.addButtonWithTitle("OK")
                     alertView.show()
                 }
-            }
-    
         }
+    
+    }
     }
     
-    @IBAction func linkFacebook(sender: AnyObject) {
-        var user = PFUser.currentUser()
-        if !PFFacebookUtils.isLinkedWithUser(user) {
-            PFFacebookUtils.linkUser(user, permissions:nil, {
-                (succeeded: Bool, error: NSError!) -> Void in
-                if (succeeded) {
-                    NSLog("user linked with Facebook")
-                    self.populateFacebookProfile(user)
-                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-                }
-            })
-        } else {
-            var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Failed to Link Facebook!"
-            alertView.message = "Your account is already linked"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
-        }
-        
-    }
-    
-    func populateFacebookProfile(user: PFUser) {
+    func populateFacebookInfo(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
                 if (result? != nil) {
@@ -120,7 +118,7 @@ class SignupViewController : UIViewController {
                 } as FBRequestHandler)
         }
     }
-
+    
     
     @IBAction func alreadyUserTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)

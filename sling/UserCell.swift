@@ -26,14 +26,7 @@ class UserCell : UICollectionViewCell{
             self.userButton.alpha = 1
             self.userButton.selected = true
             self.userButton.highlighted = true
-            var message:PFObject = PFObject(className: "Message")
-            message["text"] = self.messageText
-            var sentToRelation = message.relationForKey("sentTo")
-            message["inConvo"] = self.convo.convo as PFObject
-            message["sender"] = PFUser.currentUser()
-            message.saveInBackgroundWithTarget(nil, selector: nil)
             self.convo.addRecipient(self.user)
-            //self.convo.save()
         }
         else{
             self.userButton.alpha = 0.6

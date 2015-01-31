@@ -9,17 +9,9 @@
 import Foundation
 import UIKit
 class TableCell: UITableViewCell{
-    //@IBOutlet weak var timePosted: UILabel!
-    
-    //@IBOutlet weak var score: UILabel!
-    
-    //@IBOutlet weak var questionText: UILabel!
-    //var convo : PFObject = PFObject(className: "Conversation")
+
     var convo : Conversation = Conversation(sender : PFUser.currentUser())
-    
-    
     @IBOutlet weak var tableCell: UIView!
-    
     @IBOutlet weak var timePosted: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
 
@@ -33,6 +25,7 @@ class TableCell: UITableViewCell{
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
         for user in users{
+            println(i)
             var userObject = user as PFObject
             if(userObject["picture"] != nil){
                 println(userObject.objectId)

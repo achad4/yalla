@@ -14,6 +14,17 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     var convo : Conversation!
     var messageText : String = ""
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var sendButton = UIBarButtonItem(title: "Send", style: .Plain, target: self, action: "send")
+        self.navigationItem.setRightBarButtonItem(sendButton, animated: true)
+        
+        var child = self.childViewControllers[0] as FriendCollectionViewController
+        self.segmentedControl.selectedSegmentIndex = 0
+        child.segment = 1
+        
+        child.loadData(1)
+    }
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -42,12 +53,15 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
     @IBOutlet weak var message: UITextView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        var child = self.childViewControllers[0] as FriendCollectionViewController
-        self.segmentedControl.selectedSegmentIndex = 0
-        child.segment = 1
-        child.loadData(1)
+    
+    func send(){
+        var message:PFObject = PFObject(className: "Message")
+        message["text"] = self.messageText
+        var sentToRelation = message.relationForKey("sentTo")
+        message["inConvo"] = self.convo.convo as PFObject
+        message["sender"] = PFUser.currentUser()
+        message.saveInBackgroundWithTarget(nil, selector: nil)
+        self.convo.save()
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
