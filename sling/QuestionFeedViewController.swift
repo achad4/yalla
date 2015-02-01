@@ -55,11 +55,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
         
         if(segue.identifier == "new_message_segue"){
-            //var convo : Conversation = Conversation(sender: PFUser.currentUser())
-            //convo.save()
             let parent = segue.destinationViewController as MessagesViewController
-            //parent.convo = convo
-            //parent.isAnon = convo.isAnon
             parent.isAnon = true
             parent.newMessgae = true
             parent.addedParticipants = false
@@ -89,10 +85,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         }
         else{
             var storyboard = UIStoryboard(name: "Feed", bundle: nil)
-            //var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
             var controller = storyboard.instantiateViewControllerWithIdentifier("FeedView") as UIViewController
             self.navigationController?.pushViewController(controller, animated: true)
-            //self.presentViewController(controller, animated: true, completion: nil)
         }
         
     }
@@ -119,22 +113,14 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                     let pdf = object as PFObject
                     self.timeLineData.addObject(pdf)
                 }
-                //let array:NSArray = self.timeLineData.reverseObjectEnumerator().allObjects
-                //self.timeLineData = array as NSMutableArray
-                
                 self.tableView.reloadData()
             }
         }
      
     }
-
-    @IBAction func postQuestion(sender: AnyObject) {
-        
-    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.timeLineData.count
-        // return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

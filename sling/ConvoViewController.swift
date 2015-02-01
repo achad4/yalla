@@ -22,6 +22,7 @@ class MessagesViewController : JSQMessagesViewController {
     var newMessgae : Bool?
     var addedParticipants : Bool?
     var messageText : String!
+    var segue : FriendsSegue!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "FriendsView@Friends"){
@@ -78,7 +79,11 @@ class MessagesViewController : JSQMessagesViewController {
         //user is starting new conversation
         if(self.newMessgae != false){
             self.messageText = text
-            self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+            var convo : Conversation = Conversation(sender: PFUser.currentUser())
+            self.convo = convo
+            self.convo.save()
+            self.segue.perform()
+            //self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
         }
         //conversation exists-- let user send new message
         else{
@@ -133,6 +138,7 @@ class MessagesViewController : JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
         /*
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
