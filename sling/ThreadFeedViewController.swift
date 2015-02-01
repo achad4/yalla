@@ -185,7 +185,6 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
                     let previewText = object.objectForKey("text") as String
                     // Thread preview appearance
                     cell.preview.text = previewText
-                    cell.preview.font = UIFont(name: "AvenirNext-Regular", size: 12)
                 }
             }
         }
@@ -194,6 +193,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         
         
         // MARK: APPEARANCES
+        cell.preview.font = UIFont(name: "AvenirNext-Regular", size: 12)
+
         // Thread topic appearance
         cell.topic.text = thread.objectForKey("topic") as? String
         cell.topic.font = UIFont(name: "Futura-MediumItalic", size: 18)
@@ -213,6 +214,8 @@ class ThreadFeedViewController : UITableViewController, UITableViewDelegate, UIT
         cell.tableCell.layer.shadowOffset  = CGSizeMake(0.5, 1)
         cell.tableCell.layer.shadowOpacity = 0.5
         cell.tableCell.layer.shadowRadius  = 0.8
+        
+        tableView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         
         println(thread.objectId)
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator

@@ -180,28 +180,12 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kO-ej-s7V" userLabel="tableCell">
                                             <rect key="frame" x="8" y="7" width="304" height="106"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ2-NR-tWN">
-                                                    <rect key="frame" x="224" y="16" width="147" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preview" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkb-fa-mQf">
-                                                    <rect key="frame" x="20" y="35" width="265" height="72"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="lastMessage" destination="Wkb-fa-mQf" id="NgZ-lF-Xa9"/>
                                     <outlet property="tableCell" destination="1kO-ej-s7V" id="pAi-eZ-0nl"/>
-                                    <outlet property="timePosted" destination="TQ2-NR-tWN" id="tVK-eN-MNc"/>
                                     <segue destination="0mU-NT-DU7" kind="show" identifier="to_message_view" id="lU4-OX-zcq"/>
                                 </connections>
                             </tableViewCell>

@@ -22,6 +22,11 @@ class TableCell: UITableViewCell{
         super.init(coder: decoder)
     }
     
+    //func messagePreview(preview:
+    
+        
+    
+    
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
         for user in users{
