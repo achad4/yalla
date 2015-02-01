@@ -72,6 +72,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             self.loadData(0)
         }
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
     }
     
     @IBAction func swipeRight(recognizer2 : UISwipeGestureRecognizer) {
@@ -151,8 +152,18 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             cell.questionText.text = message.objectForKey("text") as NSString
         }
         */
-        let date = convo.createdAt as NSDate
+        
+
+        let date = convo.updatedAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
+        
+        var dateLabel = UILabel(frame: CGRectMake(0, 0, 200, 21))
+        dateLabel.center = CGPointMake(200, 40)
+        dateLabel.textAlignment = NSTextAlignment.Center
+        dateLabel.text = stringDate as NSString
+        dateLabel.font = UIFont(name: "Futura-Medium", size: 14)
+        cell.tableCell.addSubview(dateLabel)
+
         //if(convo[])
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
         var userString : String = ""
@@ -162,6 +173,14 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         else{
             userString = "Anonymous"
         }
+        
+        var previewLabel = UILabel(frame: CGRectMake(0, 0, 400, 60))
+        previewLabel.center = CGPointMake(100, 90)
+        previewLabel.textAlignment = NSTextAlignment.Center
+        previewLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        cell.tableCell.addSubview(previewLabel)
+        
+        
         var preview:PFQuery = PFQuery(className: "Message")
         preview.whereKey("inConvo", equalTo: convo)
         preview.orderByDescending("createdAt")
@@ -170,7 +189,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             if(object != nil){
                 if (object["text"] != nil) {
                     let previewText = object.objectForKey("text") as String
-                    cell.lastMessage.text = previewText
+                    previewLabel.text = previewText
+                    // cell.lastMessage.text = previewText
                     // cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
                 }
             }
@@ -190,10 +210,10 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             }
         }
         
-        cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        // cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
 
-        cell.timePosted.text = stringDate as NSString
-        cell.timePosted.font = UIFont(name: "Futura-Medium", size: 14)
+        // cell.timePosted.text = stringDate as NSString
+        // cell.timePosted.font = UIFont(name: "Futura-Medium", size: 14)
         
         cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         // cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
@@ -208,6 +228,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         cell.tableCell.layer.shadowOffset  = CGSizeMake(0.5, 1)
         cell.tableCell.layer.shadowOpacity = 0.5
         cell.tableCell.layer.shadowRadius  = 0.8
+        
+        tableView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         
         
         cell.convo = convoObject

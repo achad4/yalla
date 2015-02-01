@@ -15,6 +15,8 @@ class TableCell: UITableViewCell{
     
     //@IBOutlet weak var questionText: UILabel!
     //var convo : PFObject = PFObject(className: "Conversation")
+    
+    
     var convo : Conversation = Conversation(sender : PFUser.currentUser())
     
     
@@ -29,6 +31,11 @@ class TableCell: UITableViewCell{
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
+    
+    //func messagePreview(preview:
+    
+        
+    
     
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
