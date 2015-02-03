@@ -93,8 +93,13 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         // Return the number of sections.
+         return self.timeLineData.count
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func loadData(order: Int){
         self.timeLineData.removeAllObjects()
         //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
@@ -119,14 +124,12 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
      
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.timeLineData.count
-    }
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
-        let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.row) as PFObject
+        let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.section) as PFObject
         let convoObject : Conversation = Conversation(convo: convo)
         let date = convo.createdAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString

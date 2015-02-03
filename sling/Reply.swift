@@ -31,6 +31,8 @@ class Reply : NSObject, JSQMessageData {
     var date_: NSDate
     var imageUrl_: String?
     var score : Int
+    var _senderDisplayName: String?
+    var _senderId: String?
     
     convenience init(text: String?, sender: PFUser?) {
         self.init(text: text, sender: sender, imageUrl: nil, score: 0)
@@ -42,6 +44,7 @@ class Reply : NSObject, JSQMessageData {
         self.date_ = NSDate()
         self.imageUrl_ = imageUrl
         self.score = score
+        self._senderId = senderUser?.objectId
     }
     
     func text() -> String! {
@@ -62,5 +65,20 @@ class Reply : NSObject, JSQMessageData {
     func imageUrl() -> String? {
         return imageUrl_
     }
+    
+    func hash() -> UInt {
+        return hash()
+    }
+    
+    func senderDisplayName() -> String! {
+        return self._senderDisplayName
+    }
+    
+    func senderId() -> String! {
+        return self._senderId
+    }
+    
+    
+    
     
 }

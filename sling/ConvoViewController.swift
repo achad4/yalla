@@ -74,7 +74,9 @@ class MessagesViewController : JSQMessagesViewController {
 
 
     }
-
+    
+    
+    
     func sendMessage(var text: String!, var sender: String!) {
         //user is starting new conversation
         if(self.newMessgae != false){
@@ -112,7 +114,6 @@ class MessagesViewController : JSQMessagesViewController {
                 message.saveInBackgroundWithTarget(nil, selector: nil)
                 self.appendMessage(text, sender: PFUser.currentUser())
                 let testmessage: NSString = text as NSString
-                
                 var data = [ "title": "Some Title",
                     "alert": testmessage]
                 var relation = self.convo.convo.relationForKey("participant")
@@ -126,9 +127,6 @@ class MessagesViewController : JSQMessagesViewController {
             }
             
         }
-        
-        
-       
     }
     
     func appendMessage(text: String!, sender: PFUser!) {
@@ -139,20 +137,12 @@ class MessagesViewController : JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
-        /*
-        if(PFUser.currentUser() != nil && self.newMessgae != true) {
-            self.loadData(0)
-        }
-        */
         inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
-        
         sender = (sender != nil) ? sender : "Anonymous"
-        
     }
     
     override func viewDidAppear(animated: Bool) {
-        println("viewDidDisappear called")
         super.viewDidAppear(animated)
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData(0)
@@ -161,12 +151,14 @@ class MessagesViewController : JSQMessagesViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        //println("viewWillDisappear called")
         super.viewWillDisappear(animated)
 
     }
-    
-
+    /*
+    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
+        return self.outgoingBubbleImageView
+    }
+    */
     func receivedMessagePressed(sender: UIBarButtonItem) {
         showTypingIndicator = !showTypingIndicator
         scrollToBottomAnimated(true)
@@ -187,7 +179,7 @@ class MessagesViewController : JSQMessagesViewController {
     override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
         let message = messageArray.objectAtIndex(indexPath.item) as Message
         let currentUser = PFUser.currentUser().objectForKey("username") as String
-        if message.sender() == currentUser {
+        if(message.sender() == currentUser){
             return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
         }
         
@@ -207,10 +199,8 @@ class MessagesViewController : JSQMessagesViewController {
         } else {
             cell.textView.textColor = UIColor.blackColor()
         }
-        
         let attributes : [NSObject:AnyObject] = [NSForegroundColorAttributeName:cell.textView.textColor, NSUnderlineStyleAttributeName: 1]
         cell.textView.linkTextAttributes = attributes
-
         return cell
     }
     override func collectionView(collectionView: UICollectionView, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath) -> UIImageView? {

@@ -30,7 +30,6 @@ class FriendsSegue: UIStoryboardSegue {
     override func perform() {
         
         var sourceViewController      = self.sourceViewController as UIViewController
-        //var destinationViewController = self.destinationViewController as UIViewController
         var destinationViewController = self.sceneNamed(self.identifier!)
         if(self.identifier == "FriendsView@Friends"){
             var sourceViewController      = self.sourceViewController as MessagesViewController
@@ -41,8 +40,12 @@ class FriendsSegue: UIStoryboardSegue {
             destinationViewController.messageText = sourceViewController.messageText
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
         }
+        else if(self.identifier == "ProfileView@Profile"){
+            sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
+
+        }
         else{
-            sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+            sourceViewController.presentViewController(destinationViewController, animated: true, completion: nil)
         }
         
     }

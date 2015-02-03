@@ -28,6 +28,22 @@
 @protocol JSQMessageData <NSObject>
 
 @required
+/**
+ *  @return A string identifier that uniquely identifies the user who sent the message.
+ *
+ *  @discussion If you need to generate a unique identifier, consider using
+ *  `[[NSProcessInfo processInfo] globallyUniqueString]`
+ *
+ *  @warning You must not return `nil` from this method. This value must be unique.
+ */
+- (NSString *)senderId;
+
+/**
+ *  @return The display name for the user who sent the message.
+ *
+ *  @warning You must not return `nil` from this method.
+ */
+- (NSString *)senderDisplayName;
 
 /**
  *  @return The body text of the message. 
@@ -46,5 +62,10 @@
  *  @warning You must not return `nil` from this method.
  */
 - (NSDate *)date;
+
+/**
+ *  @return An integer that can be used as a table address in a hash table structure.
+ */
+- (NSUInteger)hash;
 
 @end
