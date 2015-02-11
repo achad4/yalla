@@ -40,6 +40,7 @@ class TableCell: UITableViewCell{
                         if !(error != nil) {
                             let image = UIImage(data:imageData)
                             let width = 25 as UInt
+                            /*
                             let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
                             var imageView = UIImageView(image: userAvatar)
                             imageView.alpha = 0.8
@@ -47,6 +48,7 @@ class TableCell: UITableViewCell{
                             var x = CGFloat(value)
                             imageView.frame = CGRectMake(x, 30, 25, 25)
                             self.addSubview(imageView)
+                            */
                         }
                 }
             }
@@ -54,6 +56,7 @@ class TableCell: UITableViewCell{
                 var image = UIImage(named: "anon.jpg")
                 let width = 25 as UInt
                 var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
+                /*
                 let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
                 var imageView = UIImageView(image: userAvatar)
                 imageView.alpha = 0.8
@@ -61,6 +64,7 @@ class TableCell: UITableViewCell{
                 var x = CGFloat(value)
                 imageView.frame = CGRectMake(x, 30, 25, 25)
                 self.addSubview(imageView)
+                */
             }
             i++
         }

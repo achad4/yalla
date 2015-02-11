@@ -141,7 +141,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         else{
             userString = "Anonymous"
         }
-        
+        if(cell.tableCell.subviews.count > 0){
+            cell.tableCell.subviews[0].removeFromSuperview()
+        }
         var previewLabel = UILabel(frame: CGRectMake(0, 0, 400, 60))
         previewLabel.center = CGPointMake(100, 90)
         previewLabel.textAlignment = NSTextAlignment.Center

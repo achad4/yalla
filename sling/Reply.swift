@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Reply : NSObject, JSQMessageData {
+class Reply : JSQMessage {
     /*
     var sender : PFUser;
     var recipients : NSMutableArray;
@@ -25,12 +25,12 @@ class Reply : NSObject, JSQMessageData {
     recipients.addObject(user);
     }
     */
-    var text_: String
+    var text_:String!
     //var sender_: String
     var senderUser : PFUser?
-    var date_: NSDate
+    var date_: NSDate!
     var imageUrl_: String?
-    var score : Int
+    var score : Int!
     var _senderDisplayName: String?
     var _senderId: String?
     
@@ -39,6 +39,7 @@ class Reply : NSObject, JSQMessageData {
     }
     
     init(text: String?, sender: PFUser?, imageUrl: String?, score: Int) {
+        super.init()
         self.text_ = text!
         self.senderUser = sender!
         self.date_ = NSDate()
@@ -46,7 +47,10 @@ class Reply : NSObject, JSQMessageData {
         self.score = score
         self._senderId = senderUser?.objectId
     }
-    
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     func text() -> String! {
         return text_;
     }
@@ -66,9 +70,6 @@ class Reply : NSObject, JSQMessageData {
         return imageUrl_
     }
     
-    func hash() -> UInt {
-        return hash()
-    }
     
     func senderDisplayName() -> String! {
         return self._senderDisplayName

@@ -9,12 +9,14 @@
 import Foundation
 class SidePanelViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
     var menuItems : NSArray = ["Logout", "Profile", "Settings"]
+    var segue : FriendsSegue!
     
     @IBOutlet weak var userPic: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {       
         super.viewDidLoad()
+        segue = FriendsSegue(identifier: "ProfileView@Profile", source: self, destination: self)
         var user : PFUser = PFUser.currentUser()
         if(user["picture"] != nil){
             var imageFile : PFFile = user["picture"] as PFFile
@@ -23,16 +25,16 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
                 if !(error != nil) {
                     let image = UIImage(data:imageData)
                     let width = 50 as UInt
-                    let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-                    self.userPic.image = userAvatar
+                    //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                    //self.userPic.image = userAvatar
                 }
             }
         }
         else{
             var image = UIImage(named: "anon.jpg")
             let width = 100 as UInt
-            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-            self.userPic.image = userAvatar
+            //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+            //self.userPic.image = userAvatar
         }
         if(user["realName"] != nil){
             var name : String = user.objectForKey("realName") as String
@@ -59,7 +61,8 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
             }
         }
         else if(indexPath.row == 1){
-            self.performSegueWithIdentifier("ProfileView@Profile", sender: self)
+            println("profile segue")
+            self.segue.perform()
         }
     }
     

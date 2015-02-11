@@ -13,8 +13,8 @@ class ThreadDetailViewController : JSQMessagesViewController {
     var messageArray : NSMutableArray = NSMutableArray()
     var replyObjectArray : NSMutableArray = NSMutableArray()
     // var avatars = Dictionary<String, UIImage>()
-    var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-    var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
+    //var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
+    //var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleGreenColor())
     var batchMessages = true
     var thread : PFObject = PFObject(className: "Thread")
     var timeLineData : NSMutableArray = NSMutableArray()
@@ -136,7 +136,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
         
-        sender = (sender != nil) ? sender : "Anonymous"
+       // sender = (sender != nil) ? sender : "Anonymous"
         
         
         
@@ -161,7 +161,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         showTypingIndicator = !showTypingIndicator
         scrollToBottomAnimated(true)
     }
-    
+    /*
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, sender: String!, date: NSDate!) {
         println("didPressSendButton called")
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
@@ -170,7 +170,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         
         finishSendingMessage()
     }
-    
+    */
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         //println("collectionView 1")
         //let message = Message(text: text, sender: sender)
@@ -179,7 +179,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         return messageArray.objectAtIndex(indexPath.item) as Reply
         
     }
-    
+    /*
     override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
         //println("collectionView 2")
         //let message = messages[indexPath.item]
@@ -190,7 +190,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
         */
     }
-    
+    */
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //println("collectionView 3")
         return messageArray.count
@@ -208,6 +208,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         
         return cell
     }
+    /*
     override func collectionView(collectionView: UICollectionView, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath) -> UIImageView? {
         var image = UIImage(named: "like.jpg")
         let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
@@ -216,6 +217,7 @@ class ThreadDetailViewController : JSQMessagesViewController {
         avatarView.reply = self.replyObjectArray.objectAtIndex(indexPath.item) as PFObject
         return avatarView
     }
+*/
     /*
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         //println("collectionView 5")
@@ -259,4 +261,5 @@ class ThreadDetailViewController : JSQMessagesViewController {
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
+    
 }
