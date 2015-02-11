@@ -11,7 +11,7 @@ class Conversation{
     var convo : PFObject
     //var messages: NSMutableArray
     var participants: NSMutableArray
-    var isAnon : Bool
+    //var isAnon : Bool
     init(sender : PFObject){
         //messages = NSMutableArray()
         participants = NSMutableArray()
@@ -20,12 +20,12 @@ class Conversation{
         convo = PFObject(className: "Conversation")
         self.convo.ACL.setPublicWriteAccess(true)
         convo["owner"] = sender
-        isAnon = true
+        //isAnon = true
     }
   
     init(convo : PFObject){
         participants = NSMutableArray()
-        isAnon = true
+        //isAnon = true
         self.convo = convo
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
@@ -44,7 +44,7 @@ class Conversation{
             var participant = convo.relationForKey("participant") as PFRelation
             participant.addObject(user as PFObject);
         }
-        convo["isAnon"] = self.isAnon as NSNumber
+        //convo["isAnon"] = self.isAnon as NSNumber
         convo.saveInBackgroundWithTarget(nil, selector: nil)
     }
 }

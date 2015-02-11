@@ -9,7 +9,6 @@
 import Foundation
 class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
-
     //var convo : Conversation = Conversation(sender: PFUser.currentUser())
     var convo : Conversation!
     var messageText : String = ""

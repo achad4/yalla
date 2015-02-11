@@ -66,19 +66,15 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                             (imageData: NSData!, error: NSError!) -> Void in
                             if !(error != nil) {
                                 let image = UIImage(data:imageData)
-                                let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
-                                //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-                                //self.avatarImages[sender.username] = userAvatar
+                                println("addingimage:" + sender.objectId)
+                                self.avatarImages[sender.objectId] = image
                             }
                         }
                     }
                     else{
                         var image = UIImage(named: "anon.jpg")
-                        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
-                        //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-                        //self.avatarImages[sender.username] = userAvatar
+                        self.avatarImages[sender.objectId] = image
                     }
-                    //self.messageArray.addObject(Message(text: text, sender: sender))
                     self.messageArray.addObject(JSQMessage(senderId: sender.objectId, displayName: sender.username, text: text))
                 }
             }
@@ -98,7 +94,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             self.convo = convo
             self.convo.save()
             self.segue.perform()
-            //self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
         }
         //conversation exists-- let user send new message
         else{
@@ -115,11 +110,9 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             
             else{
                 if((self.isAnon == true) && ((PFUser.currentUser().objectId != self.convo.convo["owner"].fetchIfNeeded().objectId))){
-                    println("revealing senders: ")
                     self.isAnon = false
-                    self.convo.isAnon = false
+                    self.convo.convo["isAnon"] = false as NSNumber
                 }
-                println("sending message")
                 var message:PFObject = PFObject(className: "Message")
                 message["text"] = text
                 var sentToRelation = message.relationForKey("sentTo")
@@ -172,11 +165,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         super.viewWillDisappear(animated)
 
     }
-    /*
-    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
-        return self.outgoingBubbleImageView
-    }
-    */
+
     func receivedMessagePressed(sender: UIBarButtonItem) {
         showTypingIndicator = !showTypingIndicator
         scrollToBottomAnimated(true)
@@ -192,39 +181,12 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         return messageArray.objectAtIndex(indexPath.item) as JSQMessage
     }
     
-    /*
-    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!)  -> JSQMessageBubbleImageDataSource {
-        let message = messageArray.objectAtIndex(indexPath.item) as Message
-        let currentUser = PFUser.currentUser().objectForKey("username") as String
-        if(message.sender() == currentUser){
-            println("outgoing")
-            return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
-        }
-        println("incoming")
-        
-        return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
-    }
-    */
-    /*
-    override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
-        let message = messageArray.objectAtIndex(indexPath.item) as JSQMessage
-        let currentUser = PFUser.currentUser().objectForKey("username") as String
-        if(message.sender() == currentUser){
-            println("outgoing")
-            return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
-        }
-        println("incoming")
-        return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
-    }
-*/
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let msg = messageArray.objectAtIndex(indexPath.item) as JSQMessage
         if(msg.senderId == PFUser.currentUser().objectId){
-            println("outgoing")
             return self.outgoingBubbleImageView
         }else{
-            println("incoming")
             return self.incomingBubbleImageView
         }
     }
@@ -249,20 +211,17 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func collectionView(collectionView: UICollectionView, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
-        /*
-        let message = self.messageArray.objectAtIndex(indexPath.item) as Message
-        let user = message.user() as PFUser!
+        
+        let message = self.messageArray.objectAtIndex(indexPath.item) as JSQMessage
+        let user = message.senderId
+        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
         if(isAnon == false){
-            let username = user.username
-            return UIImageView(image: self.avatarImages[username])
+            if(self.avatarImages[user] != nil){
+                return JSQMessagesAvatarImageFactory.avatarImageWithImage(self.avatarImages[user], diameter: width)
+            }
         }
         var image = UIImage(named: "unknown.jpg")
-        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
-        let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-        
-        return UIImageView(image: userAvatar)
-        */
-        return nil
+        return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: width)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
@@ -277,7 +236,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 return nil;
             }
         }
-        if(isAnon != true){
+        if(isAnon == false){
             return NSAttributedString(string:message.senderDisplayName)
         }
         return NSAttributedString(string: "Anonymous")
@@ -294,14 +253,12 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         if message.senderId == PFUser.currentUser().objectId {
             return CGFloat(0.0);
         }
-        
         if indexPath.item > 0 {
             let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as JSQMessage;
             if previousMessage.senderId == message.senderId {
                 return CGFloat(0.0);
             }
         }
-        
         return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
 }

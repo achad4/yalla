@@ -116,17 +116,16 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                     if !(error != nil) {
                         let image = UIImage(data:imageData)
                         let width = 50 as UInt
-                        //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-                        //cell.userButton.setBackgroundImage(userAvatar, forState: UIControlState.Normal)
+                        let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter: width)
+                        cell.userButton.setBackgroundImage(circleImage, forState: UIControlState.Normal)
                     }
                 }
             }
             else{
                 var image = UIImage(named: "anon.jpg")
                 let width = 50 as UInt
-                var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
-                //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
-                //cell.userButton.setBackgroundImage(userAvatar, forState: UIControlState.Normal)
+                let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter: width)
+                cell.userButton.setBackgroundImage(circleImage, forState: UIControlState.Normal)
             }
             cell.userButton.alpha = 0.5
             var parentViewController = self.parentViewController as FriendParentViewController

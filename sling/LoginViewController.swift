@@ -58,11 +58,11 @@ class LoginViewController : UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if(PFUser.currentUser() != nil){
-            println(PFUser.currentUser().username)
-            self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-        }
         super.viewDidAppear(animated)
+        if(PFUser.currentUser() != nil){
+            self.performSegueWithIdentifier("InitialView@Messages", sender: nil)
+        }
+       
     }
     
     override func didReceiveMemoryWarning() {
