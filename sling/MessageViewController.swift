@@ -18,7 +18,8 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     var batchMessages = true
     var convo : Conversation!
     var avatarImages : Dictionary<String, UIImage>!
-    var isAnon : Bool!
+    var questions : NSMutableArray!
+    var isAnon : Bool?
     var newMessgae : Bool?
     var addedParticipants : Bool?
     var messageText : String!
@@ -26,7 +27,8 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadAvatars()
+        
+        self.loadQuestions()
         self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
         self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
         self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
@@ -39,11 +41,15 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        /*
         if(self.newMessgae == true){
-            self.inputToolbar.contentView.rightBarButtonItem.titleLabel?.text = "Users"
+            self.inputToolbar.contentView.rightBarButtonItem.setAttributedTitle(NSAttributedString(string: "+"), forState: UIControlState.Normal)
+            self.inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.jsq_messageBubbleBlueColor().jsq_colorByDarkeningColorWithValue(0.1), forState: UIControlState.Highlighted)
         }
+        */
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadData()
+            self.loadAvatars()
         }
         collectionView.collectionViewLayout.springinessEnabled = true
     }
@@ -112,7 +118,20 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         }
     }
     
-    
+    func loadQuestions(){
+        self.questions = NSMutableArray()
+        var questionQ:PFQuery = PFQuery(className: "Question")
+        questionQ.findObjectsInBackgroundWithBlock{
+            (objects:[AnyObject]!, error:NSError!)->Void in
+            if !(error != nil){
+                for object in objects{
+                    let text = object.objectForKey("text") as String
+                    self.questions.addObject(text)
+                }
+            }
+        }
+
+    }
     
     func sendMessage(var text: String!) {
         //user is starting new conversation
@@ -169,23 +188,11 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
-        //find a way to only count once
-        var count : Int = PFQuery(className: "Question").countObjects()
-        var query : PFQuery = PFQuery(className: "Question")
-        query.limit = 1
-        //query.skip = Int(arc4random(count))
-        query.skip  = Int(arc4random_uniform(UInt32(count)))
-        query.getFirstObjectInBackgroundWithBlock {
-            (object:PFObject!, error:NSError!) -> Void in
-            if(object != nil){
-                if (object["text"] != nil) {
-                    self.inputToolbar.contentView.textView.text = object["text"] as String
-                    self.inputToolbar.toggleSendButtonEnabled()
-                }
-            }
-        }
-
-        
+        var count = self.questions.count
+        var randIndex = Int(arc4random_uniform(UInt32(count)))
+        var text = self.questions.objectAtIndex(randIndex) as String
+        self.inputToolbar.contentView.textView.text = text
+        self.inputToolbar.toggleSendButtonEnabled()
     }
     
     

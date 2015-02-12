@@ -62,7 +62,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
             let parent = segue.destinationViewController as MessagesViewController
             parent.convo = cell.convo
-            parent.isAnon = cell.convo.convo.objectForKey("isAnon") as Bool
+            parent.isAnon = cell.convo.convo.objectForKey("isAnon") as? Bool
             parent.newMessgae = false
         }
         
