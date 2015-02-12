@@ -11,7 +11,8 @@ import UIKit
 class TableCell: UITableViewCell{
 
     var convo : Conversation = Conversation(sender : PFUser.currentUser())
-    @IBOutlet weak var tableCell: UIView!
+    let tableCell = UIView()
+    
     @IBOutlet weak var timePosted: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
 
@@ -20,12 +21,8 @@ class TableCell: UITableViewCell{
     }
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)
+        self.addSubview(tableCell)
     }
-    
-    //func messagePreview(preview:
-    
-        
-    
     
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
