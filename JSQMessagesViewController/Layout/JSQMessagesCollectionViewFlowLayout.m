@@ -79,7 +79,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     self.sectionInset = UIEdgeInsetsMake(10.0f, 4.0f, 10.0f, 4.0f);
     self.minimumLineSpacing = 4.0f;
     
-    _bubbleImageAssetWidth = [UIImage jsq_bubbleCompactImage].size.width;
+    _bubbleImageAssetWidth = [UIImage jsq_bubbleCompactTaillessImage].size.width;
     
     _messageBubbleCache = [NSCache new];
     _messageBubbleCache.name = @"JSQMessagesCollectionViewFlowLayout.messageBubbleCache";
