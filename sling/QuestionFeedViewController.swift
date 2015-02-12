@@ -16,10 +16,12 @@ protocol QuestionFeedTableViewControllerDelegate{
 }
 
 class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITableViewDataSource{
+    
     var timeLineData : NSMutableArray = NSMutableArray()
     var delegate:QuestionFeedTableViewControllerDelegate? = nil
     var convoID:String = "aaa"
     var sideMenuOpen : Bool = false
+    var screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
     
     override func viewDidAppear(animated: Bool) {
         if(PFUser.currentUser() != nil){
@@ -136,19 +138,29 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
         var userString : String = ""
+        
+        println(screenWidth)
+        
+        cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 20, 115)
+        cell.tableCell.center = CGPointMake(screenWidth * 0.5, 60)
+        
         if(convo.objectForKey("isAnon") as? Bool == false){
             userString = user.username
         }
-        else{
+            
+        else {
             userString = "Anonymous"
         }
+        
         if(cell.tableCell.subviews.count > 0){
             cell.tableCell.subviews[0].removeFromSuperview()
         }
-        var previewLabel = UILabel(frame: CGRectMake(0, 0, 400, 60))
-        previewLabel.center = CGPointMake(100, 90)
-        previewLabel.textAlignment = NSTextAlignment.Center
-        previewLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        
+        var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 40, 50))
+        previewLabel.center = CGPointMake(screenWidth * 0.5, 85)
+        previewLabel.textAlignment = .Left
+        previewLabel.numberOfLines = 2
+        previewLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
         cell.tableCell.addSubview(previewLabel)
         
         
@@ -200,7 +212,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         
         cell.convo = convoObject
         
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
     }
