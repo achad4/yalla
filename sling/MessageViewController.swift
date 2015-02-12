@@ -142,13 +142,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
-        /*
-        count = PFQuery.queryWithClassName("Question").countObjects
-        query = PFQuery.queryWithClassName("Question")
-        query.limit = 1
-        query.skip = rand(count)
-        query.findObjects.first
-        */
+        //find a way to only count once
         var count : Int = PFQuery(className: "Question").countObjects()
         var query : PFQuery = PFQuery(className: "Question")
         query.limit = 1
@@ -163,8 +157,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 }
             }
         }
-
-        
     }
     
     override func viewDidLoad() {
@@ -176,7 +168,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         self.senderId = PFUser.currentUser().objectId
         self.senderDisplayName = PFUser.currentUser().username
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
-        //inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
     }
     
