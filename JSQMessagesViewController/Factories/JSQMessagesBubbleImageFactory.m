@@ -63,7 +63,7 @@
 
 - (instancetype)init
 {
-    return [self initWithBubbleImage:[UIImage jsq_bubbleCompactImage] capInsets:UIEdgeInsetsZero];
+    return [self initWithBubbleImage:[UIImage jsq_bubbleCompactTaillessImage] capInsets:UIEdgeInsetsZero];
 }
 
 - (void)dealloc
