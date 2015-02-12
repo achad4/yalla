@@ -141,14 +141,42 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         messageArray.addObject(message)
     }
     
+    override func didPressAccessoryButton(sender: UIButton!) {
+        /*
+        count = PFQuery.queryWithClassName("Question").countObjects
+        query = PFQuery.queryWithClassName("Question")
+        query.limit = 1
+        query.skip = rand(count)
+        query.findObjects.first
+        */
+        var count : Int = PFQuery(className: "Question").countObjects()
+        var query : PFQuery = PFQuery(className: "Question")
+        query.limit = 1
+        //query.skip = Int(arc4random(count))
+        query.skip  = Int(arc4random_uniform(UInt32(count)))
+        query.getFirstObjectInBackgroundWithBlock {
+            (object:PFObject!, error:NSError!) -> Void in
+            if(object != nil){
+                if (object["text"] != nil) {
+                    self.inputToolbar.contentView.textView.text = object["text"] as String
+                    self.inputToolbar.toggleSendButtonEnabled()
+                }
+            }
+        }
+
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
+        self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
         self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
         self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
         self.senderId = PFUser.currentUser().objectId
         self.senderDisplayName = PFUser.currentUser().username
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
-        inputToolbar.contentView.leftBarButtonItem = nil
+        //inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
     }
     

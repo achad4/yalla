@@ -161,8 +161,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
                 if (object["text"] != nil) {
                     let previewText = object.objectForKey("text") as String
                     previewLabel.text = previewText
-                    // cell.lastMessage.text = previewText
-                    // cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
                 }
             }
         }
