@@ -38,6 +38,17 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         recognizer2.direction = .Right
         self.view .addGestureRecognizer(recognizer2)
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        self.navigationController?.navigationBar.layer.shadowOffset  = CGSizeMake(0, 2)
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.9
+        self.navigationController?.navigationBar.layer.shadowRadius  = 4.0
+        self.navigationController?.navigationBar.topItem?.title = "Inbox"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.whiteColor()]
+
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0)
+        //self.setNeedsStatusBarAppearanceUpdate() = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
     }
     
     @IBAction func showMenu(sender: AnyObject) {
@@ -104,10 +115,9 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     }
     
     func loadData(order: Int){
+        
         self.timeLineData.removeAllObjects()
-        //var currentUserData:UserData = UserData(theUser: PFUser.currentUser())
        
-        //var findTimeLineData:PFQuery = PFQuery(className: "Message")
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
         findTimeLineData.orderByDescending("updatedAt")
@@ -134,15 +144,15 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
         let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.section) as PFObject
         let convoObject : Conversation = Conversation(convo: convo)
-        let date = convo.createdAt as NSDate
+        let date = convo.updatedAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
         var userString : String = ""
         
-        println(screenWidth)
+        self.tableView.rowHeight = 125
         
         cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 20, 115)
-        cell.tableCell.center = CGPointMake(screenWidth * 0.5, 60)
+        cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
         
         if(convo.objectForKey("isAnon") as? Bool == false){
             userString = user.username
@@ -156,12 +166,21 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             cell.tableCell.subviews[0].removeFromSuperview()
         }
         
-        var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 40, 50))
-        previewLabel.center = CGPointMake(screenWidth * 0.5, 85)
+        var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 60, 50))
+        previewLabel.center = CGPointMake(screenWidth * 0.5 - 10, 85)
         previewLabel.textAlignment = .Left
         previewLabel.numberOfLines = 2
         previewLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        //previewLabel.layer.borderColor = UIColor.blackColor().CGColor
+        //previewLabel.layer.borderWidth = 3
         cell.tableCell.addSubview(previewLabel)
+        
+        var timeLabel = UILabel(frame: CGRectMake(0, 0, 100, 25))
+        timeLabel.center = CGPointMake(screenWidth - 90, 35)
+        timeLabel.textAlignment = .Right
+        timeLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
+        timeLabel.text = stringDate
+        cell.tableCell.addSubview(timeLabel)
         
         
         var preview:PFQuery = PFQuery(className: "Message")
@@ -177,6 +196,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             }
         }
         
+        
         var relation : PFRelation = convo.relationForKey("participant")
         var query : PFQuery = relation.query()
         query.findObjectsInBackgroundWithBlock {
@@ -190,29 +210,21 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             }
         }
         
-        // cell.lastMessage.font = UIFont(name: "AvenirNext-Regular", size: 12)
-
-        // cell.timePosted.text = stringDate as NSString
-        // cell.timePosted.font = UIFont(name: "Futura-Medium", size: 14)
-        
         cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
 
         
         // Convo cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.tableCell.layer.cornerRadius  = 3
+        cell.tableCell.layer.cornerRadius  = 4.0
         
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        cell.tableCell.layer.shadowOffset  = CGSizeMake(0.5, 1)
+        cell.tableCell.layer.shadowOffset  = CGSizeMake(0, 2)
         cell.tableCell.layer.shadowOpacity = 0.5
-        cell.tableCell.layer.shadowRadius  = 0.8
+        cell.tableCell.layer.shadowRadius  = 4.0
         
         tableView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         
-        
         cell.convo = convoObject
-        
-        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
     }
