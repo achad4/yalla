@@ -12,34 +12,22 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     var convo : Conversation!
     var messageText : String = ""
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var sendButton = UIBarButtonItem(title: "Send", style: .Plain, target: self, action: "send")
         self.navigationItem.setRightBarButtonItem(sendButton, animated: true)
+        //var child = self.childViewControllers[0] as FriendCollectionViewController
+        //child.loadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        var widthConstraintChild = NSLayoutConstraint(item: self.childViewControllers[0].view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        self.view.addConstraint(widthConstraintChild)
         
-        var child = self.childViewControllers[0] as FriendCollectionViewController
-        child.loadData(1)
     }
-    
-    
-    @IBAction func controlSelected(sender: UISegmentedControl) {
-        var child = self.childViewControllers[0] as FriendCollectionViewController
-        child.messageText = self.messageText
-        child.loadData(1)
-    }
-
-    
-    
-    @IBAction func doneAdding(sender: AnyObject) {
-        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("MessageDetail") as MessagesViewController
-        controller.convo = self.convo
-        self.presentViewController(controller, animated: true, completion: nil)
-    
-    }
-    
-    @IBOutlet weak var message: UITextView!
-    
     
     func send(){
         var message:PFObject = PFObject(className: "Message")

@@ -19,14 +19,20 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     override func viewDidLoad(){
         super.viewDidLoad()
         self.collectionView?.layer.borderWidth = 3
+        var widthConstraint = NSLayoutConstraint(item: self.collectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.parentViewController, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 95)
+        self.collectionView?.addConstraint(widthConstraint)
         isSearching = false
-        if(PFUser.currentUser() != nil){
-            self.loadData(1)
-        }
+        
     }
     
-    
-    func loadData(order: Int){
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if(PFUser.currentUser() != nil){
+            self.loadData()
+        }
+    }
+    func loadData(){
         users.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "_User")
         findTimeLineData.findObjectsInBackgroundWithBlock{
@@ -39,15 +45,22 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                 self.sections.addObject(self.users)
             }
             self.collectionView?.reloadData()
-            }
+        }
     }
     
     override func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath){
             var cell = collectionView.cellForItemAtIndexPath(indexPath) as UserCell
             var parentViewController = self.parentViewController as FriendParentViewController
-            parentViewController.convo.addRecipient(cell.user)
-            parentViewController.convo.save()
+            if(cell.userImage.alpha == 0.5){
+                cell.userImage.alpha = 1
+                parentViewController.convo.addRecipient(cell.user)
+            }
+            else{
+                cell.userImage.alpha = 0.5
+                parentViewController.convo.removeRecipient(cell.user)
+            }
+            
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -65,17 +78,25 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("UserCell", forIndexPath: indexPath) as UserCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("UserCell", forIndexPath: indexPath) as UserCell
         var users : NSMutableArray = self.sections.objectAtIndex(indexPath.section) as NSMutableArray
         var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
         if(isSearching == true){
             user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
         }
-        cell.layer.cornerRadius = 50
-        println(cell.layer.cornerRadius)
-        cell.backgroundColor = UIColor.whiteColor()
         cell.user = user
-        cell.userName.text = user.objectForKey("username") as NSString
+        
+        //cell.userButton = UIButton()
+        var X : CGFloat = cell.frame.origin.x
+        var Y : CGFloat = 0
+        var centerX = cell.frame.origin
+        cell.userCellView.frame = CGRectMake(X, Y, 85, 100)
+        cell.userCellView.center = CGPointMake(X + cell.frame.width/2, Y + cell.frame.height/2)
+        //cell.userButton.frameForAlignmentRect(CGRectMake(cell.frame.size.width-25, Y, 50, 50))
+        cell.userName = UILabel()
+        cell.userName.text = user.objectForKey("realName") as? String
+        //cell.userButton.alpha = 0.5
+        
         if(user["picture"] != nil){
             var imageFile : PFFile = user["picture"] as PFFile
             imageFile.getDataInBackgroundWithBlock {
@@ -84,27 +105,43 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                     let image = UIImage(data:imageData)
                     let width = 50 as UInt
                     let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter:width)
-                    cell.userButton.setBackgroundImage(circleImage, forState: UIControlState.Normal)
+                    cell.userImage = UIImageView(image: circleImage)
+                    cell.userCellView.addSubview(cell.userImage)
+                    cell.userImage.alpha = 0.5
                 }
             }
         }
-            else{
-                var image = UIImage(named: "anon.jpg")
-                let width = 50 as UInt
-                let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter: width)
-                cell.userButton.setBackgroundImage(circleImage, forState: UIControlState.Normal)
-            }
-            cell.userButton.alpha = 0.5
-            var parentViewController = self.parentViewController as FriendParentViewController
-            cell.convo = parentViewController.convo
-            cell.messageText = self.messageText
-            
-            return cell
+        else{
+            var image = UIImage(named: "anon.jpg")
+            let width = 50 as UInt
+            let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter: width)
+            cell.userImage = UIImageView(image: circleImage)
+            cell.userCellView.addSubview(cell.userImage)
+        }
+        
+        var parentViewController = self.parentViewController as FriendParentViewController
+        
+        cell.convo = parentViewController.convo
+        cell.messageText = self.messageText
+        cell.userCellView.addSubview(cell.userName)
+        //cell.userCellView.addSubview(cell.userButton)
+        cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+        
+        
+        // Convo cell appearance
+        cell.userCellView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.userCellView.layer.cornerRadius  = 4.0
+        
+        cell.userCellView.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        cell.userCellView.layer.shadowOffset  = CGSizeMake(0, 2)
+        cell.userCellView.layer.shadowOpacity = 0.5
+        cell.userCellView.layer.shadowRadius  = 4.0
+        
+        return cell
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let reusableView:UICollectionReusableView = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", forIndexPath: indexPath) as UICollectionReusableView
-        println(indexPath.section)
         return reusableView
     }
 

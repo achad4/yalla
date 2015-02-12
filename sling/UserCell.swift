@@ -12,16 +12,19 @@ class UserCell : UICollectionViewCell{
     var convo : Conversation!
     var messageText : String!
     
-    @IBOutlet weak var userButton: UIButton!
+    var userImage: UIImageView!
     
-    @IBOutlet weak var userName: UILabel!
+    var userName: UILabel!
     
-    override init() {
+    var userCellView: UIView = UIView()
+    
+    required init(coder decoder: NSCoder) {
         user = PFUser()
-        super.init()
+        super.init(coder: decoder)
+        self.addSubview(userCellView)
     }
-
-    @IBAction func userSelected(sender: AnyObject) {
+    /*
+    func userSelected() {
         if(!self.userButton.selected){
             self.userButton.alpha = 1
             self.userButton.selected = true
@@ -36,10 +39,6 @@ class UserCell : UICollectionViewCell{
         }
         
     }
-    
-    required init(coder decoder: NSCoder) {
-        user = PFUser()
-        super.init(coder: decoder)
-    }
+    */
     
 }
