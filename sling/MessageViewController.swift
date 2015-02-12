@@ -66,7 +66,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                             (imageData: NSData!, error: NSError!) -> Void in
                             if !(error != nil) {
                                 let image = UIImage(data:imageData)
-                                println("addingimage:" + sender.objectId)
                                 self.avatarImages[sender.objectId] = image
                             }
                         }
@@ -109,7 +108,8 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             }
             
             else{
-                if((self.isAnon == true) && ((PFUser.currentUser().objectId != self.convo.convo["owner"].fetchIfNeeded().objectId))){
+                if((self.isAnon != true) && ((PFUser.currentUser().objectId != self.convo.convo["owner"].fetchIfNeeded().objectId))){
+                    println("reveal")
                     self.isAnon = false
                     self.convo.convo["isAnon"] = false as NSNumber
                 }

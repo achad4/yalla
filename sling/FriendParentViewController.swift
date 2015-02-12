@@ -9,7 +9,6 @@
 import Foundation
 class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
-    //var convo : Conversation = Conversation(sender: PFUser.currentUser())
     var convo : Conversation!
     var messageText : String = ""
     
@@ -19,25 +18,14 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
         self.navigationItem.setRightBarButtonItem(sendButton, animated: true)
         
         var child = self.childViewControllers[0] as FriendCollectionViewController
-        self.segmentedControl.selectedSegmentIndex = 0
-        child.segment = 1
-        
         child.loadData(1)
     }
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBAction func controlSelected(sender: UISegmentedControl) {
         var child = self.childViewControllers[0] as FriendCollectionViewController
         child.messageText = self.messageText
-        if (segmentedControl.selectedSegmentIndex == 0) {
-            child.segment = 1
-            child.loadData(1)
-        }
-        else if (segmentedControl.selectedSegmentIndex == 1) {
-            child.segment = 2
-            child.loadData(1)
-        }
+        child.loadData(1)
     }
 
     
@@ -65,42 +53,21 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         var child = self.childViewControllers[0] as FriendCollectionViewController
-        if(child.segment == 2){
-            if searchBar.text.isEmpty{
-                child.isSearching = false
+        if searchBar.text.isEmpty{
+            child.isSearching = false
                 child.collectionView?.reloadData()
-            } else {
-                child.isSearching = true
-                child.filteredUsers.removeAllObjects()
-                for var index = 0; index < child.users.count; index++
-                {
-                    var currentUser = child.users.objectAtIndex(index) as PFObject
-                    var currentString = currentUser.objectForKey("username") as String
-                    if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
-                        child.filteredUsers.addObject(currentUser)
-                    }
+        } else {
+            child.isSearching = true
+            child.filteredUsers.removeAllObjects()
+            for var index = 0; index < child.users.count; index++
+            {
+                var currentUser = child.users.objectAtIndex(index) as PFObject
+                var currentString = currentUser.objectForKey("username") as String
+                if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
+                    child.filteredUsers.addObject(currentUser)
                 }
-                child.collectionView?.reloadData()
             }
-        }
-        else if(child.segment == 1){
-            if searchBar.text.isEmpty{
-                child.isSearching = false
-                child.collectionView?.reloadData()
-            } else {
-                child.isSearching = true
-                child.filteredUsers.removeAllObjects()
-                for var index = 0; index < child.users.count; index++
-                {
-                    var currentUser = child.users.objectAtIndex(index) as PFObject
-                    var currentString = currentUser.objectForKey("topic") as String
-                    if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
-                        child.filteredUsers.addObject(currentUser)
-                    }
-                }
-                child.collectionView?.reloadData()
-            }
-
+            child.collectionView?.reloadData()
         }
     }
 

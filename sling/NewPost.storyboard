@@ -20,66 +20,6 @@
             </objects>
             <point key="canvasLocation" x="686" y="-91"/>
         </scene>
-        <!--Post View Controller-->
-        <scene sceneID="M1f-IK-meA">
-            <objects>
-                <viewController id="vzy-Tx-AJe" customClass="PostViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HGH-8n-NTQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="4sz-HG-T8z"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QKB-qG-ZJ6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" usesAttributedText="YES" allowsEditingTextAttributes="YES" placeholder=" Begin a new sling..." clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pgF-xo-cWM">
-                                <rect key="frame" x="138" y="166" width="324" height="142"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vzy-Tx-AJe" id="pH1-it-MO0"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWm-pc-MEc">
-                                <rect key="frame" x="272" y="327" width="57" height="33"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Sling">
-                                            <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="submitPost:" destination="vzy-Tx-AJe" eventType="touchUpInside" id="WAS-Hh-oP6"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1176470588" green="0.59999999999999998" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="VWm-pc-MEc" secondAttribute="centerX" id="aY6-W4-wxv"/>
-                            <constraint firstAttribute="centerX" secondItem="pgF-xo-cWM" secondAttribute="centerX" id="axy-O7-VDs"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="OT2-5B-a6u">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="EG3-FR-wWb"/>
-                        <barButtonItem key="rightBarButtonItem" title="Users" id="1Fe-WF-IzS"/>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="postText" destination="pgF-xo-cWM" id="iu2-EI-M1N"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="34R-rq-swP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="539" y="573"/>
-        </scene>
         <!--Friend Collection View Controller-->
         <scene sceneID="b9Q-Uh-Ccp">
             <objects>

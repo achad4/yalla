@@ -11,7 +11,6 @@
 		8152EFF51A644687007D93C3 /* FeedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8152EFF41A644687007D93C3 /* FeedSegue.swift */; };
 		8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */; };
 		817BCEEB1A6220F8008F5A39 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEA1A6220F8008F5A39 /* Friends.storyboard */; };
-		817BCEED1A622104008F5A39 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEC1A622104008F5A39 /* Feed.storyboard */; };
 		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
 		817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEF01A622144008F5A39 /* Profile.storyboard */; };
 		817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C9C8A1A61B6BE005DF330 /* Messages.storyboard */; };
@@ -21,9 +20,6 @@
 		821416031A69AE95002A36E1 /* SidPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821416021A69AE95002A36E1 /* SidPanelViewController.swift */; };
 		8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217D6551A69750B00C94E90 /* SWRevealViewController.m */; };
 		8251ADC01A70279A00FD3437 /* UserSelectionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */; };
-		825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */; };
-		825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3C1A5F14CD00C8B07C /* Reply.swift */; };
-		825DBC3F1A5F825F00C8B07C /* ThreadAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */; };
 		82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */; };
 		82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4319F0A3E600EBEC4E /* Main.storyboard */; };
 		82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4619F0A3E600EBEC4E /* Images.xcassets */; };
@@ -80,13 +76,9 @@
 		829AA4091A86B4710008F647 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 829AA3DE1A86B4710008F647 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
 		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
-		82A8AEB21A7443D700D76A2C /* ThreadCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A8AEB11A7443D700D76A2C /* ThreadCollectionCell.swift */; };
 		82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A22F1A5C7D0000887222 /* Discussion.swift */; };
 		82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
-		82F7E0EB1A5B35D100901922 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EA1A5B35D100901922 /* Thread.swift */; };
-		82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */; };
-		82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */; };
 		82FEB51D1A86C0E1000FF6A8 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FEB51C1A86C0E1000FF6A8 /* JSQSystemSoundPlayer.m */; };
 		A788EDA119FF649400BF4B02 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788ED9E19FF649400BF4B02 /* Bolts.framework */; };
 		A788EDA219FF649400BF4B02 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788ED9F19FF649400BF4B02 /* Parse.framework */; };
@@ -126,7 +118,6 @@
 		8152EFF41A644687007D93C3 /* FeedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSegue.swift; sourceTree = "<group>"; };
 		8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSegue.swift; sourceTree = "<group>"; };
 		817BCEEA1A6220F8008F5A39 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
-		817BCEEC1A622104008F5A39 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
 		817BCEF01A622144008F5A39 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		817C9C8A1A61B6BE005DF330 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
@@ -137,9 +128,6 @@
 		8217D6541A69750B00C94E90 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		8217D6551A69750B00C94E90 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSelectionImageView.swift; sourceTree = "<group>"; };
-		825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
-		825DBC3C1A5F14CD00C8B07C /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
-		825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadAvatarImageView.swift; sourceTree = "<group>"; };
 		82703F3A19F0A3E600EBEC4E /* sling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82703F3E19F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -256,13 +244,9 @@
 		829AA3DE1A86B4710008F647 /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
 		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
-		82A8AEB11A7443D700D76A2C /* ThreadCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCollectionCell.swift; sourceTree = "<group>"; };
 		82B0A22F1A5C7D0000887222 /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendParentViewController.swift; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
-		82F7E0EA1A5B35D100901922 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
-		82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadFeedViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
-		82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		82FEB51B1A86C0E1000FF6A8 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		82FEB51C1A86C0E1000FF6A8 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		A788ED9E19FF649400BF4B02 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -405,7 +389,6 @@
 				8172FD951A64C92F00B1BD29 /* Segues */,
 				82B0A2331A5DA4D300887222 /* Messaging */,
 				82B0A2341A5DA53A00887222 /* Users */,
-				82B0A2361A5DA6B000887222 /* Threads */,
 				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
@@ -631,21 +614,6 @@
 			name = Users;
 			sourceTree = "<group>";
 		};
-		82B0A2361A5DA6B000887222 /* Threads */ = {
-			isa = PBXGroup;
-			children = (
-				817BCEEC1A622104008F5A39 /* Feed.storyboard */,
-				82F7E0EE1A5B3DE600901922 /* ThreadCell.swift */,
-				82F7E0EC1A5B3D7100901922 /* ThreadFeedViewController.swift */,
-				82F7E0EA1A5B35D100901922 /* Thread.swift */,
-				825DBC3A1A5F127300C8B07C /* ThreadDetailViewController.swift */,
-				825DBC3C1A5F14CD00C8B07C /* Reply.swift */,
-				825DBC3E1A5F825F00C8B07C /* ThreadAvatarImageView.swift */,
-				82A8AEB11A7443D700D76A2C /* ThreadCollectionCell.swift */,
-			);
-			name = Threads;
-			sourceTree = "<group>";
-		};
 		82FEB5191A86C0E1000FF6A8 /* JSQSystemSoundPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -765,7 +733,6 @@
 				82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */,
 				829AA3DF1A86B4710008F647 /* JSQMessagesAssets.bundle in Resources */,
 				817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */,
-				817BCEED1A622104008F5A39 /* Feed.storyboard in Resources */,
 				817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */,
 				817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */,
 				829AA4041A86B4710008F647 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
@@ -792,7 +759,6 @@
 			files = (
 				829AA3E21A86B4710008F647 /* NSString+JSQMessages.m in Sources */,
 				829AA3E81A86B4710008F647 /* JSQMessagesViewController.m in Sources */,
-				82F7E0ED1A5B3D7100901922 /* ThreadFeedViewController.swift in Sources */,
 				829AA3ED1A86B4710008F647 /* JSQMessagesTimestampFormatter.m in Sources */,
 				8172FD931A64C6A700B1BD29 /* NewPostSegue.swift in Sources */,
 				829AA3E11A86B4710008F647 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
@@ -812,8 +778,6 @@
 				82974EC91A4F169100D2B9F7 /* ConvoDetailViewController.swift in Sources */,
 				829AA3EF1A86B4710008F647 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				8118D1151A5CE90D001C0ADF /* MessageViewController.swift in Sources */,
-				825DBC3F1A5F825F00C8B07C /* ThreadAvatarImageView.swift in Sources */,
-				82A8AEB21A7443D700D76A2C /* ThreadCollectionCell.swift in Sources */,
 				829AA3E51A86B4710008F647 /* UIImage+JSQMessages.m in Sources */,
 				82703F6419F0B61800EBEC4E /* QuestionFeedViewController.swift in Sources */,
 				829AA3FB1A86B4710008F647 /* JSQMessagesCollectionViewCell.m in Sources */,
@@ -823,8 +787,6 @@
 				82974ECF1A54571A00D2B9F7 /* FriendCollectionViewController.swift in Sources */,
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
 				829AA3EE1A86B4710008F647 /* JSQMessagesToolbarButtonFactory.m in Sources */,
-				825DBC3B1A5F127300C8B07C /* ThreadDetailViewController.swift in Sources */,
-				82F7E0EF1A5B3DE600901922 /* ThreadCell.swift in Sources */,
 				A79D69031A60C1C400E7BA94 /* LoginViewController.swift in Sources */,
 				82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */,
 				829AA3F81A86B4710008F647 /* JSQVideoMediaItem.m in Sources */,
@@ -837,7 +799,6 @@
 				829AA3EC1A86B4710008F647 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */,
 				829AA3F61A86B4710008F647 /* JSQMessagesBubbleImage.m in Sources */,
-				825DBC3D1A5F14CD00C8B07C /* Reply.swift in Sources */,
 				82974ECD1A51BAE200D2B9F7 /* ConvoParentViewController.swift in Sources */,
 				829AA4011A86B4710008F647 /* JSQMessagesInputToolbar.m in Sources */,
 				81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */,
@@ -857,7 +818,6 @@
 				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,
 				821416031A69AE95002A36E1 /* SidPanelViewController.swift in Sources */,
 				829AA3EA1A86B4710008F647 /* JSQMessagesAvatarImageFactory.m in Sources */,
-				82F7E0EB1A5B35D100901922 /* Thread.swift in Sources */,
 				829AA3F31A86B4710008F647 /* JSQMediaItem.m in Sources */,
 				829AA3F11A86B4710008F647 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 			);
