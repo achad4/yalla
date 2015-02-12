@@ -190,13 +190,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="LtE-uY-e0r">
                         <barButtonItem key="leftBarButtonItem" title="menu" id="90Y-2Y-NH4">
-                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="showMenu:" destination="HrU-1U-4yP" id="YBf-ow-UYD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Ki5-Iu-if7">
-                            <color key="tintColor" red="0.47278150260000001" green="0.68439235269999998" blue="0.831735322" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="postQuestion:" destination="HrU-1U-4yP" id="gff-Hj-D52"/>
                                 <segue destination="0mU-NT-DU7" kind="show" identifier="new_message_segue" id="ByA-pt-yLD"/>
