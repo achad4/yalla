@@ -25,8 +25,8 @@ class PostViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitPost(sender: AnyObject) {
         var topic:String        = postText.text
-        var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
-        thread.save()
+        //var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
+        //thread.save()
         
     }
     

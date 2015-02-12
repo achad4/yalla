@@ -83,12 +83,13 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
              revealViewController().revealToggle(self)
             self.sideMenuOpen = false
         }
+            /*
         else{
             var storyboard = UIStoryboard(name: "Feed", bundle: nil)
             var controller = storyboard.instantiateViewControllerWithIdentifier("FeedView") as UIViewController
             self.navigationController?.pushViewController(controller, animated: true)
         }
-        
+        */
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
