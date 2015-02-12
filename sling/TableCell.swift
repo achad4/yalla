@@ -27,25 +27,22 @@ class TableCell: UITableViewCell{
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
         for user in users{
-            println(i)
             var userObject = user as PFObject
             if(userObject["picture"] != nil){
-                println(userObject.objectId)
                 var imageFile : PFFile = user["picture"] as PFFile
                     imageFile.getDataInBackgroundWithBlock {
                         (imageData: NSData!, error: NSError!) -> Void in
                         if !(error != nil) {
                             let image = UIImage(data:imageData)
                             let width = 25 as UInt
-                            /*
-                            let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                            let userAvatar  = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: width)
                             var imageView = UIImageView(image: userAvatar)
                             imageView.alpha = 0.8
                             var value : Int = i*25 + 30
                             var x = CGFloat(value)
                             imageView.frame = CGRectMake(x, 30, 25, 25)
-                            self.addSubview(imageView)
-                            */
+                            self.tableCell.addSubview(imageView)
+                            
                         }
                 }
             }
@@ -53,15 +50,13 @@ class TableCell: UITableViewCell{
                 var image = UIImage(named: "anon.jpg")
                 let width = 25 as UInt
                 var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
-                /*
-                let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
+                let userAvatar  = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: width)
                 var imageView = UIImageView(image: userAvatar)
                 imageView.alpha = 0.8
                 var value : Int = i*25 + 30
                 var x = CGFloat(value)
                 imageView.frame = CGRectMake(x, 30, 25, 25)
-                self.addSubview(imageView)
-                */
+                self.tableCell.addSubview(imageView)
             }
             i++
         }

@@ -17,12 +17,38 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     var incomingBubbleImageView:JSQMessagesBubbleImage!
     var batchMessages = true
     var convo : Conversation!
-    var avatarImages = Dictionary<String, UIImage>()
-    var isAnon : Bool?
+    var avatarImages : Dictionary<String, UIImage>!
+    var isAnon : Bool!
     var newMessgae : Bool?
     var addedParticipants : Bool?
     var messageText : String!
     var segue : FriendsSegue!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.loadAvatars()
+        self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
+        self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
+        self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
+        self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0))
+        self.senderId = PFUser.currentUser().objectId
+        self.senderDisplayName = PFUser.currentUser().username
+        self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
+        automaticallyScrollsToMostRecentMessage = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if(self.newMessgae == true){
+            self.inputToolbar.contentView.rightBarButtonItem.titleLabel?.text = "Users"
+        }
+        if(PFUser.currentUser() != nil && self.newMessgae != true) {
+            self.loadData()
+        }
+        collectionView.collectionViewLayout.springinessEnabled = true
+    }
+
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "FriendsView@Friends"){
@@ -39,19 +65,38 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     func senderId() -> String! {
         return PFUser.currentUser().objectId
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    /*loads participants pictures from parse*/
+    func loadAvatars(){
+        self.avatarImages = Dictionary<String, UIImage>()
+        var relation = self.convo.convo.relationForKey("participant")
+        var userQuery = relation.query()
+        userQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
+            if !(error != nil){
+                for object in objects{
+                    var imageFile : PFFile = object["picture"] as PFFile
+                    imageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData!, error: NSError!) -> Void in
+                        if !(error != nil) {
+                            let image = UIImage(data:imageData)
+                            self.avatarImages[object.objectId] = image
+                        }
+                        else{
+                            var image = UIImage(named: "anon.jpg")
+                            self.avatarImages[object.objectId] = image
+                        }
+                    }
+
+                }
+            }
+        }
     }
     
-    func loadData(order: Int){
+    /*Loads messages from parse*/
+    func loadData(){
         var findTimeLineData:PFQuery = PFQuery(className: "Message")
-        if(order == 0){
-            findTimeLineData.orderByAscending("createdAt")
-        }
-
+        findTimeLineData.orderByAscending("createdAt")
         var currentUser = PFUser.currentUser()
-        
         findTimeLineData.whereKey("inConvo", equalTo: self.convo.convo)
         findTimeLineData.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -60,27 +105,11 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                     let pdf = object as PFObject
                     let text = pdf.objectForKey("text") as String
                     let sender = pdf["sender"].fetchIfNeeded() as PFUser
-                    if(sender["picture"] != nil){
-                        var imageFile : PFFile = sender["picture"] as PFFile
-                        imageFile.getDataInBackgroundWithBlock {
-                            (imageData: NSData!, error: NSError!) -> Void in
-                            if !(error != nil) {
-                                let image = UIImage(data:imageData)
-                                self.avatarImages[sender.objectId] = image
-                            }
-                        }
-                    }
-                    else{
-                        var image = UIImage(named: "anon.jpg")
-                        self.avatarImages[sender.objectId] = image
-                    }
                     self.messageArray.addObject(JSQMessage(senderId: sender.objectId, displayName: sender.username, text: text))
                 }
             }
             self.finishReceivingMessage()
         }
-
-
     }
     
     
@@ -96,7 +125,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         }
         //conversation exists-- let user send new message
         else{
-            
             if(self.convo.participants.count == 1){
                     var alert : UIAlertController = UIAlertController(title: "Send failed", message: "You must send this message to at least one user", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Add users", style: UIAlertActionStyle.Default, handler: {
@@ -106,7 +134,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                         }))
                     self.presentViewController(alert, animated: true, completion: nil)
             }
-            
             else{
                 if((self.isAnon != true) && ((PFUser.currentUser().objectId != self.convo.convo["owner"].fetchIfNeeded().objectId))){
                     self.isAnon = false
@@ -157,27 +184,10 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 }
             }
         }
+
+        
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
-        self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
-        self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
-        self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
-        self.senderId = PFUser.currentUser().objectId
-        self.senderDisplayName = PFUser.currentUser().username
-        self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
-        automaticallyScrollsToMostRecentMessage = true
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if(PFUser.currentUser() != nil && self.newMessgae != true) {
-            self.loadData(0)
-        }
-        collectionView.collectionViewLayout.springinessEnabled = true
-    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -236,6 +246,10 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         if(isAnon == false){
             if(self.avatarImages[user] != nil){
                 return JSQMessagesAvatarImageFactory.avatarImageWithImage(self.avatarImages[user], diameter: width)
+            }
+            else{
+                var image = UIImage(named: "anon.jpg")
+                return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: width)
             }
         }
         var image = UIImage(named: "unknown.jpg")

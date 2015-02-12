@@ -61,9 +61,8 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
             let indexPath = tableView.indexPathForSelectedRow()
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
             let parent = segue.destinationViewController as MessagesViewController
-            //parent.selectedConversationID = cell.convo.objectId as String!
             parent.convo = cell.convo
-            parent.isAnon = cell.convo.convo.objectForKey("isAnon") as? Bool
+            parent.isAnon = cell.convo.convo.objectForKey("isAnon") as Bool
             parent.newMessgae = false
         }
         
@@ -161,11 +160,11 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         else {
             userString = "Anonymous"
         }
-        
+        /*
         if(cell.tableCell.subviews.count > 0){
             cell.tableCell.subviews[0].removeFromSuperview()
         }
-        
+        */
         var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 60, 50))
         previewLabel.center = CGPointMake(screenWidth * 0.5 - 10, 85)
         previewLabel.textAlignment = .Left
