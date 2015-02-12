@@ -31,6 +31,7 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Inbox"
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
@@ -160,11 +161,12 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         else {
             userString = "Anonymous"
         }
-        /*
-        if(cell.tableCell.subviews.count > 0){
-            cell.tableCell.subviews[0].removeFromSuperview()
+        
+        //trash all the subviews to prevent overlays
+        for next in cell.tableCell.subviews as [UIView]{
+            next.removeFromSuperview()
         }
-        */
+
         var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 60, 50))
         previewLabel.center = CGPointMake(screenWidth * 0.5 - 10, 85)
         previewLabel.textAlignment = .Left
