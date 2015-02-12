@@ -11,14 +11,14 @@ import UIKit
 import CoreData
 
 //TODO: Should probably rename this class to QuestionFeedTableViewController
-protocol QuestionFeedTableViewControllerDelegate{
-    func myVCDidFinish(controller:QuestionFeedTableView,text:String)
+protocol InboxTableViewControllerDelegate{
+    func myVCDidFinish(controller:InboxTableViewController,text:String)
 }
 
-class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITableViewDataSource{
+class InboxTableViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
     
     var timeLineData : NSMutableArray = NSMutableArray()
-    var delegate:QuestionFeedTableViewControllerDelegate? = nil
+    var delegate:InboxTableViewControllerDelegate? = nil
     var convoID:String = "aaa"
     var sideMenuOpen : Bool = false
     var screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
@@ -46,10 +46,6 @@ class QuestionFeedTableView : UITableViewController, UITableViewDelegate, UITabl
         self.navigationController?.navigationBar.topItem?.title = "Inbox"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 20)!]
         self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.whiteColor()]
-
-        //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0)
-        //self.setNeedsStatusBarAppearanceUpdate() = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        
     }
     
     @IBAction func showMenu(sender: AnyObject) {

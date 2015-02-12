@@ -33,6 +33,8 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
         self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
         self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0))
+        self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+
         self.senderId = PFUser.currentUser().objectId
         self.senderDisplayName = PFUser.currentUser().username
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
@@ -149,7 +151,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                     alert.addAction(UIAlertAction(title: "Add users", style: UIAlertActionStyle.Default, handler: {
                         alertAction in
                         self.messageText = text
-                        self.performSegueWithIdentifier("FriendsView@Friends", sender: self)
+                        self.segue.perform()
                         }))
                     self.presentViewController(alert, animated: true, completion: nil)
             }
@@ -246,21 +248,23 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func collectionView(collectionView: UICollectionView, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
-        
         let message = self.messageArray.objectAtIndex(indexPath.item) as JSQMessage
-        let user = message.senderId
-        let width = UInt(self.collectionView.collectionViewLayout.outgoingAvatarViewSize.width)
-        if(isAnon == false){
-            if(self.avatarImages[user] != nil){
-                return JSQMessagesAvatarImageFactory.avatarImageWithImage(self.avatarImages[user], diameter: width)
+        if(message.senderId != PFUser.currentUser().objectId){
+            let user = message.senderId
+            let width = UInt(self.collectionView.collectionViewLayout.incomingAvatarViewSize.width)
+            if(isAnon == false){
+                if(self.avatarImages[user] != nil){
+                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(self.avatarImages[user], diameter: width)
+                }
+                else{
+                    var image = UIImage(named: "anon.jpg")
+                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: width)
+                }
             }
-            else{
-                var image = UIImage(named: "anon.jpg")
-                return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: width)
-            }
+            var image = UIImage(named: "unknown.jpg")
+            return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: width)
         }
-        var image = UIImage(named: "unknown.jpg")
-        return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: width)
+        return nil
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
