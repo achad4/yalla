@@ -27,11 +27,11 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         if(PFUser.currentUser() != nil){
             self.loadData()
         }
     }
+    
     func loadData(){
         users.removeAllObjects()
         var findTimeLineData:PFQuery = PFQuery(className: "_User")
@@ -86,16 +86,13 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         }
         cell.user = user
         
-        //cell.userButton = UIButton()
         var X : CGFloat = cell.frame.origin.x
         var Y : CGFloat = 0
         var centerX = cell.frame.origin
-        cell.userCellView.frame = CGRectMake(X, Y, 85, 100)
-        cell.userCellView.center = CGPointMake(X + cell.frame.width/2, Y + cell.frame.height/2)
-        //cell.userButton.frameForAlignmentRect(CGRectMake(cell.frame.size.width-25, Y, 50, 50))
+        cell.userCellView.frame = CGRectMake(X, Y, self.view.bounds.size.width*0.75, 125)
+        cell.userCellView.center = CGPointMake(X + cell.frame.size.width/2, Y + cell.frame.height/2)
         cell.userName = UILabel()
         cell.userName.text = user.objectForKey("realName") as? String
-        //cell.userButton.alpha = 0.5
         
         if(user["picture"] != nil){
             var imageFile : PFFile = user["picture"] as PFFile
@@ -138,6 +135,14 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         cell.userCellView.layer.shadowRadius  = 4.0
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+        
+        let width:CGFloat = self.view.bounds.size.width*0.9;
+        let height:CGFloat = 150;
+        
+        return CGSizeMake(width, height)
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
