@@ -39,13 +39,13 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         recognizer2.direction = .Right
         self.view .addGestureRecognizer(recognizer2)
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        self.navigationController?.navigationBar.layer.shadowOffset  = CGSizeMake(0, 2)
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.9
-        self.navigationController?.navigationBar.layer.shadowRadius  = 4.0
-        self.navigationController?.navigationBar.topItem?.title = "Inbox"
+        //self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        //self.navigationController?.navigationBar.layer.shadowOffset  = CGSizeMake(0, 2)
+        //self.navigationController?.navigationBar.layer.shadowOpacity = 0.9
+        //self.navigationController?.navigationBar.layer.shadowRadius  = 4.0
+        self.navigationController?.navigationBar.topItem?.title = "inbox"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 20)!]
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0)]
     }
     
     @IBAction func showMenu(sender: AnyObject) {
@@ -147,7 +147,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         self.tableView.rowHeight = 125
         
-        cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 20, 115)
+        cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 10, 115)
         cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
         
         if(convo.objectForKey("isAnon") as? Bool == false){
@@ -212,7 +212,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         // Convo cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.tableCell.layer.cornerRadius  = 4.0
+        // cell.tableCell.layer.cornerRadius  = 4.0
         
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
         cell.tableCell.layer.shadowOffset  = CGSizeMake(0, 2)
