@@ -36,6 +36,7 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
         message["inConvo"] = self.convo.convo as PFObject
         message["sender"] = PFUser.currentUser()
         message.saveInBackgroundWithTarget(nil, selector: nil)
+        self.convo.addRecipient(PFUser.currentUser(), isOwner: true)
         self.convo.save()
     }
     

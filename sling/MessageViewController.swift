@@ -24,10 +24,11 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     var addedParticipants : Bool?
     var messageText : String!
     var segue : FriendsSegue!
+    var activeUsers : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.activeUsers = self.getActiveUsers()
         self.loadQuestions()
         self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
         self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
@@ -74,9 +75,40 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         return PFUser.currentUser().objectId
     }
     
+    
+    func getActiveUsers() -> Int{
+        var convoQuery:PFQuery = PFQuery(className: "Participant")
+        convoQuery.whereKey("active", equalTo: true)
+        return convoQuery.countObjects()
+    }
+    
     /*loads participants pictures from parse*/
     func loadAvatars(){
         self.avatarImages = Dictionary<String, UIImage>()
+        var convoQuery:PFQuery = PFQuery(className: "Participant")
+        convoQuery.whereKey("convo", equalTo: self.convo.convo)
+        convoQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
+            if !(error != nil){
+                for object in objects{
+                    let pdf = object as PFObject
+                    var user = pdf["participant"].fetchIfNeeded() as PFUser
+                    var imageFile : PFFile = user["picture"] as PFFile
+                    imageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData!, error: NSError!) -> Void in
+                        if !(error != nil) {
+                            let image = UIImage(data:imageData)
+                            self.avatarImages[user.objectId] = image
+                        }
+                        else{
+                            var image = UIImage(named: "anon.jpg")
+                            self.avatarImages[user.objectId] = image
+                        }
+                    }
+                    
+                }
+            }
+        }
+        /*
         var relation = self.convo.convo.relationForKey("participant")
         var userQuery = relation.query()
         userQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
@@ -90,6 +122,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                             self.avatarImages[object.objectId] = image
                         }
                         else{
+                            println(error.description)
                             var image = UIImage(named: "anon.jpg")
                             self.avatarImages[object.objectId] = image
                         }
@@ -98,6 +131,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 }
             }
         }
+        */
     }
     
     /*Loads messages from parse*/
@@ -156,9 +190,24 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                     self.presentViewController(alert, animated: true, completion: nil)
             }
             else{
-                if((self.isAnon != true) && ((PFUser.currentUser().objectId != self.convo.convo["owner"].fetchIfNeeded().objectId))){
-                    self.isAnon = false
-                    self.convo.convo["isAnon"] = false as NSNumber
+                if((self.isAnon == true)){
+                    var convoQuery:PFQuery = PFQuery(className: "Participant")
+                    convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
+                    convoQuery.whereKey("convo", equalTo: self.convo.convo)
+                    var participant = convoQuery.getFirstObject()
+                    if(participant["active"] as Bool == false){
+                        participant["active"] = true as NSNumber
+                        participant.saveInBackground()
+                        println("here")
+                        self.isAnon = false
+                    }
+                    /*
+                    if(self.activeUsers == self.convo.participants.count-1){
+                        println("reveal")
+                        
+                        self.convo.convo["isAnon"] = false as NSNumber
+                    }
+                    */
                 }
                 var message:PFObject = PFObject(className: "Message")
                 message["text"] = text

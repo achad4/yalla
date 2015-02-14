@@ -98,6 +98,11 @@ class SignupViewController : UIViewController {
                         user["realName"] = name
                         user.saveInBackground()
                     }
+                    //populate users fbID
+                    if let name = resultdict?["id"] as? String {
+                        user["fbID"] = name
+                        user.saveInBackground()
+                    }
                     
                     // Populate profile page image view with user's FB profile pic
                     if let picture = resultdict?["picture"] as? NSDictionary {
