@@ -36,6 +36,7 @@ class LoginViewController : UIViewController {
                     var installation = PFInstallation.currentInstallation()
                     installation["user"] = user
                     installation.saveInBackground()
+                    self.populateFacebookInfo(user)
                     self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                 }else{
                     // The login failed.
@@ -51,6 +52,44 @@ class LoginViewController : UIViewController {
     
         }
     
+    }
+    
+    func populateFacebookInfo(user: PFUser) {
+        if PFFacebookUtils.isLinkedWithUser(user) {
+            FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
+                if (result? != nil) {
+                    NSLog("error = \(error)")
+                    var resultdict = result as? NSDictionary
+                    
+                    // Populate profile page with user's Facebook name
+                    if let name = resultdict?["name"] as? String {
+                        user["realName"] = name
+                        user.saveInBackground()
+                    }
+                    //populate users fbID
+                    if let name = resultdict?["id"] as? String {
+                        user["fbID"] = name
+                        user.saveInBackground()
+                    }
+                    
+                    // Populate profile page image view with user's FB profile pic
+                    if let picture = resultdict?["picture"] as? NSDictionary {
+                        if let data = picture["data"] as? NSDictionary {
+                            if let photoURL = data["url"] as? String {
+                                let url = NSURL(string: photoURL)
+                                if let imageData = NSData(contentsOfURL: url!) {
+                                    var userPicFile : PFFile = PFFile(data: imageData)
+                                    user["picture"] = userPicFile
+                                    user.saveInBackground()
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    //self.usernameLabel.text = user.username
+                }
+                } as FBRequestHandler)
+        }
     }
 
     override func viewDidLoad() {

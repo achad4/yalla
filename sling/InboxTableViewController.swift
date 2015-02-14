@@ -31,7 +31,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Inbox"
+        self.title = "Messages"
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
@@ -58,8 +58,14 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             let indexPath = tableView.indexPathForSelectedRow()
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
             let parent = segue.destinationViewController as MessagesViewController
+            var convoQuery:PFQuery = PFQuery(className: "Participant")
+            convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
+            convoQuery.whereKey("convo", equalTo: cell.convo.convo)
+            var participant = convoQuery.getFirstObject()
+            
             parent.convo = cell.convo
-            parent.isAnon = cell.convo.convo.objectForKey("isAnon") as? Bool
+            var active = participant["active"] as Bool
+            parent.isAnon = !active
             parent.newMessgae = false
         }
         
@@ -114,6 +120,22 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         self.timeLineData.removeAllObjects()
        
+        var convoQuery:PFQuery = PFQuery(className: "Participant")
+        convoQuery.orderByAscending("updatedAt")
+        convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
+        convoQuery.findObjectsInBackgroundWithBlock{
+            (objects:[AnyObject]!, error:NSError!)->Void in
+            if !(error != nil){
+                for object in objects{
+                    let pdf = object as PFObject
+                    self.timeLineData.addObject(pdf["convo"].fetchIfNeeded())
+                }
+                self.tableView.reloadData()
+            }
+        }
+        
+        
+        /*
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
         findTimeLineData.orderByDescending("updatedAt")
@@ -130,7 +152,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
                 self.tableView.reloadData()
             }
         }
-     
+        */
     }
     
     

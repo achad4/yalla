@@ -34,18 +34,34 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     func loadData(){
         users.removeAllObjects()
-        var findTimeLineData:PFQuery = PFQuery(className: "_User")
-        findTimeLineData.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-                for object in objects{
-                    let pdf = object as PFObject
-                    self.users.addObject(pdf)
+        var friendsRequest : FBRequest = FBRequest.requestForMyFriends()
+        friendsRequest.startWithCompletionHandler{(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
+            if(error == nil){
+                let resultdict = result as NSDictionary
+                let friends : NSArray = resultdict.objectForKey("data") as NSArray
+                var friendIDs = NSMutableArray()
+                for friend in friends as [NSDictionary]{
+                    friendIDs.addObject(friend["id"]!)
                 }
-                self.sections.addObject(self.users)
+                
+                var findTimeLineData:PFQuery = PFQuery(className: "_User")
+                //findTimeLineData.whereKey("fbID", containedIn: friendIDs)
+                findTimeLineData.findObjectsInBackgroundWithBlock{
+                    (objects:[AnyObject]!, error:NSError!)->Void in
+                    if !(error != nil){
+                        for object in objects{
+                            let pdf = object as PFObject
+                            self.users.addObject(pdf)
+                        }
+                        self.sections.addObject(self.users)
+                    }
+                    self.collectionView?.reloadData()
+                }
+
+                
             }
-            self.collectionView?.reloadData()
         }
+        
     }
     
     override func collectionView(collectionView: UICollectionView,
@@ -54,7 +70,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             var parentViewController = self.parentViewController as FriendParentViewController
             if(cell.userImage.alpha == 0.5){
                 cell.userImage.alpha = 1
-                parentViewController.convo.addRecipient(cell.user)
+                parentViewController.convo.addRecipient(cell.user, isOwner: false)
             }
             else{
                 cell.userImage.alpha = 0.5
