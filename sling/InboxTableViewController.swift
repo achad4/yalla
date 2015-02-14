@@ -164,22 +164,14 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         let convoObject : Conversation = Conversation(convo: convo)
         let date = convo.updatedAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
-        let user : PFUser = convo["owner"].fetchIfNeeded() as PFUser
+        
         var userString : String = ""
         
         self.tableView.rowHeight = 125
         
         cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 20, 115)
         cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
-        
-        if(convo.objectForKey("isAnon") as? Bool == false){
-            userString = user.username
-        }
-            
-        else {
-            userString = "Anonymous"
-        }
-        
+
         //trash all the subviews to prevent overlays
         for next in cell.tableCell.subviews as [UIView]{
             next.removeFromSuperview()

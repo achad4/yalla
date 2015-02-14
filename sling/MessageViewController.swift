@@ -85,6 +85,30 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     /*loads participants pictures from parse*/
     func loadAvatars(){
         self.avatarImages = Dictionary<String, UIImage>()
+        var convoQuery:PFQuery = PFQuery(className: "Participant")
+        convoQuery.whereKey("convo", equalTo: self.convo.convo)
+        convoQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
+            if !(error != nil){
+                for object in objects{
+                    let pdf = object as PFObject
+                    var user = pdf["participant"].fetchIfNeeded() as PFUser
+                    var imageFile : PFFile = user["picture"] as PFFile
+                    imageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData!, error: NSError!) -> Void in
+                        if !(error != nil) {
+                            let image = UIImage(data:imageData)
+                            self.avatarImages[user.objectId] = image
+                        }
+                        else{
+                            var image = UIImage(named: "anon.jpg")
+                            self.avatarImages[user.objectId] = image
+                        }
+                    }
+                    
+                }
+            }
+        }
+        /*
         var relation = self.convo.convo.relationForKey("participant")
         var userQuery = relation.query()
         userQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
@@ -98,6 +122,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                             self.avatarImages[object.objectId] = image
                         }
                         else{
+                            println(error.description)
                             var image = UIImage(named: "anon.jpg")
                             self.avatarImages[object.objectId] = image
                         }
@@ -106,6 +131,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 }
             }
         }
+        */
     }
     
     /*Loads messages from parse*/
