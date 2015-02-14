@@ -18,7 +18,8 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        self.collectionView?.layer.borderWidth = 3
+        //self.collectionView?.layer.borderWidth = 3
+        self.collectionView?.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         var widthConstraint = NSLayoutConstraint(item: self.collectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.parentViewController, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 95)
         self.collectionView?.addConstraint(widthConstraint)
         isSearching = false
@@ -105,9 +106,10 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         var X : CGFloat = cell.frame.origin.x
         var Y : CGFloat = 0
         var centerX = cell.frame.origin
-        cell.userCellView.frame = CGRectMake(X, Y, self.view.bounds.size.width*0.75, 125)
+        cell.userCellView.frame = CGRectMake(X, Y, self.view.bounds.size.width - 10, 70)
         cell.userCellView.center = CGPointMake(X + cell.frame.size.width/2, Y + cell.frame.height/2)
-        cell.userName = UILabel()
+        cell.userName = UILabel(frame: CGRectMake(0, 0, 200, 70))
+        cell.userName.center = CGPointMake(175, 32.5)
         cell.userName.text = user.objectForKey("realName") as? String
         
         if(user["picture"] != nil){
@@ -121,6 +123,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                     cell.userImage = UIImageView(image: circleImage)
                     cell.userCellView.addSubview(cell.userImage)
                     cell.userImage.alpha = 0.5
+                    cell.userImage.center = CGPointMake(35, 35)
                 }
             }
         }
@@ -143,7 +146,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         
         // Convo cell appearance
         cell.userCellView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.userCellView.layer.cornerRadius  = 4.0
+        //cell.userCellView.layer.cornerRadius  = 4.0
         
         cell.userCellView.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
         cell.userCellView.layer.shadowOffset  = CGSizeMake(0, 2)
@@ -155,8 +158,8 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
-        let width:CGFloat = self.view.bounds.size.width*0.9;
-        let height:CGFloat = 150;
+        let width:CGFloat = self.view.bounds.size.width
+        let height:CGFloat = 75
         
         return CGSizeMake(width, height)
     }
