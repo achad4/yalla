@@ -89,7 +89,7 @@
 
 + (UIImage *)jsq_defaultAccessoryImage
 {
-    return [UIImage jsq_bubbleImageFromBundleWithName:@"clip"];
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"dice"];
 }
 
 + (UIImage *)jsq_defaultTypingIndicatorImage
