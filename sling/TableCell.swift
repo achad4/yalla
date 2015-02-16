@@ -46,6 +46,7 @@ class TableCell: UITableViewCell{
                         }
                 }
             }
+                
             else{
                 var image = UIImage(named: "anon.jpg")
                 let width = 25 as UInt
