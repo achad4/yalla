@@ -46,6 +46,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                 }
                 
                 var findTimeLineData:PFQuery = PFQuery(className: "_User")
+                findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
                 //findTimeLineData.whereKey("fbID", containedIn: friendIDs)
                 findTimeLineData.findObjectsInBackgroundWithBlock{
                     (objects:[AnyObject]!, error:NSError!)->Void in
@@ -56,6 +57,13 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                         }
                         self.sections.addObject(self.users)
                     }
+                    self.users.sortUsingComparator({ (user1, user2) -> NSComparisonResult in
+                        let pdf1 = user1 as PFUser
+                        let pdf2 = user2 as PFUser
+                        let name1 = pdf1["realName"] as NSString
+                        let name2 = pdf2["realName"] as NSString
+                        return name1.compare(name2)
+                    })
                     self.collectionView?.reloadData()
                 }
 
@@ -102,7 +110,9 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
             user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
         }
         cell.user = user
-        
+        for next in cell.userCellView.subviews as [UIView]{
+            next.removeFromSuperview()
+        }
         var X : CGFloat = cell.frame.origin.x
         var Y : CGFloat = 0
         var centerX = cell.frame.origin

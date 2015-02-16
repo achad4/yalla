@@ -51,7 +51,7 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
             for var index = 0; index < child.users.count; index++
             {
                 var currentUser = child.users.objectAtIndex(index) as PFObject
-                var currentString = currentUser.objectForKey("username") as String
+                var currentString = currentUser.objectForKey("realName") as String
                 if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
                     child.filteredUsers.addObject(currentUser)
                 }
