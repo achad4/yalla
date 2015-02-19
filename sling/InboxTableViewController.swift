@@ -171,7 +171,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         self.tableView.rowHeight = 125
         
-        cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 10, 115)
+        cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 20, 115)
         cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
 
         //trash all the subviews to prevent overlays
@@ -228,7 +228,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         // Convo cell appearance
         cell.tableCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        // cell.tableCell.layer.cornerRadius  = 4.0
+        cell.tableCell.layer.cornerRadius  = 9.0
         
         cell.tableCell.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
         cell.tableCell.layer.shadowOffset  = CGSizeMake(0, 2)
