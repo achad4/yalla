@@ -128,7 +128,9 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             if !(error != nil){
                 for object in objects{
                     let pdf = object as PFObject
-                    self.timeLineData.addObject(pdf["convo"].fetchIfNeeded())
+                    if(pdf["convo"].fetchIfNeeded() != nil){
+                        self.timeLineData.addObject(pdf["convo"].fetchIfNeeded())
+                    }
                 }
                 self.tableView.reloadData()
             }
