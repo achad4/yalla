@@ -135,8 +135,6 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
                 self.tableView.reloadData()
             }
         }
-        
-        
         /*
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
