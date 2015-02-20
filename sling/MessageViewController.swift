@@ -50,9 +50,10 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             self.inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.jsq_messageBubbleBlueColor().jsq_colorByDarkeningColorWithValue(0.1), forState: UIControlState.Highlighted)
         }
         */
+        
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
-            self.loadData()
             self.loadAvatars()
+            self.loadData()
         }
         collectionView.collectionViewLayout.springinessEnabled = true
     }
@@ -84,6 +85,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     
     /*loads participants pictures from parse*/
     func loadAvatars(){
+        println("loading avatars")
         self.avatarImages = Dictionary<String, UIImage>()
         var convoQuery:PFQuery = PFQuery(className: "Participant")
         convoQuery.whereKey("convo", equalTo: self.convo.convo)
@@ -220,14 +222,27 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 let testmessage: NSString = text as NSString
                 var data = [ "title": "Some Title",
                     "alert": testmessage]
+                
                 var relation = self.convo.convo.relationForKey("participant")
-                var innerQuery = relation.query()
-                var query: PFQuery = PFInstallation.query()
-                query.whereKey("user", matchesQuery: innerQuery)
-                var push: PFPush = PFPush()
-                push.setQuery(query)
-                push.setData(data)
-                push.sendPushInBackground()
+                var innerQuery = PFQuery(className: "Participant")
+                innerQuery.whereKey("convo", equalTo: self.convo.convo)
+                innerQuery.whereKey("participant", notEqualTo: PFUser.currentUser())
+                innerQuery.findObjectsInBackgroundWithBlock{
+                    (objects:[AnyObject]!, error:NSError!)->Void in
+                    if !(error != nil){
+                        var users  = NSMutableArray()
+                        for object in objects{
+                            users.addObject(object)
+                        }
+                        var query: PFQuery = PFInstallation.query()
+                        query.whereKey("user", containedIn: users)
+                        var push: PFPush = PFPush()
+                        push.setQuery(query)
+                        push.setData(data)
+                        push.sendPushInBackground()
+                    }
+                }
+                
             }
             
         }

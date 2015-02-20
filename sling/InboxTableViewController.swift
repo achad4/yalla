@@ -121,7 +121,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         self.timeLineData.removeAllObjects()
        
         var convoQuery:PFQuery = PFQuery(className: "Participant")
-        convoQuery.orderByAscending("updatedAt")
+        convoQuery.orderByDescending("updatedAt")
         convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
         convoQuery.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
@@ -135,8 +135,6 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
                 self.tableView.reloadData()
             }
         }
-        
-        
         /*
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
