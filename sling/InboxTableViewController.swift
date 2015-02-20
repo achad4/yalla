@@ -155,9 +155,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             }
         }
         */
-    }
-    
-    
+    }    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
