@@ -9,7 +9,7 @@
 import Foundation
 class UserCell : UICollectionViewCell{
     var user : PFObject
-    var convo : Conversation!
+    //var convo : Conversation!
     var messageText : String!
     
     var userImage: UIImageView!

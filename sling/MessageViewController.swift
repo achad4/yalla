@@ -50,9 +50,10 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             self.inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.jsq_messageBubbleBlueColor().jsq_colorByDarkeningColorWithValue(0.1), forState: UIControlState.Highlighted)
         }
         */
+        
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
-            self.loadData()
             self.loadAvatars()
+            self.loadData()
         }
         collectionView.collectionViewLayout.springinessEnabled = true
     }
@@ -84,6 +85,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     
     /*loads participants pictures from parse*/
     func loadAvatars(){
+        println("loading avatars")
         self.avatarImages = Dictionary<String, UIImage>()
         var convoQuery:PFQuery = PFQuery(className: "Participant")
         convoQuery.whereKey("convo", equalTo: self.convo.convo)

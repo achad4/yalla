@@ -77,13 +77,28 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         didSelectItemAtIndexPath indexPath: NSIndexPath){
             var cell = collectionView.cellForItemAtIndexPath(indexPath) as UserCell
             var parentViewController = self.parentViewController as FriendParentViewController
-            if(cell.userImage.alpha == 0.5){
-                cell.userImage.alpha = 1
-                parentViewController.convo.addRecipient(cell.user, isOwner: false)
+            if(parentViewController.groupSegmentedControl.selectedSegmentIndex == 1){
+                var convo = parentViewController.convos[0] as Conversation
+                if(cell.userImage.alpha == 0.5){
+                    cell.userImage.alpha = 1
+                    convo.addRecipient(cell.user, isOwner: false)
+                }
+                else{
+                    cell.userImage.alpha = 0.5
+                    convo.removeRecipient(cell.user)
+                }
             }
             else{
-                cell.userImage.alpha = 0.5
-                parentViewController.convo.removeRecipient(cell.user)
+                if(cell.userImage.alpha == 0.5){
+                    cell.userImage.alpha = 1
+                    var convo = Conversation(sender: PFUser.currentUser())
+                    convo.addRecipient(cell.user, isOwner: false)
+                    parentViewController.convos.addObject(convo)
+                }
+                else{
+                    cell.userImage.alpha = 0.5
+                }
+
             }
             
     }
@@ -147,7 +162,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
         
         var parentViewController = self.parentViewController as FriendParentViewController
         
-        cell.convo = parentViewController.convo
+        //cell.convo = parentViewController.convo
         cell.messageText = self.messageText
         cell.userCellView.addSubview(cell.userName)
         //cell.userCellView.addSubview(cell.userButton)

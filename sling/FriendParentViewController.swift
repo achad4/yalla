@@ -9,8 +9,10 @@
 import Foundation
 class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
-    var convo : Conversation!
+    //var convo : Conversation!
+    var convos : NSMutableArray = NSMutableArray()
     var messageText : String = ""
+    var groupSegmentedControl : UISegmentedControl!
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -18,6 +20,10 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
         super.viewDidLoad()
         var sendButton = UIBarButtonItem(title: "Send", style: .Plain, target: self, action: "send")
         self.navigationItem.setRightBarButtonItem(sendButton, animated: true)
+        var items = ["blast", "group"]
+        self.groupSegmentedControl = UISegmentedControl(items: items)
+        self.navigationItem.titleView = self.groupSegmentedControl
+        self.groupSegmentedControl.selectedSegmentIndex = 0
         //var child = self.childViewControllers[0] as FriendCollectionViewController
         //child.loadData()
     }
@@ -30,14 +36,17 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     }
     
     func send(){
-        var message:PFObject = PFObject(className: "Message")
-        message["text"] = self.messageText
-        var sentToRelation = message.relationForKey("sentTo")
-        message["inConvo"] = self.convo.convo as PFObject
-        message["sender"] = PFUser.currentUser()
-        message.saveInBackgroundWithTarget(nil, selector: nil)
-        self.convo.addRecipient(PFUser.currentUser(), isOwner: true)
-        self.convo.save()
+        
+        for object in self.convos{
+            var message:PFObject = PFObject(className: "Message")
+            message["text"] = self.messageText
+            var convo = object as Conversation
+            message["inConvo"] = convo.convo as PFObject
+            message["sender"] = PFUser.currentUser()
+            message.saveInBackgroundWithTarget(nil, selector: nil)
+            convo.addRecipient(PFUser.currentUser(), isOwner: true)
+            convo.save()
+        }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
