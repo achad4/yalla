@@ -13,6 +13,8 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
+    var facebookButton = UIButton(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width - 60, 50))
+    
     @IBAction func signinTapped(sender: AnyObject) {
         var permissions = ["user_friends"]
         PFFacebookUtils.logInWithPermissions(permissions, block: { (user : PFUser!, error : NSError!) -> Void in
