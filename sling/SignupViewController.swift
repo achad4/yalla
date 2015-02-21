@@ -45,7 +45,7 @@ class SignupViewController : UIViewController {
             user.password = password
             user["email"] = username
             user.signUpInBackgroundWithBlock {
-                    (succeeded: Bool!, error: NSError!) -> Void in
+                (succeeded: Bool!, error: NSError!) -> Void in
                 if(error == nil){
                     if(PFFacebookUtils.isLinkedWithUser(user)){
                         var installation = PFInstallation.currentInstallation()
@@ -54,10 +54,11 @@ class SignupViewController : UIViewController {
                         self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                     }
                     else{
-                        var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "Link yalla to your Facebook to begin", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "Link", style: UIAlertActionStyle.Default, handler: {
+                        var permissions = ["user_friends"]
+                        var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "yalla only needs to access your friends list. We won't post anything.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Link to Facebook", style: UIAlertActionStyle.Default, handler: {
                             alertAction in
-                            PFFacebookUtils.linkUser(user, permissions:nil, {
+                            PFFacebookUtils.linkUser(user, permissions: permissions, {
                                 (succeeded: Bool, error: NSError!) -> Void in
                                 if (succeeded) {
                                     NSLog("user logged in with Facebook!")
@@ -82,7 +83,6 @@ class SignupViewController : UIViewController {
                     alertView.show()
                 }
         }
-    
     }
     }
     

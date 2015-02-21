@@ -36,18 +36,21 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     func loadData(){
         users.removeAllObjects()
         var friendsRequest : FBRequest = FBRequest.requestForMyFriends()
+        //retrieve friends of user
         friendsRequest.startWithCompletionHandler{(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             if(error == nil){
+                
                 let resultdict = result as NSDictionary
                 let friends : NSArray = resultdict.objectForKey("data") as NSArray
                 var friendIDs = NSMutableArray()
+                println(friends.count)
                 for friend in friends as [NSDictionary]{
                     friendIDs.addObject(friend["id"]!)
                 }
                 
                 var findTimeLineData:PFQuery = PFQuery(className: "_User")
                 findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
-                //findTimeLineData.whereKey("fbID", containedIn: friendIDs)
+                findTimeLineData.whereKey("fbID", containedIn: friendIDs)
                 findTimeLineData.findObjectsInBackgroundWithBlock{
                     (objects:[AnyObject]!, error:NSError!)->Void in
                     if !(error != nil){
@@ -57,6 +60,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                         }
                         self.sections.addObject(self.users)
                     }
+                    
                     self.users.sortUsingComparator({ (user1, user2) -> NSComparisonResult in
                         let pdf1 = user1 as PFUser
                         let pdf2 = user2 as PFUser
@@ -65,6 +69,7 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
                         return name1.compare(name2)
                     })
                     self.collectionView?.reloadData()
+                
                 }
 
                 
@@ -182,10 +187,8 @@ class FriendCollectionViewController : UICollectionViewController, UICollectionV
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        
         let width:CGFloat = self.view.bounds.size.width
         let height:CGFloat = 75
-        
         return CGSizeMake(width, height)
     }
     

@@ -14,9 +14,55 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     
     @IBAction func signinTapped(sender: AnyObject) {
+        var permissions = ["user_friends"]
+        PFFacebookUtils.logInWithPermissions(permissions, block: { (user : PFUser!, error : NSError!) -> Void in
+            if(user != nil){
+                
+                //var verified =  as Bool
+                if(user["emailVerified"] == nil){
+                    println("here")
+                    var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "This app is intended only for Columbia/Barnard students", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+                        textField.placeholder = "Univiersity email"
+                    })
+                    alert.addAction(UIAlertAction(title: "Verify", style: UIAlertActionStyle.Default, handler: {
+                        alertAction in
+                        var textField = alert.textFields?[0] as? UITextField
+                        var emailArray = textField?.text.componentsSeparatedByString("@")
+                        if(emailArray?[1] == "columbia.edu" || emailArray?[1] == "barnard.edu"){
+                            user["email"] = textField?.text
+                            user.saveInBackground()
+                            alert.dismissViewControllerAnimated(false, completion: nil)
+                        }
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                else{
+                    NSLog("Login successfull")
+                    var installation = PFInstallation.currentInstallation()
+                    installation["user"] = user
+                    installation.saveInBackground()
+                    self.populateFacebookInfo(user)
+                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+                }
+                
+            }else{
+                // The login failed.
+                NSLog("Login failed")
+                var alertView:UIAlertView = UIAlertView()
+                alertView.title = "Sign in Failed!"
+                alertView.message = "Connection Failure"
+                alertView.delegate = self
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
+            }
+            
+        })
+        /*
+        
         var username:NSString = txtUsername.text
         var password:NSString = txtPassword.text
-    
+        
         // Alert user no username/password was entered
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
             var alertView:UIAlertView = UIAlertView()
@@ -28,6 +74,10 @@ class LoginViewController : UIViewController {
     
         } else {
             //Attempt to log in user
+            //PFFacebookUtils.logInWithPermissions(<#permissions: [AnyObject]!#>, block: <#PFUserResultBlock!##(PFUser!, NSError!) -> Void#>)
+
+            /*
+            
             PFUser.logInWithUsernameInBackground(username, password:password) {
                     (user: PFUser!, error: NSError!) -> Void in
                 if(user != nil){
@@ -49,9 +99,10 @@ class LoginViewController : UIViewController {
                     alertView.show()
                 }
             }
+            */
     
         }
-    
+       */
     }
     
     func populateFacebookInfo(user: PFUser) {
