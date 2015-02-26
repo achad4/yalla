@@ -14,6 +14,7 @@
 		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
 		817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEF01A622144008F5A39 /* Profile.storyboard */; };
 		817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C9C8A1A61B6BE005DF330 /* Messages.storyboard */; };
+		818F9C021A9FC0EC009CBBA2 /* railway.gif in Resources */ = {isa = PBXBuildFile; fileRef = 818F9C011A9FC0EC009CBBA2 /* railway.gif */; };
 		819BE1F21A7D74C800D15611 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819BE1F11A7D74C800D15611 /* MessageCell.swift */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
@@ -119,6 +120,7 @@
 		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
 		817BCEF01A622144008F5A39 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		817C9C8A1A61B6BE005DF330 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
+		818F9C011A9FC0EC009CBBA2 /* railway.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = railway.gif; sourceTree = "<group>"; };
 		819BE1F11A7D74C800D15611 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
@@ -324,6 +326,14 @@
 			name = Segues;
 			sourceTree = "<group>";
 		};
+		818F9C031A9FC0F2009CBBA2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				818F9C011A9FC0EC009CBBA2 /* railway.gif */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		81CCDB421A5CE83E00132A6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +389,7 @@
 		82703F3C19F0A3E600EBEC4E /* sling */ = {
 			isa = PBXGroup;
 			children = (
+				818F9C031A9FC0F2009CBBA2 /* Images */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
 				8217D6531A69750A00C94E90 /* SWRevealViewController */,
 				8172FD941A64C90B00B1BD29 /* Storyboards */,
@@ -727,6 +738,7 @@
 				82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */,
 				829AA3DF1A86B4710008F647 /* JSQMessagesAssets.bundle in Resources */,
 				817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */,
+				818F9C021A9FC0EC009CBBA2 /* railway.gif in Resources */,
 				817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */,
 				817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */,
 				829AA4041A86B4710008F647 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
