@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="faO-sP-0H8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--My Profile View Controller-->
@@ -108,14 +107,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="JEx-GN-SgL">
-                                <rect key="frame" x="180" y="60" width="240" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="JEx-GN-SgL" secondAttribute="height" multiplier="1:1" id="kTU-Jd-1KG"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLC-LD-Pkh">
-                                <rect key="frame" x="213" y="425" width="164" height="30"/>
+                                <rect key="frame" x="192" y="122" width="164" height="30"/>
                                 <color key="backgroundColor" red="0.2606430656" green="0.73575371469999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Log In with Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,7 +122,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="JLC-LD-Pkh" secondAttribute="centerX" id="221-fz-Xx8"/>
-                            <constraint firstAttribute="centerX" secondItem="JEx-GN-SgL" secondAttribute="centerX" id="Xok-bV-sWG"/>
                         </constraints>
                     </view>
                     <connections>
@@ -216,9 +208,6 @@
             <point key="canvasLocation" x="-491" y="-2455"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Logo" width="360" height="360"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RQD-SW-Fhn"/>
     </inferredMetricsTieBreakers>

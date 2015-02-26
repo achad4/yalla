@@ -13,7 +13,15 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
-    var facebookButton = UIButton(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width - 60, 50))
+    var screenWidth = UIScreen.mainScreen().bounds.width
+    var facebookButton = UIButton()
+    
+    func loginButton() {
+
+        facebookButton.frame = CGRectMake(0, 0, screenWidth - 60, 50)
+        facebookButton.center = CGPointMake(screenWidth*0.5, screenWidth*0.75)
+        facebookButton.setTitle("Log In with Facebook", forState: .Normal)
+    }
     
     @IBAction func signinTapped(sender: AnyObject) {
         var permissions = ["user_friends"]
@@ -147,6 +155,7 @@ class LoginViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(facebookButton)
     }
     
     override func viewDidAppear(animated: Bool) {
