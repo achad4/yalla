@@ -172,7 +172,8 @@ class LoginViewController : UIViewController {
         welcomeLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(welcomeLabel)
         
-        var loginBtn = UIButton(frame: CGRectMake(40, 360, 240, 40))
+        var loginBtn = UIButton(frame: CGRectMake(0, 0, 240, 40))
+        loginBtn.center = CGPointMake(screenWidth*0.5, screenHeight*0.75)
         loginBtn.layer.borderColor = UIColor.whiteColor().CGColor
         loginBtn.layer.borderWidth = 2
         loginBtn.tintColor = UIColor.whiteColor()
