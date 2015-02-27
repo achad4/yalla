@@ -50,10 +50,10 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
-        var child = self.childViewControllers[0] as FriendCollectionViewController
+        var child = self.childViewControllers[0] as FriendTableViewController
         if searchBar.text.isEmpty{
             child.isSearching = false
-                child.collectionView?.reloadData()
+                child.tableView.reloadData()
         } else {
             child.isSearching = true
             child.filteredUsers.removeAllObjects()
@@ -65,7 +65,7 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
                     child.filteredUsers.addObject(currentUser)
                 }
             }
-            child.collectionView?.reloadData()
+            child.tableView.reloadData()
         }
     }
 

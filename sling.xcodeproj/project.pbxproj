@@ -30,6 +30,8 @@
 		82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */; };
 		82703F5619F0A3E600EBEC4E /* slingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F5519F0A3E600EBEC4E /* slingTests.swift */; };
 		82703F6419F0B61800EBEC4E /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F6319F0B61800EBEC4E /* InboxTableViewController.swift */; };
+		827A26F21AA10D0E001593B2 /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A26F11AA10D0E001593B2 /* FriendTableViewController.swift */; };
+		827A26F41AA10D53001593B2 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A26F31AA10D53001593B2 /* UserTableCell.swift */; };
 		82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82935AFE19F0DB1800EC8C59 /* PostViewController.swift */; };
 		82974ECF1A54571A00D2B9F7 /* FriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */; };
 		82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ED01A5457A200D2B9F7 /* UserCell.swift */; };
@@ -144,6 +146,8 @@
 		82703F5419F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F5519F0A3E600EBEC4E /* slingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slingTests.swift; sourceTree = "<group>"; };
 		82703F6319F0B61800EBEC4E /* InboxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
+		827A26F11AA10D0E001593B2 /* FriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
+		827A26F31AA10D53001593B2 /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		82935AFE19F0DB1800EC8C59 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewController.swift; sourceTree = "<group>"; };
 		82974ED01A5457A200D2B9F7 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -618,12 +622,14 @@
 				825897511A98DEC600E05D79 /* ManageFriendsTableViewController.swift */,
 				A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
+				827A26F31AA10D53001593B2 /* UserTableCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
 				A7FD59D01A50011A0074D2AF /* UserData.swift */,
 				82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */,
 				A79D69021A60C1C400E7BA94 /* LoginViewController.swift */,
 				A79D69041A60C1D100E7BA94 /* SignupViewController.swift */,
 				8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */,
+				827A26F11AA10D0E001593B2 /* FriendTableViewController.swift */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -784,6 +790,7 @@
 				829AA3FE1A86B4710008F647 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */,
 				A79D69111A60DC1B00E7BA94 /* MyProfileViewController.swift in Sources */,
+				827A26F21AA10D0E001593B2 /* FriendTableViewController.swift in Sources */,
 				829AA3F41A86B4710008F647 /* JSQMessage.m in Sources */,
 				829AA3E31A86B4710008F647 /* UIColor+JSQMessages.m in Sources */,
 				829AA4081A86B4710008F647 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
@@ -796,6 +803,7 @@
 				829AA3E51A86B4710008F647 /* UIImage+JSQMessages.m in Sources */,
 				82703F6419F0B61800EBEC4E /* InboxTableViewController.swift in Sources */,
 				829AA3FB1A86B4710008F647 /* JSQMessagesCollectionViewCell.m in Sources */,
+				827A26F41AA10D53001593B2 /* UserTableCell.swift in Sources */,
 				A79D69051A60C1D100E7BA94 /* SignupViewController.swift in Sources */,
 				829AA4061A86B4710008F647 /* JSQMessagesToolbarContentView.m in Sources */,
 				82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */,
