@@ -16,7 +16,7 @@
 		817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C9C8A1A61B6BE005DF330 /* Messages.storyboard */; };
 		819BE1F21A7D74C800D15611 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819BE1F11A7D74C800D15611 /* MessageCell.swift */; };
 		81ABF1FE1AA11C810084F192 /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 81ABF1FD1AA11C810084F192 /* compose.png */; };
-		81ABF2001AA1241A0084F192 /* redpanda.gif in Resources */ = {isa = PBXBuildFile; fileRef = 81ABF1FF1AA1241A0084F192 /* redpanda.gif */; };
+		81ABF2041AA127450084F192 /* redpanda.gif in Resources */ = {isa = PBXBuildFile; fileRef = 81ABF2031AA127450084F192 /* redpanda.gif */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
 		821416031A69AE95002A36E1 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821416021A69AE95002A36E1 /* SidePanelViewController.swift */; };
@@ -127,7 +127,7 @@
 		817C9C8A1A61B6BE005DF330 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		819BE1F11A7D74C800D15611 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		81ABF1FD1AA11C810084F192 /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose.png; sourceTree = "<group>"; };
-		81ABF1FF1AA1241A0084F192 /* redpanda.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = redpanda.gif; sourceTree = "<group>"; };
+		81ABF2031AA127450084F192 /* redpanda.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = redpanda.gif; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
 		821416021A69AE95002A36E1 /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 		818F9C031A9FC0F2009CBBA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				81ABF1FF1AA1241A0084F192 /* redpanda.gif */,
+				81ABF2031AA127450084F192 /* redpanda.gif */,
 				81ABF1FD1AA11C810084F192 /* compose.png */,
 			);
 			name = Images;
@@ -752,11 +752,11 @@
 				829AA4071A86B4710008F647 /* JSQMessagesToolbarContentView.xib in Resources */,
 				817BCEEB1A6220F8008F5A39 /* Friends.storyboard in Resources */,
 				82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */,
-				81ABF2001AA1241A0084F192 /* redpanda.gif in Resources */,
 				829AA3DF1A86B4710008F647 /* JSQMessagesAssets.bundle in Resources */,
 				817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */,
 				817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */,
 				817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */,
+				81ABF2041AA127450084F192 /* redpanda.gif in Resources */,
 				829AA4041A86B4710008F647 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */,
 				829AA3FF1A86B4710008F647 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
