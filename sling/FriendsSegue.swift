@@ -15,6 +15,7 @@ class FriendsSegue: UIStoryboardSegue {
     
     
     func sceneNamed(identifier : NSString) -> UIViewController{
+        println("scene")
         var info : NSArray = identifier.componentsSeparatedByString("@")
         var storyBoardName : NSString = info[1] as NSString
         var sceneName : NSString = info[0] as NSString
@@ -41,11 +42,14 @@ class FriendsSegue: UIStoryboardSegue {
             destinationViewController.messageText = sourceViewController.messageText
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
         }
-        else if(self.identifier == "ProfileView@Profile"){
+        else if(self.identifier == "InitialView@Profile"){
+            println("init segue")
+            var sourceViewController = self.sourceViewController as InboxTableViewController
+            var destinationViewController = self.sceneNamed(self.identifier!)
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
-
         }
         else{
+            println("login segue")
             sourceViewController.presentViewController(destinationViewController, animated: true, completion: nil)
         }
         
