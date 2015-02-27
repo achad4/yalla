@@ -175,7 +175,7 @@ class LoginViewController : UIViewController {
         self.view.addSubview(welcomeLabel)
         
         var loginBtn = UIButton(frame: CGRectMake(0, 0, 240, 40))
-        loginBtn.center = CGPointMake(screenWidth*0.5, screenHeight*0.75)
+        loginBtn.center = CGPointMake(screenWidth*0.5, screenHeight*0.5)
         loginBtn.layer.borderColor = UIColor.whiteColor().CGColor
         loginBtn.layer.borderWidth = 2
         loginBtn.tintColor = UIColor.whiteColor()
