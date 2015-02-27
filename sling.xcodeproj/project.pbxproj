@@ -14,8 +14,6 @@
 		817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEEE1A622136008F5A39 /* NewPost.storyboard */; };
 		817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817BCEF01A622144008F5A39 /* Profile.storyboard */; };
 		817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817C9C8A1A61B6BE005DF330 /* Messages.storyboard */; };
-		818F9C021A9FC0EC009CBBA2 /* railway.gif in Resources */ = {isa = PBXBuildFile; fileRef = 818F9C011A9FC0EC009CBBA2 /* railway.gif */; };
-		818F9C0B1A9FF38D009CBBA2 /* redpanda.gif in Resources */ = {isa = PBXBuildFile; fileRef = 818F9C0A1A9FF38D009CBBA2 /* redpanda.gif */; };
 		819BE1F21A7D74C800D15611 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819BE1F11A7D74C800D15611 /* MessageCell.swift */; };
 		81ABF1FE1AA11C810084F192 /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 81ABF1FD1AA11C810084F192 /* compose.png */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
@@ -31,6 +29,8 @@
 		82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */; };
 		82703F5619F0A3E600EBEC4E /* slingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F5519F0A3E600EBEC4E /* slingTests.swift */; };
 		82703F6419F0B61800EBEC4E /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F6319F0B61800EBEC4E /* InboxTableViewController.swift */; };
+		827A26F21AA10D0E001593B2 /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A26F11AA10D0E001593B2 /* FriendTableViewController.swift */; };
+		827A26F41AA10D53001593B2 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A26F31AA10D53001593B2 /* UserTableCell.swift */; };
 		82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82935AFE19F0DB1800EC8C59 /* PostViewController.swift */; };
 		82974ECF1A54571A00D2B9F7 /* FriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */; };
 		82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974ED01A5457A200D2B9F7 /* UserCell.swift */; };
@@ -124,8 +124,6 @@
 		817BCEEE1A622136008F5A39 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
 		817BCEF01A622144008F5A39 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		817C9C8A1A61B6BE005DF330 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
-		818F9C011A9FC0EC009CBBA2 /* railway.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = railway.gif; sourceTree = "<group>"; };
-		818F9C0A1A9FF38D009CBBA2 /* redpanda.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = redpanda.gif; sourceTree = "<group>"; };
 		819BE1F11A7D74C800D15611 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		81ABF1FD1AA11C810084F192 /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose.png; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
@@ -146,6 +144,8 @@
 		82703F5419F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F5519F0A3E600EBEC4E /* slingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slingTests.swift; sourceTree = "<group>"; };
 		82703F6319F0B61800EBEC4E /* InboxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
+		827A26F11AA10D0E001593B2 /* FriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
+		827A26F31AA10D53001593B2 /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		82935AFE19F0DB1800EC8C59 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewController.swift; sourceTree = "<group>"; };
 		82974ED01A5457A200D2B9F7 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -621,12 +621,14 @@
 				825897511A98DEC600E05D79 /* ManageFriendsTableViewController.swift */,
 				A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
+				827A26F31AA10D53001593B2 /* UserTableCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
 				A7FD59D01A50011A0074D2AF /* UserData.swift */,
 				82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */,
 				A79D69021A60C1C400E7BA94 /* LoginViewController.swift */,
 				A79D69041A60C1D100E7BA94 /* SignupViewController.swift */,
 				8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */,
+				827A26F11AA10D0E001593B2 /* FriendTableViewController.swift */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -751,10 +753,8 @@
 				82703F4A19F0A3E600EBEC4E /* LaunchScreen.xib in Resources */,
 				829AA3DF1A86B4710008F647 /* JSQMessagesAssets.bundle in Resources */,
 				817C9C8B1A61B6BE005DF330 /* Messages.storyboard in Resources */,
-				818F9C021A9FC0EC009CBBA2 /* railway.gif in Resources */,
 				817BCEEF1A622136008F5A39 /* NewPost.storyboard in Resources */,
 				817BCEF11A622144008F5A39 /* Profile.storyboard in Resources */,
-				818F9C0B1A9FF38D009CBBA2 /* redpanda.gif in Resources */,
 				829AA4041A86B4710008F647 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */,
 				829AA3FF1A86B4710008F647 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
@@ -788,6 +788,7 @@
 				829AA3FE1A86B4710008F647 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */,
 				A79D69111A60DC1B00E7BA94 /* MyProfileViewController.swift in Sources */,
+				827A26F21AA10D0E001593B2 /* FriendTableViewController.swift in Sources */,
 				829AA3F41A86B4710008F647 /* JSQMessage.m in Sources */,
 				829AA3E31A86B4710008F647 /* UIColor+JSQMessages.m in Sources */,
 				829AA4081A86B4710008F647 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
@@ -800,6 +801,7 @@
 				829AA3E51A86B4710008F647 /* UIImage+JSQMessages.m in Sources */,
 				82703F6419F0B61800EBEC4E /* InboxTableViewController.swift in Sources */,
 				829AA3FB1A86B4710008F647 /* JSQMessagesCollectionViewCell.m in Sources */,
+				827A26F41AA10D53001593B2 /* UserTableCell.swift in Sources */,
 				A79D69051A60C1D100E7BA94 /* SignupViewController.swift in Sources */,
 				829AA4061A86B4710008F647 /* JSQMessagesToolbarContentView.m in Sources */,
 				82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */,

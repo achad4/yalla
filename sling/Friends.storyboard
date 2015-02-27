@@ -4,68 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Friend Collection View Controller-->
-        <scene sceneID="b9Q-Uh-Ccp">
-            <objects>
-                <collectionViewController id="lQg-Xi-ZuV" customClass="FriendCollectionViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nxa-aN-wqL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6AC-f9-awV">
-                            <size key="itemSize" width="241" height="179"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCell" id="Z77-h8-XDy" customClass="UserCell" customModule="sling" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="241" height="179"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="lQg-Xi-ZuV" id="qxq-NC-qSF"/>
-                            <outlet property="delegate" destination="lQg-Xi-ZuV" id="pdl-Jx-2S5"/>
-                        </connections>
-                    </collectionView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ffC-Jk-hpT">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="QGE-Tx-A8u">
-                            <connections>
-                                <action selector="send:" destination="lQg-Xi-ZuV" id="ggh-ae-lgp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="hiw-ws-RxF" id="9Oj-lK-I2O"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QGd-qB-Zoc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="JZP-Hs-C3o">
-                    <connections>
-                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="xXs-vR-vox"/>
-                        <outlet property="searchContentsController" destination="lQg-Xi-ZuV" id="jhO-Zb-ItI"/>
-                        <outlet property="searchResultsDataSource" destination="lQg-Xi-ZuV" id="iGM-1F-vhL"/>
-                        <outlet property="searchResultsDelegate" destination="lQg-Xi-ZuV" id="D7S-SW-v3K"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="hiw-ws-RxF">
-                    <connections>
-                        <outlet property="delegate" destination="lQg-Xi-ZuV" id="sVy-c7-Nnd"/>
-                        <outlet property="searchContentsController" destination="lQg-Xi-ZuV" id="kik-Hc-XwI"/>
-                        <outlet property="searchResultsDataSource" destination="lQg-Xi-ZuV" id="pnA-6T-Vyn"/>
-                        <outlet property="searchResultsDelegate" destination="lQg-Xi-ZuV" id="38x-Kz-dQU"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="2233" y="-92"/>
-        </scene>
         <!--Friend Parent View Controller-->
         <scene sceneID="m7E-CQ-Qzy">
             <objects>
@@ -81,7 +19,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-GC-fxK">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <connections>
-                                    <segue destination="lQg-Xi-ZuV" kind="embed" id="J6X-vh-wT6"/>
+                                    <segue destination="aXu-ke-7E0" kind="embed" id="Pqw-hF-X7T"/>
                                 </connections>
                             </containerView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7g7-q3-07q">
@@ -124,6 +62,32 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1448" y="-91"/>
+        </scene>
+        <!--Friend Table View Controller-->
+        <scene sceneID="tpt-QJ-Oyz">
+            <objects>
+                <tableViewController id="aXu-ke-7E0" customClass="FriendTableViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="c55-Yj-N7q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="93" id="eZJ-8H-tsJ" customClass="UserTableCell" customModule="sling" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eZJ-8H-tsJ" id="x4W-NO-yTe">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aXu-ke-7E0" id="Azp-4q-9Oy"/>
+                            <outlet property="delegate" destination="aXu-ke-7E0" id="SqU-Mg-nmG"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5Y-nL-kCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2200" y="-86"/>
         </scene>
     </scenes>
 </document>

@@ -55,7 +55,7 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
         if(indexPath.row == 0){
             if(PFUser.currentUser() != nil){
                 PFUser.logOut()
-                var segue = FriendsSegue(identifier: "InitialView@Main", source: self, destination: self)
+                var segue = FriendsSegue(identifier: "LoginView@Main", source: self, destination: self)
                 segue.perform()
             }
         }

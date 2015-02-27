@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import CoreData
 
-//TODO: Should probably rename this class to QuestionFeedTableViewController
 protocol InboxTableViewControllerDelegate{
     func myVCDidFinish(controller:InboxTableViewController,text:String)
 }
@@ -32,6 +31,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Yalla"
+         self.refreshControl?.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
@@ -39,10 +39,6 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         recognizer2.direction = .Right
         self.view .addGestureRecognizer(recognizer2)
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        //self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        //self.navigationController?.navigationBar.layer.shadowOffset  = CGSizeMake(0, 2)
-        //self.navigationController?.navigationBar.layer.shadowOpacity = 0.9
-        //self.navigationController?.navigationBar.layer.shadowRadius  = 4.0
         self.navigationController?.navigationBar.topItem?.title = "yalla"
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Regular", size: 20.0)!,
                                                                         NSForegroundColorAttributeName: UIColor.whiteColor() ]
@@ -98,13 +94,6 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
              revealViewController().revealToggle(self)
             self.sideMenuOpen = false
         }
-            /*
-        else{
-            var storyboard = UIStoryboard(name: "Feed", bundle: nil)
-            var controller = storyboard.instantiateViewControllerWithIdentifier("FeedView") as UIViewController
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
-        */
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
@@ -135,24 +124,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
                 self.tableView.reloadData()
             }
         }
-        /*
-        var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
-        
-        findTimeLineData.orderByDescending("updatedAt")
-        var currentUser = PFUser.currentUser();
-        findTimeLineData.whereKey("participant", equalTo: currentUser)
-        
-        findTimeLineData.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!)->Void in
-            if !(error != nil){
-                for object in objects{
-                    let pdf = object as PFObject
-                    self.timeLineData.addObject(pdf)
-                }
-                self.tableView.reloadData()
-            }
-        }
-        */
+        self.refreshControl?.endRefreshing()
     }    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
