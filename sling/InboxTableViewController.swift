@@ -31,7 +31,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Messages"
+        self.title = "Yalla"
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
@@ -153,9 +153,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             }
         }
         */
-    }
-    
-    
+    }    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -169,7 +167,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         self.tableView.rowHeight = 125
         
-        cell.tableCell.frame = CGRectMake(0, 0, screenWidth - 20, 115)
+        cell.tableCell.frame = CGRectMake(0, 0, screenWidth*0.95, 115)
         cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
 
         //trash all the subviews to prevent overlays
@@ -177,7 +175,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             next.removeFromSuperview()
         }
 
-        var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth - 60, 50))
+        var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth*0.85, 50))
         previewLabel.center = CGPointMake(screenWidth * 0.5 - 10, 85)
         previewLabel.textAlignment = .Left
         previewLabel.numberOfLines = 2

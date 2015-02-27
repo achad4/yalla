@@ -13,6 +13,9 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
+    var screenWidth = UIScreen.mainScreen().bounds.width
+    var screenHeight = UIScreen.mainScreen().bounds.height
+    
     @IBAction func signinTapped(sender: AnyObject) {
         var permissions = ["user_friends"]
         PFFacebookUtils.logInWithPermissions(permissions, block: { (user : PFUser!, error : NSError!) -> Void in
@@ -146,7 +149,41 @@ class LoginViewController : UIViewController {
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        var filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif")
+        var gif = NSData(contentsOfFile: filePath!)
+        
+        var webViewBG = UIWebView(frame: self.view.frame)
+        webViewBG.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil)
+        webViewBG.userInteractionEnabled = false;
+        //webViewBG.center = CGPoint(x: screenWidth*0.3, y: screenHeight*0.5)
+        self.view.addSubview(webViewBG)
+        
+        var filter = UIView()
+        filter.frame = self.view.frame
+        filter.backgroundColor = UIColor.blackColor()
+        filter.alpha = 0.05
+        self.view.addSubview(filter)
+        
+        var welcomeLabel = UILabel(frame: CGRectMake(0, 100, self.view.bounds.size.width, 100))
+        welcomeLabel.text = "yalla"
+        welcomeLabel.textColor = UIColor.whiteColor()
+        welcomeLabel.font = UIFont(name: "AvenirNext-Regular", size: 50)
+        welcomeLabel.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(welcomeLabel)
+        
+        var loginBtn = UIButton(frame: CGRectMake(40, 360, 240, 40))
+        loginBtn.layer.borderColor = UIColor.whiteColor().CGColor
+        loginBtn.layer.borderWidth = 2
+        loginBtn.tintColor = UIColor.whiteColor()
+        loginBtn.setTitle("Login with Facebook", forState: .Normal)
+        loginBtn.addTarget(self, action: "signinTapped:", forControlEvents: .TouchUpInside)
+        loginBtn.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 20)
+        loginBtn.layer.cornerRadius = 7
+        self.view.addSubview(loginBtn)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
