@@ -43,9 +43,9 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         //self.navigationController?.navigationBar.layer.shadowOffset  = CGSizeMake(0, 2)
         //self.navigationController?.navigationBar.layer.shadowOpacity = 0.9
         //self.navigationController?.navigationBar.layer.shadowRadius  = 4.0
-        self.navigationController?.navigationBar.topItem?.title = "inbox"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 20)!]
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0)]
+        self.navigationController?.navigationBar.topItem?.title = "yalla"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-Regular", size: 20.0)!,
+                                                                        NSForegroundColorAttributeName: UIColor.whiteColor() ]
     }
     
     @IBAction func showMenu(sender: AnyObject) {
