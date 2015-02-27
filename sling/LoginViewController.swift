@@ -14,6 +14,7 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     
     var screenWidth = UIScreen.mainScreen().bounds.width
+    var screenHeight = UIScreen.mainScreen().bounds.height
     
     @IBAction func signinTapped(sender: AnyObject) {
         var permissions = ["user_friends"]
@@ -149,12 +150,13 @@ class LoginViewController : UIViewController {
         
         super.viewDidLoad()
         
-        var filePath = NSBundle.mainBundle().pathForResource("railway", ofType: "gif")
+        var filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif")
         var gif = NSData(contentsOfFile: filePath!)
         
         var webViewBG = UIWebView(frame: self.view.frame)
         webViewBG.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil)
         webViewBG.userInteractionEnabled = false;
+        //webViewBG.center = CGPoint(x: screenWidth*0.3, y: screenHeight*0.5)
         self.view.addSubview(webViewBG)
         
         var filter = UIView()
