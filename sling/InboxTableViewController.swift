@@ -32,6 +32,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Yalla"
+         self.refreshControl?.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
         let recognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         recognizer.direction = .Left
         self.view .addGestureRecognizer(recognizer)
@@ -135,6 +136,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
                 self.tableView.reloadData()
             }
         }
+        self.refreshControl?.endRefreshing()
         /*
         var findTimeLineData:PFQuery = PFQuery(className: "Conversation")
         
