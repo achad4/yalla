@@ -22,6 +22,8 @@
 		821416031A69AE95002A36E1 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821416021A69AE95002A36E1 /* SidePanelViewController.swift */; };
 		8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217D6551A69750B00C94E90 /* SWRevealViewController.m */; };
 		8251ADC01A70279A00FD3437 /* UserSelectionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */; };
+		825897521A98DEC600E05D79 /* ManageFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825897511A98DEC600E05D79 /* ManageFriendsTableViewController.swift */; };
+		825897541A98DF1300E05D79 /* ManageUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825897531A98DF1300E05D79 /* ManageUserTableCell.swift */; };
 		82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */; };
 		82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4319F0A3E600EBEC4E /* Main.storyboard */; };
 		82703F4719F0A3E600EBEC4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82703F4619F0A3E600EBEC4E /* Images.xcassets */; };
@@ -130,6 +132,8 @@
 		8217D6541A69750B00C94E90 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		8217D6551A69750B00C94E90 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSelectionImageView.swift; sourceTree = "<group>"; };
+		825897511A98DEC600E05D79 /* ManageFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFriendsTableViewController.swift; sourceTree = "<group>"; };
+		825897531A98DF1300E05D79 /* ManageUserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageUserTableCell.swift; path = ../ManageUserTableCell.swift; sourceTree = "<group>"; };
 		82703F3A19F0A3E600EBEC4E /* sling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82703F3E19F0A3E600EBEC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -610,6 +614,8 @@
 		82B0A2341A5DA53A00887222 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				825897531A98DF1300E05D79 /* ManageUserTableCell.swift */,
+				825897511A98DEC600E05D79 /* ManageFriendsTableViewController.swift */,
 				A79D69101A60DC1B00E7BA94 /* MyProfileViewController.swift */,
 				82974ED01A5457A200D2B9F7 /* UserCell.swift */,
 				82974ECE1A54571A00D2B9F7 /* FriendCollectionViewController.swift */,
@@ -797,6 +803,7 @@
 				A7FD59D11A50011A0074D2AF /* UserData.swift in Sources */,
 				829AA3EE1A86B4710008F647 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				A79D69031A60C1C400E7BA94 /* LoginViewController.swift in Sources */,
+				825897541A98DF1300E05D79 /* ManageUserTableCell.swift in Sources */,
 				82974ED11A5457A200D2B9F7 /* UserCell.swift in Sources */,
 				829AA3F81A86B4710008F647 /* JSQVideoMediaItem.m in Sources */,
 				82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */,
@@ -817,6 +824,7 @@
 				829AA3F01A86B4710008F647 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				829AA3F91A86B4710008F647 /* JSQMessagesCellTextView.m in Sources */,
 				829AA3FC1A86B4710008F647 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
+				825897521A98DEC600E05D79 /* ManageFriendsTableViewController.swift in Sources */,
 				829AA4021A86B4710008F647 /* JSQMessagesLabel.m in Sources */,
 				829AA3E71A86B4710008F647 /* JSQMessagesKeyboardController.m in Sources */,
 				829AA3FA1A86B4710008F647 /* JSQMessagesCollectionView.m in Sources */,

@@ -22,6 +22,7 @@ class LoginViewController : UIViewController {
             if(user != nil){
                 
                 //var verified =  as Bool
+                /*
                 if(user["emailVerified"] == nil){
                     println("here")
                     var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "This app is intended only for Columbia/Barnard students", preferredStyle: UIAlertControllerStyle.Alert)
@@ -40,14 +41,15 @@ class LoginViewController : UIViewController {
                     }))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
-                else{
+                */
+                //else{
                     NSLog("Login successfull")
                     var installation = PFInstallation.currentInstallation()
                     installation["user"] = user
                     installation.saveInBackground()
                     self.populateFacebookInfo(user)
                     self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-                }
+                //}
                 
             }else{
                 // The login failed.

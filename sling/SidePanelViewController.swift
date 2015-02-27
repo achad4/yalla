@@ -9,14 +9,12 @@
 import Foundation
 class SidePanelViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
     var menuItems : NSArray = ["Logout", "Profile", "Settings"]
-    var segue : FriendsSegue!
     
     @IBOutlet weak var userPic: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {       
         super.viewDidLoad()
-        segue = FriendsSegue(identifier: "ProfileView@Profile", source: self, destination: self)
         var user : PFUser = PFUser.currentUser()
         if(user["picture"] != nil){
             var imageFile : PFFile = user["picture"] as PFFile
@@ -57,12 +55,15 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
         if(indexPath.row == 0){
             if(PFUser.currentUser() != nil){
                 PFUser.logOut()
-                self.performSegueWithIdentifier("LoginView@Main", sender: self)
+                var segue = FriendsSegue(identifier: "InitialView@Main", source: self, destination: self)
+                segue.perform()
             }
         }
         else if(indexPath.row == 1){
-            println("profile segue")
-            self.segue.perform()
+            var storyBoard : UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
+            var scene = storyBoard.instantiateViewControllerWithIdentifier("MessagesView") as InboxTableViewController
+            var segue = FriendsSegue(identifier: "InitialView@Profile", source: scene, destination: self)
+            segue.perform()
         }
     }
     
