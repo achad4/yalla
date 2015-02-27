@@ -33,7 +33,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
         self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
         self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
-        self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 120/255, green: 173/255, blue: 200/255, alpha: 1.0))
+        self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 106/255, green: 202/255, blue: 210/255, alpha: 0.6))
         self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
 
         self.senderId = PFUser.currentUser().objectId
