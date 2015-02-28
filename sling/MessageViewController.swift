@@ -110,30 +110,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                 }
             }
         }
-        /*
-        var relation = self.convo.convo.relationForKey("participant")
-        var userQuery = relation.query()
-        userQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
-            if !(error != nil){
-                for object in objects{
-                    var imageFile : PFFile = object["picture"] as PFFile
-                    imageFile.getDataInBackgroundWithBlock {
-                        (imageData: NSData!, error: NSError!) -> Void in
-                        if !(error != nil) {
-                            let image = UIImage(data:imageData)
-                            self.avatarImages[object.objectId] = image
-                        }
-                        else{
-                            println(error.description)
-                            var image = UIImage(named: "anon.jpg")
-                            self.avatarImages[object.objectId] = image
-                        }
-                    }
-
-                }
-            }
-        }
-        */
     }
     
     /*Loads messages from parse*/
