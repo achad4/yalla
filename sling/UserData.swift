@@ -15,7 +15,4 @@ class UserData{
         conversations = NSMutableArray()
         user = theUser
     }
-    
-    
-   
 }

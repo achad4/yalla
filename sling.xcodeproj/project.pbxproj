@@ -318,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				82703F4319F0A3E600EBEC4E /* Main.storyboard */,
+				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
 				817BCEEE1A622136008F5A39 /* NewPost.storyboard */,
 				817BCEF01A622144008F5A39 /* Profile.storyboard */,
 				817BCEEA1A6220F8008F5A39 /* Friends.storyboard */,
@@ -601,7 +602,6 @@
 		82B0A2331A5DA4D300887222 /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
-				817C9C8A1A61B6BE005DF330 /* Messages.storyboard */,
 				821416021A69AE95002A36E1 /* SidePanelViewController.swift */,
 				8118D1141A5CE90D001C0ADF /* MessageViewController.swift */,
 				82B0A22F1A5C7D0000887222 /* Discussion.swift */,

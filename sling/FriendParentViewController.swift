@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class FriendParentViewController : UIViewController, UISearchBarDelegate{
+class FriendParentViewController : UIViewController, UISearchBarDelegate {
     
     //var convo : Conversation!
     var convos : NSMutableArray = NSMutableArray()
