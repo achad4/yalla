@@ -31,6 +31,8 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         }
     }
     
+    
+    //load users and organize them into alphabetized sections
     func loadData(){
         users.removeAllObjects()
         var friendsRequest : FBRequest = FBRequest.requestForMyFriends()
@@ -95,7 +97,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
             var cell = tableView.cellForRowAtIndexPath(indexPath) as UserTableCell
             var parentViewController = self.parentViewController as FriendParentViewController
             if(parentViewController.groupSegmentedControl.selectedSegmentIndex == 1){
-                var convo = parentViewController.convos[0] as Conversation
+                var convo = parentViewController.groupConvo
                 if(cell.userImage.alpha == 0.5){
                     cell.userImage.alpha = 1
                     convo.addRecipient(cell.user, isOwner: false)

@@ -18,6 +18,7 @@ class LoginViewController : UIViewController {
     
     @IBAction func signinTapped(sender: AnyObject) {
         var permissions = ["user_friends"]
+        //var permissions = nil
         PFFacebookUtils.logInWithPermissions(permissions, block: { (user : PFUser!, error : NSError!) -> Void in
             if(user != nil){
                 
@@ -43,7 +44,7 @@ class LoginViewController : UIViewController {
                 }
                 */
                 //else{
-                    NSLog("Login successfull")
+                    println("Login successfull")
                     var installation = PFInstallation.currentInstallation()
                     installation["user"] = user
                     installation.saveInBackground()
@@ -53,7 +54,7 @@ class LoginViewController : UIViewController {
                 
             }else{
                 // The login failed.
-                NSLog("Login failed")
+                println(error.description)
                 var alertView:UIAlertView = UIAlertView()
                 alertView.title = "Sign in Failed!"
                 alertView.message = "Connection Failure"
@@ -63,51 +64,7 @@ class LoginViewController : UIViewController {
             }
             
         })
-        /*
-        
-        var username:NSString = txtUsername.text
-        var password:NSString = txtPassword.text
-        
-        // Alert user no username/password was entered
-        if ( username.isEqualToString("") || password.isEqualToString("") ) {
-            var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign in Failed!"
-            alertView.message = "Please enter Username and Password"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
-    
-        } else {
-            //Attempt to log in user
-            //PFFacebookUtils.logInWithPermissions(<#permissions: [AnyObject]!#>, block: <#PFUserResultBlock!##(PFUser!, NSError!) -> Void#>)
 
-            /*
-            
-            PFUser.logInWithUsernameInBackground(username, password:password) {
-                    (user: PFUser!, error: NSError!) -> Void in
-                if(user != nil){
-                    // Successful login.
-                    NSLog("Login successfull")
-                    var installation = PFInstallation.currentInstallation()
-                    installation["user"] = user
-                    installation.saveInBackground()
-                    self.populateFacebookInfo(user)
-                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-                }else{
-                    // The login failed.
-                    NSLog("Login failed")
-                    var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "Sign in Failed!"
-                    alertView.message = "Connection Failure"
-                    alertView.delegate = self
-                    alertView.addButtonWithTitle("OK")
-                    alertView.show()
-                }
-            }
-            */
-    
-        }
-       */
     }
     
     func populateFacebookInfo(user: PFUser) {

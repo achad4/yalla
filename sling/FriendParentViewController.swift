@@ -11,6 +11,7 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate {
     
     //var convo : Conversation!
     var convos : NSMutableArray = NSMutableArray()
+    var groupConvo : Conversation = Conversation(sender: PFUser.currentUser())
     var messageText : String = ""
     var groupSegmentedControl : UISegmentedControl!
     
@@ -36,16 +37,26 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate {
     }
     
     func send(){
-        
-        for object in self.convos{
+        if(self.groupSegmentedControl.selectedSegmentIndex == 0){
+            for object in self.convos{
+                var message:PFObject = PFObject(className: "Message")
+                message["text"] = self.messageText
+                var convo = object as Conversation
+                message["inConvo"] = convo.convo as PFObject
+                message["sender"] = PFUser.currentUser()
+                message.saveInBackgroundWithTarget(nil, selector: nil)
+                convo.addRecipient(PFUser.currentUser(), isOwner: true)
+                convo.save()
+            }
+        }
+        else{
             var message:PFObject = PFObject(className: "Message")
             message["text"] = self.messageText
-            var convo = object as Conversation
-            message["inConvo"] = convo.convo as PFObject
+            message["inConvo"] = groupConvo.convo as PFObject
             message["sender"] = PFUser.currentUser()
             message.saveInBackgroundWithTarget(nil, selector: nil)
-            convo.addRecipient(PFUser.currentUser(), isOwner: true)
-            convo.save()
+            groupConvo.addRecipient(PFUser.currentUser(), isOwner: true)
+            groupConvo.save()
         }
     }
     
