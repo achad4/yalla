@@ -19,6 +19,7 @@
 		81ABF2081AA1471E0084F192 /* redpanda.gif in Resources */ = {isa = PBXBuildFile; fileRef = 81ABF2071AA1471E0084F192 /* redpanda.gif */; };
 		81E0FE141A6377D800E62FE5 /* MessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */; };
 		81E0FE161A6379B700E62FE5 /* FriendsSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */; };
+		81EB18EA1AADC5C00044F900 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EB18E91AADC5C00044F900 /* back.png */; };
 		821416031A69AE95002A36E1 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821416021A69AE95002A36E1 /* SidePanelViewController.swift */; };
 		8217D6561A69750B00C94E90 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217D6551A69750B00C94E90 /* SWRevealViewController.m */; };
 		8251ADC01A70279A00FD3437 /* UserSelectionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251ADBF1A70279A00FD3437 /* UserSelectionImageView.swift */; };
@@ -128,6 +129,7 @@
 		81ABF2071AA1471E0084F192 /* redpanda.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = redpanda.gif; sourceTree = "<group>"; };
 		81E0FE131A6377D800E62FE5 /* MessagesSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesSegue.swift; sourceTree = "<group>"; };
 		81E0FE151A6379B700E62FE5 /* FriendsSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsSegue.swift; sourceTree = "<group>"; };
+		81EB18E91AADC5C00044F900 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		821416021A69AE95002A36E1 /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		8217D6541A69750B00C94E90 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		8217D6551A69750B00C94E90 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		818F9C031A9FC0F2009CBBA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81EB18E91AADC5C00044F900 /* back.png */,
 				81ABF2071AA1471E0084F192 /* redpanda.gif */,
 				81ABF1FD1AA11C810084F192 /* compose.png */,
 			);
@@ -397,8 +400,8 @@
 		82703F3C19F0A3E600EBEC4E /* yalla */ = {
 			isa = PBXGroup;
 			children = (
-				818F9C031A9FC0F2009CBBA2 /* Images */,
 				82703F3F19F0A3E600EBEC4E /* AppDelegate.swift */,
+				818F9C031A9FC0F2009CBBA2 /* Images */,
 				8217D6531A69750A00C94E90 /* SWRevealViewController */,
 				8172FD941A64C90B00B1BD29 /* Storyboards */,
 				8172FD951A64C92F00B1BD29 /* Segues */,
@@ -742,6 +745,7 @@
 			files = (
 				81ABF1FE1AA11C810084F192 /* compose.png in Resources */,
 				829AA3E91A86B4710008F647 /* JSQMessagesViewController.xib in Resources */,
+				81EB18EA1AADC5C00044F900 /* back.png in Resources */,
 				829AA4091A86B4710008F647 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				82703F4519F0A3E600EBEC4E /* Main.storyboard in Resources */,
 				829AA4071A86B4710008F647 /* JSQMessagesToolbarContentView.xib in Resources */,

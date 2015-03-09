@@ -40,6 +40,8 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         self.senderDisplayName = PFUser.currentUser().username
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
         automaticallyScrollsToMostRecentMessage = true
+        
+        self.addLeftNavItemOnView()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -58,6 +60,28 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         collectionView.collectionViewLayout.springinessEnabled = true
     }
 
+    func addLeftNavItemOnView ()
+    {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = true;
+        
+        
+        let buttonBack: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        buttonBack.frame = CGRectMake(0, 0, 40, 40)
+        buttonBack.setImage(UIImage(named:"back"), forState: UIControlState.Normal)
+        buttonBack.addTarget(self, action: "leftNavButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        var leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: buttonBack)
+        
+        self.navigationItem.setLeftBarButtonItem(leftBarButtonItem, animated: false)
+        
+        
+    }
+    
+    func leftNavButtonClick(sender:UIButton!)
+    {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

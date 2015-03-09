@@ -158,9 +158,9 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
             next.removeFromSuperview()
         }
         
-        var X : CGFloat = cell.frame.origin.x
-        var Y : CGFloat = 0
-        var centerX = cell.frame.origin
+        //var X : CGFloat = cell.frame.origin.x
+        //var Y : CGFloat = 0
+        //var centerX = cell.frame.origin
         //cell.userCellView.frame = CGRectMake(X, Y, self.view.bounds.size.width - 10, 70)
         //cell.userCellView.center = CGPointMake(X + cell.frame.size.width/2, Y + cell.frame.height/2)
         cell.userName = UILabel(frame: CGRectMake(0, 0, 200, 70))
@@ -196,17 +196,17 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         cell.messageText = self.messageText
         cell.userCellView.addSubview(cell.userName)
         //cell.userCellView.addSubview(cell.userButton)
-        cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+        //cell.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
         
         
         // Convo cell appearance
         cell.userCellView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         //cell.userCellView.layer.cornerRadius  = 4.0
         
-        cell.userCellView.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
-        cell.userCellView.layer.shadowOffset  = CGSizeMake(0, 2)
-        cell.userCellView.layer.shadowOpacity = 0.5
-        cell.userCellView.layer.shadowRadius  = 4.0
+        //cell.userCellView.layer.shadowColor   = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.7).CGColor
+        //cell.userCellView.layer.shadowOffset  = CGSizeMake(0, 2)
+        //cell.userCellView.layer.shadowOpacity = 0.5
+        //cell.userCellView.layer.shadowRadius  = 4.0
         
         return cell
     }

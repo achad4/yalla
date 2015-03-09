@@ -7,7 +7,7 @@
         <!--Friend Parent View Controller-->
         <scene sceneID="m7E-CQ-Qzy">
             <objects>
-                <viewController storyboardIdentifier="FriendsView" id="phR-WZ-GfF" customClass="FriendParentViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendsView" id="phR-WZ-GfF" customClass="FriendParentViewController" customModule="yalla" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FCO-Qt-OWe"/>
                         <viewControllerLayoutGuide type="bottom" id="q6k-Ve-b7h"/>
@@ -33,7 +33,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7g7-q3-07q" firstAttribute="leading" secondItem="AzA-GC-fxK" secondAttribute="leading" id="7yy-oc-bgf"/>
-                            <constraint firstItem="7g7-q3-07q" firstAttribute="bottom" secondItem="AzA-GC-fxK" secondAttribute="top" id="Vdc-vv-Mas"/>
                             <constraint firstItem="7g7-q3-07q" firstAttribute="trailing" secondItem="AzA-GC-fxK" secondAttribute="trailing" id="ewb-mD-2PR"/>
                             <constraint firstAttribute="centerX" secondItem="7g7-q3-07q" secondAttribute="centerX" id="ogM-VL-T9e"/>
                             <constraint firstItem="7g7-q3-07q" firstAttribute="leading" secondItem="xsl-6d-Uyl" secondAttribute="leading" id="ssY-pG-Hdk"/>
@@ -65,15 +64,15 @@
         <!--Friend Table View Controller-->
         <scene sceneID="tpt-QJ-Oyz">
             <objects>
-                <tableViewController id="aXu-ke-7E0" customClass="FriendTableViewController" customModule="sling" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="aXu-ke-7E0" customClass="FriendTableViewController" customModule="yalla" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="c55-Yj-N7q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="93" id="eZJ-8H-tsJ" customClass="UserTableCell" customModule="sling" customModuleProvider="target">
+                            <tableViewCell opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="93" id="eZJ-8H-tsJ" customClass="UserTableCell" customModule="yalla" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eZJ-8H-tsJ" id="x4W-NO-yTe">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eZJ-8H-tsJ" id="x4W-NO-yTe">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

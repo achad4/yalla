@@ -152,6 +152,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         previewLabel.textAlignment = .Left
         previewLabel.numberOfLines = 2
         previewLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        previewLabel.textColor = UIColor(white: 0.5, alpha: 1.0)
         //previewLabel.layer.borderColor = UIColor.blackColor().CGColor
         //previewLabel.layer.borderWidth = 3
         cell.tableCell.addSubview(previewLabel)
@@ -159,8 +160,9 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         var timeLabel = UILabel(frame: CGRectMake(0, 0, 100, 25))
         timeLabel.center = CGPointMake(screenWidth - 90, 35)
         timeLabel.textAlignment = .Right
-        timeLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
+        timeLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 18)
         timeLabel.text = stringDate
+        timeLabel.textColor = UIColor(red: 255/255, green: 13/255, blue: 0/255, alpha: 1.0)
         cell.tableCell.addSubview(timeLabel)
         
         
@@ -176,7 +178,6 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
                 }
             }
         }
-        
         
         var relation : PFRelation = convo.relationForKey("participant")
         var query : PFQuery = relation.query()
