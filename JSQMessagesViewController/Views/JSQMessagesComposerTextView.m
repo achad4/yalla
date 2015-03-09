@@ -49,7 +49,7 @@
     
     self.backgroundColor = [UIColor whiteColor];
     self.layer.borderWidth = 0.5f;
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.borderColor = [UIColor colorWithRed:0/255 green:226/255 blue:242/255 alpha:0].CGColor;
     self.layer.cornerRadius = cornerRadius;
     
     self.scrollIndicatorInsets = UIEdgeInsetsMake(cornerRadius, 0.0f, cornerRadius, 0.0f);
@@ -62,7 +62,7 @@
     self.userInteractionEnabled = YES;
     
     self.font = [UIFont systemFontOfSize:16.0f];
-    self.textColor = [UIColor blackColor];
+    self.textColor = [UIColor darkGrayColor];
     self.textAlignment = NSTextAlignmentNatural;
     
     self.contentMode = UIViewContentModeRedraw;

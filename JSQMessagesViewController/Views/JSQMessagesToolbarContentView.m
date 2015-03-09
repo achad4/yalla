@@ -61,7 +61,9 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     self.leftHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
     self.rightHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
     
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.borderColor = [UIColor colorWithRed:0/255 green:226/255 blue:242/255 alpha:0].CGColor; //lightGrayColor].CGColor;
+
 }
 
 - (void)dealloc

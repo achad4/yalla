@@ -30,12 +30,13 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         super.viewDidLoad()
         self.activeUsers = self.getActiveUsers()
         self.loadQuestions()
-        self.inputToolbar.contentView.textView.placeHolder = "<-- Lost for words?"
+        self.collectionView.collectionViewLayout.messageBubbleFont = UIFont(name: "AvenirNext-Regular", size: 17)
+        self.inputToolbar.contentView.textView.placeHolder = "...lost for words?"
+        self.inputToolbar.contentView.textView.font = UIFont(name: "AvenirNext-Regular", size: 17)
         self.inputToolbar.contentView.leftBarButtonItem = JSQMessagesToolbarButtonFactory.defaultAccessoryButtonItem()
         self.incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
-        self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 106/255, green: 202/255, blue: 210/255, alpha: 0.6))
+        self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
         self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
-
         self.senderId = PFUser.currentUser().objectId
         self.senderDisplayName = PFUser.currentUser().username
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
@@ -46,13 +47,6 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        /*
-        if(self.newMessgae == true){
-            self.inputToolbar.contentView.rightBarButtonItem.setAttributedTitle(NSAttributedString(string: "+"), forState: UIControlState.Normal)
-            self.inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.jsq_messageBubbleBlueColor().jsq_colorByDarkeningColorWithValue(0.1), forState: UIControlState.Highlighted)
-        }
-        */
-        
         if(PFUser.currentUser() != nil && self.newMessgae != true) {
             self.loadAvatars()
             self.loadData()
