@@ -70,7 +70,7 @@ class LoginViewController : UIViewController {
     func populateFacebookInfo(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                if (result? != nil) {
+                if (result != nil) {
                     NSLog("error = \(error)")
                     var resultdict = result as? NSDictionary
                     

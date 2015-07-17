@@ -39,7 +39,7 @@ class ManageFriendsTableViewController : UITableViewController{
             friendQuery3.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]!, error : NSError!) -> Void in
                 if(error == nil){
                     for object in objects{
-                        let pdf = object as PFObject
+                        let pdf = object as! PFObject
                         self.users.addObject(pdf)
                     }
                     self.tableView.reloadData()
@@ -54,7 +54,7 @@ class ManageFriendsTableViewController : UITableViewController{
             friendQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]!, error : NSError!) -> Void in
                 if(error == nil){
                     for object in objects{
-                        let pdf = object as PFObject
+                        let pdf = object as! PFObject
                         self.users.addObject(pdf)
                     }
                     self.tableView.reloadData()
@@ -67,7 +67,7 @@ class ManageFriendsTableViewController : UITableViewController{
             friendQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]!, error : NSError!) -> Void in
                 if(error == nil){
                     for object in objects{
-                        let pdf = object as PFObject
+                        let pdf = object as! PFObject
                         self.users.addObject(pdf)
                     }
                     self.tableView.reloadData()
@@ -78,14 +78,14 @@ class ManageFriendsTableViewController : UITableViewController{
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as ManageUserTableCell
-        var users : NSMutableArray = self.users.objectAtIndex(indexPath.section) as NSMutableArray
-        var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ManageUserTableCell
+        var users : NSMutableArray = self.users.objectAtIndex(indexPath.section) as! NSMutableArray
+        var user : PFObject = self.users.objectAtIndex(indexPath.row) as! PFObject
         if(isSearching == true){
-            user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
+            user = self.filteredUsers.objectAtIndex(indexPath.row) as! PFObject
         }
         cell.user = user
-        for next in cell.userCellView.subviews as [UIView]{
+        for next in cell.userCellView.subviews as! [UIView]{
             next.removeFromSuperview()
         }
         var X : CGFloat = cell.frame.origin.x
@@ -98,7 +98,7 @@ class ManageFriendsTableViewController : UITableViewController{
         cell.userName.text = user.objectForKey("realName") as? String
         
         if(user["picture"] != nil){
-            var imageFile : PFFile = user["picture"] as PFFile
+            var imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData!, error: NSError!) -> Void in
                 if !(error != nil) {
@@ -120,7 +120,7 @@ class ManageFriendsTableViewController : UITableViewController{
             cell.userCellView.addSubview(cell.userImage)
         }
         
-        var parentViewController = self.parentViewController as FriendParentViewController
+        var parentViewController = self.parentViewController as! FriendParentViewController
         
         //cell.convo = parentViewController.convo
         cell.userCellView.addSubview(cell.userName)

@@ -41,11 +41,11 @@ class SignupViewController : UIViewController {
             alertView.show()
         }else{
             var user = PFUser()
-            user.username = username
-            user.password = password
+            user.username = username as String
+            user.password = password as String
             user["email"] = username
             user.signUpInBackgroundWithBlock {
-                (succeeded: Bool!, error: NSError!) -> Void in
+                (succeeded: Bool, error: NSError!) -> Void in
                 if(error == nil){
                     if(PFFacebookUtils.isLinkedWithUser(user)){
                         var installation = PFInstallation.currentInstallation()
@@ -58,7 +58,7 @@ class SignupViewController : UIViewController {
                         var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "yalla only needs to access your friends list. We won't post anything.", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "Link to Facebook", style: UIAlertActionStyle.Default, handler: {
                             alertAction in
-                            PFFacebookUtils.linkUser(user, permissions: permissions, {
+                            PFFacebookUtils.linkUser(user, permissions: permissions, block: {
                                 (succeeded: Bool, error: NSError!) -> Void in
                                 if (succeeded) {
                                     NSLog("user logged in with Facebook!")
@@ -89,7 +89,7 @@ class SignupViewController : UIViewController {
     func populateFacebookInfo(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                if (result? != nil) {
+                if (result != nil) {
                     NSLog("error = \(error)")
                     var resultdict = result as? NSDictionary
                     

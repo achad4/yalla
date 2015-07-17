@@ -17,7 +17,7 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         var user : PFUser = PFUser.currentUser()
         if(user["picture"] != nil){
-            var imageFile : PFFile = user["picture"] as PFFile
+            var imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData!, error: NSError!) -> Void in
                 if !(error != nil) {
@@ -35,7 +35,7 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
             //self.userPic.image = userAvatar
         }
         if(user["realName"] != nil){
-            var name : String = user.objectForKey("realName") as String
+            var name : String = user.objectForKey("realName") as! String
             self.userNameLabel.text = name
         }
         else{
@@ -47,7 +47,7 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
         return menuItems.count
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1
     }
@@ -61,15 +61,15 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
         }
         else if(indexPath.row == 1){
             var storyBoard : UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
-            var scene = storyBoard.instantiateViewControllerWithIdentifier("MessagesView") as InboxTableViewController
+            var scene = storyBoard.instantiateViewControllerWithIdentifier("MessagesView") as! InboxTableViewController
             var segue = FriendsSegue(identifier: "InitialView@Profile", source: scene, destination: self)
             segue.perform()
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var identifier : NSString = menuItems.objectAtIndex(indexPath.row) as NSString
-        let cell : UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as UITableViewCell
+        var identifier : NSString = menuItems.objectAtIndex(indexPath.row) as! NSString
+        let cell : UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(identifier as! String) as! UITableViewCell
         return cell
         
     }

@@ -17,11 +17,11 @@ import Foundation
 
 import Foundation
 class UserSelectionImageView : UIImageView {    
-    override init() {
-        super.init()
-        self.userInteractionEnabled = true
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tapped:"))
-    }
+//    init() {
+//        super.init(image: self.image)
+//        self.userInteractionEnabled = true
+//        addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tapped:"))
+//    }
     
     func tapped(nizer: UITapGestureRecognizer){
         println("user image tapped")

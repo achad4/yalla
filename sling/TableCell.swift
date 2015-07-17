@@ -27,9 +27,9 @@ class TableCell: UITableViewCell{
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
         for user in users{
-            var userObject = user as PFObject
+            var userObject = user as! PFObject
             if(userObject["picture"] != nil){
-                var imageFile : PFFile = user["picture"] as PFFile
+                var imageFile : PFFile = user["picture"] as! PFFile
                     imageFile.getDataInBackgroundWithBlock {
                         (imageData: NSData!, error: NSError!) -> Void in
                         if !(error != nil) {

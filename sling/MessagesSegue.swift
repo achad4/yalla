@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKIT
+//import UIKIT
 
 @objc(MessagesSegue)
 
@@ -22,7 +22,7 @@ class MessagesSegue: UIStoryboardSegue {
         */
         
         var storyboard = UIStoryboard(name: "Messages", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
+        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as! UIViewController
         
         controller.presentViewController(controller, animated: true, completion: nil)
     }

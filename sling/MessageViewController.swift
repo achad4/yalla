@@ -68,12 +68,12 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         }
     }
     
-    func senderDisplayName() -> NSString {
-        return PFUser.currentUser().username
+    func sendersDisplayName() -> String! {
+        return PFUser.currentUser()!.username
     }
     
-    func senderId() -> String! {
-        return PFUser.currentUser().objectId
+    func sendersId() -> String! {
+        return PFUser.currentUser()!.objectId
     }
     
     
@@ -92,9 +92,9 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         convoQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]!, error:NSError!) -> Void in
             if !(error != nil){
                 for object in objects{
-                    let pdf = object as PFObject
-                    var user = pdf["participant"].fetchIfNeeded() as PFUser
-                    var imageFile : PFFile = user["picture"] as PFFile
+                    let pdf = object as! PFObject
+                    var user = pdf["participant"].fetchIfNeeded() as! PFUser
+                    var imageFile : PFFile = user["picture"] as! PFFile
                     imageFile.getDataInBackgroundWithBlock {
                         (imageData: NSData!, error: NSError!) -> Void in
                         if !(error != nil) {
@@ -122,9 +122,9 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
                 for object in objects{
-                    let pdf = object as PFObject
-                    let text = pdf.objectForKey("text") as String
-                    let sender = pdf["sender"].fetchIfNeeded() as PFUser
+                    let pdf = object as! PFObject
+                    let text = pdf.objectForKey("text") as! String
+                    let sender = pdf["sender"].fetchIfNeeded() as! PFUser
                     self.messageArray.addObject(JSQMessage(senderId: sender.objectId, displayName: sender.username, text: text))
                 }
             }
@@ -139,7 +139,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
                 for object in objects{
-                    let text = object.objectForKey("text") as String
+                    let text = object.objectForKey("text") as! String
                     self.questions.addObject(text)
                 }
             }
@@ -151,9 +151,9 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
         //user is starting new conversation
         if(self.newMessgae != false){
             self.messageText = text
-            var convo : Conversation = Conversation(sender: PFUser.currentUser())
-            self.convo = convo
-            self.convo.save()
+            //var convo : Conversation = Conversation(sender: PFUser.currentUser())
+            //self.convo = convo
+            //self.convo.save()
             self.segue.perform()
         }
         //conversation exists-- let user send new message
@@ -173,7 +173,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                     convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
                     convoQuery.whereKey("convo", equalTo: self.convo.convo)
                     var participant = convoQuery.getFirstObject()
-                    if(participant["active"] as Bool == false){
+                    if(participant["active"] as! Bool == false){
                         participant["active"] = true as NSNumber
                         participant.saveInBackground()
                         println("here")
@@ -211,7 +211,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
                             users.addObject(object)
                         }
                         var query: PFQuery = PFInstallation.query()
-                        query.whereKey("user", containedIn: users)
+                        query.whereKey("user", containedIn: users as [AnyObject])
                         var push: PFPush = PFPush()
                         push.setQuery(query)
                         push.setData(data)
@@ -232,7 +232,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     override func didPressAccessoryButton(sender: UIButton!) {
         var count = self.questions.count
         var randIndex = Int(arc4random_uniform(UInt32(count)))
-        var text = self.questions.objectAtIndex(randIndex) as String
+        var text = self.questions.objectAtIndex(randIndex) as! String
         self.inputToolbar.contentView.textView.text = text
         self.inputToolbar.toggleSendButtonEnabled()
     }
@@ -255,12 +255,12 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        return messageArray.objectAtIndex(indexPath.item) as JSQMessage
+        return messageArray.objectAtIndex(indexPath.item) as! JSQMessage
     }
     
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let msg = messageArray.objectAtIndex(indexPath.item) as JSQMessage
+        let msg = messageArray.objectAtIndex(indexPath.item) as! JSQMessage
         if(msg.senderId == PFUser.currentUser().objectId){
             return self.outgoingBubbleImageView
         }else{
@@ -274,8 +274,8 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
-        let message = messageArray.objectAtIndex(indexPath.item) as JSQMessage
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+        let message = messageArray.objectAtIndex(indexPath.item) as! JSQMessage
         let currentUser = PFUser.currentUser()
         if message.senderId == currentUser.objectId {
             cell.textView.textColor = UIColor.whiteColor()
@@ -288,7 +288,7 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func collectionView(collectionView: UICollectionView, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
-        let message = self.messageArray.objectAtIndex(indexPath.item) as JSQMessage
+        let message = self.messageArray.objectAtIndex(indexPath.item) as! JSQMessage
         if(message.senderId != PFUser.currentUser().objectId){
             let user = message.senderId
             let width = UInt(self.collectionView.collectionViewLayout.incomingAvatarViewSize.width)
@@ -308,13 +308,13 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        let message = messageArray.objectAtIndex(indexPath.item) as JSQMessage
+        let message = messageArray.objectAtIndex(indexPath.item) as! JSQMessage
         if message.senderId == PFUser.currentUser().objectId {
             return nil;
         }
         
         if indexPath.item > 0 {
-            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as JSQMessage;
+            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as! JSQMessage;
             if previousMessage.senderId == message.senderId {
                 return nil;
             }
@@ -331,13 +331,13 @@ class MessagesViewController : JSQMessagesViewController, JSQMessagesCollectionV
 
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        let message = messageArray.objectAtIndex(indexPath.item) as JSQMessage
-        let currentUser = PFUser.currentUser().objectForKey("username") as String
+        let message = messageArray.objectAtIndex(indexPath.item) as! JSQMessage
+        let currentUser = PFUser.currentUser().objectForKey("username") as! String
         if message.senderId == PFUser.currentUser().objectId {
             return CGFloat(0.0);
         }
         if indexPath.item > 0 {
-            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as JSQMessage;
+            let previousMessage = messageArray.objectAtIndex(indexPath.item-1) as! JSQMessage;
             if previousMessage.senderId == message.senderId {
                 return CGFloat(0.0);
             }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKIT
+//import UIKIT
 
 @objc(FriendsSegue)
 
@@ -17,10 +17,10 @@ class FriendsSegue: UIStoryboardSegue {
     func sceneNamed(identifier : NSString) -> UIViewController{
         println("scene")
         var info : NSArray = identifier.componentsSeparatedByString("@")
-        var storyBoardName : NSString = info[1] as NSString
-        var sceneName : NSString = info[0] as NSString
-        var storyBoard : UIStoryboard = UIStoryboard(name: storyBoardName, bundle: nil)
-        var scene : UIViewController = storyBoard.instantiateViewControllerWithIdentifier(sceneName) as UIViewController
+        var storyBoardName : NSString = info[1] as! NSString
+        var sceneName : NSString = info[0] as! NSString
+        var storyBoard : UIStoryboard = UIStoryboard(name: storyBoardName as String, bundle: nil)
+        var scene : UIViewController = storyBoard.instantiateViewControllerWithIdentifier(sceneName as String) as! UIViewController
         return scene
     }
     
@@ -30,21 +30,21 @@ class FriendsSegue: UIStoryboardSegue {
     
     override func perform() {
         
-        var sourceViewController      = self.sourceViewController as UIViewController
+        var sourceViewController      = self.sourceViewController as! UIViewController
         var destinationViewController = self.sceneNamed(self.identifier!)
         if(self.identifier == "FriendsView@Friends"){
-            var sourceViewController      = self.sourceViewController as MessagesViewController
-            var destinationViewController = self.sceneNamed(self.identifier!) as FriendParentViewController
+            var sourceViewController      = self.sourceViewController as! MessagesViewController
+            var destinationViewController = self.sceneNamed(self.identifier!) as! FriendParentViewController
             sourceViewController.addedParticipants = true
             sourceViewController.newMessgae = false
             //destinationViewController.convo = sourceViewController.convo
-            destinationViewController.convos.addObject(sourceViewController.convo)
+            //destinationViewController.convos.addObject(sourceViewController.convo)
             destinationViewController.messageText = sourceViewController.messageText
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
         }
         else if(self.identifier == "InitialView@Profile"){
             println("init segue")
-            var sourceViewController = self.sourceViewController as InboxTableViewController
+            var sourceViewController = self.sourceViewController as! InboxTableViewController
             var destinationViewController = self.sceneNamed(self.identifier!)
             sourceViewController.navigationController?.pushViewController(destinationViewController, animated: true)
         }

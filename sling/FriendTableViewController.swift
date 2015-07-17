@@ -40,39 +40,39 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         friendsRequest.startWithCompletionHandler{(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             if(error == nil){
                 
-                let resultdict = result as NSDictionary
-                let friends : NSArray = resultdict.objectForKey("data") as NSArray
+                let resultdict = result as! NSDictionary
+                let friends : NSArray = resultdict.objectForKey("data") as! NSArray
                 var friendIDs = NSMutableArray()
                 println(friends.count)
-                for friend in friends as [NSDictionary]{
+                for friend in friends as! [NSDictionary]{
                     friendIDs.addObject(friend["id"]!)
                 }
                 
                 var findTimeLineData:PFQuery = PFQuery(className: "_User")
                 findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
-                findTimeLineData.whereKey("fbID", containedIn: friendIDs)
+                findTimeLineData.whereKey("fbID", containedIn: friendIDs as [AnyObject])
                 findTimeLineData.findObjectsInBackgroundWithBlock{
                     (objects:[AnyObject]!, error:NSError!)->Void in
                     if !(error != nil){
                         for object in objects{
-                            let pdf = object as PFObject
+                            let pdf = object as! PFObject
                             self.users.addObject(pdf)
                         }
                         //self.sections.addObject(self.users)
                     }
                     
                     self.users.sortUsingComparator({ (user1, user2) -> NSComparisonResult in
-                        let pdf1 = user1 as PFUser
-                        let pdf2 = user2 as PFUser
-                        let name1 = pdf1["realName"] as NSString
-                        let name2 = pdf2["realName"] as NSString
-                        return name1.compare(name2)
+                        let pdf1 = user1 as! PFUser
+                        let pdf2 = user2 as! PFUser
+                        let name1 = pdf1["realName"] as! NSString
+                        let name2 = pdf2["realName"] as! NSString
+                        return name1.compare(name2 as String)
                     })
                     var prefix = "a" as NSString
                     var currentSection = NSMutableArray()
                     for user in self.users as [AnyObject] {
-                        let pdf = user as PFUser
-                        var name = pdf["realName"] as NSString
+                        let pdf = user as! PFUser
+                        var name = pdf["realName"] as! NSString
                         var firstLetter = name.substringToIndex(1)
                         if(firstLetter == prefix){
                             currentSection.addObject(user)
@@ -94,8 +94,8 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-            var cell = tableView.cellForRowAtIndexPath(indexPath) as UserTableCell
-            var parentViewController = self.parentViewController as FriendParentViewController
+            var cell = tableView.cellForRowAtIndexPath(indexPath) as! UserTableCell
+            var parentViewController = self.parentViewController as! FriendParentViewController
             if(parentViewController.groupSegmentedControl.selectedSegmentIndex == 1){
                 var convo = parentViewController.groupConvo
                 if(cell.userImage.alpha == 0.5){
@@ -134,7 +134,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-        return self.sectionTitles
+        return self.sectionTitles as [AnyObject]
     }
     
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
@@ -142,19 +142,19 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        return self.sectionTitles[section] as String
+        return self.sectionTitles[section] as! String
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as UserTableCell
-        var users : NSMutableArray = self.sections.objectAtIndex(indexPath.section) as NSMutableArray
-        var user : PFObject = self.users.objectAtIndex(indexPath.row) as PFObject
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserTableCell
+        var users : NSMutableArray = self.sections.objectAtIndex(indexPath.section) as! NSMutableArray
+        var user : PFObject = self.users.objectAtIndex(indexPath.row) as! PFObject
         if(isSearching == true){
-            user = self.filteredUsers.objectAtIndex(indexPath.row) as PFObject
+            user = self.filteredUsers.objectAtIndex(indexPath.row) as! PFObject
         }
         cell.user = user
         
-        for next in cell.userCellView.subviews as [UIView]{
+        for next in cell.userCellView.subviews as! [UIView]{
             next.removeFromSuperview()
         }
         
@@ -168,7 +168,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         cell.userName.text = user.objectForKey("realName") as? String
         
         if(user["picture"] != nil){
-            var imageFile : PFFile = user["picture"] as PFFile
+            var imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData!, error: NSError!) -> Void in
                 if !(error != nil) {
@@ -190,7 +190,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
             cell.userCellView.addSubview(cell.userImage)
         }
         
-        var parentViewController = self.parentViewController as FriendParentViewController
+        var parentViewController = self.parentViewController as! FriendParentViewController
         
         //cell.convo = parentViewController.convo
         cell.messageText = self.messageText

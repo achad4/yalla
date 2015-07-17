@@ -52,21 +52,21 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         if(segue.identifier == "to_message_view"){
             let indexPath = tableView.indexPathForSelectedRow()
-            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as TableCell
-            let parent = segue.destinationViewController as MessagesViewController
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! TableCell
+            let parent = segue.destinationViewController as! MessagesViewController
             var convoQuery:PFQuery = PFQuery(className: "Participant")
             convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
             convoQuery.whereKey("convo", equalTo: cell.convo.convo)
             var participant = convoQuery.getFirstObject()
             
             parent.convo = cell.convo
-            var active = participant["active"] as Bool
+            var active = participant["active"] as! Bool
             parent.isAnon = !active
             parent.newMessgae = false
         }
         
         if(segue.identifier == "new_message_segue"){
-            let parent = segue.destinationViewController as MessagesViewController
+            let parent = segue.destinationViewController as! MessagesViewController
             parent.isAnon = true
             parent.newMessgae = true
             parent.addedParticipants = false
@@ -96,7 +96,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
          return self.timeLineData.count
     }
@@ -116,7 +116,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             (objects:[AnyObject]!, error:NSError!)->Void in
             if !(error != nil){
                 for object in objects{
-                    let pdf = object as PFObject
+                    let pdf = object as! PFObject
                     if(pdf["convo"].fetchIfNeeded() != nil){
                         self.timeLineData.addObject(pdf["convo"].fetchIfNeeded())
                     }
@@ -129,8 +129,8 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TableCell
-        let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.section) as PFObject
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TableCell
+        let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.section) as! PFObject
         let convoObject : Conversation = Conversation(convo: convo)
         let date = convo.updatedAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
@@ -143,7 +143,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
 
         //trash all the subviews to prevent overlays
-        for next in cell.tableCell.subviews as [UIView]{
+        for next in cell.tableCell.subviews as! [UIView]{
             next.removeFromSuperview()
         }
 
@@ -160,7 +160,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         timeLabel.center = CGPointMake(screenWidth - 90, 35)
         timeLabel.textAlignment = .Right
         timeLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
-        timeLabel.text = stringDate
+        timeLabel.text = stringDate as String
         cell.tableCell.addSubview(timeLabel)
         
         
@@ -171,7 +171,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
             (object:PFObject!, error:NSError!) -> Void in
             if(object != nil){
                 if (object["text"] != nil) {
-                    let previewText = object.objectForKey("text") as String
+                    let previewText = object.objectForKey("text") as! String
                     previewLabel.text = previewText
                 }
             }

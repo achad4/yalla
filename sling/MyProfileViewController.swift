@@ -22,7 +22,7 @@ class MyProfileViewController : UIViewController {
     func populateFacebookProfile(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                if (result? != nil) {
+                if (result != nil) {
                     NSLog("error = \(error)")
                     var resultdict = result as? NSDictionary
                     
@@ -65,7 +65,7 @@ class MyProfileViewController : UIViewController {
     @IBAction func linkFBTapped(sender: UIButton) {
         var user = PFUser.currentUser()
         if !PFFacebookUtils.isLinkedWithUser(user) {
-                PFFacebookUtils.linkUser(user, permissions:nil, {
+                PFFacebookUtils.linkUser(user, permissions:nil, block: {
                 (succeeded: Bool, error: NSError!) -> Void in
             if (succeeded) {
                 NSLog("user logged in with Facebook!")
