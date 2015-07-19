@@ -13,15 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //PFUser.enableAutomaticUser()
         PFFacebookUtils.initializeFacebook()
-        var defaultACL = PFACL()
+        let defaultACL = PFACL()
         // If you would like all objects to be private by default, remove this line.
         defaultACL.setPublicReadAccess(true)
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
         
         
-        var notificationType: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        let notificationType: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
         
-        var settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
         
@@ -42,18 +42,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
-        var currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.saveInBackground()
         
-        println("got device id! \(deviceToken)")
+        print("got device id! \(deviceToken)")
         
     }
     
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println(error.localizedDescription)
-        println("could not register: \(error)")
+        print(error.localizedDescription)
+        print("could not register: \(error)")
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
-        annotation: AnyObject?) -> Bool {
+        annotation: AnyObject) -> Bool {
             return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication,
                 withSession:PFFacebookUtils.session())
     }
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.core" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] as NSURL
         }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -115,10 +115,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("QuestionData.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             // Report any error we got.
-            let dict = NSMutableDictionary()
+            var dict:[NSObject : AnyObject] = [NSObject : AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
@@ -127,6 +130,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         return coordinator
@@ -148,11 +153,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    abort()
+                }
             }
         }
     }

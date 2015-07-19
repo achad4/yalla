@@ -19,12 +19,12 @@ class PostViewController: UIViewController, UITextFieldDelegate {
         if(segue.identifier == "to_user_parent"){
             let userView = segue.destinationViewController as! FriendParentViewController
             //userView.convo = self.convo
-            userView.messageText = self.postText.text
+            userView.messageText = self.postText.text!
         }
     }
     
     @IBAction func submitPost(sender: AnyObject) {
-        var topic:String        = postText.text
+        var topic:String        = postText.text!
         //var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
         //thread.save()
         

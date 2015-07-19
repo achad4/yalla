@@ -21,8 +21,8 @@ class MessagesSegue: UIStoryboardSegue {
         sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
         */
         
-        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as! UIViewController
+        let storyboard = UIStoryboard(name: "Messages", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
         
         controller.presentViewController(controller, animated: true, completion: nil)
     }

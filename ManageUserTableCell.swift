@@ -15,7 +15,7 @@ class ManageUserTableCell : UITableViewCell{
     var userName: UILabel!
     var userCellView: UIView = UIView()
     
-    required init(coder decoder: NSCoder) {
+    required init?(coder decoder: NSCoder) {
         user = PFUser()
         super.init(coder: decoder)
         self.addSubview(userCellView)

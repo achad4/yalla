@@ -19,11 +19,11 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var sendButton = UIBarButtonItem(title: "send", style: .Plain, target: self, action: "send")
+        let sendButton = UIBarButtonItem(title: "send", style: .Plain, target: self, action: "send")
         self.navigationItem.setRightBarButtonItem(sendButton, animated: true)
         var backButton = UIBarButtonItem(title: "back", style: .Plain, target: self, action: "back")
         self.navigationItem.setLeftBarButtonItem(sendButton, animated: true)
-        var items = ["blast", "group"]
+        let items = ["blast", "group"]
         self.groupSegmentedControl = UISegmentedControl(items: items)
         self.navigationItem.titleView = self.groupSegmentedControl
         self.groupSegmentedControl.selectedSegmentIndex = 0
@@ -32,9 +32,9 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     }
     
     override func viewDidAppear(animated: Bool) {
-        println("fddfdgfdd")
+        print("fddfdgfdd")
         super.viewDidAppear(animated)
-        var widthConstraintChild = NSLayoutConstraint(item: self.childViewControllers[0].view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        let widthConstraintChild = NSLayoutConstraint(item: self.childViewControllers[0].view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
         self.view.addConstraint(widthConstraintChild)
         
     }
@@ -42,9 +42,9 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     func send(){
         if(self.groupSegmentedControl.selectedSegmentIndex == 0){
             for object in self.convos{
-                var message:PFObject = PFObject(className: "Message")
+                let message:PFObject = PFObject(className: "Message")
                 message["text"] = self.messageText
-                var convo = object as! Conversation
+                let convo = object as! Conversation
                 message["inConvo"] = convo.convo as PFObject
                 message["sender"] = PFUser.currentUser()
                 message.saveInBackgroundWithTarget(nil, selector: nil)
@@ -53,7 +53,7 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
             }
         }
         else{
-            var message:PFObject = PFObject(className: "Message")
+            let message:PFObject = PFObject(className: "Message")
             message["text"] = self.messageText
             message["inConvo"] = groupConvo.convo as PFObject
             message["sender"] = PFUser.currentUser()
@@ -65,20 +65,20 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
     
     func back(){
         if(self.groupSegmentedControl.selectedSegmentIndex == 0){
-            println("blast back")
+            print("blast back")
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
         else{
-            println("group back")
-            var count = self.navigationController?.viewControllers.count as Int!
-            var messageVC = self.navigationController?.viewControllers[count - 2] as! MessagesViewController
+            print("group back")
+            let count = self.navigationController?.viewControllers.count as Int!
+            let messageVC = self.navigationController?.viewControllers[count - 2] as! MessagesViewController
             messageVC.convo = self.groupConvo
         }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
-        var child = self.childViewControllers[0] as! FriendTableViewController
-        if searchBar.text.isEmpty{
+        let child = self.childViewControllers[0] as! FriendTableViewController
+        if searchBar.text!.isEmpty{
             child.isSearching = false
                 child.tableView.reloadData()
         } else {
@@ -86,7 +86,7 @@ class FriendParentViewController : UIViewController, UISearchBarDelegate{
             child.filteredUsers.removeAllObjects()
             for var index = 0; index < child.users.count; index++
             {
-                var currentUser = child.users.objectAtIndex(index) as! PFObject
+                let currentUser = child.users.objectAtIndex(index) as! PFObject
                 var currentString = currentUser.objectForKey("realName") as! String
                 if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
                     child.filteredUsers.addObject(currentUser)

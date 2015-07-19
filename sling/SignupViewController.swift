@@ -16,14 +16,14 @@ class SignupViewController : UIViewController {
     
     @IBAction func signupTapped(sender: UIButton) {
     
-        var username:NSString = txtUsername.text as NSString
-        var password:NSString = txtPassword.text as NSString
-        var confirm_password:NSString = txtConfirmPassword.text as NSString
+        let username:String? = txtUsername.text! as String?
+        let password:String? = txtPassword.text! as String?
+        let confirm_password:String! = txtConfirmPassword.text! as String?
     
         // Alert user no username/password was entered
-        if ( username.isEqualToString("") || password.isEqualToString("") ) {
+        if ( username == "" || password == "" ) {
     
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Please enter Username and Password"
             alertView.delegate = self
@@ -31,38 +31,38 @@ class SignupViewController : UIViewController {
             alertView.show()
     
         // Alert user that passwords do not match
-        } else if ( !password.isEqual(confirm_password) ) {
+        } else if ( !(password == confirm_password) ) {
     
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Passwords do not match"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
         }else{
-            var user = PFUser()
-            user.username = username as String
-            user.password = password as String
+            let user = PFUser()
+            user.username = username as String?
+            user.password = password as String?
             user["email"] = username
             user.signUpInBackgroundWithBlock {
                 (succeeded: Bool, error: NSError!) -> Void in
                 if(error == nil){
                     if(PFFacebookUtils.isLinkedWithUser(user)){
-                        var installation = PFInstallation.currentInstallation()
+                        let installation = PFInstallation.currentInstallation()
                         installation["user"] = user
                         installation.saveInBackground()
                         self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                     }
                     else{
-                        var permissions = ["user_friends"]
-                        var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "yalla only needs to access your friends list. We won't post anything.", preferredStyle: UIAlertControllerStyle.Alert)
+                        let permissions = ["user_friends"]
+                        let alert : UIAlertController = UIAlertController(title: "Almost there!", message: "yalla only needs to access your friends list. We won't post anything.", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "Link to Facebook", style: UIAlertActionStyle.Default, handler: {
                             alertAction in
                             PFFacebookUtils.linkUser(user, permissions: permissions, block: {
                                 (succeeded: Bool, error: NSError!) -> Void in
                                 if (succeeded) {
                                     NSLog("user logged in with Facebook!")
-                                    var installation = PFInstallation.currentInstallation()
+                                    let installation = PFInstallation.currentInstallation()
                                     installation["user"] = user
                                     installation.saveInBackground()
                                     self.populateFacebookInfo(user)
@@ -74,8 +74,8 @@ class SignupViewController : UIViewController {
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
                 }else{
-                    println(error.description)
-                    var alertView:UIAlertView = UIAlertView()
+                    print(error.description)
+                    let alertView:UIAlertView = UIAlertView()
                     alertView.title = "Sign up Failed!"
                     alertView.message = "New username required"
                     alertView.delegate = self
@@ -91,7 +91,7 @@ class SignupViewController : UIViewController {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
                 if (result != nil) {
                     NSLog("error = \(error)")
-                    var resultdict = result as? NSDictionary
+                    let resultdict = result as? NSDictionary
                     
                     // Populate profile page with user's Facebook name
                     if let name = resultdict?["name"] as? String {
@@ -110,7 +110,7 @@ class SignupViewController : UIViewController {
                             if let photoURL = data["url"] as? String {
                                 let url = NSURL(string: photoURL)
                                 if let imageData = NSData(contentsOfURL: url!) {
-                                    var userPicFile : PFFile = PFFile(data: imageData)
+                                    let userPicFile : PFFile = PFFile(data: imageData)
                                     user["picture"] = userPicFile
                                     user.saveInBackground()
                                 }

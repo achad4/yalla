@@ -40,7 +40,7 @@ class Conversation{
     
     func save(){
         for (user, isOwner) in participants{
-            var participant = PFObject(className: "Participant")
+            let participant = PFObject(className: "Participant")
             participant.ACL.setPublicWriteAccess(true)
             participant["participant"] = user
             participant["isOwner"] = isOwner as NSNumber

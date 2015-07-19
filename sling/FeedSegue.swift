@@ -15,8 +15,8 @@ class FeedSegue: UIStoryboardSegue {
     
     override func perform() {
         
-        var sourceViewController      = self.sourceViewController as! UIViewController
-        var destinationViewController = self.destinationViewController as! UIViewController
+        let sourceViewController      = self.sourceViewController as UIViewController
+        let destinationViewController = self.destinationViewController as UIViewController
         
         sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
     }

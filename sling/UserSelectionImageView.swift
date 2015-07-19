@@ -24,15 +24,15 @@ class UserSelectionImageView : UIImageView {
 //    }
     
     func tapped(nizer: UITapGestureRecognizer){
-        println("user image tapped")
+        print("user image tapped")
         self.highlighted = true
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    override init(image: UIImage!) {
-        println("image init")
+    override init(image: UIImage?) {
+        print("image init")
         super.init(image: image)
         self.userInteractionEnabled = true
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tapped:"))

@@ -14,7 +14,7 @@ protocol InboxTableViewControllerDelegate{
     func myVCDidFinish(controller:InboxTableViewController,text:String)
 }
 
-class InboxTableViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
+class InboxTableViewController : UITableViewController{
     
     var timeLineData : NSMutableArray = NSMutableArray()
     var delegate:InboxTableViewControllerDelegate? = nil
@@ -51,16 +51,16 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     override func prepareForSegue(segue: (UIStoryboardSegue!), sender: AnyObject!) {
         
         if(segue.identifier == "to_message_view"){
-            let indexPath = tableView.indexPathForSelectedRow()
+            let indexPath = tableView.indexPathForSelectedRow
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! TableCell
             let parent = segue.destinationViewController as! MessagesViewController
-            var convoQuery:PFQuery = PFQuery(className: "Participant")
+            let convoQuery:PFQuery = PFQuery(className: "Participant")
             convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
             convoQuery.whereKey("convo", equalTo: cell.convo.convo)
-            var participant = convoQuery.getFirstObject()
+            let participant = convoQuery.getFirstObject()
             
             parent.convo = cell.convo
-            var active = participant["active"] as! Bool
+            let active = participant["active"] as! Bool
             parent.isAnon = !active
             parent.newMessgae = false
         }
@@ -82,14 +82,14 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
     
     
     @IBAction func swipeRight(recognizer2 : UISwipeGestureRecognizer) {
-        println("swiped right")
+        print("swiped right")
         revealViewController().revealToggle(self)
         self.sideMenuOpen = true
     }
     
     
     @IBAction func swipeLeft(recognizer : UISwipeGestureRecognizer) {
-        println("swiped left")
+        print("swiped left")
         if(self.sideMenuOpen){
              revealViewController().revealToggle(self)
             self.sideMenuOpen = false
@@ -109,7 +109,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         
         self.timeLineData.removeAllObjects()
        
-        var convoQuery:PFQuery = PFQuery(className: "Participant")
+        let convoQuery:PFQuery = PFQuery(className: "Participant")
         convoQuery.orderByDescending("updatedAt")
         convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
         convoQuery.findObjectsInBackgroundWithBlock{
@@ -135,7 +135,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         let date = convo.updatedAt as NSDate
         let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         
-        var userString : String = ""
+        //var userString : String = ""
         
         self.tableView.rowHeight = 125
         
@@ -143,11 +143,11 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         cell.tableCell.center = CGPointMake(screenWidth * 0.5, 67.5)
 
         //trash all the subviews to prevent overlays
-        for next in cell.tableCell.subviews as! [UIView]{
+        for next in cell.tableCell.subviews as [UIView]{
             next.removeFromSuperview()
         }
 
-        var previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth*0.85, 50))
+        let previewLabel = UILabel(frame: CGRectMake(0, 0, screenWidth*0.85, 50))
         previewLabel.center = CGPointMake(screenWidth * 0.5 - 10, 85)
         previewLabel.textAlignment = .Left
         previewLabel.numberOfLines = 2
@@ -156,7 +156,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         //previewLabel.layer.borderWidth = 3
         cell.tableCell.addSubview(previewLabel)
         
-        var timeLabel = UILabel(frame: CGRectMake(0, 0, 100, 25))
+        let timeLabel = UILabel(frame: CGRectMake(0, 0, 100, 25))
         timeLabel.center = CGPointMake(screenWidth - 90, 35)
         timeLabel.textAlignment = .Right
         timeLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
@@ -164,7 +164,7 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         cell.tableCell.addSubview(timeLabel)
         
         
-        var preview:PFQuery = PFQuery(className: "Message")
+        let preview:PFQuery = PFQuery(className: "Message")
         preview.whereKey("inConvo", equalTo: convo)
         preview.orderByDescending("createdAt")
         preview.getFirstObjectInBackgroundWithBlock {
@@ -178,12 +178,12 @@ class InboxTableViewController : UITableViewController, UITableViewDelegate, UIT
         }
         
         
-        var relation : PFRelation = convo.relationForKey("participant")
-        var query : PFQuery = relation.query()
+        let relation : PFRelation = convo.relationForKey("participant")
+        let query : PFQuery = relation.query()
         query.findObjectsInBackgroundWithBlock {
             (objects:[AnyObject]!, error:NSError!) -> Void in
             if !(error != nil){
-                var users : NSMutableArray = NSMutableArray()
+                let users : NSMutableArray = NSMutableArray()
                 for object in objects{
                     users.addObject(object)
                 }

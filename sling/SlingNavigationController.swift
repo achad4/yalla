@@ -15,7 +15,7 @@ class SlingNavigationController: UINavigationController {
         super.viewDidLoad()
         
         self.setNavigationBarHidden(false, animated:true)
-        var postButton : UIBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("postQuestion"))
+        let postButton : UIBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("postQuestion"))
         self.navigationItem.rightBarButtonItem = postButton
     }
     
@@ -25,8 +25,8 @@ class SlingNavigationController: UINavigationController {
     
     @IBAction func onViewMessagesPressed(sender: UITabBarItem)
     {
-        var storyboard = UIStoryboard(name: "Messages", bundle: nil)
-        var controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as! UIViewController
+        let storyboard = UIStoryboard(name: "Messages", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("InitialController") as UIViewController
         
         self.presentViewController(controller, animated: true, completion: nil)
     }

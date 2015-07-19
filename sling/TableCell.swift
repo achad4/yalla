@@ -19,7 +19,7 @@ class TableCell: UITableViewCell{
     override init(style: UITableViewCellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-    required init(coder decoder: NSCoder) {
+    required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         self.addSubview(tableCell)
     }
@@ -27,19 +27,19 @@ class TableCell: UITableViewCell{
     func displayUserPics(users : NSMutableArray){
         var i : Int = 0
         for user in users{
-            var userObject = user as! PFObject
+            let userObject = user as! PFObject
             if(userObject["picture"] != nil){
-                var imageFile : PFFile = user["picture"] as! PFFile
+                let imageFile : PFFile = user["picture"] as! PFFile
                     imageFile.getDataInBackgroundWithBlock {
                         (imageData: NSData!, error: NSError!) -> Void in
                         if !(error != nil) {
                             let image = UIImage(data:imageData)
                             let width = 25 as UInt
                             let userAvatar  = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: width)
-                            var imageView = UIImageView(image: userAvatar)
+                            let imageView = UIImageView(image: userAvatar)
                             imageView.alpha = 0.8
-                            var value : Int = i*25 + 30
-                            var x = CGFloat(value)
+                            let value : Int = i*25 + 30
+                            let x = CGFloat(value)
                             imageView.frame = CGRectMake(x, 30, 25, 25)
                             self.tableCell.addSubview(imageView)
                             
@@ -48,14 +48,14 @@ class TableCell: UITableViewCell{
             }
                 
             else{
-                var image = UIImage(named: "anon.jpg")
+                let image = UIImage(named: "anon.jpg")
                 let width = 25 as UInt
                 var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
                 let userAvatar  = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: width)
-                var imageView = UIImageView(image: userAvatar)
+                let imageView = UIImageView(image: userAvatar)
                 imageView.alpha = 0.8
-                var value : Int = i*25 + 30
-                var x = CGFloat(value)
+                let value : Int = i*25 + 30
+                let x = CGFloat(value)
                 imageView.frame = CGRectMake(x, 30, 25, 25)
                 self.tableCell.addSubview(imageView)
             }

@@ -35,20 +35,20 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     //load users and organize them into alphabetized sections
     func loadData(){
         users.removeAllObjects()
-        var friendsRequest : FBRequest = FBRequest.requestForMyFriends()
+        let friendsRequest : FBRequest = FBRequest.requestForMyFriends()
         //retrieve friends of user
         friendsRequest.startWithCompletionHandler{(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
             if(error == nil){
                 
                 let resultdict = result as! NSDictionary
                 let friends : NSArray = resultdict.objectForKey("data") as! NSArray
-                var friendIDs = NSMutableArray()
-                println(friends.count)
+                let friendIDs = NSMutableArray()
+                print(friends.count)
                 for friend in friends as! [NSDictionary]{
                     friendIDs.addObject(friend["id"]!)
                 }
                 
-                var findTimeLineData:PFQuery = PFQuery(className: "_User")
+                let findTimeLineData:PFQuery = PFQuery(className: "_User")
                 findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
                 findTimeLineData.whereKey("fbID", containedIn: friendIDs as [AnyObject])
                 findTimeLineData.findObjectsInBackgroundWithBlock{
@@ -72,8 +72,8 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
                     var currentSection = NSMutableArray()
                     for user in self.users as [AnyObject] {
                         let pdf = user as! PFUser
-                        var name = pdf["realName"] as! NSString
-                        var firstLetter = name.substringToIndex(1)
+                        let name = pdf["realName"] as! NSString
+                        let firstLetter = name.substringToIndex(1)
                         if(firstLetter == prefix){
                             currentSection.addObject(user)
                         }
@@ -94,10 +94,10 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-            var cell = tableView.cellForRowAtIndexPath(indexPath) as! UserTableCell
-            var parentViewController = self.parentViewController as! FriendParentViewController
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! UserTableCell
+            let parentViewController = self.parentViewController as! FriendParentViewController
             if(parentViewController.groupSegmentedControl.selectedSegmentIndex == 1){
-                var convo = parentViewController.groupConvo
+                let convo = parentViewController.groupConvo
                 if(cell.userImage.alpha == 0.5){
                     cell.userImage.alpha = 1
                     convo.addRecipient(cell.user, isOwner: false)
@@ -110,7 +110,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
             else{
                 if(cell.userImage.alpha == 0.5){
                     cell.userImage.alpha = 1
-                    var convo = Conversation(sender: PFUser.currentUser())
+                    let convo = Conversation(sender: PFUser.currentUser())
                     convo.addRecipient(cell.user, isOwner: false)
                     parentViewController.convos.addObject(convo)
                 }
@@ -133,8 +133,8 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         return self.users.count
     }
     
-    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-        return self.sectionTitles as [AnyObject]
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return self.sectionTitles as AnyObject as! [String]
     }
     
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
@@ -146,7 +146,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserTableCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserTableCell
         var users : NSMutableArray = self.sections.objectAtIndex(indexPath.section) as! NSMutableArray
         var user : PFObject = self.users.objectAtIndex(indexPath.row) as! PFObject
         if(isSearching == true){
@@ -154,7 +154,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         }
         cell.user = user
         
-        for next in cell.userCellView.subviews as! [UIView]{
+        for next in cell.userCellView.subviews as [UIView]{
             next.removeFromSuperview()
         }
         
@@ -168,7 +168,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         cell.userName.text = user.objectForKey("realName") as? String
         
         if(user["picture"] != nil){
-            var imageFile : PFFile = user["picture"] as! PFFile
+            let imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData!, error: NSError!) -> Void in
                 if !(error != nil) {
@@ -183,7 +183,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
             }
         }
         else{
-            var image = UIImage(named: "anon.jpg")
+            let image = UIImage(named: "anon.jpg")
             let width = 50 as UInt
             let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter: width)
             cell.userImage = UIImageView(image: circleImage)

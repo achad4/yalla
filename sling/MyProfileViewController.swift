@@ -24,7 +24,7 @@ class MyProfileViewController : UIViewController {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
                 if (result != nil) {
                     NSLog("error = \(error)")
-                    var resultdict = result as? NSDictionary
+                    let resultdict = result as? NSDictionary
                     
                     // Populate profile page with user's Facebook name
                     if let name = resultdict?["name"] as? String {
@@ -40,7 +40,7 @@ class MyProfileViewController : UIViewController {
                                 let url = NSURL(string: photoURL)
                                 if let imageData = NSData(contentsOfURL: url!) {
                                     self.userPhoto.image = UIImage(data: imageData)
-                                    var userPicFile : PFFile = PFFile(data: imageData)
+                                    let userPicFile : PFFile = PFFile(data: imageData)
                                     user["picture"] = userPicFile
                                     user.saveInBackground()
                                 }
@@ -63,7 +63,7 @@ class MyProfileViewController : UIViewController {
     }
     
     @IBAction func linkFBTapped(sender: UIButton) {
-        var user = PFUser.currentUser()
+        let user = PFUser.currentUser()
         if !PFFacebookUtils.isLinkedWithUser(user) {
                 PFFacebookUtils.linkUser(user, permissions:nil, block: {
                 (succeeded: Bool, error: NSError!) -> Void in
@@ -72,7 +72,7 @@ class MyProfileViewController : UIViewController {
             }
             })
         } else {
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Failed to Link Facebook!"
             alertView.message = "Your account is already linked"
             alertView.delegate = self

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class SidePanelViewController : UITableViewController, UITableViewDelegate, UITableViewDataSource{
+class SidePanelViewController : UITableViewController{
     var menuItems : NSArray = ["Logout", "Profile", "Settings"]
     
     @IBOutlet weak var userPic: UIImageView!
@@ -15,27 +15,27 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {       
         super.viewDidLoad()
-        var user : PFUser = PFUser.currentUser()
+        let user : PFUser = PFUser.currentUser()
         if(user["picture"] != nil){
-            var imageFile : PFFile = user["picture"] as! PFFile
+            let imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData!, error: NSError!) -> Void in
                 if !(error != nil) {
-                    let image = UIImage(data:imageData)
-                    let width = 50 as UInt
+                    //let image = UIImage(data:imageData)
+                    //let width = 50 as UInt
                     //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
                     //self.userPic.image = userAvatar
                 }
             }
         }
         else{
-            var image = UIImage(named: "anon.jpg")
-            let width = 100 as UInt
+            //var image = UIImage(named: "anon.jpg")
+            //let width = 100 as UInt
             //let userAvatar  = JSQMessagesAvatarFactory.avatarWithImage(image, diameter: width)
             //self.userPic.image = userAvatar
         }
         if(user["realName"] != nil){
-            var name : String = user.objectForKey("realName") as! String
+            let name : String = user.objectForKey("realName") as! String
             self.userNameLabel.text = name
         }
         else{
@@ -55,22 +55,27 @@ class SidePanelViewController : UITableViewController, UITableViewDelegate, UITa
         if(indexPath.row == 0){
             if(PFUser.currentUser() != nil){
                 PFUser.logOut()
-                var segue = FriendsSegue(identifier: "LoginView@Main", source: self, destination: self)
+                let segue = FriendsSegue(identifier: "LoginView@Main", source: self, destination: self)
                 segue.perform()
             }
         }
         else if(indexPath.row == 1){
-            var storyBoard : UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
-            var scene = storyBoard.instantiateViewControllerWithIdentifier("MessagesView") as! InboxTableViewController
-            var segue = FriendsSegue(identifier: "InitialView@Profile", source: scene, destination: self)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
+            let scene = storyBoard.instantiateViewControllerWithIdentifier("MessagesView") as! InboxTableViewController
+            let segue = FriendsSegue(identifier: "InitialView@Profile", source: scene, destination: self)
             segue.perform()
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var identifier : NSString = menuItems.objectAtIndex(indexPath.row) as! NSString
-        let cell : UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(identifier as! String) as! UITableViewCell
-        return cell
+        let identifier : NSString = menuItems.objectAtIndex(indexPath.row) as! NSString
+        let cell : UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(identifier as String) as UITableViewCell!
         
+        return cell
+//        if let cell = self.tableView.dequeueReusableCellWithIdentifier(identifier as String) {
+//            return cell
+//        }else{
+//            return
+//        }
     }
 }

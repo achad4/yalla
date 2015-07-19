@@ -17,7 +17,7 @@ class LoginViewController : UIViewController {
     var screenHeight = UIScreen.mainScreen().bounds.height
     
     @IBAction func signinTapped(sender: AnyObject) {
-        var permissions = ["user_friends"]
+        let permissions = ["user_friends"]
         //var permissions = nil
         PFFacebookUtils.logInWithPermissions(permissions, block: { (user : PFUser!, error : NSError!) -> Void in
             if(user != nil){
@@ -44,8 +44,8 @@ class LoginViewController : UIViewController {
                 }
                 */
                 //else{
-                    println("Login successfull")
-                    var installation = PFInstallation.currentInstallation()
+                    print("Login successfull")
+                    let installation = PFInstallation.currentInstallation()
                     installation["user"] = user
                     installation.saveInBackground()
                     self.populateFacebookInfo(user)
@@ -54,8 +54,8 @@ class LoginViewController : UIViewController {
                 
             }else{
                 // The login failed.
-                println(error.description)
-                var alertView:UIAlertView = UIAlertView()
+                print(error.description)
+                let alertView:UIAlertView = UIAlertView()
                 alertView.title = "Sign in Failed!"
                 alertView.message = "Connection Failure"
                 alertView.delegate = self
@@ -72,7 +72,7 @@ class LoginViewController : UIViewController {
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
                 if (result != nil) {
                     NSLog("error = \(error)")
-                    var resultdict = result as? NSDictionary
+                    let resultdict = result as? NSDictionary
                     
                     // Populate profile page with user's Facebook name
                     if let name = resultdict?["name"] as? String {
@@ -91,7 +91,7 @@ class LoginViewController : UIViewController {
                             if let photoURL = data["url"] as? String {
                                 let url = NSURL(string: photoURL)
                                 if let imageData = NSData(contentsOfURL: url!) {
-                                    var userPicFile : PFFile = PFFile(data: imageData)
+                                    let userPicFile : PFFile = PFFile(data: imageData)
                                     user["picture"] = userPicFile
                                     user.saveInBackground()
                                 }
@@ -109,29 +109,35 @@ class LoginViewController : UIViewController {
         
         super.viewDidLoad()
         
-        var filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif")
-        var gif = NSData(contentsOfFile: filePath!)
+//        var filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif")
+//        var gif = NSData(contentsOfFile: filePath!)
         
-        var webViewBG = UIWebView(frame: self.view.frame)
-        webViewBG.loadData(gif, MIMEType: "image/gif", textEncodingName: nil, baseURL: nil)
+        
+        guard let filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif"),
+            let gifData = NSData(contentsOfFile: filePath) else {
+                return
+        }
+        
+        let webViewBG = UIWebView(frame: self.view.frame)
+        webViewBG.loadData(gifData, MIMEType: "image/gif", textEncodingName: "", baseURL: NSURL(string: "http://localhost/")!)
         webViewBG.userInteractionEnabled = false;
         //webViewBG.center = CGPoint(x: screenWidth*0.3, y: screenHeight*0.5)
         self.view.addSubview(webViewBG)
         
-        var filter = UIView()
+        let filter = UIView()
         filter.frame = self.view.frame
         filter.backgroundColor = UIColor.blackColor()
         filter.alpha = 0.05
         self.view.addSubview(filter)
         
-        var welcomeLabel = UILabel(frame: CGRectMake(0, 100, self.view.bounds.size.width, 100))
+        let welcomeLabel = UILabel(frame: CGRectMake(0, 100, self.view.bounds.size.width, 100))
         welcomeLabel.text = "yalla"
         welcomeLabel.textColor = UIColor.whiteColor()
         welcomeLabel.font = UIFont(name: "AvenirNext-Regular", size: 50)
         welcomeLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(welcomeLabel)
         
-        var loginBtn = UIButton(frame: CGRectMake(0, 0, 240, 40))
+        let loginBtn = UIButton(frame: CGRectMake(0, 0, 240, 40))
         loginBtn.center = CGPointMake(screenWidth*0.5, screenHeight*0.5)
         loginBtn.layer.borderColor = UIColor.whiteColor().CGColor
         loginBtn.layer.borderWidth = 2
