@@ -103,6 +103,7 @@
 		D3FCDA9919FF56D600D1A8FB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9819FF56D600D1A8FB /* Social.framework */; };
 		D3FCDA9B19FF56DF00D1A8FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9A19FF56DF00D1A8FB /* StoreKit.framework */; };
 		D3FCDA9D19FF56E800D1A8FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9C19FF56E800D1A8FB /* SystemConfiguration.framework */; };
+		F0DA7EDC9F32D4C26FDD57D3 /* libPods-yalla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4B5C218F2EAA0969F92BBE /* libPods-yalla.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D4B5C218F2EAA0969F92BBE /* libPods-yalla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yalla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8118D1141A5CE90D001C0ADF /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		8152EFF41A644687007D93C3 /* FeedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSegue.swift; sourceTree = "<group>"; };
 		8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSegue.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		82FEB51B1A86C0E1000FF6A8 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		82FEB51C1A86C0E1000FF6A8 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		A72E401EC34E24D50A69D5E8 /* Pods-yalla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yalla.release.xcconfig"; path = "Pods/Target Support Files/Pods-yalla/Pods-yalla.release.xcconfig"; sourceTree = "<group>"; };
 		A788ED9E19FF649400BF4B02 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		A788ED9F19FF649400BF4B02 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A788EDA019FF649400BF4B02 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -275,6 +278,7 @@
 		D3FCDA9A19FF56DF00D1A8FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D3FCDA9C19FF56E800D1A8FB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D3FCDA9E19FF580500D1A8FB /* sling-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sling-Bridging-Header.h"; sourceTree = "<group>"; };
+		FCE3C022D0DE1C6BDD62D4F0 /* Pods-yalla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yalla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yalla/Pods-yalla.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,7 @@
 				D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */,
 				D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */,
 				D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */,
+				F0DA7EDC9F32D4C26FDD57D3 /* libPods-yalla.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +366,7 @@
 				D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */,
 				D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */,
 				D3FCDA8819FF567800D1A8FB /* Accounts.framework */,
+				3D4B5C218F2EAA0969F92BBE /* libPods-yalla.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				82703F3C19F0A3E600EBEC4E /* yalla */,
 				82703F5219F0A3E600EBEC4E /* slingTests */,
 				82703F3B19F0A3E600EBEC4E /* Products */,
+				E5DCBCDA616F4FBC6F9960A2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -646,6 +653,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		E5DCBCDA616F4FBC6F9960A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FCE3C022D0DE1C6BDD62D4F0 /* Pods-yalla.debug.xcconfig */,
+				A72E401EC34E24D50A69D5E8 /* Pods-yalla.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -653,9 +669,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82703F5919F0A3E600EBEC4E /* Build configuration list for PBXNativeTarget "yalla" */;
 			buildPhases = (
+				9CD5839BB2E707048CF140F3 /* Check Pods Manifest.lock */,
 				82703F3619F0A3E600EBEC4E /* Sources */,
 				82703F3719F0A3E600EBEC4E /* Frameworks */,
 				82703F3819F0A3E600EBEC4E /* Resources */,
+				8D8213390F6579E0824B9E3F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -692,7 +710,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Avi Chad-Friedman";
 				TargetAttributes = {
 					82703F3919F0A3E600EBEC4E = {
@@ -770,6 +788,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D8213390F6579E0824B9E3F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yalla/Pods-yalla-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CD5839BB2E707048CF140F3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		82703F3619F0A3E600EBEC4E /* Sources */ = {
@@ -922,6 +973,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -981,6 +1033,7 @@
 		};
 		82703F5A19F0A3E600EBEC4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCE3C022D0DE1C6BDD62D4F0 /* Pods-yalla.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -996,6 +1049,7 @@
 				);
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = yalla;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "sling/sling-Bridging-Header.h";
@@ -1005,6 +1059,7 @@
 		};
 		82703F5B19F0A3E600EBEC4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A72E401EC34E24D50A69D5E8 /* Pods-yalla.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1020,6 +1075,7 @@
 				);
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = yalla;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "sling/sling-Bridging-Header.h";
@@ -1040,6 +1096,7 @@
 				);
 				INFOPLIST_FILE = slingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = yallaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yalla.app/yalla";
 			};
@@ -1055,6 +1112,7 @@
 				);
 				INFOPLIST_FILE = slingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = yallaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yalla.app/yalla";
 			};
