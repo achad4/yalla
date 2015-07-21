@@ -18,7 +18,7 @@ class Conversation{
         //messages.addObject(initialMessage)
         //self.participants.addObject(sender)
         convo = PFObject(className: "Conversation")
-        self.convo.ACL.setPublicWriteAccess(true)
+        self.convo.ACL!.setPublicWriteAccess(true)
         convo["owner"] = sender
         //isAnon = true
     }
@@ -41,7 +41,7 @@ class Conversation{
     func save(){
         for (user, isOwner) in participants{
             let participant = PFObject(className: "Participant")
-            participant.ACL.setPublicWriteAccess(true)
+            participant.ACL!.setPublicWriteAccess(true)
             participant["participant"] = user
             participant["isOwner"] = isOwner as NSNumber
             participant["convo"] = convo

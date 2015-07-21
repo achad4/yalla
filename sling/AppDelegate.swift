@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 clientKey: "Gz7RYBZx37KUNukxsolLs53QpacK3Y6em7aZjHHl")
         
         //PFUser.enableAutomaticUser()
-        PFFacebookUtils.initializeFacebook()
+        PFFacebookUtils.initializeFacebookWithLaunchOptions(launchOptions)
         let defaultACL = PFACL()
         // If you would like all objects to be private by default, remove this line.
         defaultACL.setPublicReadAccess(true)

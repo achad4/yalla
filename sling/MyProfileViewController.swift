@@ -15,12 +15,25 @@ class MyProfileViewController : UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        populateFacebookProfile(PFUser.currentUser())
+        populateFacebookProfile(PFUser.currentUser()!)
         
     }
     
     func populateFacebookProfile(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
+            var fbSession = PFFacebookUtils.session()
+            var accessToken = fbSession.accessTokenData.accessToken
+            let url = NSURL(string: "https://graph.facebook.com/me/picture?type=large&return_ssl_resources=1&access_token="+accessToken)
+            let urlRequest = NSURLRequest(URL: url!)
+            
+            NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
+                
+                // Display the image
+                let image = UIImage(data: data)
+                self.imgProfile.image = image  
+                
+            }
+            
             FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
                 if (result != nil) {
                     NSLog("error = \(error)")
