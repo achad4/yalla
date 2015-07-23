@@ -88,8 +88,9 @@ class SignupViewController : UIViewController {
     
     func populateFacebookInfo(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
-            FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                if (result != nil) {
+            let fbRequest = FBSDKGraphRequest(graphPath: "me/fields=id,namepicture?type=large&redirect=false", parameters: nil)
+            fbRequest.startWithCompletionHandler({(connection, result, error: NSError!) -> Void in
+                if error == nil {
                     NSLog("error = \(error)")
                     let resultdict = result as? NSDictionary
                     
@@ -103,7 +104,6 @@ class SignupViewController : UIViewController {
                         user["fbID"] = name
                         user.saveInBackground()
                     }
-                    
                     // Populate profile page image view with user's FB profile pic
                     if let picture = resultdict?["picture"] as? NSDictionary {
                         if let data = picture["data"] as? NSDictionary {
@@ -117,10 +117,8 @@ class SignupViewController : UIViewController {
                             }
                         }
                     }
-                } else {
-                    //self.usernameLabel.text = user.username
                 }
-                } as FBRequestHandler)
+            })
         }
     }
     

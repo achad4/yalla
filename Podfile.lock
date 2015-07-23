@@ -37,7 +37,7 @@ DEPENDENCIES:
   - FBSDKMessengerShareKit
   - FBSDKShareKit
   - JSQMessagesViewController
-  - Parse (~> 1.7)
+  - Parse (~> 1.7.4)
   - ParseFacebookUtilsV4 (~> 1.7)
 
 SPEC CHECKSUMS:

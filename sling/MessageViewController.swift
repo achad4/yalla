@@ -36,8 +36,8 @@ class MessagesViewController : JSQMessagesViewController  {
         self.outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 106/255, green: 202/255, blue: 210/255, alpha: 0.6))
         self.collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
 
-        self.senderId = PFUser.currentUser().objectId
-        self.senderDisplayName = PFUser.currentUser().username
+        self.senderId = PFUser.currentUser()!.objectId
+        self.senderDisplayName = PFUser.currentUser(!).username
         self.segue = FriendsSegue(identifier: "FriendsView@Friends", source: self, destination: self)
         automaticallyScrollsToMostRecentMessage = true
     }
@@ -62,7 +62,7 @@ class MessagesViewController : JSQMessagesViewController  {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "FriendsView@Friends"){
-            let convo : Conversation = Conversation(sender: PFUser.currentUser())
+            let convo : Conversation = Conversation(sender: PFUser.currentUser(!))
             self.convo = convo
             self.convo.save()
         }
@@ -170,7 +170,7 @@ class MessagesViewController : JSQMessagesViewController  {
             else{
                 if((self.isAnon == true)){
                     let convoQuery:PFQuery = PFQuery(className: "Participant")
-                    convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
+                    convoQuery.whereKey("participant", equalTo: PFUser.currentUser()!)
                     convoQuery.whereKey("convo", equalTo: self.convo.convo)
                     let participant = convoQuery.getFirstObject()
                     if(participant["active"] as! Bool == false){

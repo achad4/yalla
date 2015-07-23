@@ -19,7 +19,7 @@ class LoginViewController : UIViewController {
     @IBAction func signinTapped(sender: AnyObject) {
         let permissions = ["user_friends"]
         //var permissions = nil
-        PFFacebookUtils.logInWithPermissions(permissions, block: { (user : PFUser!, error : NSError!) -> Void in
+        PFFacebookUtils.logInInBackgroundWithPublishPermissions(permissions, block: { (user : PFUser?, error : NSError?) -> Void in
             if(user != nil){
                 
                 //var verified =  as Bool
@@ -48,13 +48,12 @@ class LoginViewController : UIViewController {
                     let installation = PFInstallation.currentInstallation()
                     installation["user"] = user
                     installation.saveInBackground()
-                    self.populateFacebookInfo(user)
+                    self.populateFacebookInfo(user!)
                     self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                 //}
                 
             }else{
                 // The login failed.
-                print(error.description)
                 let alertView:UIAlertView = UIAlertView()
                 alertView.title = "Sign in Failed!"
                 alertView.message = "Connection Failure"
@@ -69,19 +68,16 @@ class LoginViewController : UIViewController {
     
     func populateFacebookInfo(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
-            FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                if (result != nil) {
+            let pictureRequest = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: nil)
+            pictureRequest.startWithCompletionHandler({
+                (connection, result, error: NSError!) -> Void in
+                if error == nil {
                     NSLog("error = \(error)")
                     let resultdict = result as? NSDictionary
                     
                     // Populate profile page with user's Facebook name
                     if let name = resultdict?["name"] as? String {
                         user["realName"] = name
-                        user.saveInBackground()
-                    }
-                    //populate users fbID
-                    if let name = resultdict?["id"] as? String {
-                        user["fbID"] = name
                         user.saveInBackground()
                     }
                     
@@ -98,10 +94,10 @@ class LoginViewController : UIViewController {
                             }
                         }
                     }
+                    
                 } else {
-                    //self.usernameLabel.text = user.username
                 }
-                } as FBRequestHandler)
+            })
         }
     }
 

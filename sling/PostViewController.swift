@@ -10,7 +10,7 @@ import UIKit
 
 class PostViewController: UIViewController, UITextFieldDelegate {
     
-    var convo : Conversation = Conversation(sender: PFUser.currentUser())
+    var convo : Conversation = Conversation(sender: PFUser.currentUser()!)
     var users : NSMutableArray = NSMutableArray()
     
     @IBOutlet weak var postText: UITextField!
@@ -23,12 +23,13 @@ class PostViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func submitPost(sender: AnyObject) {
-        var topic:String        = postText.text!
-        //var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
-        //thread.save()
-        
-    }
+//    @IBAction func submitPost(sender: AnyObject) {
+//        
+//        var topic:String        = postText.text!
+//        //var thread:Thread = Thread(sender: PFUser.currentUser(), topic: topic)
+//        //thread.save()
+//        
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

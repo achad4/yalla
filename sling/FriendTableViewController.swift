@@ -35,9 +35,9 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
     //load users and organize them into alphabetized sections
     func loadData(){
         users.removeAllObjects()
-        let friendsRequest : FBRequest = FBRequest.requestForMyFriends()
-        //retrieve friends of user
-        friendsRequest.startWithCompletionHandler{(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) -> Void in
+        
+        let friendsRequest = FBSDKGraphRequest(graphPath: "me/friends", parameters: nil)
+        friendsRequest.startWithCompletionHandler({(connection, result, error:NSError!) -> Void in
             if(error == nil){
                 
                 let resultdict = result as! NSDictionary
@@ -49,7 +49,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
                 }
                 
                 let findTimeLineData:PFQuery = PFQuery(className: "_User")
-                findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
+                findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
                 findTimeLineData.whereKey("fbID", containedIn: friendIDs as [AnyObject])
                 findTimeLineData.findObjectsInBackgroundWithBlock{
                     (objects:[AnyObject]!, error:NSError!)->Void in
@@ -86,11 +86,8 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
                     }
                     self.tableView.reloadData()
                 }
-                
-                
             }
-        }
-        
+        })
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
@@ -110,7 +107,7 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
             else{
                 if(cell.userImage.alpha == 0.5){
                     cell.userImage.alpha = 1
-                    let convo = Conversation(sender: PFUser.currentUser())
+                    let convo = Conversation(sender: PFUser.currentUser()!)
                     convo.addRecipient(cell.user, isOwner: false)
                     parentViewController.convos.addObject(convo)
                 }

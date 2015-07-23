@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MyProfileViewController : UIViewController {
     
@@ -21,21 +22,10 @@ class MyProfileViewController : UIViewController {
     
     func populateFacebookProfile(user: PFUser) {
         if PFFacebookUtils.isLinkedWithUser(user) {
-            var fbSession = PFFacebookUtils.session()
-            var accessToken = fbSession.accessTokenData.accessToken
-            let url = NSURL(string: "https://graph.facebook.com/me/picture?type=large&return_ssl_resources=1&access_token="+accessToken)
-            let urlRequest = NSURLRequest(URL: url!)
-            
-            NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-                
-                // Display the image
-                let image = UIImage(data: data)
-                self.imgProfile.image = image  
-                
-            }
-            
-            FBRequestConnection.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                if (result != nil) {
+            let pictureRequest = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: nil)
+            pictureRequest.startWithCompletionHandler({
+                (connection, result, error: NSError!) -> Void in
+                if error == nil {
                     NSLog("error = \(error)")
                     let resultdict = result as? NSDictionary
                     
@@ -60,30 +50,77 @@ class MyProfileViewController : UIViewController {
                             }
                         }
                     }
+
                 } else {
                     self.usernameLabel.text = user.username
                 }
-                } as FBRequestHandler)
+            })
+            
+            //            var fbSession = PFFacebookUtils.facebookLoginManager()
+            //            var accessToken = fbSession.accessTokenData.accessToken
+            //            let url = NSURL(string: "https://graph.facebook.com/me/picture?type=large&return_ssl_resources=1&access_token="+accessToken)
+            //            let urlRequest = NSURLRequest(URL: url!)
+            //
+            //            NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
+            //
+            //                // Display the image
+            //                let image = UIImage(data: data)
+            //                self.imgProfile.image = image  
+            //                
+            //            }
+            
+//            FBGraphRequest.startWithGraphPath("me?fields=id,name,picture", completionHandler: {(connection: FBGraphRequest!, result: AnyObject!, error: NSError!) -> Void in
+//                if (result != nil) {
+//                    NSLog("error = \(error)")
+//                    let resultdict = result as? NSDictionary
+//                    
+//                    // Populate profile page with user's Facebook name
+//                    if let name = resultdict?["name"] as? String {
+//                        self.usernameLabel.text = name
+//                        user["realName"] = name
+//                        user.saveInBackground()
+//                    }
+//                    
+//                    // Populate profile page image view with user's FB profile pic
+//                    if let picture = resultdict?["picture"] as? NSDictionary {
+//                        if let data = picture["data"] as? NSDictionary {
+//                            if let photoURL = data["url"] as? String {
+//                                let url = NSURL(string: photoURL)
+//                                if let imageData = NSData(contentsOfURL: url!) {
+//                                    self.userPhoto.image = UIImage(data: imageData)
+//                                    let userPicFile : PFFile = PFFile(data: imageData)
+//                                    user["picture"] = userPicFile
+//                                    user.saveInBackground()
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    self.usernameLabel.text = user.username
+//                }
+//                } as FBRequestHandler)
+//        }
         }
     }
     
     
-    @IBAction func logoutTapped(sender: AnyObject) {
+    func logoutTapped(sender: AnyObject) {
         if(PFUser.currentUser() != nil) {
             PFUser.logOut()
         }
         self.performSegueWithIdentifier("logout", sender: self)
     }
     
-    @IBAction func linkFBTapped(sender: UIButton) {
+    func linkFBTapped(sender: UIButton) {
         let user = PFUser.currentUser()
-        if !PFFacebookUtils.isLinkedWithUser(user) {
-                PFFacebookUtils.linkUser(user, permissions:nil, block: {
-                (succeeded: Bool, error: NSError!) -> Void in
-            if (succeeded) {
-                NSLog("user logged in with Facebook!")
-            }
-            })
+        if !PFFacebookUtils.isLinkedWithUser(user!) {
+            PFFacebookUtils.linkUserInBackground(user!, withAccessToken: FBSDKAccessToken.currentAccessToken())
+//            PFFacebookUtils.linkUserInBackground(user, permissions:nil, block: {
+//                (succeeded: Bool, error: NSError!) -> Void in
+//            if (succeeded) {
+//                NSLog("user logged in with Facebook!")
+//            }
+//            })
         } else {
             let alertView:UIAlertView = UIAlertView()
             alertView.title = "Failed to Link Facebook!"
@@ -91,11 +128,7 @@ class MyProfileViewController : UIViewController {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-
-            
         }
-
-
     }
     
 }
