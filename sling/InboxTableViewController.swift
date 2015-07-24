@@ -55,14 +55,14 @@ class InboxTableViewController : UITableViewController{
             let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as! TableCell
             let parent = segue.destinationViewController as! MessagesViewController
             let convoQuery:PFQuery = PFQuery(className: "Participant")
-            convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
+            convoQuery.whereKey("participant", equalTo: PFUser.currentUser()!)
             convoQuery.whereKey("convo", equalTo: cell.convo.convo)
-            let participant = convoQuery.getFirstObject()
-            
-            parent.convo = cell.convo
-            let active = participant["active"] as! Bool
-            parent.isAnon = !active
-            parent.newMessgae = false
+            if let participant = convoQuery.getFirstObject(){
+                parent.convo = cell.convo
+                let active = participant["active"] as! Bool
+                parent.isAnon = !active
+                parent.newMessgae = false
+            }
         }
         
         if(segue.identifier == "new_message_segue"){
@@ -75,9 +75,9 @@ class InboxTableViewController : UITableViewController{
     
     
     
-    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+//    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!) -> Void {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     
     
@@ -111,14 +111,14 @@ class InboxTableViewController : UITableViewController{
        
         let convoQuery:PFQuery = PFQuery(className: "Participant")
         convoQuery.orderByDescending("updatedAt")
-        convoQuery.whereKey("participant", equalTo: PFUser.currentUser())
+        convoQuery.whereKey("participant", equalTo: PFUser.currentUser()!)
         convoQuery.findObjectsInBackgroundWithBlock{
-            (objects:[AnyObject]!, error:NSError!)->Void in
+            (objects:[AnyObject]?, error:NSError?)->Void in
             if !(error != nil){
-                for object in objects{
+                for object in objects!{
                     let pdf = object as! PFObject
-                    if(pdf["convo"].fetchIfNeeded() != nil){
-                        self.timeLineData.addObject(pdf["convo"].fetchIfNeeded())
+                    if(pdf["convo"]!.fetchIfNeeded() != nil){
+                        self.timeLineData.addObject(pdf["convo"]!.fetchIfNeeded()!)
                     }
                 }
                 self.tableView.reloadData()
@@ -132,8 +132,8 @@ class InboxTableViewController : UITableViewController{
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TableCell
         let convo:PFObject = self.timeLineData.objectAtIndex(indexPath.section) as! PFObject
         let convoObject : Conversation = Conversation(convo: convo)
-        let date = convo.updatedAt as NSDate
-        let stringDate = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
+        let date = convo.updatedAt as NSDate?
+        let stringDate = NSDateFormatter.localizedStringFromDate(date!, dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         
         //var userString : String = ""
         
@@ -168,10 +168,10 @@ class InboxTableViewController : UITableViewController{
         preview.whereKey("inConvo", equalTo: convo)
         preview.orderByDescending("createdAt")
         preview.getFirstObjectInBackgroundWithBlock {
-            (object:PFObject!, error:NSError!) -> Void in
-            if(object != nil){
-                if (object["text"] != nil) {
-                    let previewText = object.objectForKey("text") as! String
+            (object:PFObject?, error:NSError?) -> Void in
+            if (error == nil){
+                if object != nil {
+                    let previewText = object!.objectForKey("text") as! String
                     previewLabel.text = previewText
                 }
             }
@@ -179,12 +179,12 @@ class InboxTableViewController : UITableViewController{
         
         
         let relation : PFRelation = convo.relationForKey("participant")
-        let query : PFQuery = relation.query()
+        let query : PFQuery = relation.query()!
         query.findObjectsInBackgroundWithBlock {
-            (objects:[AnyObject]!, error:NSError!) -> Void in
+            (objects:[AnyObject]?, error:NSError?) -> Void in
             if !(error != nil){
                 let users : NSMutableArray = NSMutableArray()
-                for object in objects{
+                for object in objects!{
                     users.addObject(object)
                 }
                 cell.displayUserPics(users)

@@ -30,49 +30,52 @@ class ManageFriendsTableViewController : UITableViewController{
         //find users friends
         if(self.friendSegmentedControl.selectedSegmentIndex == 0){
             let friendQuery1 = PFQuery(className: "Friend")
-            friendQuery1.whereKey("fromUser", equalTo: PFUser.currentUser())
+            friendQuery1.whereKey("fromUser", equalTo: PFUser.currentUser()!)
             friendQuery1.whereKey("status", equalTo: "approved")
             let friendQuery2 = PFQuery(className: "Friend")
-            friendQuery2.whereKey("toUser", equalTo: PFUser.currentUser())
+            friendQuery2.whereKey("toUser", equalTo: PFUser.currentUser()!)
             friendQuery2.whereKey("status", equalTo: "approved")
             let friendQuery3 = PFQuery.orQueryWithSubqueries([friendQuery1, friendQuery2])
-            friendQuery3.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]!, error : NSError!) -> Void in
+            friendQuery3.findObjectsInBackgroundWithBlock {
+                (objects:[AnyObject]?, error:NSError?)->Void in
                 if(error == nil){
-                    for object in objects{
+                    for object in objects!{
                         let pdf = object as! PFObject
                         self.users.addObject(pdf)
                     }
                     self.tableView.reloadData()
                 }
-            })
+            }
         }
         //find users friend requests
         else if(self.friendSegmentedControl.selectedSegmentIndex == 1){
             let friendQuery = PFQuery(className: "Friend")
-            friendQuery.whereKey("toUser", equalTo: PFUser.currentUser())
+            friendQuery.whereKey("toUser", equalTo: PFUser.currentUser()!)
             friendQuery.whereKey("status", equalTo: "pending")
-            friendQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]!, error : NSError!) -> Void in
+            friendQuery.findObjectsInBackgroundWithBlock{
+                (objects:[AnyObject]?, error:NSError?)->Void in
                 if(error == nil){
-                    for object in objects{
+                    for object in objects!{
                         let pdf = object as! PFObject
                         self.users.addObject(pdf)
                     }
                     self.tableView.reloadData()
                 }
-            })
+            }
         }
         //show everyone
         else{
             let friendQuery = PFQuery(className: "_User")
-            friendQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]!, error : NSError!) -> Void in
+            friendQuery.findObjectsInBackgroundWithBlock {
+                (objects:[AnyObject]?, error:NSError?)->Void in
                 if(error == nil){
-                    for object in objects{
+                    for object in objects!{
                         let pdf = object as! PFObject
                         self.users.addObject(pdf)
                     }
                     self.tableView.reloadData()
                 }
-            })
+            }
         }
     }
     
@@ -90,7 +93,7 @@ class ManageFriendsTableViewController : UITableViewController{
         }
         let X : CGFloat = cell.frame.origin.x
         let Y : CGFloat = 0
-        var centerX = cell.frame.origin
+        //var centerX = cell.frame.origin
         cell.userCellView.frame = CGRectMake(X, Y, self.view.bounds.size.width - 10, 70)
         cell.userCellView.center = CGPointMake(X + cell.frame.size.width/2, Y + cell.frame.height/2)
         cell.userName = UILabel(frame: CGRectMake(0, 0, 200, 70))
@@ -100,9 +103,9 @@ class ManageFriendsTableViewController : UITableViewController{
         if(user["picture"] != nil){
             let imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData!, error: NSError!) -> Void in
+                (imageData: NSData?, error: NSError?) -> Void in
                 if !(error != nil) {
-                    let image = UIImage(data:imageData)
+                    let image = UIImage(data:imageData!)
                     let width = 50 as UInt
                     let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter:width)
                     cell.userImage = UIImageView(image: circleImage)
@@ -120,7 +123,7 @@ class ManageFriendsTableViewController : UITableViewController{
             cell.userCellView.addSubview(cell.userImage)
         }
         
-        var parentViewController = self.parentViewController as! FriendParentViewController
+        //var parentViewController = self.parentViewController as! FriendParentViewController
         
         //cell.convo = parentViewController.convo
         cell.userCellView.addSubview(cell.userName)

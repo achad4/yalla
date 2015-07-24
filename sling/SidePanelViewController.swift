@@ -15,11 +15,11 @@ class SidePanelViewController : UITableViewController{
     
     override func viewDidLoad() {       
         super.viewDidLoad()
-        let user : PFUser = PFUser.currentUser()
+        let user : PFUser = PFUser.currentUser()!
         if(user["picture"] != nil){
             let imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData!, error: NSError!) -> Void in
+                (imageData: NSData?, error: NSError?) -> Void in
                 if !(error != nil) {
                     //let image = UIImage(data:imageData)
                     //let width = 50 as UInt

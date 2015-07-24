@@ -45,7 +45,7 @@ class SignupViewController : UIViewController {
             user.password = password as String?
             user["email"] = username
             user.signUpInBackgroundWithBlock {
-                (succeeded: Bool, error: NSError!) -> Void in
+                (succeeded: Bool, error: NSError?) -> Void in
                 if(error == nil){
                     if(PFFacebookUtils.isLinkedWithUser(user)){
                         let installation = PFInstallation.currentInstallation()
@@ -54,13 +54,13 @@ class SignupViewController : UIViewController {
                         self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                     }
                     else{
-                        let permissions = ["user_friends"]
+                        //let permissions = ["user_friends"]
                         let alert : UIAlertController = UIAlertController(title: "Almost there!", message: "yalla only needs to access your friends list. We won't post anything.", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "Link to Facebook", style: UIAlertActionStyle.Default, handler: {
                             alertAction in
-                            PFFacebookUtils.linkUser(user, permissions: permissions, block: {
-                                (succeeded: Bool, error: NSError!) -> Void in
-                                if (succeeded) {
+                            PFFacebookUtils.linkUserInBackground(user, withAccessToken: FBSDKAccessToken.currentAccessToken(), block: {
+                                success, error in
+                                if success {
                                     NSLog("user logged in with Facebook!")
                                     let installation = PFInstallation.currentInstallation()
                                     installation["user"] = user
@@ -69,12 +69,10 @@ class SignupViewController : UIViewController {
                                     self.performSegueWithIdentifier("InitialView@Messages", sender: self)
                                 }
                             })
-                        
                         }))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
                 }else{
-                    print(error.description)
                     let alertView:UIAlertView = UIAlertView()
                     alertView.title = "Sign up Failed!"
                     alertView.message = "New username required"

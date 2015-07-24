@@ -52,12 +52,14 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
                 findTimeLineData.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
                 findTimeLineData.whereKey("fbID", containedIn: friendIDs as [AnyObject])
                 findTimeLineData.findObjectsInBackgroundWithBlock{
-                    (objects:[AnyObject]!, error:NSError!)->Void in
+                    (objects:[AnyObject]?, error:NSError?)->Void in
                     if !(error != nil){
-                        for object in objects{
+
+                        for object in objects!{
                             let pdf = object as! PFObject
                             self.users.addObject(pdf)
                         }
+                        
                         //self.sections.addObject(self.users)
                     }
                     
@@ -167,9 +169,9 @@ class FriendTableViewController : UITableViewController, UISearchBarDelegate{
         if(user["picture"] != nil){
             let imageFile : PFFile = user["picture"] as! PFFile
             imageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData!, error: NSError!) -> Void in
+                (imageData: NSData?, error: NSError?) -> Void in
                 if !(error != nil) {
-                    let image = UIImage(data:imageData)
+                    let image = UIImage(data:imageData!)
                     let width = 50 as UInt
                     let circleImage = JSQMessagesAvatarImageFactory.circularAvatarHighlightedImage(image, withDiameter:width)
                     cell.userImage = UIImageView(image: circleImage)

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class TableCell: UITableViewCell{
 
-    var convo : Conversation = Conversation(sender : PFUser.currentUser())
+    var convo : Conversation = Conversation(sender : PFUser.currentUser()!)
     let tableCell = UIView()
     
     @IBOutlet weak var timePosted: UILabel!
@@ -31,9 +31,9 @@ class TableCell: UITableViewCell{
             if(userObject["picture"] != nil){
                 let imageFile : PFFile = user["picture"] as! PFFile
                     imageFile.getDataInBackgroundWithBlock {
-                        (imageData: NSData!, error: NSError!) -> Void in
+                        (imageData: NSData?, error: NSError?) -> Void in
                         if !(error != nil) {
-                            let image = UIImage(data:imageData)
+                            let image = UIImage(data:imageData!)
                             let width = 25 as UInt
                             let userAvatar  = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: width)
                             let imageView = UIImageView(image: userAvatar)
@@ -50,7 +50,7 @@ class TableCell: UITableViewCell{
             else{
                 let image = UIImage(named: "anon.jpg")
                 let width = 25 as UInt
-                var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
+                //var selectionImage : UserSelectionImageView = UserSelectionImageView(image: image)
                 let userAvatar  = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: width)
                 let imageView = UIImageView(image: userAvatar)
                 imageView.alpha = 0.8

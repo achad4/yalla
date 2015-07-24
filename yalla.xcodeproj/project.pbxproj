@@ -637,14 +637,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/evanoconnor/Downloads/parse-library-1.4.2",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/FacebookSDK",
-					"$(PROJECT_DIR)/FacebookSDK/FBAudienceNetwork",
-					/Users/evanoconnor/Documents/FacebookSDK,
-				);
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
@@ -663,14 +655,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/evanoconnor/Downloads/parse-library-1.4.2",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/FacebookSDK",
-					"$(PROJECT_DIR)/FacebookSDK/FBAudienceNetwork",
-					/Users/evanoconnor/Documents/FacebookSDK,
-				);
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";

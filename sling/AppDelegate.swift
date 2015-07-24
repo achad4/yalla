@@ -12,7 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 clientKey: "Gz7RYBZx37KUNukxsolLs53QpacK3Y6em7aZjHHl")
         
         //PFUser.enableAutomaticUser()
-        PFFacebookUtils.initializeFacebookWithLaunchOptions(launchOptions)
+        //PFFacebookUtils.initializeFacebookWithLaunchOptions(launchOptions)
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         let defaultACL = PFACL()
         // If you would like all objects to be private by default, remove this line.
         defaultACL.setPublicReadAccess(true)
@@ -31,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 106/255, green: 202/255, blue: 210/255, alpha: 0.7)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     //push notification functions
@@ -64,8 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject) -> Bool {
-            return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication,
-                withSession:PFFacebookUtils.session())
+//            return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication,
+//                withSession:PFFacebookUtils.session())
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+            
+            
     }
     
     
@@ -85,7 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
+//        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
+        FBSDKAppEvents.activateApp()
     }
     
     func applicationWillTerminate(application: UIApplication) {
