@@ -34,10 +34,10 @@
 		827A26F41AA10D53001593B2 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A26F31AA10D53001593B2 /* UserTableCell.swift */; };
 		82935AFF19F0DB1800EC8C59 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82935AFE19F0DB1800EC8C59 /* PostViewController.swift */; };
 		82A25C8B19F14DA300B24156 /* SlingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */; };
-		82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */; };
 		82B0A2301A5C7D0000887222 /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A22F1A5C7D0000887222 /* Discussion.swift */; };
 		82B0A2321A5D9BAC00887222 /* FriendParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */; };
 		82CE259319F9EB8A000A4424 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CE259219F9EB8A000A4424 /* TableCell.swift */; };
+		8FBB6FE8C2DAC74F43CD0091 /* libPods-yalla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454452A87FC950D39EC6FE20 /* libPods-yalla.a */; };
 		A79B9D4C1A4A32C90030F56D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79B9D4B1A4A32C90030F56D /* Conversation.swift */; };
 		A79D69031A60C1C400E7BA94 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D69021A60C1C400E7BA94 /* LoginViewController.swift */; };
 		A79D69051A60C1D100E7BA94 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D69041A60C1D100E7BA94 /* SignupViewController.swift */; };
@@ -48,14 +48,12 @@
 		D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */; };
 		D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */; };
 		D3FCDA8F19FF568A00D1A8FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA8E19FF568A00D1A8FB /* CoreGraphics.framework */; };
-		D3FCDA9119FF56A300D1A8FB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9019FF56A300D1A8FB /* libz.dylib */; };
 		D3FCDA9319FF56B100D1A8FB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9219FF56B100D1A8FB /* MobileCoreServices.framework */; };
 		D3FCDA9519FF56BA00D1A8FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9419FF56BA00D1A8FB /* QuartzCore.framework */; };
 		D3FCDA9719FF56C200D1A8FB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9619FF56C200D1A8FB /* Security.framework */; };
 		D3FCDA9919FF56D600D1A8FB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9819FF56D600D1A8FB /* Social.framework */; };
 		D3FCDA9B19FF56DF00D1A8FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9A19FF56DF00D1A8FB /* StoreKit.framework */; };
 		D3FCDA9D19FF56E800D1A8FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCDA9C19FF56E800D1A8FB /* SystemConfiguration.framework */; };
-		F0DA7EDC9F32D4C26FDD57D3 /* libPods-yalla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4B5C218F2EAA0969F92BBE /* libPods-yalla.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3D4B5C218F2EAA0969F92BBE /* libPods-yalla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yalla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		454452A87FC950D39EC6FE20 /* libPods-yalla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yalla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8118D1141A5CE90D001C0ADF /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		8152EFF41A644687007D93C3 /* FeedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSegue.swift; sourceTree = "<group>"; };
 		8172FD921A64C6A700B1BD29 /* NewPostSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSegue.swift; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 		827A26F31AA10D53001593B2 /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		82935AFE19F0DB1800EC8C59 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlingNavigationController.swift; sourceTree = "<group>"; };
-		82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionData.xcdatamodel; sourceTree = "<group>"; };
 		82B0A22F1A5C7D0000887222 /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		82B0A2311A5D9BAC00887222 /* FriendParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendParentViewController.swift; sourceTree = "<group>"; };
 		82CE259219F9EB8A000A4424 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
@@ -117,7 +114,6 @@
 		D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D3FCDA8E19FF568A00D1A8FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D3FCDA9019FF56A300D1A8FB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D3FCDA9219FF56B100D1A8FB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D3FCDA9419FF56BA00D1A8FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D3FCDA9619FF56C200D1A8FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -139,12 +135,11 @@
 				D3FCDA9719FF56C200D1A8FB /* Security.framework in Frameworks */,
 				D3FCDA9519FF56BA00D1A8FB /* QuartzCore.framework in Frameworks */,
 				D3FCDA9319FF56B100D1A8FB /* MobileCoreServices.framework in Frameworks */,
-				D3FCDA9119FF56A300D1A8FB /* libz.dylib in Frameworks */,
 				D3FCDA8F19FF568A00D1A8FB /* CoreGraphics.framework in Frameworks */,
 				D3FCDA8D19FF568300D1A8FB /* CFNetwork.framework in Frameworks */,
 				D3FCDA8B19FF567F00D1A8FB /* AudioToolbox.framework in Frameworks */,
 				D3FCDA8919FF567800D1A8FB /* Accounts.framework in Frameworks */,
-				F0DA7EDC9F32D4C26FDD57D3 /* libPods-yalla.a in Frameworks */,
+				8FBB6FE8C2DAC74F43CD0091 /* libPods-yalla.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,12 +193,11 @@
 				D3FCDA9619FF56C200D1A8FB /* Security.framework */,
 				D3FCDA9419FF56BA00D1A8FB /* QuartzCore.framework */,
 				D3FCDA9219FF56B100D1A8FB /* MobileCoreServices.framework */,
-				D3FCDA9019FF56A300D1A8FB /* libz.dylib */,
 				D3FCDA8E19FF568A00D1A8FB /* CoreGraphics.framework */,
 				D3FCDA8C19FF568300D1A8FB /* CFNetwork.framework */,
 				D3FCDA8A19FF567F00D1A8FB /* AudioToolbox.framework */,
 				D3FCDA8819FF567800D1A8FB /* Accounts.framework */,
-				3D4B5C218F2EAA0969F92BBE /* libPods-yalla.a */,
+				454452A87FC950D39EC6FE20 /* libPods-yalla.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,7 +241,6 @@
 				8172FD951A64C92F00B1BD29 /* Segues */,
 				82B0A2331A5DA4D300887222 /* Messaging */,
 				82B0A2341A5DA53A00887222 /* Users */,
-				82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */,
 				82A25C8A19F14DA300B24156 /* SlingNavigationController.swift */,
 				82703F4619F0A3E600EBEC4E /* Images.xcassets */,
 				82703F4819F0A3E600EBEC4E /* LaunchScreen.xib */,
@@ -508,7 +501,6 @@
 				8152EFF51A644687007D93C3 /* FeedSegue.swift in Sources */,
 				825897521A98DEC600E05D79 /* ManageFriendsTableViewController.swift in Sources */,
 				82703F4019F0A3E600EBEC4E /* AppDelegate.swift in Sources */,
-				82A25CBF19F18EC800B24156 /* QuestionData.xcdatamodeld in Sources */,
 				821416031A69AE95002A36E1 /* SidePanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +631,62 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"FBSDKCoreKit\"",
+					"-l\"FBSDKLoginKit\"",
+					"-l\"FBSDKMessengerShareKit\"",
+					"-l\"FBSDKShareKit\"",
+					"-l\"JSQMessagesViewController\"",
+					"-l\"JSQSystemSoundPlayer\"",
+					"-l\"Parse\"",
+					"-l\"ParseFacebookUtilsV4\"",
+					"-l\"ParseFacebookUtilsV4Lib\"",
+					"-l\"ParseLib\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"CoreLocation\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = yalla;
 				PROVISIONING_PROFILE = "";
@@ -657,6 +705,62 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = sling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"FBSDKCoreKit\"",
+					"-l\"FBSDKLoginKit\"",
+					"-l\"FBSDKMessengerShareKit\"",
+					"-l\"FBSDKShareKit\"",
+					"-l\"JSQMessagesViewController\"",
+					"-l\"JSQSystemSoundPlayer\"",
+					"-l\"Parse\"",
+					"-l\"ParseFacebookUtilsV4\"",
+					"-l\"ParseFacebookUtilsV4Lib\"",
+					"-l\"ParseLib\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"AudioToolbox\"",
+					"-weak_framework",
+					"\"CoreGraphics\"",
+					"-weak_framework",
+					"\"CoreLocation\"",
+					"-weak_framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"QuartzCore\"",
+					"-weak_framework",
+					"\"Security\"",
+					"-weak_framework",
+					"\"Social\"",
+					"-weak_framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = yalla;
 				PROVISIONING_PROFILE = "";
@@ -731,19 +835,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		82A25CBD19F18EC800B24156 /* QuestionData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */,
-			);
-			currentVersion = 82A25CBE19F18EC800B24156 /* QuestionData.xcdatamodel */;
-			path = QuestionData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 82703F3219F0A3E600EBEC4E /* Project object */;
 }
