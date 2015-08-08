@@ -10,104 +10,21 @@ import Foundation
 
 class LoginViewController : UIViewController {
     
-    @IBOutlet weak var txtUsername: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
     
     var screenWidth = UIScreen.mainScreen().bounds.width
     var screenHeight = UIScreen.mainScreen().bounds.height
     
     @IBAction func signinTapped(sender: AnyObject) {
-        let permissions = ["user_friends"]
-        //var permissions = nil
-        PFFacebookUtils.logInInBackgroundWithPublishPermissions(permissions, block: { (user : PFUser?, error : NSError?) -> Void in
-            if(user != nil){
-                
-                //var verified =  as Bool
-                /*
-                if(user["emailVerified"] == nil){
-                    println("here")
-                    var alert : UIAlertController = UIAlertController(title: "Almost there!", message: "This app is intended only for Columbia/Barnard students", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
-                        textField.placeholder = "Univiersity email"
-                    })
-                    alert.addAction(UIAlertAction(title: "Verify", style: UIAlertActionStyle.Default, handler: {
-                        alertAction in
-                        var textField = alert.textFields?[0] as? UITextField
-                        var emailArray = textField?.text.componentsSeparatedByString("@")
-                        if(emailArray?[1] == "columbia.edu" || emailArray?[1] == "barnard.edu"){
-                            user["email"] = textField?.text
-                            user.saveInBackground()
-                            alert.dismissViewControllerAnimated(false, completion: nil)
-                        }
-                    }))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                }
-                */
-                //else{
-                    print("Login successfull")
-                    let installation = PFInstallation.currentInstallation()
-                    installation["user"] = user
-                    installation.saveInBackground()
-                    self.populateFacebookInfo(user!)
-                    self.performSegueWithIdentifier("InitialView@Messages", sender: self)
-                //}
-                
-            }else{
-                // The login failed.
-                let alertView:UIAlertView = UIAlertView()
-                alertView.title = "Sign in Failed!"
-                alertView.message = "Connection Failure"
-                alertView.delegate = self
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
-            }
-            
-        })
-
+        let installation = PFInstallation.currentInstallation()
+        installation["user"] = user
+        installation.saveInBackground()
+        self.performSegueWithIdentifier("InitialView@Messages", sender: self)
     }
     
-    func populateFacebookInfo(user: PFUser) {
-        if PFFacebookUtils.isLinkedWithUser(user) {
-            let pictureRequest = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: nil)
-            pictureRequest.startWithCompletionHandler({
-                (connection, result, error: NSError!) -> Void in
-                if error == nil {
-                    NSLog("error = \(error)")
-                    let resultdict = result as? NSDictionary
-                    
-                    // Populate profile page with user's Facebook name
-                    if let name = resultdict?["name"] as? String {
-                        user["realName"] = name
-                        user.saveInBackground()
-                    }
-                    
-                    // Populate profile page image view with user's FB profile pic
-                    if let picture = resultdict?["picture"] as? NSDictionary {
-                        if let data = picture["data"] as? NSDictionary {
-                            if let photoURL = data["url"] as? String {
-                                let url = NSURL(string: photoURL)
-                                if let imageData = NSData(contentsOfURL: url!) {
-                                    let userPicFile : PFFile = PFFile(data: imageData)
-                                    user["picture"] = userPicFile
-                                    user.saveInBackground()
-                                }
-                            }
-                        }
-                    }
-                    
-                } else {
-                }
-            })
-        }
-    }
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-//        var filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif")
-//        var gif = NSData(contentsOfFile: filePath!)
-        
         
         guard let filePath = NSBundle.mainBundle().pathForResource("redpanda", ofType: "gif"),
             let gifData = NSData(contentsOfFile: filePath) else {
