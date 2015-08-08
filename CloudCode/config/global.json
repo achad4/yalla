@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.5.0"
+  },
+  "applications": {
+    "_default": {
+      "link": "sling"
+    },
+    "sling": {
+      "applicationId": "xUia2kh8CD1S80kh8aXwKt5Fx0HWbWqVegbvQ4E4",
+      "masterKey": "eat9mFAES73NhNHxBEbjFkPmsOCctq4PhLiGbCDd"
+    }
+  }
+}

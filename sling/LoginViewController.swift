@@ -14,7 +14,7 @@ class LoginViewController : UIViewController {
     var screenWidth = UIScreen.mainScreen().bounds.width
     var screenHeight = UIScreen.mainScreen().bounds.height
     
-    func signinTapped(sender: AnyObject) {
+    func signUpTapped(sender: AnyObject) {
         if(PFUser.currentUser() != nil){
             let installation = PFInstallation.currentInstallation()
             installation["user"] = PFUser.currentUser()
@@ -61,6 +61,8 @@ class LoginViewController : UIViewController {
     
     func signUp(userName:String, phoneNumber:String){
         
+        
+        
     }
     
     
@@ -98,10 +100,11 @@ class LoginViewController : UIViewController {
         loginBtn.layer.borderWidth = 2
         loginBtn.tintColor = UIColor.whiteColor()
         loginBtn.setTitle("Login", forState: .Normal)
-        loginBtn.addTarget(self, action: "signinTapped:", forControlEvents: .TouchUpInside)
+        loginBtn.addTarget(self, action: "signUpTapped:", forControlEvents: .TouchUpInside)
         loginBtn.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 20)
         loginBtn.layer.cornerRadius = 7
         self.view.addSubview(loginBtn)
+        
         
     }
     
