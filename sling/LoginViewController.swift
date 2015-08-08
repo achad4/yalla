@@ -14,11 +14,53 @@ class LoginViewController : UIViewController {
     var screenWidth = UIScreen.mainScreen().bounds.width
     var screenHeight = UIScreen.mainScreen().bounds.height
     
-    @IBAction func signinTapped(sender: AnyObject) {
-        let installation = PFInstallation.currentInstallation()
-        installation["user"] = user
-        installation.saveInBackground()
-        self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+    func signinTapped(sender: AnyObject) {
+        if(PFUser.currentUser() != nil){
+            let installation = PFInstallation.currentInstallation()
+            installation["user"] = PFUser.currentUser()
+            installation.saveInBackground()
+            self.performSegueWithIdentifier("InitialView@Messages", sender: self)
+        }else{
+            self.signUpWithPhoneNumber()
+        }
+    }
+    
+    func signUpWithPhoneNumber(){
+        let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
+        let signUpAction = UIAlertAction(title: "Signup Hoe", style: .Default) { (_) in
+            let usernameTextField = alertController.textFields![0] as UITextField
+            let phoneNumberTextField = alertController.textFields![1] as UITextField
+            self.signUp(usernameTextField.text!, phoneNumber: phoneNumberTextField.text!)
+        }
+        
+        signUpAction.enabled = false
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "###-###-####"
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                signUpAction.enabled = textField.text != ""
+            }
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "username"
+        }
+        
+        alertController.addAction(signUpAction)
+        
+        
+        
+        
+        
+        self.presentViewController(alertController, animated: true) {
+            // ...
+        }
+
+    }
+    
+    func signUp(userName:String, phoneNumber:String){
+        
     }
     
     
@@ -55,7 +97,7 @@ class LoginViewController : UIViewController {
         loginBtn.layer.borderColor = UIColor.whiteColor().CGColor
         loginBtn.layer.borderWidth = 2
         loginBtn.tintColor = UIColor.whiteColor()
-        loginBtn.setTitle("Login with Facebook", forState: .Normal)
+        loginBtn.setTitle("Login", forState: .Normal)
         loginBtn.addTarget(self, action: "signinTapped:", forControlEvents: .TouchUpInside)
         loginBtn.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 20)
         loginBtn.layer.cornerRadius = 7

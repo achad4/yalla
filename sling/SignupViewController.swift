@@ -45,7 +45,7 @@ class SignupViewController : UIViewController {
             user.password = password as String?
             user["email"] = username
             user.signUpInBackgroundWithBlock {
-                (succeeded: Bool, error: NSError?) -> Void in
+                (succeeded, error) -> Void in
                 if(error == nil){
                     if(PFFacebookUtils.isLinkedWithUser(user)){
                         let installation = PFInstallation.currentInstallation()
