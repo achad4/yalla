@@ -14,6 +14,13 @@ class LoginViewController : UIViewController {
     var screenWidth = UIScreen.mainScreen().bounds.width
     var screenHeight = UIScreen.mainScreen().bounds.height
     
+    var confirmationCode:String?
+    
+    
+    func showAlert(title: String, message: String) {
+        return UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: NSLocalizedString("alertOK", comment: "OK")).show()
+    }
+    
     func signUpTapped(sender: AnyObject) {
         if(PFUser.currentUser() != nil){
             let installation = PFInstallation.currentInstallation()
@@ -28,9 +35,10 @@ class LoginViewController : UIViewController {
     func signUpWithPhoneNumber(){
         let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
         let signUpAction = UIAlertAction(title: "Signup Hoe", style: .Default) { (_) in
-            let usernameTextField = alertController.textFields![0] as UITextField
-            let phoneNumberTextField = alertController.textFields![1] as UITextField
-            self.signUp(usernameTextField.text!, phoneNumber: phoneNumberTextField.text!)
+            let usernameTextField = alertController.textFields![1] as UITextField
+            let phoneNumberTextField = alertController.textFields![0] as UITextField
+            self.sendCode(usernameTextField.text!, phoneNumber: phoneNumberTextField.text!)
+            alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         
         signUpAction.enabled = false
@@ -49,20 +57,104 @@ class LoginViewController : UIViewController {
         
         alertController.addAction(signUpAction)
         
-        
-        
-        
-        
         self.presentViewController(alertController, animated: true) {
-            // ...
         }
 
     }
     
-    func signUp(userName:String, phoneNumber:String){
+    func sendCode(userName:String, phoneNumber:String){
+        
+        let preferredLanguages = NSBundle.mainBundle().preferredLocalizations
+        let preferredLanguage = preferredLanguages[0] 
+        print(phoneNumber)
+        if phoneNumber != "" {
+            if (preferredLanguage == "en" && phoneNumber.characters.count != 10)
+                || (preferredLanguage == "ja" && phoneNumber.characters.count != 11) {
+                    showAlert("Phone Login", message: NSLocalizedString("warningPhone", comment: "You must enter a 10-digit US phone number including area code."))
+                    //return step1()
+            }
+            
+            self.editing = false
+            let params = ["phoneNumber" : phoneNumber, "language" : preferredLanguage]
+            PFCloud.callFunctionInBackground("sendCode", withParameters: params) {
+                (response: AnyObject?, error: NSError?) -> Void in
+                self.editing = true
+                if let error = error {
+                    var description = error.description
+                    if description.characters.count == 0 {
+                        description = NSLocalizedString("warningGeneral", comment: "Something went wrong.  Please try again.") // "There was a problem with the service.\nTry again later."
+                    } else if let message = error.userInfo["error"] as? String {
+                        description = message
+                    }
+                    self.showAlert("Login Error", message: description)
+                    //return self.step1()
+                }
+                return self.confirmCode()
+            }
+        } else {
+            if let text = self.confirmationCode{
+                let code = Int(text)
+                if text.characters.count == 4 {
+                    return doLogin(phoneNumber, code: code!)
+                }
+            }
+            
+            
+            showAlert("Code Entry", message: NSLocalizedString("warningCodeLength", comment: "You must enter the 4 digit code texted to your phone number."))
+        }
         
         
+    }
+    
+    func confirmCode() {
         
+        let alertController = UIAlertController(title: "Confirm", message: "Message", preferredStyle: .Alert)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .Default) { (_) in
+            let confirmationCodeTextField = alertController.textFields![0] as UITextField
+            self.confirmationCode = confirmationCodeTextField.text
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        confirmAction.enabled = false
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "####"
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                confirmAction.enabled = textField.text != ""
+            }
+        }
+        
+        alertController.addAction(confirmAction)
+        
+        self.presentViewController(alertController, animated: true) {
+        }
+    }
+    
+    func doLogin(phoneNumber: String, code: Int) {
+        self.editing = false
+        let params = ["phoneNumber": phoneNumber, "codeEntry": code] as [NSObject:AnyObject]
+        PFCloud.callFunctionInBackground("logIn", withParameters: params) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            if let description = error?.description {
+                self.editing = true
+                return self.showAlert("Login Error", message: description)
+            }
+            if let token = response as? String {
+                PFUser.becomeInBackground(token) { (user: PFUser?, error: NSError?) -> Void in
+                    if error != nil {
+                        self.showAlert("Login Error", message: NSLocalizedString("warningGeneral", comment: "Something happened while trying to log in.\nPlease try again."))
+                        self.editing = true
+                        //return self.step1()
+                    }
+                    return self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            } else {
+                self.editing = true
+                self.showAlert("Login Error", message: NSLocalizedString("warningGeneral", comment: "Something went wrong.  Please try again."))
+                //return self.step1()
+            }
+        }
     }
     
     

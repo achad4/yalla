@@ -1,9 +1,9 @@
 require("cloud/app.js");
 
-var twilioAccountSid = 'Your-Twilio-Account-Sid';
-var twilioAuthToken = 'Your-Twilio-Auth-Token';
-var twilioPhoneNumber = 'Your-Twilio-Phone-Number';
-var secretPasswordToken = 'Something-Random-Here';
+var twilioAccountSid = 'ACf850e90f6583c084a56e177ced9a35b6';
+var twilioAuthToken = '927084684d6ff9f4daf5d68784002ed4';
+var twilioPhoneNumber = '9255237929';
+var secretPasswordToken = 'password';
 
 var language = "en";
 var languages = ["en", "es", "ja", "kr"];
@@ -86,7 +86,7 @@ function sendCodeSms(phoneNumber, code, language) {
 	twilio.sendSms({
 		to: prefix + phoneNumber.replace(/\D/g, ''),
 		from: twilioPhoneNumber.replace(/\D/g, ''),
-		body: 'Your login code for AnyPhone is ' + code
+		body: 'Your login code for yalla is ' + code
 	}, function(err, responseData) {
 		if (err) {
 			console.log(err);
@@ -97,3 +97,83 @@ function sendCodeSms(phoneNumber, code, language) {
 	});
 	return promise;
 }
+
+
+Parse.Cloud.job("deleteConversations", function(request, status) {
+                 
+                Parse.Cloud.useMasterKey();
+                 
+                var ts = Math.round(new Date().getTime() / 1000);
+                var tsYesterday = ts - (24 * 3600);
+                var dateYesterday = new Date(tsYesterday*1000);
+                 
+                // Delete conversations not updated within 24 hours
+                var convoQuery = new Parse.Query("Conversation");
+                 
+                convoQuery.lessThan("updatedAt", dateYesterday);
+                 
+                convoQuery.find({
+                                success: function(result) {
+                                for(var i=0; i<result.length; i++) {
+                                result[i].destroy({
+                                                  success: function(object) {
+                                                  status.success("Delete job completed");
+                                                  alert('Delete Successful');
+                                                  },
+                                                  error: function(object, error) {
+                                                  status.error("Delete error :" + error);
+                                                  alert('Delete failed');
+                                                  }
+                                                  });
+                                }
+                                status.success("Delete job completed");
+                                },
+                                 
+                                error: function(error) {
+                                status.error("Error in delete query error: " + error);
+                                alert('Error in delete query');
+                                }
+                                });
+                 
+  });
+
+Parse.Cloud.job("deleteMessages", function(request, status) {
+                 
+                Parse.Cloud.useMasterKey();
+                 
+                var ts = Math.round(new Date().getTime() / 1000);
+                var tsHour = ts - (3600);
+                var dateHour = new Date(tsHour*1000);
+                 
+                // Delete messages after 1 hour
+                var convoQuery = new Parse.Query("Message");
+                 
+                convoQuery.lessThan("updatedAt", dateHour);
+                 
+                convoQuery.find({
+                                success: function(result) {
+                                for(var i=0; i<result.length; i++) {
+                                result[i].destroy({
+                                                  success: function(object) {
+                                                  status.success("Delete job completed");
+                                                  alert('Delete Successful');
+                                                  },
+                                                  error: function(object, error) {
+                                                  status.error("Delete error :" + error);
+                                                  alert('Delete failed');
+                                                  }
+                                                  });
+                                }
+                                status.success("Delete job completed");
+                                },
+                                 
+                                error: function(error) {
+                                status.error("Error in delete query error: " + error);
+                                alert('Error in delete query');
+                                }
+                                });
+                 
+  });
+
+
+
