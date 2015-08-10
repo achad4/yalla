@@ -14,7 +14,9 @@ class LoginViewController : UIViewController {
     var screenWidth = UIScreen.mainScreen().bounds.width
     var screenHeight = UIScreen.mainScreen().bounds.height
     
-    var confirmationCode:String?
+    var confirmationCode : String?
+    var phoneNumber : String?
+    var userName : String?
     
     
     func showAlert(title: String, message: String) {
@@ -64,9 +66,11 @@ class LoginViewController : UIViewController {
     
     func sendCode(userName:String, phoneNumber:String){
         
+        self.phoneNumber = phoneNumber
+        self.userName = userName
         let preferredLanguages = NSBundle.mainBundle().preferredLocalizations
         let preferredLanguage = preferredLanguages[0] 
-        print(phoneNumber)
+        
         if phoneNumber != "" {
             if (preferredLanguage == "en" && phoneNumber.characters.count != 10)
                 || (preferredLanguage == "ja" && phoneNumber.characters.count != 11) {
@@ -112,7 +116,12 @@ class LoginViewController : UIViewController {
         let confirmAction = UIAlertAction(title: "Confirm", style: .Default) { (_) in
             let confirmationCodeTextField = alertController.textFields![0] as UITextField
             self.confirmationCode = confirmationCodeTextField.text
+            
+            if let intCode = Int(self.confirmationCode!){
+                self.doLogin(self.phoneNumber!, code: intCode)
+            }
             alertController.dismissViewControllerAnimated(true, completion: nil)
+            
         }
         
         confirmAction.enabled = false
@@ -133,7 +142,7 @@ class LoginViewController : UIViewController {
     
     func doLogin(phoneNumber: String, code: Int) {
         self.editing = false
-        let params = ["phoneNumber": phoneNumber, "codeEntry": code] as [NSObject:AnyObject]
+        let params = ["userName": self.userName!, "phoneNumber": phoneNumber, "codeEntry": code] as [NSObject:AnyObject]
         PFCloud.callFunctionInBackground("logIn", withParameters: params) {
             (response: AnyObject?, error: NSError?) -> Void in
             if let description = error?.description {

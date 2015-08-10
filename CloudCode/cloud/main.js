@@ -60,10 +60,20 @@ Parse.Cloud.define("logIn", function(req, res) {
 	Parse.Cloud.useMasterKey();
 
 	var phoneNumber = req.params.phoneNumber;
+	var userName = req.params.userName;
 	phoneNumber = phoneNumber.replace(/\D/g, '');
 
-	if (phoneNumber && req.params.codeEntry) {
+	if (userName && phoneNumber && req.params.codeEntry) {
 		Parse.User.logIn(phoneNumber, secretPasswordToken + req.params.codeEntry).then(function (user) {
+			user.set("alias", userName);
+			user.save(null, {
+				success: function(user) {
+			    	console.log('New object updated with objectId: ' + user.id);
+			  	},
+				error: function(user, error) {
+					console.log('Failed to update new object, with error code: ' + error.message);
+				}
+			});
 			res.success(user._sessionToken);
 		}, function (err) {
 			res.error(err);
