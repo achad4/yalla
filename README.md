@@ -1,4 +1,3 @@
 yalla
 =====
-Social media and messenger app tailored to individual college communities.  Coming soon...
-
+Experimenting with an idea for an anonymous social media and messenger app tailored to college students
